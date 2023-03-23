@@ -247,6 +247,7 @@ CREATE TABLE lice.tbEmpleados(
 	empe_Telefono				NVARCHAR(20)	NOT NULL,
 	empe_CorreoElectronico		NVARCHAR(200)	NULL,
 	sucu_Id						INT				NOT NULL,
+	carg_Id						int				NOT NULL,
 	empe_UsuCreacion			INT				NOT NULL,
 	empe_FechaCreacion			DATETIME		NOT NULL CONSTRAINT DF_empe_FechaCreacion DEFAULT(GETDATE()),
 	empe_UsuModificacion		INT,
@@ -257,11 +258,13 @@ CREATE TABLE lice.tbEmpleados(
 	CONSTRAINT CK_lice_tbEmpleados_empe_Sexo									CHECK(empe_sexo IN ('F', 'M')),
 	CONSTRAINT FK_lice_tbEmpleados_gral_tbEstadosCiviles_eciv_Id        		FOREIGN KEY(eciv_Id)					    REFERENCES gral.tbEstadosCiviles(eciv_Id),			
 	CONSTRAINT FK_lice_tbEmpleados_gral_tbMunicipios_muni_Id					FOREIGN KEY(muni_Id)						REFERENCES gral.tbMunicipios(muni_Id),
+	CONSTRAINT FK_lice_tbEmpleados_lice_tbCargos_carg_Id						FOREIGN KEY(carg_Id)						REFERENCES lice.tbCargos(carg_Id),
 	CONSTRAINT FK_lice_tbEmpleados_acce_tbUsuarios_UserCreate					FOREIGN KEY(empe_UsuCreacion)				REFERENCES acce.tbUsuarios(user_Id),
 	CONSTRAINT FK_lice_tbEmpleados_acce_tbUsuarios_UserUpdate					FOREIGN KEY(empe_UsuModificacion)			REFERENCES acce.tbUsuarios(user_Id),
 	CONSTRAINT FK_lice_tbEmpleados_lice_tbSucursales_sucu_Id					FOREIGN KEY(sucu_Id)						REFERENCES lice.tbSucursales(sucu_Id)		
 );
 
+GO
 CREATE TABLE lice.tbAprovados(
     apro_Id         INT IDENTITY(1,1),
     soli_Id         INT NOT NULL,
