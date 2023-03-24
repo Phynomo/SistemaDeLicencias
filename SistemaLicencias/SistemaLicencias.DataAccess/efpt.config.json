@@ -1,0 +1,89 @@
+﻿{
+   "CodeGenerationMode": 0,
+   "ContextClassName": "SistemadelicenciasContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "Context",
+   "ProjectRootNamespace": "SistemaLicencias.DataAccess",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 1,
+   "Tables": [
+      {
+         "Name": "[acce].[tbPantallas]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[acce].[tbPantallasPorRoles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[acce].[tbRoles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[acce].[tbUsuarios]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[gral].[tbDepartamentos]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[gral].[tbEstadosCiviles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[gral].[tbMunicipios]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[lice].[tbAprovados]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[lice].[tbCargos]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[lice].[tbEmpleados]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[lice].[tbSolicitantes]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[lice].[tbSucursales]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[lice].[tbTiposLicencias]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[lice].[VW_tbTiposLicencias_View]",
+         "ObjectType": 3
+      }
+   ],
+   "UiHint": "DESKTOP-36LBO8D\\SQLEXPRESS.SistemaDeLicencias",
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": true,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseInflector": false,
+   "UseLegacyPluralizer": false,
+   "UseNoConstructor": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSpatial": false
+}

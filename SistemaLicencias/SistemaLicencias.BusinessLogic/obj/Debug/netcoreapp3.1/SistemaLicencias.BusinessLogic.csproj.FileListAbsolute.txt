@@ -1,0 +1,15 @@
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.BusinessLogic\bin\Debug\netcoreapp3.1\SistemaLicencias.BusinessLogic.deps.json
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.BusinessLogic\bin\Debug\netcoreapp3.1\SistemaLicencias.BusinessLogic.dll
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.BusinessLogic\bin\Debug\netcoreapp3.1\SistemaLicencias.BusinessLogic.pdb
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.BusinessLogic\bin\Debug\netcoreapp3.1\SistemaLicencias.DataAccess.dll
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.BusinessLogic\bin\Debug\netcoreapp3.1\SistemaLicencias.Entities.dll
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.BusinessLogic\bin\Debug\netcoreapp3.1\SistemaLicencias.DataAccess.pdb
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.BusinessLogic\bin\Debug\netcoreapp3.1\SistemaLicencias.Entities.pdb
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.BusinessLogic\obj\Debug\netcoreapp3.1\SistemaLicencias.BusinessLogic.csproj.AssemblyReference.cache
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.BusinessLogic\obj\Debug\netcoreapp3.1\SistemaLicencias.BusinessLogic.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.BusinessLogic\obj\Debug\netcoreapp3.1\SistemaLicencias.BusinessLogic.AssemblyInfoInputs.cache
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.BusinessLogic\obj\Debug\netcoreapp3.1\SistemaLicencias.BusinessLogic.AssemblyInfo.cs
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.BusinessLogic\obj\Debug\netcoreapp3.1\SistemaLicencias.BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.BusinessLogic\obj\Debug\netcoreapp3.1\SistemaLicencias.BusinessLogic.csproj.CopyComplete
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.BusinessLogic\obj\Debug\netcoreapp3.1\SistemaLicencias.BusinessLogic.dll
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.BusinessLogic\obj\Debug\netcoreapp3.1\SistemaLicencias.BusinessLogic.pdb

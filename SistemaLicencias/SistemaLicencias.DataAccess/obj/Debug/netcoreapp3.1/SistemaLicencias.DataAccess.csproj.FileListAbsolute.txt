@@ -1,0 +1,13 @@
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.DataAccess\bin\Debug\netcoreapp3.1\SistemaLicencias.DataAccess.deps.json
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.DataAccess\bin\Debug\netcoreapp3.1\SistemaLicencias.DataAccess.dll
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.DataAccess\bin\Debug\netcoreapp3.1\SistemaLicencias.DataAccess.pdb
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.DataAccess\bin\Debug\netcoreapp3.1\SistemaLicencias.Entities.dll
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.DataAccess\bin\Debug\netcoreapp3.1\SistemaLicencias.Entities.pdb
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.DataAccess\obj\Debug\netcoreapp3.1\SistemaLicencias.DataAccess.csproj.AssemblyReference.cache
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.DataAccess\obj\Debug\netcoreapp3.1\SistemaLicencias.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.DataAccess\obj\Debug\netcoreapp3.1\SistemaLicencias.DataAccess.AssemblyInfoInputs.cache
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.DataAccess\obj\Debug\netcoreapp3.1\SistemaLicencias.DataAccess.AssemblyInfo.cs
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.DataAccess\obj\Debug\netcoreapp3.1\SistemaLicencias.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.DataAccess\obj\Debug\netcoreapp3.1\SistemaLicencias.DataAccess.csproj.CopyComplete
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.DataAccess\obj\Debug\netcoreapp3.1\SistemaLicencias.DataAccess.dll
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.DataAccess\obj\Debug\netcoreapp3.1\SistemaLicencias.DataAccess.pdb
