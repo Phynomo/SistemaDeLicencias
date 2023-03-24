@@ -33,25 +33,22 @@ namespace SistemaLicencias.WebUI.Controllers
             {
                 var response = await httpClient.GetAsync(_baseurl + "api/TipoLicencia/Listado");
 
-                // Analizar la respuesta en una lista de objetos de modelo
                 if (response.IsSuccessStatusCode)
                 {
                     var jsonResponse = await response.Content.ReadAsStringAsync();
-                    jsonResponse = jsonResponse.Replace("[", "");
-                    jsonResponse = jsonResponse.Replace("]", "");
 
                     JObject jsonObj = JObject.Parse(jsonResponse);
-                    JObject dataObj = (JObject)jsonObj["data"];
+                    JArray jsonArray = JArray.Parse(jsonObj["data"].ToString());
                     string message = (string)jsonObj["message"];
 
                     ViewBag.Mensaje = message;
 
-                    listado = JsonConvert.DeserializeObject<List<VWTiposLicenciasViewModel>>("[" + dataObj.ToString() + "]");
+                    listado = JsonConvert.DeserializeObject<List<VWTiposLicenciasViewModel>>(jsonArray.ToString());
+        
+
                 }
                 return View(listado);
             }
-            //List<ClientesModel> listado = await _serviceApi.List();
-            //return View(listado);
         }
         
         [HttpGet]
@@ -81,6 +78,57 @@ namespace SistemaLicencias.WebUI.Controllers
             {
                 var responseContent = await response.Content.ReadAsStringAsync();
                 Console.WriteLine(responseContent);
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                Console.WriteLine("La solicitud falló con el código de estado: " + response.StatusCode);
+            }
+
+
+            return View(tipoLicenciasViewModel);
+          
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int? id)
+        {
+            
+            using (var httpClient = new HttpClient())
+            {
+                var response = await httpClient.GetAsync(_baseurl + "api/TipoLicencia/Buscar?id=" + id);
+               
+                    var jsonResponse = await response.Content.ReadAsStringAsync();
+                    
+                var lice = JsonConvert.DeserializeObject<TipoLicenciasViewModel>(jsonResponse);
+                return View(lice);
+            }
+
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(TipoLicenciasViewModel tipoLicenciasViewModel)
+        {
+
+
+            string json = JsonConvert.SerializeObject(tipoLicenciasViewModel);
+
+            var client = new HttpClient();
+            client.BaseAddress = new Uri(_baseurl + "api/TipoLicencia/Editar");
+
+            var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+
+            var response = await client.PutAsync(_baseurl + "api/TipoLicencia/Editar", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var responseContent = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(responseContent);
+
+                return RedirectToAction("Index");
             }
             else
             {

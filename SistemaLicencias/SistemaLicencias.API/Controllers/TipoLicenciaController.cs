@@ -34,13 +34,12 @@ namespace SistemaLicencias.API.Controllers
             return Ok(list);
         }
         
-        [HttpGet("Listado")]
-        public IActionResult Find()
+        [HttpGet("Buscar")]
+        public IActionResult Find(int? id)
         {
-            var list = _licenciaServivce.ListadoTipoLicencia();
+            var list = _licenciaServivce.BuscarTipoLicencia(id);
             return Ok(list);
         }
-
 
 
         [HttpPost("Insertar")]
