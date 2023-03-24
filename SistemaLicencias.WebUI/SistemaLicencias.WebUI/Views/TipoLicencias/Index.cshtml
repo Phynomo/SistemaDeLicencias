@@ -44,41 +44,48 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.tili_Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.tili_Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.tili_UsuCreacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UsuarioCreacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.tili_FechaCreacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.tili_UsuModificacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UsuarioModificacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.tili_FechaModificacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.tili_Estado)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.tili_Id }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tili_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tili_Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tili_UsuCreacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UsuarioCreacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tili_FechaCreacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tili_UsuModificacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UsuarioModificacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tili_FechaModificacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tili_Estado)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.tili_Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.tili_Id }) |
+                    <button type="button" onclick="AbrirModalDelete('@item.tili_Id')" >Eliminar</button>>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+
+@Html.Partial("_DeleteViewPartial", new SistemaLicencias.WebUI.Models.TipoLicenciasViewModel())
+
+
+<script src="~/js/App/Licencias/TipoLicencias.js"></script>

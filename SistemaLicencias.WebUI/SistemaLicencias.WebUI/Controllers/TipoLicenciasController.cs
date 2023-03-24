@@ -139,6 +139,37 @@ namespace SistemaLicencias.WebUI.Controllers
             return View(tipoLicenciasViewModel);
           
         }
+        
+        [HttpPost]
+        public async Task<IActionResult> Delete(TipoLicenciasViewModel tipoLicenciasViewModel)
+        {
+
+
+            string json = JsonConvert.SerializeObject(tipoLicenciasViewModel);
+
+            var client = new HttpClient();
+            client.BaseAddress = new Uri(_baseurl + "api/TipoLicencia/Eliminar");
+
+            var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+
+            var response = await client.PutAsync(_baseurl + "api/TipoLicencia/Eliminar", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var responseContent = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(responseContent);
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                Console.WriteLine("La solicitud falló con el código de estado: " + response.StatusCode);
+            }
+
+
+            return RedirectToAction("Index");
+
+        }
 
     }
 }
