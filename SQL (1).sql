@@ -1473,7 +1473,7 @@ END
 
 ---***  UPDATE PROCEDURE ***---
 GO
-CREATE OR ALTER PROCEDURE lice.UDP_tbSolicitud_
+CREATE OR ALTER PROCEDURE lice.UDP_tbSolicitud_UPDATE
 (@stud_Id INT,
  @soli_Id INT,
  @sucu_Id INT,
