@@ -1,0 +1,84 @@
+﻿@model IEnumerable<SistemaLicencias.WebUI.Models.VWTiposLicenciasViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@ViewBag.Mensaje</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.tili_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tili_Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tili_UsuCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UsuarioCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tili_FechaCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tili_UsuModificacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UsuarioModificacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tili_FechaModificacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tili_Estado)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.tili_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tili_Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tili_UsuCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UsuarioCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tili_FechaCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tili_UsuModificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UsuarioModificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tili_FechaModificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tili_Estado)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
