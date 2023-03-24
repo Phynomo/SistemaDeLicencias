@@ -22,6 +22,7 @@ CREATE TABLE acce.tbRoles(
 );
 GO
 
+
 CREATE TABLE acce.tbPantallas(
 	pant_Id					INT IDENTITY,
 	pant_Nombre				NVARCHAR(100) NOT NULL,
@@ -59,7 +60,7 @@ CREATE TABLE acce.tbUsuarios(
 	user_EsAdmin			BIT,
 	role_Id					INT,
 	empe_Id					INT,
-	user_UsuCreacion		INT,
+	user_UsuCreacion		INT NOT NULL,
 	user_FechaCreacion		DATETIME NOT NULL CONSTRAINT DF_user_FechaCreacion DEFAULT(GETDATE()),
 	user_UsuModificacion	INT,
 	user_FechaModificacion	DATETIME,
@@ -263,6 +264,10 @@ CREATE TABLE lice.tbEmpleados(
 	CONSTRAINT FK_lice_tbEmpleados_acce_tbUsuarios_UserUpdate					FOREIGN KEY(empe_UsuModificacion)			REFERENCES acce.tbUsuarios(user_Id),
 	CONSTRAINT FK_lice_tbEmpleados_lice_tbSucursales_sucu_Id					FOREIGN KEY(sucu_Id)						REFERENCES lice.tbSucursales(sucu_Id)		
 );
+GO
+
+--ALTER TABLE [acce].[tbUsuarios]
+--ADD CONSTRAINT FK_acce_tbUsuarios_lice_tbEmpleados_empe_Id FOREIGN KEY(empe_Id) REFERENCES lice.tbEmpleados(empe_Id)
 
 GO
 CREATE TABLE lice.tbSolicitud(
@@ -955,5 +960,296 @@ END
 GO
 
 
+GO
+CREATE OR ALTER VIEW acce.VW_tbPantallasPorRoles_View
+AS
+SELECT [prol_Id]
+      ,T1.[role_Id]
+	  ,T4.role_Nombre
+      ,T1.[pant_Id]
+	  ,T5.pant_Nombre
+	  ,T5.pant_Url
+	  ,T5.pant_Menu
+	  ,T5.pant_HtmlId
+      ,[prol_UsuCreacion]
+	  ,t2.user_NombreUsuario AS UsuarioCreacion
+      ,[prol_FechaCreacion]
+      ,[prol_UsuModificacion]
+	  ,t3.user_NombreUsuario AS UsuarioModificacion
+      ,[prol_FechaModificacion]
+      ,[prol_Estado]
+  FROM [acce].[tbPantallasPorRoles] T1 INNER JOIN acce.tbRoles T4
+  ON T4.role_Id = T1.role_Id INNER JOIN acce.tbPantallas T5
+  ON T5.pant_Id = T1.pant_Id INNER JOIN acce.tbUsuarios T2
+  ON T1.prol_UsuCreacion = T2.[user_Id] LEFT JOIN acce.tbUsuarios T3
+  ON T1.prol_UsuModificacion = T3.[user_Id]
 
 
+  GO
+  CREATE OR ALTER PROCEDURE acce.UDP_tbPantallasPorRoles_Select
+  AS 
+  BEGIN
+  
+  SELECT * FROM acce.VW_tbPantallasPorRoles_View
+  WHERE prol_Estado = 1
+
+  END
+  GO
+  GO
+
+CREATE OR ALTER PROCEDURE acce.UDP_tbPantallasPorRoles_Insert 
+	@role_Id int,
+	@pant_Id int,
+	@prol_UsuCreacion int
+AS
+BEGIN
+    BEGIN TRY
+        IF EXISTS (SELECT * FROM acce.tbPantallasPorRoles WHERE role_Id = @role_Id AND pant_Id = @pant_Id AND prol_Estado = 1)
+        BEGIN
+
+            SELECT 2 as Proceso
+
+        END
+        ELSE IF NOT EXISTS (SELECT * FROM acce.tbPantallasPorRoles WHERE role_Id = @role_Id AND pant_Id = @pant_Id)
+        BEGIN
+		INSERT INTO [acce].[tbPantallasPorRoles]
+           ([role_Id]
+           ,[pant_Id]
+           ,[prol_UsuCreacion]
+           ,[prol_FechaCreacion]
+           ,[prol_UsuModificacion]
+           ,[prol_FechaModificacion]
+           ,[prol_Estado])
+     VALUES
+           (@role_Id
+           ,@pant_Id
+           ,@prol_UsuCreacion
+           ,GETDATE()
+           ,NULL
+           ,NULL
+           ,1)
+
+            SELECT 1 as Proceso
+        END
+        ELSE
+        BEGIN
+            UPDATE acce.tbPantallasPorRoles
+            SET  prol_Estado = 1
+				,prol_UsuCreacion = @prol_UsuCreacion
+				,prol_FechaCreacion = GETDATE()
+				,prol_UsuModificacion = NULL
+				,prol_FechaModificacion = NULL
+            WHERE role_Id = @role_Id AND pant_Id = @pant_Id
+
+            select 1
+        END
+
+    END TRY
+    BEGIN CATCH
+        SELECT 0 as Proceso
+    END CATCH
+END
+GO
+
+
+CREATE OR ALTER PROCEDURE acce.UDP_tbPantallasPorRoles_Delete
+	@role_Id int,
+	@pant_Id int
+AS
+BEGIN
+    BEGIN TRY
+        
+        UPDATE acce.tbPantallasPorRoles
+        SET  prol_Estado = 0
+        WHERE role_Id = @role_Id AND pant_Id = @pant_Id
+
+        select 1
+     
+    END TRY
+    BEGIN CATCH
+        SELECT 0 as Proceso
+    END CATCH
+END
+GO
+
+GO
+CREATE OR ALTER VIEW lice.VW_tbEmpleados_View
+AS
+SELECT T1.[empe_Id]
+      ,[empe_Nombres]
+      ,[empe_Apellidos]
+	  ,[empe_Nombres] + ' ' +  [empe_Apellidos] AS empe_NombreCompleto
+      ,[empe_Identidad]
+      ,[empe_FechaNacimiento]
+      ,[empe_Sexo]
+      ,T1.[eciv_Id]
+	  ,T4.eciv_Descripcion
+      ,T1.[muni_Id]
+	  ,T5.muni_Codigo
+	  ,T5.muni_Nombre
+	  ,T6.depa_Id
+	  ,T6.depa_Codigo
+	  ,T6.depa_Nombre
+      ,[empe_DireccionExacta]
+      ,[empe_Telefono]
+      ,[empe_CorreoElectronico]
+      ,T7.[sucu_Id]
+	  ,T7.sucu_Nombre
+      ,T8.[carg_Id]
+	  ,T8.carg_Descripcion
+      ,[empe_UsuCreacion]
+	  ,t3.user_NombreUsuario AS UsuarioCreacion
+      ,[empe_FechaCreacion]
+      ,[empe_UsuModificacion]
+	  ,t3.user_NombreUsuario AS UsuarioModificacion
+      ,[empe_FechaModificacion]
+      ,[empe_Estado]
+  FROM [lice].[tbEmpleados] T1 INNER JOIN gral.tbEstadosCiviles T4
+  ON T4.eciv_Id = T1.eciv_Id INNER JOIN gral.tbMunicipios T5
+  ON T5.muni_Id = T1.muni_Id INNER JOIN gral.tbDepartamentos T6
+  ON T5.depa_Id = T6.depa_Id INNER JOIN lice.tbSucursales T7
+  ON T7.sucu_Id = T1.sucu_Id INNER JOIN lice.tbCargos T8
+  ON T8.carg_Id	= T1.carg_Id INNER JOIN acce.tbUsuarios T2
+  ON T1.empe_UsuCreacion = T2.[user_Id] LEFT JOIN acce.tbUsuarios T3
+  ON T1.empe_UsuModificacion = T3.[user_Id]
+
+
+  GO
+  CREATE OR ALTER PROCEDURE lice.UDP_tbEmpleados_Select
+  AS 
+  BEGIN
+  
+  SELECT * FROM lice.VW_tbEmpleados_View
+  WHERE empe_Estado = 1
+
+  END
+  GO
+  GO
+  CREATE OR ALTER PROCEDURE lice.UDP_tbEmpleados_Insert 
+	@empe_Nombres nvarchar(200),
+	@empe_Apellidos nvarchar(200),
+	@empe_Identidad varchar(13),
+	@empe_FechaNacimiento date,
+	@empe_Sexo char(1),
+	@eciv_Id int,
+	@muni_Id int,
+	@empe_DireccionExacta nvarchar(250),
+	@empe_Telefono nvarchar(20),
+	@empe_CorreoElectronico nvarchar(200),
+	@sucu_Id int,
+	@carg_Id int,
+	@empe_UsuCreacion int
+AS
+BEGIN
+    BEGIN TRY
+        
+INSERT INTO [lice].[tbEmpleados]
+           ([empe_Nombres]
+           ,[empe_Apellidos]
+           ,[empe_Identidad]
+           ,[empe_FechaNacimiento]
+           ,[empe_Sexo]
+           ,[eciv_Id]
+           ,[muni_Id]
+           ,[empe_DireccionExacta]
+           ,[empe_Telefono]
+           ,[empe_CorreoElectronico]
+           ,[sucu_Id]
+           ,[carg_Id]
+           ,[empe_UsuCreacion]
+           ,[empe_FechaCreacion]
+           ,[empe_UsuModificacion]
+           ,[empe_FechaModificacion]
+           ,[empe_Estado])
+     VALUES
+           (@empe_Nombres
+           ,@empe_Apellidos
+           ,@empe_Identidad
+           ,@empe_FechaNacimiento
+           ,@empe_Sexo
+           ,@eciv_Id
+           ,@muni_Id
+           ,@empe_DireccionExacta
+           ,@empe_Telefono
+           ,@empe_CorreoElectronico
+           ,@sucu_Id
+           ,@carg_Id
+           ,@empe_UsuCreacion
+           ,Getdate()
+           ,NULL
+           ,NULL
+           ,1)
+
+
+		SELECT 1
+    END TRY
+    BEGIN CATCH
+        SELECT 0 as Proceso
+    END CATCH
+END
+GO
+Go
+  CREATE OR ALTER PROCEDURE lice.UDP_tbEmpleados_Update
+	@empe_Id INT,
+	@empe_Nombres nvarchar(200),
+	@empe_Apellidos nvarchar(200),
+	@empe_Identidad varchar(13),
+	@empe_FechaNacimiento date,
+	@empe_Sexo char(1),
+	@eciv_Id int,
+	@muni_Id int,
+	@empe_DireccionExacta nvarchar(250),
+	@empe_Telefono nvarchar(20),
+	@empe_CorreoElectronico nvarchar(200),
+	@sucu_Id int,
+	@carg_Id int,
+	@empe_UsuModificacion int
+AS
+BEGIN
+    BEGIN TRY
+      
+UPDATE [lice].[tbEmpleados]
+   SET [empe_Nombres] = @empe_Nombres
+      ,[empe_Apellidos] = @empe_Apellidos
+      ,[empe_Identidad] = @empe_Identidad
+      ,[empe_FechaNacimiento] = @empe_FechaNacimiento
+      ,[empe_Sexo] = @empe_Sexo
+      ,[eciv_Id] = @eciv_Id
+      ,[muni_Id] = @muni_Id
+      ,[empe_DireccionExacta] = @empe_DireccionExacta
+      ,[empe_Telefono] = @empe_Telefono
+      ,[empe_CorreoElectronico] = @empe_CorreoElectronico
+      ,[sucu_Id] = @sucu_Id
+      ,[carg_Id] = @carg_Id
+      ,[empe_UsuModificacion] =  @empe_UsuModificacion
+      ,[empe_FechaModificacion] = GETDATE()
+ WHERE empe_Id = @empe_Id
+
+        SELECT 1 as Proceso
+
+    END TRY
+    BEGIN CATCH
+        SELECT 0 as Proceso
+    END CATCH
+END
+GO
+  Go
+
+  CREATE OR ALTER PROCEDURE lice.UDP_tbEmpleados_Delete
+	@empe_Id INT
+AS
+BEGIN
+	BEGIN TRY
+		
+		UPDATE lice.tbEmpleados
+		SET empe_Estado = 0
+		WHERE empe_Id = @empe_Id
+		
+		SELECT 1
+	
+	END TRY
+	BEGIN CATCH
+		SELECT 0 as Proceso
+	END CATCH
+END
+GO
