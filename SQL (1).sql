@@ -1720,3 +1720,11 @@ BEGIN
 	SELECT * FROM LICE.VW_tbAprobados_View
 	WHERE apro_Estado = 1;
 END
+GO
+CREATE OR ALTER PROCEDURE lice.UDP_VW_tbTiposLicencias_View_FIND
+(@tili_Id INT)
+AS
+BEGIN
+    SELECT * FROM lice.tbTiposLicencias 
+    WHERE tili_Id = @tili_Id;
+END

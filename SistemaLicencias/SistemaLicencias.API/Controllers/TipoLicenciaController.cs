@@ -33,6 +33,13 @@ namespace SistemaLicencias.API.Controllers
             var list = _licenciaServivce.ListadoTipoLicencia();
             return Ok(list);
         }
+        
+        [HttpGet("Listado")]
+        public IActionResult Find()
+        {
+            var list = _licenciaServivce.ListadoTipoLicencia();
+            return Ok(list);
+        }
 
 
 

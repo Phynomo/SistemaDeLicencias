@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MM6TLd0PEL4YoArHG97kgKaY58I7vmW8jYJb/NO0sPjXL1UpIAc5yhBpP2yljHZej9v+fvL0bqA6nNsNMn9NTg==",
+  "dgSpecHash": "bS1eSoGyqVHW6oY7KPR1Jw/BrdeE+7pY5TU8/E0/AjH1iqqZ2uMZNzx45/EGbGGS9rLwFfZvGau0uPlyU7en2A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\LAB01\\source\\repos\\SistemaLicencias.WebUI\\SistemaLicencias.WebUI\\SistemaLicencias.WebUI.csproj",
+  "projectFilePath": "C:\\Users\\LAB01\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias.WebUI\\SistemaLicencias.WebUI\\SistemaLicencias.WebUI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\LAB01\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\LAB01\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",

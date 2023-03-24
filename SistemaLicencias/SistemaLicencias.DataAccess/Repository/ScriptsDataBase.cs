@@ -10,6 +10,7 @@ namespace SistemaLicencias.DataAccess.Repository
         public static string UDP_tbTiposLicencias_Insertar = "lice.UDP_tbTiposLicencias_Insert";
         public static string UDP_tbTiposLicencias_Editar = "lice.UDP_tbTiposLicencias_Update";
         public static string UDP_tbTiposLicencias_Eliminar = "lice.UDP_tbTiposLicencias_Delete";
+        public static string UDP_tbTiposLicencias_Buscar = "lice.UDP_VW_tbTiposLicencias_View_FIND";
 
 
     }

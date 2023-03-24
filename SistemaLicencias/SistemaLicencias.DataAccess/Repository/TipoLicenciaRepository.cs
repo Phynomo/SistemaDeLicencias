@@ -22,7 +22,12 @@ namespace SistemaLicencias.DataAccess.Repository
 
         public VW_tbTiposLicencias_View Find(int? id)
         {
-            throw new NotImplementedException();
+            //using var db = new SqlConnection(LicenciaContext.ConnectionString);
+            //var parametros = new DynamicParameters();
+            //parametros.Add("@tili_Id", id, DbType.Int32, ParameterDirection.Input);
+
+            //return db.Query<VW_tbTiposLicencias_View>(ScriptsDataBase.UDP_tbTiposLicencias_Buscar, parametros, commandType: System.Data.CommandType.StoredProcedure);
+            return throw;       
         }
 
         public RequestStatus Insert(tbTiposLicencias item)

@@ -35,6 +35,22 @@ namespace SistemaLicencias.BusinessLogic.Service
 
             }
         }
+        
+        
+        public VW_tbTiposLicencias_View BuscarTipoLicencia(int? id)
+        {
+            try
+            {
+                var list = _tipoLicenciaRepository.Find(id);
+                return list;
+            }
+            catch (Exception)
+            {
+
+                return null;
+
+            }
+        }
 
         public ServiceResult InsertarTipoLicencia(tbTiposLicencias tbTipos)
         {

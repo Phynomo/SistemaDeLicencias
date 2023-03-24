@@ -53,5 +53,44 @@ namespace SistemaLicencias.WebUI.Controllers
             //List<ClientesModel> listado = await _serviceApi.List();
             //return View(listado);
         }
+        
+        [HttpGet]
+        public IActionResult Create()
+        {
+                return View();
+        }
+        
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> Create(TipoLicenciasViewModel tipoLicenciasViewModel)
+        {
+
+
+            string json = JsonConvert.SerializeObject(tipoLicenciasViewModel);
+
+            var client = new HttpClient();
+            client.BaseAddress = new Uri(_baseurl + "api/TipoLicencia/Insertar");
+
+            var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+
+            var response = await client.PostAsync(_baseurl + "api/TipoLicencia/Insertar", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var responseContent = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(responseContent);
+            }
+            else
+            {
+                Console.WriteLine("La solicitud falló con el código de estado: " + response.StatusCode);
+            }
+
+
+            return View(tipoLicenciasViewModel);
+          
+        }
+
     }
 }
