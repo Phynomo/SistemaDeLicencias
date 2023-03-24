@@ -27,7 +27,7 @@ namespace SistemaLicencias.API.Controllers
 
 
 
-        [HttpGet("List")]
+        [HttpGet("Listado")]
         public IActionResult List()
         {
             var list = _licenciaServivce.ListadoTipoLicencia();
@@ -36,7 +36,7 @@ namespace SistemaLicencias.API.Controllers
 
 
 
-        [HttpPost("Insert")]
+        [HttpPost("Insertar")]
         public IActionResult Insert(TipoLicenciaViewModel tipoLicenciaViewModel)
         {
 
@@ -44,5 +44,22 @@ namespace SistemaLicencias.API.Controllers
             var response = _licenciaServivce.InsertarTipoLicencia(item);
             return Ok(response);
         }
+
+        [HttpPut("Editar")]
+        public IActionResult Update(TipoLicenciaViewModel tipoLicenciaViewModel)
+        {
+            var item = _mapper.Map<tbTiposLicencias>(tipoLicenciaViewModel);
+            var result = _licenciaServivce.EditarTipoLicencia(item);
+            return Ok(result);
+        }
+
+        [HttpPut("Eliminar")]
+        public IActionResult Delete(TipoLicenciaViewModel tipoLicenciaViewModel)
+        {
+            var item = _mapper.Map<tbTiposLicencias>(tipoLicenciaViewModel);
+            var result = _licenciaServivce.EliminarTipoLicencia(item);
+            return Ok(result);
+        }
+
     }
 }

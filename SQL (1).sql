@@ -12,7 +12,7 @@ GO
 
 CREATE TABLE acce.tbRoles(
 	role_Id					INT IDENTITY,
-	role_Nombre				NVARCHAR(100) NOT NULL,
+	role_Nombre				NVARCHAR(100) UNIQUE NOT NULL,
 	role_UsuCreacion		INT NOT NULL,
 	role_FechaCreacion		DATETIME NOT NULL CONSTRAINT DF_role_FechaCreacion DEFAULT(GETDATE()),
 	role_UsuModificacion	INT,
@@ -38,17 +38,17 @@ CREATE TABLE acce.tbPantallas(
 
 
 CREATE TABLE acce.tbPantallasPorRoles(
-	pantrole_Id					INT IDENTITY,
+	prol_Id						INT IDENTITY,
 	role_Id						INT NOT NULL,
 	pant_Id						INT NOT NULL,
-	pantrole_UsuCreacion		INT NOT NULL,
-	pantrole_FechaCreacion		DATETIME NOT NULL CONSTRAINT DF_pantrole_FechaCreacion DEFAULT(GETDATE()),
-	pantrole_UsuModificacion	INT,
-	pantrole_FechaModificacion	DATETIME,
-	pantrole_Estado				BIT NOT NULL CONSTRAINT DF_pantrole_Estado DEFAULT(1)
+	prol_UsuCreacion			INT NOT NULL,
+	prol_FechaCreacion			DATETIME NOT NULL CONSTRAINT DF_pantrole_FechaCreacion DEFAULT(GETDATE()),
+	prol_UsuModificacion		INT,
+	prol_FechaModificacion		DATETIME,
+	prol_Estado					BIT NOT NULL CONSTRAINT DF_pantrole_Estado DEFAULT(1)
 	CONSTRAINT FK_acce_tbPantallasPorRoles_acce_tbRoles_role_Id FOREIGN KEY(role_Id) REFERENCES acce.tbRoles(role_Id),
 	CONSTRAINT FK_acce_tbPantallasPorRoles_acce_tbPantallas_pant_Id FOREIGN KEY(pant_Id)	REFERENCES acce.tbPantallas(pant_Id),
-	CONSTRAINT PK_acce_tbPantallasPorRoles_pantrole_Id PRIMARY KEY(pantrole_Id),
+	CONSTRAINT PK_acce_tbPantallasPorRoles_pantrole_Id PRIMARY KEY(prol_Id)
 );
 GO
 
@@ -102,8 +102,8 @@ ADD CONSTRAINT FK_acce_tbUsuarios_acce_tbUsuarios_user_UsuCreacion_user_Id  FORE
 
 GO 
 ALTER TABLE [acce].[tbPantallasPorRoles]
-ADD CONSTRAINT FK_acce_tbPantallasPorRoles_acce_tbUsuarios_pantrole_UsuCreacion_user_Id FOREIGN KEY([pantrole_UsuCreacion]) REFERENCES acce.tbUsuarios([user_Id]),
-	CONSTRAINT FK_acce_tbPantallasPorRoles_acce_tbUsuarios_pantrole_UsuModificacion_user_Id FOREIGN KEY([pantrole_UsuModificacion]) REFERENCES acce.tbUsuarios([user_Id])
+ADD CONSTRAINT FK_acce_tbPantallasPorRoles_acce_tbUsuarios_pantrole_UsuCreacion_user_Id FOREIGN KEY([prol_UsuCreacion]) REFERENCES acce.tbUsuarios([user_Id]),
+	CONSTRAINT FK_acce_tbPantallasPorRoles_acce_tbUsuarios_pantrole_UsuModificacion_user_Id FOREIGN KEY([prol_UsuModificacion]) REFERENCES acce.tbUsuarios([user_Id])
 
 --********TABLA DEPARTAMENTO****************---
 GO
@@ -177,7 +177,7 @@ CONSTRAINT PK_lice_tbCargos_acce_tbUsuarios_carg_UsuModificacion     FOREIGN KEY
 GO
 CREATE TABLE lice.tbTiposLicencias(
 tili_Id INT IDENTITY(1,1),
-tili_Descripcion         NVARCHAR(100) NOT NULL,
+tili_Descripcion         NVARCHAR(100) UNIQUE NOT NULL,
 tili_UsuCreacion         INT NOT NULL,
 tili_FechaCreacion         DATETIME CONSTRAINT DF_lice_tbTiposLicencias_tili_FechaCreacion DEFAULT(GETDATE()),
 tili_UsuModificacion     INT ,
@@ -309,66 +309,6 @@ CREATE TABLE lice.tbAprobados(
 
     
 )
-
-GO
-CREATE OR ALTER VIEW lice.VW_tbTiposLicencias_View
-AS
-SELECT [tili_Id]
-      ,[tili_Descripcion]
-      ,[tili_UsuCreacion]
-      ,t2.user_NombreUsuario AS UsuarioCreacion
-      ,[tili_FechaCreacion]
-      ,[tili_UsuModificacion] 
-      ,t3.user_NombreUsuario AS UsuarioModificacion
-      ,[tili_FechaModificacion]
-      ,[tili_Estado]
-  FROM [lice].[tbTiposLicencias] T1 INNER JOIN acce.tbUsuarios T2
-  ON T1.tili_UsuCreacion = T2.user_Id LEFT JOIN acce.tbUsuarios T3
-  ON T1.tili_UsuModificacion = T3.user_Id
-
-
-  GO
-  CREATE OR ALTER PROCEDURE lice.UDP_tbTiposLicencias_Select
-  AS 
-  BEGIN
-  
-  SELECT * FROM lice.VW_tbTiposLicencias_View
-  WHERE tili_Estado = 1
-
-  END
-  GO
-  
-  GO
-  CREATE OR ALTER PROCEDURE lice.UDP_tbTiposLicencias_Insert
-  @tili_Descripcion nvarchar(100),
-  @tili_UsuCreacion int
-  AS 
-  BEGIN
-  BEGIN TRY
-
-  INSERT INTO [lice].[tbTiposLicencias]
-           ([tili_Descripcion]
-           ,[tili_UsuCreacion]
-           ,[tili_FechaCreacion]
-           ,[tili_UsuModificacion]
-           ,[tili_FechaModificacion]
-           ,[tili_Estado])
-     VALUES
-           (@tili_Descripcion
-           ,@tili_UsuCreacion
-           ,GETDATE()
-           ,null
-           ,null
-           ,1)
-
-		   SELECT 1
-  END TRY
-  BEGIN CATCH
-	SELECT 0
-  END CATCH
-
-  END
-  GO
 
 
 INSERT INTO gral.tbEstadosCiviles (eciv_Descripcion, eciv_Estado, eciv_UsuCreacion, eciv_FechaCreacion, eciv_UsuModificacion, eciv_FechaModificacion)
@@ -734,5 +674,286 @@ VALUES	('1','0101','La Ceiba', '1', 1, GETDATE(), NULL, GETDATE()),
 		('18', '1810', 'Victoria', '1', 1, GETDATE(), NULL, GETDATE()),
 		('18', '1811', 'Yorito', '1', 1, GETDATE(), NULL, GETDATE());
 GO
+
+
+--***************************UDP*****************************************--
+
+
+GO
+CREATE OR ALTER VIEW lice.VW_tbTiposLicencias_View
+AS
+SELECT [tili_Id]
+      ,[tili_Descripcion]
+      ,[tili_UsuCreacion]
+      ,t2.user_NombreUsuario AS UsuarioCreacion
+      ,[tili_FechaCreacion]
+      ,[tili_UsuModificacion] 
+      ,t3.user_NombreUsuario AS UsuarioModificacion
+      ,[tili_FechaModificacion]
+      ,[tili_Estado]
+  FROM [lice].[tbTiposLicencias] T1 INNER JOIN acce.tbUsuarios T2
+  ON T1.tili_UsuCreacion = T2.user_Id LEFT JOIN acce.tbUsuarios T3
+  ON T1.tili_UsuModificacion = T3.user_Id
+
+
+  GO
+  CREATE OR ALTER PROCEDURE lice.UDP_tbTiposLicencias_Select
+  AS 
+  BEGIN
+  
+  SELECT * FROM lice.VW_tbTiposLicencias_View
+  WHERE tili_Estado = 1
+
+  END
+  GO
+  GO
+
+
+  Go
+CREATE OR ALTER PROCEDURE lice.UDP_tbTiposLicencias_Insert 
+  @tili_Descripcion nvarchar(100),
+  @tili_UsuCreacion int
+AS
+BEGIN
+	BEGIN TRY
+		IF EXISTS (SELECT * FROM lice.tbTiposLicencias WHERE tili_Descripcion = @tili_Descripcion AND tili_Estado = 1)
+		BEGIN
+
+			SELECT 2 as Proceso
+
+		END
+		ELSE IF NOT EXISTS (SELECT * FROM lice.tbTiposLicencias WHERE tili_Descripcion = @tili_Descripcion)
+		BEGIN
+		 INSERT INTO [lice].[tbTiposLicencias]
+				   ([tili_Descripcion]
+				   ,[tili_UsuCreacion]
+				   ,[tili_FechaCreacion]
+				   ,[tili_UsuModificacion]
+				   ,[tili_FechaModificacion]
+				   ,[tili_Estado])
+			 VALUES
+				   (@tili_Descripcion
+				   ,@tili_UsuCreacion
+				   ,GETDATE()
+				   ,null
+				   ,null
+				   ,1)
+
+			SELECT 1 as Proceso
+		END
+		ELSE
+		BEGIN
+			UPDATE lice.tbTiposLicencias
+			SET	 tili_Estado = 1
+				,tili_Descripcion = @tili_Descripcion
+				,tili_UsuCreacion = @tili_UsuCreacion
+				,tili_FechaCreacion = GETDATE()
+				,tili_UsuModificacion = NULL
+				,tili_FechaModificacion = NULL
+			WHERE tili_Descripcion = @tili_Descripcion
+		
+			select 1
+		END
+			
+	END TRY
+	BEGIN CATCH
+		SELECT 0 as Proceso
+	END CATCH
+END
+GO
+Select * from lice.tbTiposLicencias
+
+  Go
+CREATE OR ALTER PROCEDURE lice.UDP_tbTiposLicencias_Update
+  @tili_Id			INT,
+  @tili_Descripcion nvarchar(100),
+  @tili_UsuModificacion int
+AS
+BEGIN
+	BEGIN TRY
+		IF EXISTS (SELECT * FROM lice.tbTiposLicencias WHERE (tili_Descripcion = @tili_Descripcion AND tili_Id != @tili_Id))
+		BEGIN
+
+			SELECT 2 as Proceso
+
+		END
+		ELSE
+		BEGIN
+		 
+			UPDATE lice.tbTiposLicencias
+			SET	 tili_Estado = 1
+				,tili_Descripcion = @tili_Descripcion
+				,tili_UsuModificacion = @tili_UsuModificacion
+				,tili_FechaModificacion = GETDATE()
+			WHERE tili_Id = @tili_Id
+
+			SELECT 1 as Proceso
+		END
+			
+	END TRY
+	BEGIN CATCH
+		SELECT 0 as Proceso
+	END CATCH
+END
+GO
+
+
+
+  Go
+CREATE OR ALTER PROCEDURE lice.UDP_tbTiposLicencias_Delete
+  @tili_Id INT
+AS
+BEGIN
+	BEGIN TRY
+		
+		UPDATE lice.tbTiposLicencias
+		SET tili_Estado = 0
+		WHERE tili_Id = @tili_Id
+		
+		SELECT 1
+	
+	END TRY
+	BEGIN CATCH
+		SELECT 0 as Proceso
+	END CATCH
+END
+GO
+GO
+
+GO
+CREATE OR ALTER VIEW acce.VW_tbRoles_View
+AS
+SELECT T1.[role_Id]
+      ,[role_Nombre]
+      ,[role_UsuCreacion]
+	  ,t2.user_NombreUsuario AS UsuarioCreacion
+      ,[role_FechaCreacion]
+      ,[role_UsuModificacion]
+	  ,t3.user_NombreUsuario AS UsuarioModificacion
+      ,[role_FechaModificacion]
+      ,[role_Estado]
+  FROM [acce].[tbRoles] T1 INNER JOIN acce.tbUsuarios T2
+  ON T1.role_UsuCreacion = T2.user_Id LEFT JOIN acce.tbUsuarios T3
+  ON T1.role_UsuModificacion = T3.user_Id
+
+
+  GO
+  CREATE OR ALTER PROCEDURE acce.UDP_tbRoles_Select
+  AS 
+  BEGIN
+  
+  SELECT * FROM acce.VW_tbRoles_View
+  WHERE role_Estado = 1
+
+  END
+  GO
+  GO
+  Go
+CREATE OR ALTER PROCEDURE acce.UDP_tbRoles_Insert 
+  @role_Nombre nvarchar(100),
+  @role_UsuCreacion int
+AS
+BEGIN
+    BEGIN TRY
+        IF EXISTS (SELECT * FROM acce.tbRoles WHERE role_Nombre = @role_Nombre AND role_Estado = 1)
+        BEGIN
+
+            SELECT 2 as Proceso
+
+        END
+        ELSE IF NOT EXISTS (SELECT * FROM acce.tbRoles WHERE role_Nombre = @role_Nombre)
+        BEGIN
+		INSERT INTO [acce].[tbRoles]
+				   ([role_Nombre]
+				   ,[role_UsuCreacion]
+				   ,[role_FechaCreacion]
+				   ,[role_UsuModificacion]
+				   ,[role_FechaModificacion]
+				   ,[role_Estado])
+			 VALUES
+				   (@role_Nombre
+				   ,@role_UsuCreacion
+				   ,GETDATE()
+				   ,Null
+				   ,Null
+				   ,1)
+
+            SELECT 1 as Proceso
+        END
+        ELSE
+        BEGIN
+            UPDATE acce.tbRoles
+            SET  role_Estado = 1
+				,role_Nombre = @role_Nombre
+				,role_UsuCreacion = @role_UsuCreacion
+				,role_FechaCreacion = GETDATE()
+				,role_UsuModificacion = NULL
+				,role_FechaModificacion = NULL
+            WHERE role_Nombre = @role_Nombre
+
+            select 1
+        END
+
+    END TRY
+    BEGIN CATCH
+        SELECT 0 as Proceso
+    END CATCH
+END
+GO
+Go
+CREATE OR ALTER PROCEDURE acce.UDP_tbRoles_Update
+  @role_Id				INT,
+  @role_Nombre			nvarchar(100),
+  @role_UsuModificacion INT
+AS
+BEGIN
+    BEGIN TRY
+        IF EXISTS (SELECT * FROM acce.tbRoles WHERE (role_Nombre = @role_Nombre AND role_Id != @role_Id))
+        BEGIN
+
+            SELECT 2 as Proceso
+
+        END
+        ELSE
+        BEGIN
+
+			UPDATE acce.tbRoles
+				SET  role_Estado = 1
+					,role_Nombre = @role_Nombre
+					,role_UsuModificacion = @role_UsuModificacion
+					,role_FechaModificacion = GETDATE()
+				WHERE role_Id = @role_Id
+
+
+            SELECT 1 as Proceso
+        END
+
+    END TRY
+    BEGIN CATCH
+        SELECT 0 as Proceso
+    END CATCH
+END
+GO
+  Go
+CREATE OR ALTER PROCEDURE acce.UDP_tbRoles_Delete
+  @role_Id INT
+AS
+BEGIN
+	BEGIN TRY
+		
+		UPDATE acce.tbRoles
+		SET role_Estado = 0
+		WHERE role_Id = @role_Id
+		
+		SELECT 1
+	
+	END TRY
+	BEGIN CATCH
+		SELECT 0 as Proceso
+	END CATCH
+END
+GO
+
+
 
 

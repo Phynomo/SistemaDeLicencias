@@ -59,6 +59,53 @@ namespace SistemaLicencias.BusinessLogic.Service
                 throw;
             }
         }
+        
+        public ServiceResult EditarTipoLicencia(tbTiposLicencias tbTipos)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var map = _tipoLicenciaRepository.Update(tbTipos);
+                if (map.CodeStatus > 0)
+                {
+                    return result.Ok(map);
+                }
+                else
+                {
+                    map.MessageStatus = (map.CodeStatus == 0) ? "404 Error de consulta" : map.MessageStatus;
+                    return result.Error(map);
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public ServiceResult EliminarTipoLicencia(tbTiposLicencias tbTipos)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var map = _tipoLicenciaRepository.Delete(tbTipos);
+                if (map.CodeStatus > 0)
+                {
+                    return result.Ok(map);
+                }
+                else
+                {
+                    map.MessageStatus = (map.CodeStatus == 0) ? "404 Error de consulta" : map.MessageStatus;
+                    return result.Error(map);
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
 
         #endregion
 
