@@ -895,6 +895,23 @@ SELECT T1.[role_Id]
   ON T1.role_UsuModificacion = T3.user_Id
 
 
+ GO
+ CREATE OR ALTER PROCEDURE lice.UDP_VW_tbTiposLicencias_View_FIND
+(@tili_Id INT)
+AS
+BEGIN
+    SELECT * FROM lice.VW_tbTiposLicencias_View 
+    WHERE tili_Id = @tili_Id;
+END
+
+
+
+
+
+
+
+
+
   GO
   CREATE OR ALTER PROCEDURE acce.UDP_tbRoles_Select
   AS 
@@ -1473,6 +1490,16 @@ BEGIN
 	WHERE soli_Estado = 1
 END
 
+--*** FIND PROCEDURE ***--
+GO
+CREATE OR ALTER PROCEDURE lice.UDP_VW_tbSolicitantes_View_FIND
+(@soli_Id INT)
+AS
+BEGIN
+	SELECT * FROM VW_tbSolicitantes_View
+	WHERE soli_Id = @soli_Id;
+END
+
 
 --*****************************************************************************--
 --*****************************************************************************--
@@ -1905,10 +1932,4 @@ BEGIN
 	WHERE apro_Estado = 1;
 END
 GO
-CREATE OR ALTER PROCEDURE lice.UDP_VW_tbTiposLicencias_View_FIND
-(@tili_Id INT)
-AS
-BEGIN
-    SELECT * FROM lice.VW_tbTiposLicencias_View 
-    WHERE tili_Id = @tili_Id;
-END
+
