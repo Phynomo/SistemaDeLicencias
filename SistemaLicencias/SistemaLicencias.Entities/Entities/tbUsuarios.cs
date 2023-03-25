@@ -12,8 +12,6 @@ namespace SistemaLicencias.Entities.Entities
         {
             Inverseuser_UsuCreacionNavigation = new HashSet<tbUsuarios>();
             Inverseuser_UsuModificacionNavigation = new HashSet<tbUsuarios>();
-            tbAprovadosapro_UsuCreacionNavigation = new HashSet<tbAprovados>();
-            tbAprovadosapro_UsuModificacionNavigation = new HashSet<tbAprovados>();
             tbCargoscarg_UsuCreacionNavigation = new HashSet<tbCargos>();
             tbCargoscarg_UsuModificacionNavigation = new HashSet<tbCargos>();
             tbDepartamentosdepa_UsuCreacionNavigation = new HashSet<tbDepartamentos>();
@@ -24,8 +22,8 @@ namespace SistemaLicencias.Entities.Entities
             tbEstadosCivileseciv_UsuModificacionNavigation = new HashSet<tbEstadosCiviles>();
             tbMunicipiosmuni_UsuCreacionNavigation = new HashSet<tbMunicipios>();
             tbMunicipiosmuni_UsuModificacionNavigation = new HashSet<tbMunicipios>();
-            tbPantallasPorRolespantrole_UsuCreacionNavigation = new HashSet<tbPantallasPorRoles>();
-            tbPantallasPorRolespantrole_UsuModificacionNavigation = new HashSet<tbPantallasPorRoles>();
+            tbPantallasPorRolesprol_UsuCreacionNavigation = new HashSet<tbPantallasPorRoles>();
+            tbPantallasPorRolesprol_UsuModificacionNavigation = new HashSet<tbPantallasPorRoles>();
             tbRolesrole_UsuCreacionNavigation = new HashSet<tbRoles>();
             tbRolesrole_UsuModificacionNavigation = new HashSet<tbRoles>();
             tbSolicitantessoli_UsuCreacionNavigation = new HashSet<tbSolicitantes>();
@@ -42,19 +40,18 @@ namespace SistemaLicencias.Entities.Entities
         public bool? user_EsAdmin { get; set; }
         public int? role_Id { get; set; }
         public int? empe_Id { get; set; }
-        public int? user_UsuCreacion { get; set; }
+        public int user_UsuCreacion { get; set; }
         public DateTime user_FechaCreacion { get; set; }
         public int? user_UsuModificacion { get; set; }
         public DateTime? user_FechaModificacion { get; set; }
         public bool? user_Estado { get; set; }
 
+        public virtual tbEmpleados empe { get; set; }
         public virtual tbRoles role { get; set; }
         public virtual tbUsuarios user_UsuCreacionNavigation { get; set; }
         public virtual tbUsuarios user_UsuModificacionNavigation { get; set; }
         public virtual ICollection<tbUsuarios> Inverseuser_UsuCreacionNavigation { get; set; }
         public virtual ICollection<tbUsuarios> Inverseuser_UsuModificacionNavigation { get; set; }
-        public virtual ICollection<tbAprovados> tbAprovadosapro_UsuCreacionNavigation { get; set; }
-        public virtual ICollection<tbAprovados> tbAprovadosapro_UsuModificacionNavigation { get; set; }
         public virtual ICollection<tbCargos> tbCargoscarg_UsuCreacionNavigation { get; set; }
         public virtual ICollection<tbCargos> tbCargoscarg_UsuModificacionNavigation { get; set; }
         public virtual ICollection<tbDepartamentos> tbDepartamentosdepa_UsuCreacionNavigation { get; set; }
@@ -65,8 +62,8 @@ namespace SistemaLicencias.Entities.Entities
         public virtual ICollection<tbEstadosCiviles> tbEstadosCivileseciv_UsuModificacionNavigation { get; set; }
         public virtual ICollection<tbMunicipios> tbMunicipiosmuni_UsuCreacionNavigation { get; set; }
         public virtual ICollection<tbMunicipios> tbMunicipiosmuni_UsuModificacionNavigation { get; set; }
-        public virtual ICollection<tbPantallasPorRoles> tbPantallasPorRolespantrole_UsuCreacionNavigation { get; set; }
-        public virtual ICollection<tbPantallasPorRoles> tbPantallasPorRolespantrole_UsuModificacionNavigation { get; set; }
+        public virtual ICollection<tbPantallasPorRoles> tbPantallasPorRolesprol_UsuCreacionNavigation { get; set; }
+        public virtual ICollection<tbPantallasPorRoles> tbPantallasPorRolesprol_UsuModificacionNavigation { get; set; }
         public virtual ICollection<tbRoles> tbRolesrole_UsuCreacionNavigation { get; set; }
         public virtual ICollection<tbRoles> tbRolesrole_UsuModificacionNavigation { get; set; }
         public virtual ICollection<tbSolicitantes> tbSolicitantessoli_UsuCreacionNavigation { get; set; }

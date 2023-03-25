@@ -8,18 +8,18 @@ namespace SistemaLicencias.Entities.Entities
 {
     public partial class tbPantallasPorRoles
     {
-        public int pantrole_Id { get; set; }
+        public int prol_Id { get; set; }
         public int role_Id { get; set; }
         public int pant_Id { get; set; }
-        public int pantrole_UsuCreacion { get; set; }
-        public DateTime pantrole_FechaCreacion { get; set; }
-        public int? pantrole_UsuModificacion { get; set; }
-        public DateTime? pantrole_FechaModificacion { get; set; }
-        public bool? pantrole_Estado { get; set; }
+        public int prol_UsuCreacion { get; set; }
+        public DateTime prol_FechaCreacion { get; set; }
+        public int? prol_UsuModificacion { get; set; }
+        public DateTime? prol_FechaModificacion { get; set; }
+        public bool? prol_Estado { get; set; }
 
         public virtual tbPantallas pant { get; set; }
-        public virtual tbUsuarios pantrole_UsuCreacionNavigation { get; set; }
-        public virtual tbUsuarios pantrole_UsuModificacionNavigation { get; set; }
+        public virtual tbUsuarios prol_UsuCreacionNavigation { get; set; }
+        public virtual tbUsuarios prol_UsuModificacionNavigation { get; set; }
         public virtual tbRoles role { get; set; }
     }
 }

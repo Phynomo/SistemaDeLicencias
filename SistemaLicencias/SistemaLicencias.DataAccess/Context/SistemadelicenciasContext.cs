@@ -20,7 +20,6 @@ namespace SistemaLicencias.DataAccess.Context
         }
 
         public virtual DbSet<VW_tbTiposLicencias_View> VW_tbTiposLicencias_View { get; set; }
-        public virtual DbSet<tbAprovados> tbAprovados { get; set; }
         public virtual DbSet<tbCargos> tbCargos { get; set; }
         public virtual DbSet<tbDepartamentos> tbDepartamentos { get; set; }
         public virtual DbSet<tbEmpleados> tbEmpleados { get; set; }
@@ -36,7 +35,7 @@ namespace SistemaLicencias.DataAccess.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("Relational:Collation", "Modern_Spanish_CI_AS");
+            modelBuilder.HasAnnotation("Relational:Collation", "Latin1_General_CI_AI");
 
             modelBuilder.Entity<VW_tbTiposLicencias_View>(entity =>
             {
@@ -57,61 +56,6 @@ namespace SistemaLicencias.DataAccess.Context
                 entity.Property(e => e.tili_FechaCreacion).HasColumnType("datetime");
 
                 entity.Property(e => e.tili_FechaModificacion).HasColumnType("datetime");
-            });
-
-            modelBuilder.Entity<tbAprovados>(entity =>
-            {
-                entity.HasKey(e => e.apro_Id)
-                    .HasName("PK_lice_tbAprovados_apro_Id");
-
-                entity.ToTable("tbAprovados", "lice");
-
-                entity.Property(e => e.apro_Estado)
-                    .IsRequired()
-                    .HasDefaultValueSql("((1))");
-
-                entity.Property(e => e.apro_Fecha).HasColumnType("date");
-
-                entity.Property(e => e.apro_FechaCreacion)
-                    .HasColumnType("datetime")
-                    .HasDefaultValueSql("(getdate())");
-
-                entity.Property(e => e.apro_FechaModificacion).HasColumnType("datetime");
-
-                entity.HasOne(d => d.apro_UsuCreacionNavigation)
-                    .WithMany(p => p.tbAprovadosapro_UsuCreacionNavigation)
-                    .HasForeignKey(d => d.apro_UsuCreacion)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_lice_tbAprovados_acce_tbUsuarios_UserCreate");
-
-                entity.HasOne(d => d.apro_UsuModificacionNavigation)
-                    .WithMany(p => p.tbAprovadosapro_UsuModificacionNavigation)
-                    .HasForeignKey(d => d.apro_UsuModificacion)
-                    .HasConstraintName("FK_lice_tbAprovados_acce_tbUsuarios_UserUpdate");
-
-                entity.HasOne(d => d.empe)
-                    .WithMany(p => p.tbAprovados)
-                    .HasForeignKey(d => d.empe_Id)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_lice_tbAprovados_lice_tbEmpleados_empe_Id");
-
-                entity.HasOne(d => d.soli)
-                    .WithMany(p => p.tbAprovados)
-                    .HasForeignKey(d => d.soli_Id)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_lice_tbAprovados_lice_tbSolicitantes_soli_Id");
-
-                entity.HasOne(d => d.sucu)
-                    .WithMany(p => p.tbAprovados)
-                    .HasForeignKey(d => d.sucu_Id)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_lice_tbAprovados_lice_tbSucursales_sucu_Id");
-
-                entity.HasOne(d => d.tili)
-                    .WithMany(p => p.tbAprovados)
-                    .HasForeignKey(d => d.tili_Id)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_lice_tbAprovados_lice_tbTiposLicencias_tili_Id");
             });
 
             modelBuilder.Entity<tbCargos>(entity =>
@@ -382,20 +326,20 @@ namespace SistemaLicencias.DataAccess.Context
 
             modelBuilder.Entity<tbPantallasPorRoles>(entity =>
             {
-                entity.HasKey(e => e.pantrole_Id)
+                entity.HasKey(e => e.prol_Id)
                     .HasName("PK_acce_tbPantallasPorRoles_pantrole_Id");
 
                 entity.ToTable("tbPantallasPorRoles", "acce");
 
-                entity.Property(e => e.pantrole_Estado)
+                entity.Property(e => e.prol_Estado)
                     .IsRequired()
                     .HasDefaultValueSql("((1))");
 
-                entity.Property(e => e.pantrole_FechaCreacion)
+                entity.Property(e => e.prol_FechaCreacion)
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.Property(e => e.pantrole_FechaModificacion).HasColumnType("datetime");
+                entity.Property(e => e.prol_FechaModificacion).HasColumnType("datetime");
 
                 entity.HasOne(d => d.pant)
                     .WithMany(p => p.tbPantallasPorRoles)
@@ -403,15 +347,15 @@ namespace SistemaLicencias.DataAccess.Context
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_acce_tbPantallasPorRoles_acce_tbPantallas_pant_Id");
 
-                entity.HasOne(d => d.pantrole_UsuCreacionNavigation)
-                    .WithMany(p => p.tbPantallasPorRolespantrole_UsuCreacionNavigation)
-                    .HasForeignKey(d => d.pantrole_UsuCreacion)
+                entity.HasOne(d => d.prol_UsuCreacionNavigation)
+                    .WithMany(p => p.tbPantallasPorRolesprol_UsuCreacionNavigation)
+                    .HasForeignKey(d => d.prol_UsuCreacion)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_acce_tbPantallasPorRoles_acce_tbUsuarios_pantrole_UsuCreacion_user_Id");
 
-                entity.HasOne(d => d.pantrole_UsuModificacionNavigation)
-                    .WithMany(p => p.tbPantallasPorRolespantrole_UsuModificacionNavigation)
-                    .HasForeignKey(d => d.pantrole_UsuModificacion)
+                entity.HasOne(d => d.prol_UsuModificacionNavigation)
+                    .WithMany(p => p.tbPantallasPorRolesprol_UsuModificacionNavigation)
+                    .HasForeignKey(d => d.prol_UsuModificacion)
                     .HasConstraintName("FK_acce_tbPantallasPorRoles_acce_tbUsuarios_pantrole_UsuModificacion_user_Id");
 
                 entity.HasOne(d => d.role)
@@ -427,6 +371,9 @@ namespace SistemaLicencias.DataAccess.Context
                     .HasName("PK_acce_tbRoles_role_Id");
 
                 entity.ToTable("tbRoles", "acce");
+
+                entity.HasIndex(e => e.role_Nombre, "UQ__tbRoles__3895D82E9DAFE205")
+                    .IsUnique();
 
                 entity.Property(e => e.role_Estado)
                     .IsRequired()
@@ -461,12 +408,16 @@ namespace SistemaLicencias.DataAccess.Context
 
                 entity.ToTable("tbSolicitantes", "lice");
 
-                entity.HasIndex(e => e.soli_Identidad, "UQ__tbSolici__ACE8F0CB84CDBBFC")
+                entity.HasIndex(e => e.soli_Identidad, "UQ__tbSolici__ACE8F0CB7AFB790E")
                     .IsUnique();
 
                 entity.Property(e => e.soli_Apellido)
                     .IsRequired()
                     .HasMaxLength(200);
+
+                entity.Property(e => e.soli_Direccion)
+                    .IsRequired()
+                    .HasMaxLength(300);
 
                 entity.Property(e => e.soli_Estado).HasDefaultValueSql("((1))");
 
@@ -560,6 +511,9 @@ namespace SistemaLicencias.DataAccess.Context
 
                 entity.ToTable("tbTiposLicencias", "lice");
 
+                entity.HasIndex(e => e.tili_Descripcion, "UQ__tbTiposL__F7BA37CA943A82AA")
+                    .IsUnique();
+
                 entity.Property(e => e.tili_Descripcion)
                     .IsRequired()
                     .HasMaxLength(100);
@@ -607,6 +561,11 @@ namespace SistemaLicencias.DataAccess.Context
                     .IsRequired()
                     .HasMaxLength(100);
 
+                entity.HasOne(d => d.empe)
+                    .WithMany(p => p.tbUsuarios)
+                    .HasForeignKey(d => d.empe_Id)
+                    .HasConstraintName("FK_acce_tbUsuarios_lice_tbEmpleados_empe_Id");
+
                 entity.HasOne(d => d.role)
                     .WithMany(p => p.tbUsuarios)
                     .HasForeignKey(d => d.role_Id)
@@ -615,6 +574,7 @@ namespace SistemaLicencias.DataAccess.Context
                 entity.HasOne(d => d.user_UsuCreacionNavigation)
                     .WithMany(p => p.Inverseuser_UsuCreacionNavigation)
                     .HasForeignKey(d => d.user_UsuCreacion)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_acce_tbUsuarios_acce_tbUsuarios_user_UsuCreacion_user_Id");
 
                 entity.HasOne(d => d.user_UsuModificacionNavigation)

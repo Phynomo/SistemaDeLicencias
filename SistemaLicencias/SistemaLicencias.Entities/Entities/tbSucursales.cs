@@ -10,7 +10,6 @@ namespace SistemaLicencias.Entities.Entities
     {
         public tbSucursales()
         {
-            tbAprovados = new HashSet<tbAprovados>();
             tbEmpleados = new HashSet<tbEmpleados>();
         }
 
@@ -27,7 +26,6 @@ namespace SistemaLicencias.Entities.Entities
         public virtual tbMunicipios muni { get; set; }
         public virtual tbUsuarios sucu_UsuCreacionNavigation { get; set; }
         public virtual tbUsuarios sucu_UsuModificacionNavigation { get; set; }
-        public virtual ICollection<tbAprovados> tbAprovados { get; set; }
         public virtual ICollection<tbEmpleados> tbEmpleados { get; set; }
     }
 }

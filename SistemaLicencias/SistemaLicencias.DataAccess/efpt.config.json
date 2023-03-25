@@ -42,10 +42,6 @@
          "ObjectType": 0
       },
       {
-         "Name": "[lice].[tbAprovados]",
-         "ObjectType": 0
-      },
-      {
          "Name": "[lice].[tbCargos]",
          "ObjectType": 0
       },
@@ -70,7 +66,7 @@
          "ObjectType": 3
       }
    ],
-   "UiHint": "DESKTOP-36LBO8D\\SQLEXPRESS.SistemaDeLicencias",
+   "UiHint": "DESKTOP-NC80200\\SQLEXPRESS.SistemaDeLicencias",
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": true,
    "UseDbContextSplitting": false,

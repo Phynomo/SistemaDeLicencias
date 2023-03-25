@@ -8,19 +8,15 @@ namespace SistemaLicencias.Entities.Entities
 {
     public partial class tbSolicitantes
     {
-        public tbSolicitantes()
-        {
-            tbAprovados = new HashSet<tbAprovados>();
-        }
-
         public int soli_Id { get; set; }
         public string soli_Nombre { get; set; }
         public string soli_Apellido { get; set; }
         public string soli_Identidad { get; set; }
-        public int muni_Id { get; set; }
         public string soli_Sexo { get; set; }
         public DateTime soli_FechaNacimiento { get; set; }
         public string soli_Telefono { get; set; }
+        public int muni_Id { get; set; }
+        public string soli_Direccion { get; set; }
         public int soli_UsuCreacion { get; set; }
         public DateTime? soli_FechaCreacion { get; set; }
         public int? soli_UsuModificacion { get; set; }
@@ -30,6 +26,5 @@ namespace SistemaLicencias.Entities.Entities
         public virtual tbMunicipios muni { get; set; }
         public virtual tbUsuarios soli_UsuCreacionNavigation { get; set; }
         public virtual tbUsuarios soli_UsuModificacionNavigation { get; set; }
-        public virtual ICollection<tbAprovados> tbAprovados { get; set; }
     }
 }

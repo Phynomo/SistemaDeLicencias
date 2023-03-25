@@ -178,12 +178,12 @@ CONSTRAINT PK_lice_tbCargos_acce_tbUsuarios_carg_UsuModificacion     FOREIGN KEY
 GO
 CREATE TABLE lice.tbTiposLicencias(
 tili_Id INT IDENTITY(1,1),
-tili_Descripcion         NVARCHAR(100) UNIQUE NOT NULL,
-tili_UsuCreacion         INT NOT NULL,
-tili_FechaCreacion         DATETIME CONSTRAINT DF_lice_tbTiposLicencias_tili_FechaCreacion DEFAULT(GETDATE()),
-tili_UsuModificacion     INT ,
-tili_FechaModificacion     DATETIME,
-tili_Estado             BIT CONSTRAINT DF_licetbTiposLicencias_tili_Estado DEFAULT(1)
+tili_Descripcion			NVARCHAR(100) UNIQUE NOT NULL,
+tili_UsuCreacion			INT NOT NULL,
+tili_FechaCreacion			DATETIME CONSTRAINT DF_lice_tbTiposLicencias_tili_FechaCreacion DEFAULT(GETDATE()),
+tili_UsuModificacion		INT ,
+tili_FechaModificacion		DATETIME,
+tili_Estado					BIT CONSTRAINT DF_licetbTiposLicencias_tili_Estado DEFAULT(1)
 CONSTRAINT PK_lice_tbTiposLicencias_tili_Id                                 PRIMARY KEY(tili_Id),
 CONSTRAINT FK_lice_tbTiposLicencias_acce_tbUsuarios_tili_UsuCreacion         FOREIGN KEY(tili_UsuCreacion) REFERENCES acce.tbUsuarios(User_Id),
 CONSTRAINT FK_lice_tbTiposLicencias_acce_tbUsuarios_tili_UsuModificacion     FOREIGN KEY(tili_UsuModificacion) REFERENCES acce.tbUsuarios(User_Id)
@@ -216,10 +216,11 @@ CREATE TABLE lice.tbSolicitantes(
     soli_Nombre             NVARCHAR(200) NOT NULL,
     soli_Apellido           NVARCHAR(200) NOT NULL,
     soli_Identidad          NVARCHAR(13) UNIQUE NOT NULL ,
-    muni_Id                 INT NOT NULL,
     soli_Sexo               CHAR(1) NOT NULL,
     soli_FechaNacimiento    DATE NOT NULL,
     soli_Telefono           NVARCHAR(20),
+	muni_Id                 INT NOT NULL,
+	soli_Direccion			NVARCHAR(300) NOT NULL,
     soli_UsuCreacion        INT NOT NULL,
     soli_FechaCreacion      DATETIME CONSTRAINT DF_lice_tbSolicitantes_soli_FechaCreacion DEFAULT(GETDATE()),
     soli_UsuModificacion    INT ,
@@ -717,18 +718,18 @@ VALUES	('Lionel',	'Messi',	'0309198600998', '10-07-1986', 'M', 1, 1, 'calle y #4
 
 
 --********** SOLICITANTES TABLE ***************--
-INSERT INTO [lice].[tbSolicitantes] (soli_Nombre, soli_Apellido, soli_Identidad, muni_Id, soli_Sexo, soli_FechaNacimiento, soli_Telefono, soli_UsuCreacion, soli_UsuModificacion, soli_FechaModificacion)
+INSERT INTO [lice].[tbSolicitantes] (soli_Nombre, soli_Apellido, soli_Identidad, muni_Id, soli_Sexo, soli_FechaNacimiento,  soli_Telefono, soli_Direccion, soli_UsuCreacion, soli_UsuModificacion, soli_FechaModificacion)
 VALUES 
-('Ana',		'García',	'1234567890123', 1, 'F', '1990-06-15', '2233-4455', 1, NULL, NULL),
-('Juan',	'Pérez',	'0801199901234', 2, 'M', '1999-01-08', '9988-7766', 1, NULL, NULL),
-('María',	'Fernández','0404199101234', 3, 'F', '1991-04-04', '3344-5566', 1, NULL, NULL),
-('Pedro',	'López',	'1509198801234', 4, 'M', '1988-09-15', '6677-8899', 1, NULL, NULL),
-('Sofía',	'Hernández','2802199601234', 5, 'F', '1996-02-28', '9900-1122', 1, NULL, NULL),
-('Carlos',	'Gutiérrez','2207198501234', 6, 'M', '1985-07-22', '5544-3322', 1, NULL, NULL),
-('Luisa',	'Martínez', '0703198101234', 7, 'F', '1981-03-07', '8877-6655', 1, NULL, NULL),
-('Javier',	'Díaz',		'2705199401234', 8, 'M', '1994-05-27', '4455-6677', 1, NULL, NULL),
-('Fernanda','Sánchez',	'1808199201234', 9, 'F', '1992-08-18', '3322-5544', 1, NULL, NULL),
-('Daniel',	'Hernández','2506199301234', 10,'M', '1993-06-25', '8899-3344', 1, NULL, NULL);
+('Ana',		'García',	'1234567890123', 1, 'F', '1990-06-15', '2233-4455','calle y #444',	  1, NULL, NULL),
+('Juan',	'Pérez',	'0801199901234', 2, 'M', '1999-01-08', '9988-7766','Calle A #123',	  1, NULL, NULL),
+('María',	'Fernández','0404199101234', 3, 'F', '1991-04-04', '3344-5566','Avenida B #456',  1, NULL, NULL),
+('Pedro',	'López',	'1509198801234', 4, 'M', '1988-09-15', '6677-8899','Calle C #789',	  1, NULL, NULL),
+('Sofía',	'Hernández','2802199601234', 5, 'F', '1996-02-28', '9900-1122','Avenida D #1011', 1, NULL, NULL),
+('Carlos',	'Gutiérrez','2207198501234', 6, 'M', '1985-07-22', '5544-3322','Calle E #1213',	  1, NULL, NULL),
+('Luisa',	'Martínez', '0703198101234', 7, 'F', '1981-03-07', '8877-6655','Avenida F #1415', 1, NULL, NULL),
+('Javier',	'Díaz',		'2705199401234', 8, 'M', '1994-05-27', '4455-6677','Calle G #1617',	  1, NULL, NULL),
+('Fernanda','Sánchez',	'1808199201234', 9, 'F', '1992-08-18', '3322-5544','Avenida H #1819', 1, NULL, NULL),
+('Daniel',	'Hernández','2506199301234', 10,'M', '1993-06-25', '8899-3344','Avenida F #1415', 1, NULL, NULL);
 
 
 
@@ -1320,6 +1321,7 @@ CREATE OR ALTER PROCEDURE lice.UDP_tbSolicitantes_INSERT
  @muni_Id INT,
  @soli_Sexo	CHAR(1),
  @soli_FechaNacimiento DATE,
+ @soli_Direccion NVARCHAR(300),
  @soli_Telefono NVARCHAR(20),
  @soli_UsuCreacion INT)
 AS
@@ -1332,15 +1334,22 @@ BEGIN
 
 		ELSE IF NOT EXISTS (SELECT * FROM lice.tbSolicitantes WHERE soli_Identidad = @soli_Identidad)
 			BEGIN
-				INSERT INTO [lice].[tbSolicitantes] (soli_Nombre, soli_Apellido, soli_Identidad, muni_Id, soli_Sexo, soli_FechaNacimiento, soli_Telefono, soli_UsuCreacion, soli_UsuModificacion, soli_FechaModificacion)
-				VALUES (@soli_Nombre, @soli_Apellido, @soli_Identidad, @muni_Id, @soli_Sexo, @soli_FechaNacimiento, @soli_Telefono, @soli_UsuCreacion, NULL, NULL)
+				INSERT INTO [lice].[tbSolicitantes] (soli_Nombre, soli_Apellido, soli_Identidad, muni_Id, soli_Sexo, soli_FechaNacimiento, soli_Telefono, Soli_Direccion, soli_UsuCreacion, soli_UsuModificacion, soli_FechaModificacion)
+				VALUES (@soli_Nombre, @soli_Apellido, @soli_Identidad, @muni_Id, @soli_Sexo, @soli_FechaNacimiento, @soli_Telefono, @soli_Direccion, @soli_UsuCreacion, NULL, NULL)
 				SELECT 1 AS Proceso
 			END
 
 		ELSE
 			BEGIN
 				UPDATE lice.tbSolicitantes
-				SET		[soli_Estado] = 1,
+				SET		[soli_Nombre] = @soli_Nombre,
+						[soli_Apellido] = @soli_Apellido,
+						[muni_Id] = @muni_Id,
+						[soli_Sexo] = @soli_Sexo,
+						[soli_FechaNacimiento] = @soli_FechaNacimiento,
+						[soli_Telefono] = @soli_Telefono,
+						[soli_Direccion] = @soli_Direccion,
+						[soli_Estado] = 1,
 						[soli_UsuCreacion] = @soli_UsuCreacion,
 						[soli_FechaCreacion] = GETDATE(),
 						[soli_UsuModificacion] = NULL,
@@ -1367,6 +1376,7 @@ CREATE OR ALTER PROCEDURE lice.UDP_tbSolicitantes_UPDATE
  @soli_Sexo				CHAR(1),
  @soli_FechaNacimiento	DATE,
  @soli_Telefono			NVARCHAR(20),
+ @soli_Direccion		NVARCHAR(200),
  @soli_UsuModificacion	INT)
 AS
 BEGIN
@@ -1387,6 +1397,7 @@ BEGIN
 					  ,[soli_Sexo] = @soli_Sexo
 					  ,[soli_FechaNacimiento] = @soli_FechaNacimiento
 					  ,[soli_Telefono] = @soli_Telefono
+					  ,[soli_Direccion] = @soli_Direccion
 					  ,[soli_UsuModificacion] = @soli_UsuModificacion
 					  ,[soli_FechaModificacion] = GETDATE()
 				 WHERE soli_Id = @soli_Id
@@ -1432,12 +1443,13 @@ SELECT	soli_Id,
 		soli_Apellido, 
 		soli_Nombre + ' ' + soli_Apellido AS soli_NombreCompleto,
 		soli_Identidad, 
-		T1.muni_Id,
-		T2.muni_Nombre,
-		T3.depa_Nombre,
 		soli_Sexo, 
 		soli_FechaNacimiento, 
 		soli_Telefono, 
+		T1.muni_Id,
+		T2.muni_Nombre,
+		T3.depa_Nombre,
+		soli_Direccion,
 		soli_UsuCreacion,
 		T4.user_NombreUsuario AS UsuarioCreacion,
 		soli_FechaCreacion, 
@@ -1465,7 +1477,7 @@ END
 --*****************************************************************************--
 --*****************************************************************************--
 -- ************************* TABLA USUARIOS **/**********************--
-
+GO
 ALTER TABLE [acce].[tbUsuarios]
 ADD CONSTRAINT FK_acce_tbUsuarios_lice_tbEmpleados_empe_Id FOREIGN KEY(empe_Id) REFERENCES lice.tbEmpleados(empe_Id)
 
