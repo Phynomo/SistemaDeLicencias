@@ -310,21 +310,24 @@ CREATE TABLE lice.tbAprobados(
 	CONSTRAINT FK_lice_tbAprovados_acce_tbUsuarios_UserCreate					FOREIGN KEY(apro_UsuCreacion)				REFERENCES acce.tbUsuarios(user_Id),
 	CONSTRAINT FK_lice_tbAprovados_acce_tbUsuarios_UserUpdate					FOREIGN KEY(apro_UsuModificacion)			REFERENCES acce.tbUsuarios(user_Id),	
 	CONSTRAINT FK_lice_tbAprovados_lice_tbEmpleados_empe_Id					    FOREIGN KEY(empe_Id)						REFERENCES lice.tbEmpleados(empe_Id)		
-
-
-    
 )
 
+--************************************************---
+--******************** INSERTS *******************---
 
+
+--********** ESTADOS CIVILES TABLE ***************--
+GO
 INSERT INTO gral.tbEstadosCiviles (eciv_Descripcion, eciv_Estado, eciv_UsuCreacion, eciv_FechaCreacion, eciv_UsuModificacion, eciv_FechaModificacion)
 VALUES	('Soltero(a)', '1', 1, GETDATE(), NULL, NULL),
 		('Casado(a)', '1', 1, GETDATE(), NULL, NULL),
 		('Divorciado(a)', '1', 1, GETDATE(), NULL, NULL),
 		('Viudo(a)', '1', 1, GETDATE(), NULL, NULL),
 		('Union Libre', '1', 1, GETDATE(), NULL, NULL)
+
+
+--********** DEPARTAMENTOS TABLE ***************--
 GO
-
-
 INSERT INTO gral.tbDepartamentos(depa_Codigo, depa_Nombre, depa_Estado, depa_UsuCreacion, depa_FechaCreacion, depa_UsuModificacion, depa_FechaModificacion)
 VALUES	('01','Atlántida', '1', 1, GETDATE(), NULL, NULL),
 		('02','Colón', '1', 1, GETDATE(), NULL, NULL),
@@ -344,9 +347,11 @@ VALUES	('01','Atlántida', '1', 1, GETDATE(), NULL, NULL),
 		('16','Santa Bárbara', '1', 1, GETDATE(), NULL, NULL),
 		('17','Valle', '1', 1, GETDATE(), NULL, NULL),
 		('18','Yoro', '1', 1, GETDATE(), NULL, NULL);
+
+
+
+--********** MUNICIPIOS TABLE ***************--
 GO
-
-
 INSERT INTO gral.tbMunicipios(depa_Id, muni_Codigo, muni_Nombre, muni_Estado, muni_UsuCreacion, muni_FechaCreacion, muni_UsuModificacion, muni_FechaModificacion)
 VALUES	('1','0101','La Ceiba', '1', 1, GETDATE(), NULL, GETDATE()),
 		('1','0102','El Porvenir', '1', 1, GETDATE(), NULL, GETDATE()),
@@ -678,7 +683,54 @@ VALUES	('1','0101','La Ceiba', '1', 1, GETDATE(), NULL, GETDATE()),
 		('18', '1809', 'Sulaco', '1', 1, GETDATE(), NULL, GETDATE()),
 		('18', '1810', 'Victoria', '1', 1, GETDATE(), NULL, GETDATE()),
 		('18', '1811', 'Yorito', '1', 1, GETDATE(), NULL, GETDATE());
+
+
+--********** CARGOS TABLE ***************--
 GO
+INSERT INTO [lice].[tbCargos] (carg_Descripcion, carg_UsuCreacion, carg_UsuModificacion, carg_FechaModificacion)
+VALUES	('Instructor de Manejo'	,1,NULL,NULL),
+		('Inpector de Manejo'	,1,NULL,NULL),
+		('Tenico Mecanito'		,1,NULL,NULL),
+		('Analista Final'		,1,NULL,NULL);
+
+
+--********** CARGOS TABLE ***************--
+GO
+INSERT INTO [lice].[tbSucursales] (sucu_Nombre, muni_Id, sucu_Direccion, sucu_UsuCreacion, sucu_UsuModificacion, sucu_FechaModificacion)
+VALUES	('Servicios Policiales San Marcos',	63,	'Col. Satelite'			,1,NULL, NULL ),
+		('Centro de Capacitacion Vial',		110,'Col. Lopez Arellano'	,1,NULL, NULL );
+		
+
+--********** EMPLEADOS TABLE ***************--
+GO
+INSERT INTO [lice].[tbEmpleados] (empe_Nombres, empe_Apellidos, empe_Identidad, empe_FechaNacimiento, empe_Sexo, eciv_Id, muni_Id, empe_DireccionExacta, empe_Telefono, empe_CorreoElectronico, sucu_Id, carg_Id, empe_UsuCreacion,  empe_UsuModificacion, empe_FechaModificacion)
+VALUES	('Lionel',	'Messi',	'0309198600998', '10-07-1986', 'M', 1, 1, 'calle y #444',	'88264741',  'leoMessi@gmail.com',			1, 1, 1,NULL, NULL),
+		('Ana',		'García',	'1234567890123', '1990-06-15', 'F', 1, 15,'Calle A #123',	'2233-4455', 'ana.garcia@email.com',		1, 1, 1,NULL, NULL),
+		('Juan',	'Pérez',	'0801199901234', '1999-01-08', 'M', 2, 22,'Avenida B #456', '9988-7766', 'juan.perez@email.com',		2, 2, 1,NULL, NULL),
+		('María',	'Fernández','0404199101234', '1991-04-04', 'F', 1, 3, 'Calle C #789',	'3344-5566', 'maria.fernandez@email.com',	1, 3, 1,NULL, NULL),
+		('Pedro',	'López',	'1509198801234', '1988-09-15', 'M', 2, 41,'Avenida D #1011','6677-8899', 'pedro.lopez@email.com',		2, 2, 1,NULL, NULL),
+		('Sofía',	'Hernández','2802199601234', '1996-02-28', 'F', 1, 52,'Calle E #1213',	'9900-1122', 'sofia.hernandez@email.com',	1, 1, 1,NULL, NULL),
+		('Carlos',	'Gutiérrez','2207198501234', '1985-07-22', 'M', 2, 6, 'Avenida F #1415','5544-3322', 'carlos.gutierrez@email.com',	2, 2, 1,NULL, NULL),
+		('Luisa',	'Martínez', '0703198101234', '1981-03-07', 'F', 1, 37,'Calle G #1617',	'8877-6655', 'luisa.martinez@email.com',	1, 3, 1,NULL, NULL),
+		('Javier',	'Díaz',		'2705199401234', '1994-05-27', 'M', 2, 8, 'Avenida H #1819','4455-6677', 'javier.diaz@email.com',		2, 4, 1,NULL, NULL);
+
+
+
+--********** SOLICITANTES TABLE ***************--
+INSERT INTO [lice].[tbSolicitantes] (soli_Nombre, soli_Apellido, soli_Identidad, muni_Id, soli_Sexo, soli_FechaNacimiento, soli_Telefono, soli_UsuCreacion, soli_UsuModificacion, soli_FechaModificacion)
+VALUES 
+('Ana',		'García',	'1234567890123', 1, 'F', '1990-06-15', '2233-4455', 1, NULL, NULL),
+('Juan',	'Pérez',	'0801199901234', 2, 'M', '1999-01-08', '9988-7766', 1, NULL, NULL),
+('María',	'Fernández','0404199101234', 3, 'F', '1991-04-04', '3344-5566', 1, NULL, NULL),
+('Pedro',	'López',	'1509198801234', 4, 'M', '1988-09-15', '6677-8899', 1, NULL, NULL),
+('Sofía',	'Hernández','2802199601234', 5, 'F', '1996-02-28', '9900-1122', 1, NULL, NULL),
+('Carlos',	'Gutiérrez','2207198501234', 6, 'M', '1985-07-22', '5544-3322', 1, NULL, NULL),
+('Luisa',	'Martínez', '0703198101234', 7, 'F', '1981-03-07', '8877-6655', 1, NULL, NULL),
+('Javier',	'Díaz',		'2705199401234', 8, 'M', '1994-05-27', '4455-6677', 1, NULL, NULL),
+('Fernanda','Sánchez',	'1808199201234', 9, 'F', '1992-08-18', '3322-5544', 1, NULL, NULL),
+('Daniel',	'Hernández','2506199301234', 10,'M', '1993-06-25', '8899-3344', 1, NULL, NULL);
+
+
 
 
 --***************************UDP*****************************************--
@@ -1414,20 +1466,140 @@ END
 --*****************************************************************************--
 -- ************************* TABLA USUARIOS **/**********************--
 
---ALTER TABLE [acce].[tbUsuarios]
---ADD CONSTRAINT FK_acce_tbUsuarios_lice_tbEmpleados_empe_Id FOREIGN KEY(empe_Id) REFERENCES lice.tbEmpleados(empe_Id)
+ALTER TABLE [acce].[tbUsuarios]
+ADD CONSTRAINT FK_acce_tbUsuarios_lice_tbEmpleados_empe_Id FOREIGN KEY(empe_Id) REFERENCES lice.tbEmpleados(empe_Id)
 
-
-
-/*
+---***  INSERT PROCEDURE ***---
 GO
 CREATE OR ALTER PROCEDURE acce.UDP_tbusuarios_INSERT
-(@user_Nombre NVARCHAR(100),
+(@user_NombreUsuario NVARCHAR(100),
  @user_Contrasena NVARCHAR(MAX),
  @user_EsAdmin BIT,
- @role_Id INT,)
- */
+ @role_Id INT,
+ @empe_Id INT,
+ @user_UsuCreacion INT)
+AS
+BEGIN
+	BEGIN TRY
+		IF EXISTS (SELECT * FROM acce.tbUsuarios WHERE user_NombreUsuario = @user_NombreUsuario AND user_Estado = 1 )
+			BEGIN
+				SELECT 2 AS Proceso
+			END
 
+		ELSE IF NOT EXISTS (SELECT * FROM acce.tbUsuarios WHERE user_NombreUsuario = @user_NombreUsuario)
+			BEGIN
+				INSERT INTO [acce].[tbUsuarios] (user_NombreUsuario, user_Contrasena, user_EsAdmin, role_Id, empe_Id, user_UsuCreacion, user_UsuModificacion, user_FechaModificacion)
+				VALUES (@user_NombreUsuario, @user_Contrasena, @user_EsAdmin, @role_Id, @empe_Id, @user_UsuCreacion, NULL, NULL)
+				SELECT 1 AS Proceso
+
+				SELECT 1 AS Proceso
+			END
+		ELSE
+			BEGIN
+				UPDATE [acce].[tbUsuarios]
+				SET [user_Estado] = 1,
+					[user_UsuCreacion] = @user_UsuCreacion,
+					[user_FechaCreacion] = GETDATE(),
+					[user_UsuModificacion] = NULL,
+					[user_FechaModificacion] = NULL
+				WHERE [user_NombreUsuario] = @user_NombreUsuario;
+
+				SELECT 1 AS Proceso;
+			END
+
+	END TRY
+	BEGIN CATCH
+		SELECT 0 AS Processo
+	END CATCH
+END
+ 
+
+--** UPDATE PROCEDURE **--
+GO
+CREATE OR ALTER PROCEDURE acce.UDP_tbusuarios_UPDATE
+(@user_Id INT,
+ @user_EsAdmin BIT,
+ @role_Id INT,
+ @empe_Id INT,
+ @user_UsuModificacion INT)
+AS
+BEGIN
+	BEGIN TRY
+		UPDATE [acce].[tbUsuarios]
+		SET [user_EsAdmin] = @user_EsAdmin,
+			[role_Id] = @role_Id,
+			[empe_Id] = @empe_Id,
+			[user_UsuModificacion] = @user_UsuModificacion,
+			[user_FechaModificacion] = GETDATE()
+		WHERE [user_Id] = @user_Id;
+		SELECT 1 AS Proceso;
+
+	END TRY
+	BEGIN CATCH
+		SELECT 0 AS Proceso;
+
+	END CATCH
+END
+
+
+--** DELETE PROCEDURE **--
+GO
+CREATE OR ALTER PROCEDURE acce.UDP_tbusuarios_DELETE
+(@user_Id INT,
+ @user_UsuModificacion INT)
+AS
+BEGIN
+	BEGIN TRY
+		UPDATE [acce].[tbUsuarios]
+		SET [user_Estado]  = 0,
+			[user_UsuModificacion] = @user_UsuModificacion,
+			[user_FechaModificacion] = GETDATE()
+		WHERE [user_Id] = @user_Id
+
+		SELECT 1 AS Proceso
+
+	END TRY
+	BEGIN CATCH
+		SELECT 0 AS Proceso
+	END CATCH
+END
+
+
+---*** VIEW ***---
+GO
+CREATE OR ALTER VIEW acce.VW_tbUsuarios_View
+AS
+SELECT	T1.[user_Id], 
+		T1.user_NombreUsuario, 
+		T1.user_Contrasena, 
+		T1.user_EsAdmin, 
+		T1.role_Id, 
+		T2.role_Nombre,
+		T1.empe_Id,
+		T3.empe_Nombres +' '+ T3.empe_Apellidos AS empe_NombreCompleto,
+		T1.user_UsuCreacion, 
+		T4.user_NombreUsuario AS UsuarioCreacion,
+		T1.user_FechaCreacion, 
+		T1.user_UsuModificacion, 
+		T5.user_NombreUsuario AS UsuarioModificacion,
+		T1.user_FechaModificacion, 
+		T1.user_Estado
+FROM acce.tbUsuarios AS T1 INNER JOIN [acce].[tbRoles] AS T2
+ON T1.role_Id = T2.role_Id INNER JOIN [lice].[tbEmpleados] AS T3
+ON T1.empe_Id = T3.empe_Id INNER JOIN [acce].[tbUsuarios] AS T4
+ON T1.user_UsuCreacion = T4.[user_Id] LEFT JOIN [acce].[tbUsuarios] AS T5
+ON T1.user_UsuModificacion = T5.[user_Id]
+
+
+
+--*** RUN VIEW PROCEDURE ***--
+GO
+CREATE OR ALTER PROCEDURE acce.UDP_tbUsuarios_SELECT
+AS
+BEGIN
+	SELECT * FROM acce.VW_tbUsuarios_View
+	WHERE user_Estado = 1
+END
 
  --*****************************************************************************--
 --*****************************************************************************--
