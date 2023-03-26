@@ -1,10 +1,140 @@
-﻿function AbrirModalDelete(id) {
+﻿$(document).ready(function () {
+    var resultado = $("#resultado").val();
+    if (resultado == "CreateSuccess") {
+        swal({
+            title: 'Guardado',
+            text: 'El registro se creo con exito',
+            type: 'success',
+            timer: 2500,
+            showConfirmButton: false,
+            showCancelButton: false,
+            closeOnClickOutside: false,
+            closeOnEsc: false,
+        });
+    }
+    if (resultado == "CreateError") {
+        swal({
+            title: 'Error',
+            text: 'No se pudo crear el registro',
+            type: 'error',
+            timer: 2500,
+            showConfirmButton: false,
+            showCancelButton: false,
+            closeOnClickOutside: false,
+            closeOnEsc: false,
+        });
+    }
+    if (resultado == "EditSuccess") {
+        swal({
+            title: 'Editado',
+            text: 'El registro fue editado exitosamente',
+            type: 'success',
+            timer: 2500,
+            showConfirmButton: false,
+            showCancelButton: false,
+            closeOnClickOutside: false,
+            closeOnEsc: false,
+        });
+    }
+    if (resultado == "EditError") {
+        swal({
+            title: 'Error',
+            text: 'No se pudo editar el regitro',
+            type: 'error',
+            timer: 2500,
+            showConfirmButton: false,
+            showCancelButton: false,
+            closeOnClickOutside: false,
+            closeOnEsc: false,
+        });
+    }
+    if (resultado == "DeleteSuccess") {
+        swal({
+            title: 'Eliminado',
+            text: 'El registro se elimino exitosamente',
+            type: 'success',
+            timer: 2500,
+            showConfirmButton: false,
+            showCancelButton: false,
+            closeOnClickOutside: false,
+            closeOnEsc: false,
+        });
+    }
+    if (resultado == "DeleteError") {
+        swal({
+            title: 'Error',
+            text: 'No se pudo Eliminar el registro',
+            type: 'error',
+            timer: 2500,
+            showConfirmButton: false,
+            showCancelButton: false,
+            closeOnClickOutside: false,
+            closeOnEsc: false,
+        });
+    }
+});
+
+function OpenModalDelete(id) {
     $("#tili_IdD").val(id);
+    $('#ModalDeleteClass').removeClass('bounce');
+    $('#ModalDeleteClass').removeClass('flipInY');
+    $('#ModalDeleteClass').addClass('flipInY');
     $("#ModalDelete").appendTo('body').modal('show');
 }
 
-function EnviarModalDelete() {
+function PostModalDelete() {
     if ($("#tili_IdD").val() != "") {
         $("#formDelete").submit();
+    }
+}
+
+function OpenModalCreate() {
+    $("#lbltili_Descripcion").attr('hidden', true);
+    $('#ModalCreateClass').removeClass('bounce');
+    $('#ModalCreateClass').removeClass('flipInY');
+    $('#ModalCreateClass').addClass('flipInY');
+    $("#ModalCreate").appendTo('body').modal('show');
+}
+
+function PostModalCreate() {
+    var tili_Descripcion = $("#tili_DescripcionDD").val();
+
+    $("#lbltili_Descripcion").attr('hidden', true);
+    $('#ModalCreateClass').removeClass('bounce');
+    $('#ModalCreateClass').removeClass('flipInY');
+
+    if (tili_Descripcion != "") {
+        $("#FormCreate").submit();
+    } else {
+        $('#ModalCreateClass').addClass('bounce');
+        $("#lbltili_Descripcion").attr('hidden', false);
+    }
+}
+
+function OpenModalEdit(Cadena) {
+    var datos = Cadena.split(",$$,");
+    $("#tili_IdE").val(datos[0]);
+    $("#tili_DescripcionE").val(datos[1]);
+
+
+    $("#lbltili_DescripcionE").attr('hidden', true);
+    $('#ModalEditClass').removeClass('bounce');
+    $('#ModalEditClass').removeClass('flipInY');
+    $('#ModalEditClass').addClass('flipInY');
+    $("#ModalEdit").appendTo('body').modal('show');
+}
+
+function PostModalEdit() {
+    var tili_Descripcion = $("#tili_DescripcionE").val();
+
+    $("#lbltili_DescripcionE").attr('hidden', true);
+    $('#ModalEditClass').removeClass('bounce');
+    $('#ModalEditClass').removeClass('flipInY');
+
+    if (tili_Descripcion != "") {
+        $("#FormEdit").submit();
+    } else {
+        $('#ModalEditClass').addClass('bounce');
+        $("#lbltili_DescripcionE").attr('hidden', false);
     }
 }

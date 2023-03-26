@@ -5,87 +5,64 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>@ViewBag.Mensaje</h1>
+<input hidden id="resultado" value="@ViewBag.Resultado"/>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.tili_Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.tili_Descripcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.tili_UsuCreacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UsuarioCreacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.tili_FechaCreacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.tili_UsuModificacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UsuarioModificacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.tili_FechaModificacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.tili_Estado)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tili_Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tili_Descripcion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tili_UsuCreacion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UsuarioCreacion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tili_FechaCreacion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tili_UsuModificacion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UsuarioModificacion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tili_FechaModificacion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tili_Estado)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.tili_Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.tili_Id }) |
-                    <button type="button" onclick="AbrirModalDelete('@item.tili_Id')" >Eliminar</button>>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="card" style="border:1px solid #283c4c;">
+    <div class="card-header text-center" style="background: #283c4c;">
+
+        <div class="row">
+            <div class="col">
+                <h1 class="text-white">Tipos de licencias</h1>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-4">
+                <button onclick="OpenModalCreate()" type="button" class="btn btn-block btn-primary">
+                    Agregar
+                </button>
+            </div>
+        </div>
+
+    </div>
+    <div class="card-body table-responsive">
+        <table class="table table-hover dataTables">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.tili_Id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.tili_Descripcion)
+                    </th>
+                    <th class="d-flex justify-content-end">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tili_Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tili_Descripcion)
+                        </td>
+                        <td class="d-flex justify-content-end">
+                            <button class="btn btn-warning btn-sm  btn-outline" type="button" onclick="OpenModalEdit('@item.tili_Id,$$,@item.tili_Descripcion')">Editar</button> 
+                            @Html.ActionLink("Details", "Details", new { id = item.tili_Id}, new { @class = "btn btn-info mx-1 btn-outline btn-sm" }) 
+                            <button class="btn btn-danger btn-sm btn-outline" type="button" onclick="OpenModalDelete('@item.tili_Id')">Eliminar</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
 
 
 @Html.Partial("_DeleteViewPartial", new SistemaLicencias.WebUI.Models.TipoLicenciasViewModel())
+@Html.Partial("_CreateViewPartial", new SistemaLicencias.WebUI.Models.TipoLicenciasViewModel())
+@Html.Partial("_EditViewPartial", new SistemaLicencias.WebUI.Models.TipoLicenciasViewModel())
 
 
 <script src="~/js/App/Licencias/TipoLicencias.js"></script>

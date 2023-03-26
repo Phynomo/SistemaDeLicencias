@@ -26,6 +26,7 @@ namespace SistemaLicencias.WebUI.Controllers
 
         public async Task<IActionResult> Index()
         {
+            ViewBag.Resultado = TempData["tili"];
 
             List<VWTiposLicenciasViewModel> listado = new List<VWTiposLicenciasViewModel>();
 
@@ -41,7 +42,6 @@ namespace SistemaLicencias.WebUI.Controllers
                     JArray jsonArray = JArray.Parse(jsonObj["data"].ToString());
                     string message = (string)jsonObj["message"];
 
-                    ViewBag.Mensaje = message;
 
                     listado = JsonConvert.DeserializeObject<List<VWTiposLicenciasViewModel>>(jsonArray.ToString());
         
@@ -64,7 +64,7 @@ namespace SistemaLicencias.WebUI.Controllers
         public async Task<IActionResult> Create(TipoLicenciasViewModel tipoLicenciasViewModel)
         {
 
-
+            tipoLicenciasViewModel.tili_UsuCreacion = 1;
             string json = JsonConvert.SerializeObject(tipoLicenciasViewModel);
 
             var client = new HttpClient();
@@ -77,12 +77,14 @@ namespace SistemaLicencias.WebUI.Controllers
             if (response.IsSuccessStatusCode)
             {
                 var responseContent = await response.Content.ReadAsStringAsync();
+                TempData["tili"] = "CreateSuccess";
                 Console.WriteLine(responseContent);
 
                 return RedirectToAction("Index");
             }
             else
             {
+                TempData["tili"] = "CreateError";
                 Console.WriteLine("La solicitud falló con el código de estado: " + response.StatusCode);
             }
 
@@ -93,7 +95,7 @@ namespace SistemaLicencias.WebUI.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
             
             using (var httpClient = new HttpClient())
@@ -102,7 +104,7 @@ namespace SistemaLicencias.WebUI.Controllers
                
                     var jsonResponse = await response.Content.ReadAsStringAsync();
                     
-                var lice = JsonConvert.DeserializeObject<TipoLicenciasViewModel>(jsonResponse);
+                var lice = JsonConvert.DeserializeObject<VWTiposLicenciasViewModel>(jsonResponse);
                 return View(lice);
             }
 
@@ -113,7 +115,7 @@ namespace SistemaLicencias.WebUI.Controllers
         public async Task<IActionResult> Edit(TipoLicenciasViewModel tipoLicenciasViewModel)
         {
 
-
+            tipoLicenciasViewModel.tili_UsuCreacion = 1;
             string json = JsonConvert.SerializeObject(tipoLicenciasViewModel);
 
             var client = new HttpClient();
@@ -127,11 +129,12 @@ namespace SistemaLicencias.WebUI.Controllers
             {
                 var responseContent = await response.Content.ReadAsStringAsync();
                 Console.WriteLine(responseContent);
-
+                TempData["tili"] = "EditSuccess";
                 return RedirectToAction("Index");
             }
             else
             {
+                TempData["tili"] = "EditError";
                 Console.WriteLine("La solicitud falló con el código de estado: " + response.StatusCode);
             }
 
@@ -144,7 +147,7 @@ namespace SistemaLicencias.WebUI.Controllers
         public async Task<IActionResult> Delete(TipoLicenciasViewModel tipoLicenciasViewModel)
         {
 
-
+            
             string json = JsonConvert.SerializeObject(tipoLicenciasViewModel);
 
             var client = new HttpClient();
@@ -158,11 +161,12 @@ namespace SistemaLicencias.WebUI.Controllers
             {
                 var responseContent = await response.Content.ReadAsStringAsync();
                 Console.WriteLine(responseContent);
-
+                TempData["tili"] = "DeleteSuccess";
                 return RedirectToAction("Index");
             }
             else
             {
+                TempData["tili"] = "DeleteError";
                 Console.WriteLine("La solicitud falló con el código de estado: " + response.StatusCode);
             }
 
