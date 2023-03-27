@@ -23,5 +23,11 @@ namespace SistemaLicencias.DataAccess.Repository
         public static string UDP_tbEmpleados_Buscar = "lice.UDP_tbEmpleados_Find";
         #endregion
 
+
+
+
+        public static string UDP_tbCargos_Listado = "lice.UDP_tbCargos_SELECT";
+        public static string UDP_tbSucursales_Listado = "lice.UDP_tbSucursales_SELECT";
+        public static string UDP_tbEstadosCiviles_Listado = "gral.UDP_tbEstadosCiviles_SELECT";
     }
 }

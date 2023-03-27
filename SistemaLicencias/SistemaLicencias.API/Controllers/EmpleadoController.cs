@@ -31,6 +31,25 @@ namespace SistemaLicencias.API.Controllers
             var list = _licenciaServivce.ListadoEmpleados();
             return Ok(list);
         }
+        
+        [HttpGet("Cargos")]
+        public IActionResult Cargos()
+        {
+            var list = _licenciaServivce.ListadoCargos();
+            return Ok(list);
+        }
+        [HttpGet("EstadosCiviles")]
+        public IActionResult EstadoCivil()
+        {
+            var list = _licenciaServivce.ListadoEstadosCiviles();
+            return Ok(list);
+        }
+        [HttpGet("Sucursales")]
+        public IActionResult Sucursales()
+        {
+            var list = _licenciaServivce.ListadoSucursales();
+            return Ok(list);
+        }
 
         [HttpGet("Buscar")]
         public IActionResult Find(int? id)

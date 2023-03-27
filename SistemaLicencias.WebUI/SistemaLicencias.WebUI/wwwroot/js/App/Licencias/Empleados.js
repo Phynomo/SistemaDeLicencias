@@ -5,7 +5,7 @@
             title: 'Guardado',
             text: 'El registro se creo con exito',
             type: 'success',
-            timer: 2500,
+            timer: 2000,
             showConfirmButton: false,
             showCancelButton: false,
             closeOnClickOutside: false,

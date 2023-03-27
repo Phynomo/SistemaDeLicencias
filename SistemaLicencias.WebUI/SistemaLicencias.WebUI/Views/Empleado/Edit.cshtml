@@ -63,7 +63,9 @@
                 </div>
                 <div class="form-group col">
                     <label asp-for="eciv_Id" class="control-label"></label>
-                    <input asp-for="eciv_Id" id="eciv_Id" class="form-control" />
+                    <select asp-for="eciv_Id" id="eciv_Id" class="form-control" asp-items="ViewBag.EstadosCiviles">
+                        <option value="">-- Seleccione un estado civil --</option>
+                    </select>
                     <span id="lbleciv_Id" class="text-danger" hidden> Este campo es requerido</span>
                 </div>
             </div>
@@ -98,12 +100,16 @@
             <div class="row">
                 <div class="form-group col">
                     <label asp-for="sucu_Id" class="control-label"></label>
-                    <input asp-for="sucu_Id" id="sucu_Id" class="form-control" />
+                    <select asp-for="sucu_Id" id="sucu_Id" class="form-control" asp-items="ViewBag.Sucursales">
+                        <option value="">-- Seleccione un sucursales --</option>
+                    </select>
                     <span id="lblsucu_Id" class="text-danger" hidden> Este campo es requerido</span>
                 </div>
                 <div class="form-group col">
                     <label asp-for="carg_Id" class="control-label"></label>
-                    <input asp-for="carg_Id" id="carg_Id" class="form-control" />
+                    <select asp-for="carg_Id" id="carg_Id" class="form-control" asp-items="ViewBag.Cargos">
+                        <option value="">-- Seleccione un cargo --</option>
+                    </select>
                     <span id="lblcarg_Id" class="text-danger" hidden> Este campo es requerido</span>
                 </div>
             </div>

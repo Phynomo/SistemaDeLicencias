@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -52,9 +53,38 @@ namespace SistemaLicencias.WebUI.Controllers
 
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            using (var httpClient = new HttpClient())
+            {
+                var responseCargos = await httpClient.GetAsync(_baseurl + "api/Empleado/Cargos");
+
+                if (responseCargos.IsSuccessStatusCode)
+                {
+                    var Cargos = await responseCargos.Content.ReadAsStringAsync();
+                    var listadoCargos = JsonConvert.DeserializeObject<List<VWEmpleadosViewModel>>(Cargos);
+                    ViewBag.Cargos = new SelectList(listadoCargos, "carg_Id", "carg_Descripcion");
+                }
+
+                var responseSucursales = await httpClient.GetAsync(_baseurl + "api/Empleado/Sucursales");
+
+                if (responseSucursales.IsSuccessStatusCode)
+                {
+                    var Sucursales = await responseSucursales.Content.ReadAsStringAsync();
+                    var listadoSucursales = JsonConvert.DeserializeObject<List<VWEmpleadosViewModel>>(Sucursales);
+                    ViewBag.Sucursales = new SelectList(listadoSucursales, "sucu_Id", "sucu_Nombre");
+                }
+
+                var responseECiviles = await httpClient.GetAsync(_baseurl + "api/Empleado/EstadosCiviles");
+
+                if (responseECiviles.IsSuccessStatusCode)
+                {
+                    var Estados = await responseECiviles.Content.ReadAsStringAsync();
+                    var listadoEstados = JsonConvert.DeserializeObject<List<VWEmpleadosViewModel>>(Estados);
+                    ViewBag.EstadosCiviles = new SelectList(listadoEstados, "eciv_Id", "eciv_Descripcion");
+                }
+                return View();
+            }
         }
 
 
@@ -84,8 +114,38 @@ namespace SistemaLicencias.WebUI.Controllers
             {
                 TempData["empe"] = "CreateError";
                 Console.WriteLine("La solicitud falló con el código de estado: " + response.StatusCode);
-            }
 
+                using (var httpClient = new HttpClient())
+                {
+                    var responseCargos = await httpClient.GetAsync(_baseurl + "api/Empleado/Cargos");
+
+                    if (responseCargos.IsSuccessStatusCode)
+                    {
+                        var Cargos = await responseCargos.Content.ReadAsStringAsync();
+                        var listadoCargos = JsonConvert.DeserializeObject<List<VWEmpleadosViewModel>>(Cargos);
+                        ViewBag.Cargos = new SelectList(listadoCargos, "carg_Id", "carg_Descripcion", empleadosViewModel.carg_Id);
+                    }
+
+                    var responseSucursales = await httpClient.GetAsync(_baseurl + "api/Empleado/Sucursales");
+
+                    if (responseSucursales.IsSuccessStatusCode)
+                    {
+                        var Sucursales = await responseSucursales.Content.ReadAsStringAsync();
+                        var listadoSucursales = JsonConvert.DeserializeObject<List<VWEmpleadosViewModel>>(Sucursales);
+                        ViewBag.Sucursales = new SelectList(listadoSucursales, "sucu_Id", "sucu_Nombre", empleadosViewModel.sucu_Id);
+                    }
+
+                    var responseECiviles = await httpClient.GetAsync(_baseurl + "api/Empleado/EstadosCiviles");
+
+                    if (responseECiviles.IsSuccessStatusCode)
+                    {
+                        var Estados = await responseECiviles.Content.ReadAsStringAsync();
+                        var listadoEstados = JsonConvert.DeserializeObject<List<VWEmpleadosViewModel>>(Estados);
+                        ViewBag.EstadosCiviles = new SelectList(listadoEstados, "eciv_Id", "eciv_Descripcion", empleadosViewModel.eciv_Id );
+                    }
+                }
+
+            }
 
             return View(empleadosViewModel);
 
@@ -102,6 +162,35 @@ namespace SistemaLicencias.WebUI.Controllers
                 var jsonResponse = await response.Content.ReadAsStringAsync();
 
                 var lice = JsonConvert.DeserializeObject<EmpleadosViewModel>(jsonResponse);
+
+                var responseCargos = await httpClient.GetAsync(_baseurl + "api/Empleado/Cargos");
+
+                if (responseCargos.IsSuccessStatusCode)
+                {
+                    var Cargos = await responseCargos.Content.ReadAsStringAsync();
+                    var listadoCargos = JsonConvert.DeserializeObject<List<VWEmpleadosViewModel>>(Cargos);
+                    ViewBag.Cargos = new SelectList(listadoCargos, "carg_Id", "carg_Descripcion", lice.carg_Id);
+                }
+
+                var responseSucursales = await httpClient.GetAsync(_baseurl + "api/Empleado/Sucursales");
+
+                if (responseSucursales.IsSuccessStatusCode)
+                {
+                    var Sucursales = await responseSucursales.Content.ReadAsStringAsync();
+                    var listadoSucursales = JsonConvert.DeserializeObject<List<VWEmpleadosViewModel>>(Sucursales);
+                    ViewBag.Sucursales = new SelectList(listadoSucursales, "sucu_Id", "sucu_Nombre", lice.sucu_Id);
+                }
+
+                var responseECiviles = await httpClient.GetAsync(_baseurl + "api/Empleado/EstadosCiviles");
+
+                if (responseECiviles.IsSuccessStatusCode)
+                {
+                    var Estados = await responseECiviles.Content.ReadAsStringAsync();
+                    var listadoEstados = JsonConvert.DeserializeObject<List<VWEmpleadosViewModel>>(Estados);
+                    ViewBag.EstadosCiviles = new SelectList(listadoEstados, "eciv_Id", "eciv_Descripcion", lice.eciv_Id);
+                }
+
+
                 return View(lice);
             }
 

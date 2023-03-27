@@ -1949,3 +1949,29 @@ BEGIN
 END
 GO
 
+GO
+CREATE OR ALTER PROCEDURE lice.UDP_tbCargos_SELECT
+AS
+BEGIN
+	SELECT * FROM LICE.tbCargos
+	WHERE carg_Estado = 1;
+END
+GO
+
+GO
+CREATE OR ALTER PROCEDURE lice.UDP_tbSucursales_SELECT
+AS
+BEGIN
+	SELECT * FROM LICE.tbSucursales
+	WHERE sucu_Estado = 1;
+END
+GO
+
+GO
+CREATE OR ALTER PROCEDURE gral.UDP_tbEstadosCiviles_SELECT
+AS
+BEGIN
+	SELECT * FROM gral.tbEstadosCiviles
+	WHERE eciv_Estado = 1;
+END
+GO

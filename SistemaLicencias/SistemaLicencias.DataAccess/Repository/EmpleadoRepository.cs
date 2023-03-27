@@ -87,5 +87,27 @@ namespace SistemaLicencias.DataAccess.Repository
             var result = db.QueryFirst<RequestStatus>(ScriptsDataBase.UDP_tbEmpleados_Editar, parametros, commandType: System.Data.CommandType.StoredProcedure);
             return result;
         }
+
+
+
+        public IEnumerable<tbCargos> ListCargos()
+        {
+            using var db = new SqlConnection(LicenciaContext.ConnectionString);
+            return db.Query<tbCargos>(ScriptsDataBase.UDP_tbCargos_Listado, null, commandType: System.Data.CommandType.StoredProcedure);
+        }
+    
+
+        public IEnumerable<tbSucursales> ListSucursales()
+        {
+            using var db = new SqlConnection(LicenciaContext.ConnectionString);
+            return db.Query<tbSucursales>(ScriptsDataBase.UDP_tbSucursales_Listado, null, commandType: System.Data.CommandType.StoredProcedure);
+        }
+    
+
+        public IEnumerable<tbEstadosCiviles> ListEstadosCiviles()
+        {
+            using var db = new SqlConnection(LicenciaContext.ConnectionString);
+            return db.Query<tbEstadosCiviles>(ScriptsDataBase.UDP_tbEstadosCiviles_Listado, null, commandType: System.Data.CommandType.StoredProcedure);
+        }
     }
 }

@@ -238,5 +238,55 @@ namespace SistemaLicencias.BusinessLogic.Service
 
         #endregion
 
+
+
+
+        public IEnumerable<tbCargos> ListadoCargos()
+        {
+
+            try
+            {
+                var list = _empleadosRepository.ListCargos();
+                return list;
+            }
+            catch (Exception )
+            {
+
+                return null;
+
+            }
+        }
+        public IEnumerable<tbSucursales> ListadoSucursales()
+        {
+
+            try
+            {
+                var list = _empleadosRepository.ListSucursales();
+                return list;
+            }
+            catch (Exception )
+            {
+
+                return null;
+
+            }
+        }
+        public IEnumerable<tbEstadosCiviles> ListadoEstadosCiviles()
+        {
+
+            try
+            {
+                var list = _empleadosRepository.ListEstadosCiviles();
+                return list;
+            }
+            catch (Exception )
+            {
+
+                return null;
+
+            }
+        }
+
+
     }
 }
