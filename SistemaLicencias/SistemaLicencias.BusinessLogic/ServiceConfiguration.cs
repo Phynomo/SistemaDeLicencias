@@ -14,7 +14,7 @@ namespace SistemaLicencias.BusinessLogic
         {
             service.AddScoped<TipoLicenciaRepository>();
             service.AddScoped<SolicitanteRepository>();
-
+            service.AddScoped<EmpleadoRepository>();
 
 
             LicenciaContext.BuildConnectionString(connectionString);

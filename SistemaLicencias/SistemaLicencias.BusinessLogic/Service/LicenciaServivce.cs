@@ -11,12 +11,15 @@ namespace SistemaLicencias.BusinessLogic.Service
     {
         private readonly TipoLicenciaRepository _tipoLicenciaRepository;
         private readonly SolicitanteRepository _solicitanteRepository;
+        private readonly EmpleadoRepository _empleadosRepository;
 
         public LicenciaServivce(TipoLicenciaRepository tipoLicenciaRepository,
-                                SolicitanteRepository solicitanteRepository)
+                                SolicitanteRepository solicitanteRepository,
+                                EmpleadoRepository empleadoRepository)
         {
             _tipoLicenciaRepository = tipoLicenciaRepository;
             _solicitanteRepository = solicitanteRepository;
+            _empleadosRepository = empleadoRepository;
         }
 
 
@@ -127,6 +130,165 @@ namespace SistemaLicencias.BusinessLogic.Service
         }
 
         #endregion
+        
+
+        #region Empleados
+
+        //INDEX
+        public ServiceResult ListadoEmpleados()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _empleadosRepository.List();
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+
+                return result.Error(e.Message);
+
+            }
+        }
+        
+        
+        public VW_tbEmpleados_View BuscarEmpleado(int? id)
+        {
+            try
+            {
+                var list = _empleadosRepository.Find(id);
+                return list;
+            }
+            catch (Exception)
+            {
+
+                return null;
+
+            }
+        }
+
+        public ServiceResult InsertarEmpleado(tbEmpleados tbEmpleado)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var map = _empleadosRepository.Insert(tbEmpleado);
+                if (map.CodeStatus > 0)
+                {
+                    return result.Ok(map);
+                }
+                else
+                {
+                    map.MessageStatus = (map.CodeStatus == 0) ? "404 Error de consulta" : map.MessageStatus;
+                    return result.Error(map);
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        
+        public ServiceResult EditarEmpleado(tbEmpleados tbEmpleado)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var map = _empleadosRepository.Update(tbEmpleado);
+                if (map.CodeStatus > 0)
+                {
+                    return result.Ok(map);
+                }
+                else
+                {
+                    map.MessageStatus = (map.CodeStatus == 0) ? "404 Error de consulta" : map.MessageStatus;
+                    return result.Error(map);
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public ServiceResult EliminarEmpleado(tbEmpleados tbEmpleados)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var map = _empleadosRepository.Delete(tbEmpleados);
+                if (map.CodeStatus > 0)
+                {
+                    return result.Ok(map);
+                }
+                else
+                {
+                    map.MessageStatus = (map.CodeStatus == 0) ? "404 Error de consulta" : map.MessageStatus;
+                    return result.Error(map);
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        #endregion
+
+
+
+
+        public IEnumerable<tbCargos> ListadoCargos()
+        {
+
+            try
+            {
+                var list = _empleadosRepository.ListCargos();
+                return list;
+            }
+            catch (Exception )
+            {
+
+                return null;
+
+            }
+        }
+        public IEnumerable<tbSucursales> ListadoSucursales()
+        {
+
+            try
+            {
+                var list = _empleadosRepository.ListSucursales();
+                return list;
+            }
+            catch (Exception )
+            {
+
+                return null;
+
+            }
+        }
+        public IEnumerable<tbEstadosCiviles> ListadoEstadosCiviles()
+        {
+
+            try
+            {
+                var list = _empleadosRepository.ListEstadosCiviles();
+                return list;
+            }
+            catch (Exception )
+            {
+
+                return null;
+
+            }
+        }
+
 
 
         #region Solicitantes

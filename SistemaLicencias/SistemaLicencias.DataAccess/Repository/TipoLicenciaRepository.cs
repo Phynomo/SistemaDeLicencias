@@ -61,7 +61,6 @@ namespace SistemaLicencias.DataAccess.Repository
             return result;
         }
 
-       
 
     }
 }
