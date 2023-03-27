@@ -277,6 +277,7 @@ CREATE TABLE lice.tbSolicitud(
 	sucu_Id	INT NOT NULL,
 	tili_Id INT NOT NULL,
 	stud_Pago BIT NOT NULL,
+	stud_Intentos INT NOT NULL  CONSTRAINT DF_stud_Intentos DEFAULT(5),
 	stud_UsuCreacion			INT				NOT NULL,
 	stud_FechaCreacion			DATETIME		NOT NULL CONSTRAINT DF_stud_FechaCreacion DEFAULT(GETDATE()),
 	stud_UsuModificacion		INT,
@@ -297,8 +298,8 @@ CREATE TABLE lice.tbAprobados(
     apro_Id				INT IDENTITY(1,1),
     stud_Id				INT NOT NULL,
     empe_Id				INT NOT NULL,
-	apro_Aceptado		BIT NOT NULL,
 	apro_Observaciones	NVARCHAR(500),
+	apro_Intentos		INT NOT NULL,
     apro_Fecha			DATE NOT NULL,     
 	apro_UsuCreacion			INT				NOT NULL,
 	apro_FechaCreacion			DATETIME		NOT NULL CONSTRAINT DF_apro_FechaCreacion DEFAULT(GETDATE()),
@@ -311,6 +312,27 @@ CREATE TABLE lice.tbAprobados(
 	CONSTRAINT FK_lice_tbAprovados_acce_tbUsuarios_UserCreate					FOREIGN KEY(apro_UsuCreacion)				REFERENCES acce.tbUsuarios(user_Id),
 	CONSTRAINT FK_lice_tbAprovados_acce_tbUsuarios_UserUpdate					FOREIGN KEY(apro_UsuModificacion)			REFERENCES acce.tbUsuarios(user_Id),	
 	CONSTRAINT FK_lice_tbAprovados_lice_tbEmpleados_empe_Id					    FOREIGN KEY(empe_Id)						REFERENCES lice.tbEmpleados(empe_Id)		
+)
+
+
+
+CREATE TABLE lice.tbRechazados(
+    rech_Id				INT IDENTITY(1,1),
+    stud_Id				INT NOT NULL,
+    empe_Id				INT NOT NULL,
+	rech_Observaciones	NVARCHAR(500),
+    rech_Fecha			DATE NOT NULL,     
+	rech_UsuCreacion			INT				NOT NULL,
+	rech_FechaCreacion			DATETIME		NOT NULL CONSTRAINT DF_rech_FechaCreacion DEFAULT(GETDATE()),
+	rech_UsuModificacion		INT,
+	rech_FechaModificacion		DATETIME,
+	rech_Estado					BIT NOT NULL CONSTRAINT DF_rech_Estado DEFAULT(1),
+
+    CONSTRAINT PK_lice_tbRechazados_apro_Id 										PRIMARY KEY(rech_Id),
+	CONSTRAINT FK_lice_tbRechazados_lice_tbSolicitud_stud_Id						FOREIGN KEY(stud_Id)					    REFERENCES lice.tbSolicitud(stud_Id),	
+	CONSTRAINT FK_lice_tbRechazados_acce_tbUsuarios_UserCreate					FOREIGN KEY(rech_UsuCreacion)				REFERENCES acce.tbUsuarios(user_Id),
+	CONSTRAINT FK_lice_tbRechazados_acce_tbUsuarios_UserUpdate					FOREIGN KEY(rech_UsuModificacion)			REFERENCES acce.tbUsuarios(user_Id),	
+	CONSTRAINT FK_lice_tbRechazados_lice_tbEmpleados_empe_Id					    FOREIGN KEY(empe_Id)						REFERENCES lice.tbEmpleados(empe_Id)		
 )
 
 --************************************************---
@@ -1805,158 +1827,158 @@ END
 --*****************************************************************************--
 -- ****************************** TABLA APROVADOS *****************************--
 
--- ** INSERT PROCEDURE **--
-GO
-CREATE OR ALTER PROCEDURE lice.UDP_tbAprobados_INSERT
-(@stud_Id INT,
- @empe_Id INT,
- @apro_Aceptado BIT,
- @apro_Observaciones NVARCHAR(500),
- @apro_Fecha DATE,
- @apro_UsuCreacion INT)
-AS
-BEGIN
-	BEGIN TRY
-		IF EXISTS (SELECT * FROM lice.tbAprobados WHERE stud_Id = @stud_Id AND apro_Estado = 1 )
-			BEGIN
-				SELECT 2 AS Proceso
-			END
-		ELSE IF NOT EXISTS (SELECT * FROM lice.tbAprobados WHERE stud_Id = @stud_Id)
-			BEGIN			
+---- ** INSERT PROCEDURE **--
+--GO
+--CREATE OR ALTER PROCEDURE lice.UDP_tbAprobados_INSERT
+--(@stud_Id INT,
+-- @empe_Id INT,
+-- @apro_Aceptado BIT,
+-- @apro_Observaciones NVARCHAR(500),
+-- @apro_Fecha DATE,
+-- @apro_UsuCreacion INT)
+--AS
+--BEGIN
+--	BEGIN TRY
+--		IF EXISTS (SELECT * FROM lice.tbAprobados WHERE stud_Id = @stud_Id AND apro_Estado = 1 )
+--			BEGIN
+--				SELECT 2 AS Proceso
+--			END
+--		ELSE IF NOT EXISTS (SELECT * FROM lice.tbAprobados WHERE stud_Id = @stud_Id)
+--			BEGIN			
 
-				INSERT INTO [lice].[tbAprobados]
-						   ([stud_Id]
-						   ,[empe_Id]
-						   ,[apro_Aceptado]
-						   ,[apro_Observaciones]
-						   ,[apro_Fecha]
-						   ,[apro_UsuCreacion]
-						   ,[apro_UsuModificacion]
-						   ,[apro_FechaModificacion])
-					 VALUES
-						   (@stud_Id
-						   ,@empe_Id
-						   ,@apro_Aceptado
-						   ,@apro_Observaciones
-						   ,@apro_Fecha
-						   ,@apro_UsuCreacion
-						   ,NULL
-						   ,NULL)
-						SELECT 1 AS Proceso
-			END
-		ELSE
-			BEGIN
-				UPDATE	[lice].[tbAprobados]
-				SET		apro_Estado = 1,
-						apro_UsuCreacion = @apro_UsuCreacion,
-						apro_FechaCreacion = GETDATE(),
-						apro_UsuModificacion = NULL,
-						apro_FechaModificacion = NULL
-				WHERE	[stud_Id] = @stud_Id
-			END
-			SELECT 1 AS Proceso
-	END TRY
-	BEGIN CATCH
-		SELECT 0 AS Proceso
-	END CATCH
-END
-
-
-
--- ** UPDATE PROCEDURE **--
-GO
-CREATE OR ALTER PROCEDURE lice.UDP_tbAprobados_UPDATE
-(@apro_Id INT,
- @stud_Id INT,
- @empe_Id INT,
- @apro_Aceptado BIT,
- @apro_Observaciones NVARCHAR(500),
- @apro_Fecha DATE,
- @apro_UsuModificacion INT)
-AS
-BEGIN
-	BEGIN TRY
-		IF EXISTS (SELECT * FROM lice.tbAprobados WHERE (stud_Id = @stud_Id AND apro_Id != @apro_Id))
-			BEGIN
-				SELECT 2 AS Proceso 
-			END
-		ELSE
-			BEGIN
-
-				UPDATE [lice].[tbAprobados]
-				   SET [stud_Id] = @stud_Id
-					  ,[empe_Id] = @empe_Id
-					  ,[apro_Aceptado] = @apro_Aceptado
-					  ,[apro_Observaciones] = @apro_Observaciones
-					  ,[apro_Fecha] = @apro_Fecha
-					  ,[apro_UsuModificacion] = @apro_UsuModificacion
-					  ,[apro_FechaModificacion] = GETDATE()
-				 WHERE apro_Id = @apro_Id
-
-				SELECT 1 AS Proceso;
-			END
-	END TRY
-	BEGIN CATCH
-				SELECT 0 AS Proceso;
-	END CATCH
-END
+--				INSERT INTO [lice].[tbAprobados]
+--						   ([stud_Id]
+--						   ,[empe_Id]
+--						   ,[apro_Aceptado]
+--						   ,[apro_Observaciones]
+--						   ,[apro_Fecha]
+--						   ,[apro_UsuCreacion]
+--						   ,[apro_UsuModificacion]
+--						   ,[apro_FechaModificacion])
+--					 VALUES
+--						   (@stud_Id
+--						   ,@empe_Id
+--						   ,@apro_Aceptado
+--						   ,@apro_Observaciones
+--						   ,@apro_Fecha
+--						   ,@apro_UsuCreacion
+--						   ,NULL
+--						   ,NULL)
+--						SELECT 1 AS Proceso
+--			END
+--		ELSE
+--			BEGIN
+--				UPDATE	[lice].[tbAprobados]
+--				SET		apro_Estado = 1,
+--						apro_UsuCreacion = @apro_UsuCreacion,
+--						apro_FechaCreacion = GETDATE(),
+--						apro_UsuModificacion = NULL,
+--						apro_FechaModificacion = NULL
+--				WHERE	[stud_Id] = @stud_Id
+--			END
+--			SELECT 1 AS Proceso
+--	END TRY
+--	BEGIN CATCH
+--		SELECT 0 AS Proceso
+--	END CATCH
+--END
 
 
--- ** DELETE PROCEDURE **--
-GO
-CREATE OR ALTER PROCEDURE lice.UDP_tbAprobados_DELETE
-(@apro_Id INT,
- @apro_UsuModificacion INT)
-AS
-BEGIN
-	BEGIN TRY
-		UPDATE	[lice].[tbAprobados]
-		SET		apro_Estado = 0,
-				apro_UsuModificacion = @apro_UsuModificacion,
-				apro_FechaModificacion = GETDATE()
-		WHERE	apro_Id = @apro_Id;
 
-		SELECT 1 AS Proceso;
-	END TRY
-	BEGIN CATCH
-		SELECT 0 AS Proceso;
-	END CATCH
-END
+---- ** UPDATE PROCEDURE **--
+--GO
+--CREATE OR ALTER PROCEDURE lice.UDP_tbAprobados_UPDATE
+--(@apro_Id INT,
+-- @stud_Id INT,
+-- @empe_Id INT,
+-- @apro_Aceptado BIT,
+-- @apro_Observaciones NVARCHAR(500),
+-- @apro_Fecha DATE,
+-- @apro_UsuModificacion INT)
+--AS
+--BEGIN
+--	BEGIN TRY
+--		IF EXISTS (SELECT * FROM lice.tbAprobados WHERE (stud_Id = @stud_Id AND apro_Id != @apro_Id))
+--			BEGIN
+--				SELECT 2 AS Proceso 
+--			END
+--		ELSE
+--			BEGIN
 
+--				UPDATE [lice].[tbAprobados]
+--				   SET [stud_Id] = @stud_Id
+--					  ,[empe_Id] = @empe_Id
+--					  ,[apro_Aceptado] = @apro_Aceptado
+--					  ,[apro_Observaciones] = @apro_Observaciones
+--					  ,[apro_Fecha] = @apro_Fecha
+--					  ,[apro_UsuModificacion] = @apro_UsuModificacion
+--					  ,[apro_FechaModificacion] = GETDATE()
+--				 WHERE apro_Id = @apro_Id
 
----*** VISTA ***---
-GO
-CREATE OR ALTER VIEW lice.VW_tbAprobados_View
-AS
-SELECT	apro_Id, 
-		stud_Id, 
-		T1.empe_Id, 
-		T2.empe_Nombres,
-		apro_Aceptado, 
-		apro_Observaciones, 
-		apro_Fecha, 
-		apro_UsuCreacion, 
-		T3.user_NombreUsuario AS UsuarioCreacion,
-		apro_FechaCreacion, 
-		apro_UsuModificacion, 
-		T4.user_NombreUsuario AS UsuarioModificacion,
-		apro_FechaModificacion, 
-		apro_Estado
-FROM [lice].[tbAprobados] AS T1 INNER JOIN [lice].[tbEmpleados] AS T2
-ON T1.empe_Id = T2.empe_Id INNER JOIN [acce].[tbUsuarios] AS T3
-ON T1.apro_UsuCreacion = T3.[user_Id] LEFT JOIN [acce].[tbUsuarios] AS T4
-ON T1.apro_UsuModificacion = T4.[user_Id]
+--				SELECT 1 AS Proceso;
+--			END
+--	END TRY
+--	BEGIN CATCH
+--				SELECT 0 AS Proceso;
+--	END CATCH
+--END
 
 
---*** RUN VIEW PROCEDURE ***--
-GO
-CREATE OR ALTER PROCEDURE lice.UDP_tbAprovados_SELECT
-AS
-BEGIN
-	SELECT * FROM LICE.VW_tbAprobados_View
-	WHERE apro_Estado = 1;
-END
-GO
+---- ** DELETE PROCEDURE **--
+--GO
+--CREATE OR ALTER PROCEDURE lice.UDP_tbAprobados_DELETE
+--(@apro_Id INT,
+-- @apro_UsuModificacion INT)
+--AS
+--BEGIN
+--	BEGIN TRY
+--		UPDATE	[lice].[tbAprobados]
+--		SET		apro_Estado = 0,
+--				apro_UsuModificacion = @apro_UsuModificacion,
+--				apro_FechaModificacion = GETDATE()
+--		WHERE	apro_Id = @apro_Id;
+
+--		SELECT 1 AS Proceso;
+--	END TRY
+--	BEGIN CATCH
+--		SELECT 0 AS Proceso;
+--	END CATCH
+--END
+
+
+-----*** VISTA ***---
+--GO
+--CREATE OR ALTER VIEW lice.VW_tbAprobados_View
+--AS
+--SELECT	apro_Id, 
+--		stud_Id, 
+--		T1.empe_Id, 
+--		T2.empe_Nombres,
+--		apro_Aceptado, 
+--		apro_Observaciones, 
+--		apro_Fecha, 
+--		apro_UsuCreacion, 
+--		T3.user_NombreUsuario AS UsuarioCreacion,
+--		apro_FechaCreacion, 
+--		apro_UsuModificacion, 
+--		T4.user_NombreUsuario AS UsuarioModificacion,
+--		apro_FechaModificacion, 
+--		apro_Estado
+--FROM [lice].[tbAprobados] AS T1 INNER JOIN [lice].[tbEmpleados] AS T2
+--ON T1.empe_Id = T2.empe_Id INNER JOIN [acce].[tbUsuarios] AS T3
+--ON T1.apro_UsuCreacion = T3.[user_Id] LEFT JOIN [acce].[tbUsuarios] AS T4
+--ON T1.apro_UsuModificacion = T4.[user_Id]
+
+
+----*** RUN VIEW PROCEDURE ***--
+--GO
+--CREATE OR ALTER PROCEDURE lice.UDP_tbAprovados_SELECT
+--AS
+--BEGIN
+--	SELECT * FROM LICE.VW_tbAprobados_View
+--	WHERE apro_Estado = 1;
+--END
+--GO
 
 
 GO
