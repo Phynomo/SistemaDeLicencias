@@ -371,3 +371,7 @@ C:\Users\LAB01\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\Sistem
 C:\Users\LAB01\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\TipoLicencias\Details.cshtml.g.cs
 C:\Users\LAB01\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\TipoLicencias\_CreateViewPartial.cshtml.g.cs
 C:\Users\LAB01\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\TipoLicencias\_EditViewPartial.cshtml.g.cs
+C:\Users\LAB01\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Solicitante\Create.cshtml.g.cs
+C:\Users\LAB01\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Solicitante\Edit.cshtml.g.cs
+C:\Users\LAB01\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Solicitante\Index.cshtml.g.cs
+C:\Users\LAB01\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Solicitante\_DeleteViewPartial.cshtml.g.cs
