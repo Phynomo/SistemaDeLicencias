@@ -26,6 +26,8 @@ namespace SistemaLicencias.Entities.Entities
             tbMunicipiosmuni_UsuModificacionNavigation = new HashSet<tbMunicipios>();
             tbPantallasPorRolesprol_UsuCreacionNavigation = new HashSet<tbPantallasPorRoles>();
             tbPantallasPorRolesprol_UsuModificacionNavigation = new HashSet<tbPantallasPorRoles>();
+            tbRechazadosrech_UsuCreacionNavigation = new HashSet<tbRechazados>();
+            tbRechazadosrech_UsuModificacionNavigation = new HashSet<tbRechazados>();
             tbRolesrole_UsuCreacionNavigation = new HashSet<tbRoles>();
             tbRolesrole_UsuModificacionNavigation = new HashSet<tbRoles>();
             tbSolicitantessoli_UsuCreacionNavigation = new HashSet<tbSolicitantes>();
@@ -70,6 +72,8 @@ namespace SistemaLicencias.Entities.Entities
         public virtual ICollection<tbMunicipios> tbMunicipiosmuni_UsuModificacionNavigation { get; set; }
         public virtual ICollection<tbPantallasPorRoles> tbPantallasPorRolesprol_UsuCreacionNavigation { get; set; }
         public virtual ICollection<tbPantallasPorRoles> tbPantallasPorRolesprol_UsuModificacionNavigation { get; set; }
+        public virtual ICollection<tbRechazados> tbRechazadosrech_UsuCreacionNavigation { get; set; }
+        public virtual ICollection<tbRechazados> tbRechazadosrech_UsuModificacionNavigation { get; set; }
         public virtual ICollection<tbRoles> tbRolesrole_UsuCreacionNavigation { get; set; }
         public virtual ICollection<tbRoles> tbRolesrole_UsuModificacionNavigation { get; set; }
         public virtual ICollection<tbSolicitantes> tbSolicitantessoli_UsuCreacionNavigation { get; set; }

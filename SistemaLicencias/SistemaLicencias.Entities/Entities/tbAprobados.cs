@@ -11,8 +11,8 @@ namespace SistemaLicencias.Entities.Entities
         public int apro_Id { get; set; }
         public int stud_Id { get; set; }
         public int empe_Id { get; set; }
-        public bool apro_Aceptado { get; set; }
         public string apro_Observaciones { get; set; }
+        public int apro_Intentos { get; set; }
         public DateTime apro_Fecha { get; set; }
         public int apro_UsuCreacion { get; set; }
         public DateTime apro_FechaCreacion { get; set; }

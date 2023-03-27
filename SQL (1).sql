@@ -715,7 +715,12 @@ VALUES	('Instructor de Manejo'	,1,NULL,NULL),
 		('Inpector de Manejo'	,1,NULL,NULL),
 		('Tenico Mecanito'		,1,NULL,NULL),
 		('Analista Final'		,1,NULL,NULL);
-
+GO
+		--** TIPOS LICENCIA TABLE ***--
+INSERT INTO lice.tbTiposLicencias (tili_Descripcion, tili_UsuCreacion, tili_UsuModificacion, tili_FechaModificacion)
+VALUES    ('Liviana', 1, NULL, NULL),
+        ('Pesada',    1, NULL, NULL),
+        ('Moto',    1, NULL, NULL);
 
 --********** CARGOS TABLE ***************--
 GO
@@ -945,6 +950,10 @@ END
   END
   GO
   GO
+
+
+
+
   Go
 CREATE OR ALTER PROCEDURE acce.UDP_tbRoles_Insert 
   @role_Nombre nvarchar(100),
@@ -1228,10 +1237,8 @@ SELECT T1.[empe_Id]
 
   END
   GO
-  SELECT * from lice.tbSolicitantes
-  SELECT * from lice.tbCargos
-  SELECT * from lice.tbEmpleados
-  SELECT * from lice.tbTiposLicencias
+
+
   GO
   CREATE OR ALTER PROCEDURE lice.UDP_tbEmpleados_Insert 
 	@empe_Nombres nvarchar(200),
@@ -1690,10 +1697,11 @@ END
  --*****************************************************************************--
 --*****************************************************************************--
 -- ************************* TABLA SOLICITUD **/**********************--
+-- ************************* TABLA SOLICITUD **/**********************--
 
 ---***  INSERT PROCEDURE ***---
 GO
-CREATE OR ALTER PROCEDURE lice.UDP_tbSolicitud_INSERT
+CREATE OR ALTER PROCEDURE lice.UDP_tbSolicitud_INSERT 
 (@soli_Id INT,
  @sucu_Id INT,
  @tili_Id INT,
@@ -1701,13 +1709,14 @@ CREATE OR ALTER PROCEDURE lice.UDP_tbSolicitud_INSERT
  @stud_UsuCreacion INT)
 AS
 BEGIN 
-	BEGIN TRY
 
-		INSERT INTO [lice].[tbSolicitud]
+	BEGIN TRY
+		
+			INSERT INTO [lice].[tbSolicitud]
 				   ([soli_Id]
 				   ,[sucu_Id]
 				   ,[tili_Id]
-				   ,[stud_Pago]
+				   ,[stud_Pago] 
 				   ,[stud_UsuCreacion]
 				   ,[stud_UsuModificacion]
 				   ,[stud_FechaModificacion])
@@ -1719,21 +1728,19 @@ BEGIN
 				   ,@stud_UsuCreacion
 				   ,NULL
 				   ,NULL)
-		SELECT 1 AS Proceso
-
+			SELECT 1 AS Proceso
 	END TRY
 	BEGIN CATCH
-
 		SELECT 0 AS Proceso
-
 	END CATCH
 END
+
+
 
 ---***  UPDATE PROCEDURE ***---
 GO
 CREATE OR ALTER PROCEDURE lice.UDP_tbSolicitud_UPDATE
 (@stud_Id INT,
- @soli_Id INT,
  @sucu_Id INT,
  @tili_Id INT,
  @stud_Pago BIT,
@@ -1743,8 +1750,7 @@ BEGIN
 	BEGIN TRY
 		
 		UPDATE [lice].[tbSolicitud]
-		   SET [soli_Id] = @soli_Id
-			  ,[sucu_Id] = @sucu_Id
+		   SET [sucu_Id] = @sucu_Id
 			  ,[tili_Id] = @tili_Id
 			  ,[stud_Pago] = @stud_Pago
 			  ,[stud_UsuModificacion] = @stud_UsuModificacion
@@ -1758,20 +1764,16 @@ BEGIN
 	END CATCH
 END
 
-
-
 ---***  DELETE PROCEDURE ***---
 GO
 CREATE OR ALTER PROCEDURE lice.UDP_tbSolicitud_DELETE
-(@stud_Id INT,
- @stud_UsuModificacion INT)
+(@stud_Id INT)
 AS
 BEGIN
 	BEGIN TRY
 		
 		UPDATE [lice].[tbSolicitud]
 		   SET [stud_Estado] = 0
-			  ,[stud_UsuModificacion] = @stud_UsuModificacion
 			  ,[stud_FechaModificacion] = GETDATE()
 		 WHERE [stud_Id] = @stud_Id;
 
@@ -1783,25 +1785,29 @@ BEGIN
 END
 
 
----*** VISTA ***---
+
+--- VISTA ---
 GO
 CREATE OR ALTER VIEW lice.VW_tbSolicitud_View
 AS
-SELECT	stud_Id, 
-		T1.soli_Id, 
-		T2.soli_Nombre,
-		T1.sucu_Id, 
-		T3.sucu_Nombre,
-		T1.tili_Id, 
-		T4.tili_Descripcion,
-		stud_Pago, 
-		stud_UsuCreacion, 
-		T5.user_NombreUsuario AS UsuarioCreacion,
-		stud_FechaCreacion, 
-		stud_UsuModificacion, 
-		T6.user_NombreUsuario AS UsuarioModificacion,
-		stud_FechaModificacion, 
-		stud_Estado
+SELECT    stud_Id, 
+        T1.soli_Id, 
+        T2.soli_Nombre,
+        T2.soli_Apellido,
+        T2.soli_Nombre + ' ' + T2.soli_Apellido AS soli_NombreCompleto,
+        T1.sucu_Id, 
+        T3.sucu_Nombre,
+        T1.tili_Id, 
+        T4.tili_Descripcion,
+        stud_Pago,
+        stud_Intentos,
+        stud_UsuCreacion, 
+        T5.user_NombreUsuario AS UsuarioCreacion,
+        stud_FechaCreacion, 
+        stud_UsuModificacion, 
+        T6.user_NombreUsuario AS UsuarioModificacion,
+        stud_FechaModificacion, 
+        stud_Estado
 FROM [lice].[tbSolicitud] AS T1 INNER JOIN [lice].[tbSolicitantes] AS T2
 ON T1.soli_Id = T2.soli_Id INNER JOIN [lice].[tbSucursales] AS T3
 ON T1.sucu_Id = T3.sucu_Id INNER JOIN [lice].[tbTiposLicencias] AS T4
@@ -1822,66 +1828,126 @@ END
 
 
 
-
 --*****************************************************************************--
 --*****************************************************************************--
 -- ****************************** TABLA APROVADOS *****************************--
 
----- ** INSERT PROCEDURE **--
---GO
---CREATE OR ALTER PROCEDURE lice.UDP_tbAprobados_INSERT
---(@stud_Id INT,
--- @empe_Id INT,
--- @apro_Aceptado BIT,
--- @apro_Observaciones NVARCHAR(500),
--- @apro_Fecha DATE,
--- @apro_UsuCreacion INT)
---AS
---BEGIN
---	BEGIN TRY
---		IF EXISTS (SELECT * FROM lice.tbAprobados WHERE stud_Id = @stud_Id AND apro_Estado = 1 )
---			BEGIN
---				SELECT 2 AS Proceso
---			END
---		ELSE IF NOT EXISTS (SELECT * FROM lice.tbAprobados WHERE stud_Id = @stud_Id)
---			BEGIN			
 
---				INSERT INTO [lice].[tbAprobados]
---						   ([stud_Id]
---						   ,[empe_Id]
---						   ,[apro_Aceptado]
---						   ,[apro_Observaciones]
---						   ,[apro_Fecha]
---						   ,[apro_UsuCreacion]
---						   ,[apro_UsuModificacion]
---						   ,[apro_FechaModificacion])
---					 VALUES
---						   (@stud_Id
---						   ,@empe_Id
---						   ,@apro_Aceptado
---						   ,@apro_Observaciones
---						   ,@apro_Fecha
---						   ,@apro_UsuCreacion
---						   ,NULL
---						   ,NULL)
---						SELECT 1 AS Proceso
---			END
---		ELSE
---			BEGIN
---				UPDATE	[lice].[tbAprobados]
---				SET		apro_Estado = 1,
---						apro_UsuCreacion = @apro_UsuCreacion,
---						apro_FechaCreacion = GETDATE(),
---						apro_UsuModificacion = NULL,
---						apro_FechaModificacion = NULL
---				WHERE	[stud_Id] = @stud_Id
---			END
---			SELECT 1 AS Proceso
---	END TRY
---	BEGIN CATCH
---		SELECT 0 AS Proceso
---	END CATCH
---END
+---*** REJECT PROCEDURE ***---
+GO
+CREATE OR ALTER PROCEDURE lice.UDP_tbSolicitud_REJECT
+(@stud_Id INT,
+ @empe_Id INT,
+ @rech_Observaciones NVARCHAR(500),
+ @rech_UsuCreacion INT)
+AS
+BEGIN 
+	BEGIN TRY
+
+		UPDATE	lice.tbSolicitud
+		SET		[stud_Intentos] = (SELECT [stud_Intentos] - 1 FROM lice.tbSolicitud WHERE stud_Id = @stud_Id)
+		WHERE	stud_Id = @stud_Id;
+
+		IF((SELECT [stud_Intentos] FROM lice.tbSolicitud WHERE stud_Id = @stud_Id) = 0) 
+			BEGIN
+				UPDATE lice.tbSolicitud
+				SET stud_Estado = 0
+				WHERE stud_Id = @stud_Id
+			 END
+
+		IF((SELECT [stud_Intentos] FROM lice.tbSolicitud WHERE stud_Id = @stud_Id) >= 0) 
+			BEGIN
+
+				INSERT INTO lice.tbRechazados (stud_Id, empe_Id, rech_Observaciones, rech_Fecha, rech_UsuCreacion, rech_UsuModificacion, rech_FechaModificacion) 
+				VALUES	(@stud_Id, @empe_Id, @rech_Observaciones, GETDATE(), @rech_UsuCreacion, NULL, NULL );
+				
+			END
+		
+		SELECT 1 AS Proceso
+
+	END TRY
+	BEGIN CATCH
+		SELECT 0 AS Proceso
+	END CATCH
+END
+
+
+
+
+-- ** INSERT PROCEDURE **--
+GO
+CREATE OR ALTER PROCEDURE lice.UDP_tbSolicitud_ACCEPT
+(@stud_Id INT,
+ @empe_Id INT,
+ @apro_Observaciones NVARCHAR(500),
+ @apro_UsuCreacion INT)
+AS
+BEGIN
+	BEGIN TRY
+
+	IF (SELECT stud_Pago FROM lice.tbSolicitud WHERE stud_Id = @stud_Id) = 1
+	BEGIN
+
+		IF EXISTS (SELECT * FROM lice.tbAprobados WHERE stud_Id = @stud_Id AND apro_Estado = 1 )
+			BEGIN
+				SELECT 2 AS Proceso
+			END
+		ELSE IF NOT EXISTS (SELECT * FROM lice.tbAprobados WHERE stud_Id = @stud_Id)
+			BEGIN			
+
+INSERT INTO [lice].[tbAprobados]
+           ([stud_Id]
+           ,[empe_Id]
+           ,[apro_Observaciones]
+           ,[apro_Intentos]
+           ,[apro_Fecha]
+           ,[apro_UsuCreacion]
+           ,[apro_FechaCreacion]
+           ,[apro_UsuModificacion]
+           ,[apro_FechaModificacion]
+           ,[apro_Estado])
+     VALUES
+           (@stud_Id
+           ,@empe_Id
+           ,@apro_Observaciones
+           ,6 - (SELECT stud_Intentos FROM lice.tbSolicitud WHERE stud_Id = @stud_Id)
+           ,GETDATE()
+           ,@apro_UsuCreacion
+           ,GETDATE()
+           ,null
+           ,null
+           ,1)
+
+		UPDATE [lice].[tbSolicitud]
+		   SET [stud_Estado] = 0
+		 WHERE stud_Id = @stud_Id
+
+
+
+
+						SELECT 1 AS Proceso
+			END
+		ELSE
+			BEGIN
+				UPDATE	[lice].[tbAprobados]
+				SET		apro_Estado = 1,
+						apro_UsuCreacion = @apro_UsuCreacion,
+						apro_FechaCreacion = GETDATE(),
+						apro_UsuModificacion = NULL,
+						apro_FechaModificacion = NULL
+				WHERE	[stud_Id] = @stud_Id
+			END
+			SELECT 1 AS Proceso
+		END
+		ELSE
+		BEGIN
+			SELECT 99
+		END
+	END TRY
+	BEGIN CATCH
+		SELECT 0 AS Proceso
+	END CATCH
+END
 
 
 
@@ -1924,62 +1990,123 @@ END
 --END
 
 
----- ** DELETE PROCEDURE **--
---GO
---CREATE OR ALTER PROCEDURE lice.UDP_tbAprobados_DELETE
---(@apro_Id INT,
--- @apro_UsuModificacion INT)
---AS
---BEGIN
---	BEGIN TRY
---		UPDATE	[lice].[tbAprobados]
---		SET		apro_Estado = 0,
---				apro_UsuModificacion = @apro_UsuModificacion,
---				apro_FechaModificacion = GETDATE()
---		WHERE	apro_Id = @apro_Id;
+-- ** DELETE PROCEDURE **--
+GO
+CREATE OR ALTER PROCEDURE lice.UDP_tbAprobados_DELETE
+(@apro_Id INT)
+AS
+BEGIN
+	BEGIN TRY
+		UPDATE	[lice].[tbAprobados]
+		SET		apro_Estado = 0
+		WHERE	apro_Id = @apro_Id;
 
---		SELECT 1 AS Proceso;
---	END TRY
---	BEGIN CATCH
---		SELECT 0 AS Proceso;
---	END CATCH
---END
+		SELECT 1 AS Proceso;
+	END TRY
+	BEGIN CATCH
+		SELECT 0 AS Proceso;
+	END CATCH
+END
 
 
------*** VISTA ***---
---GO
---CREATE OR ALTER VIEW lice.VW_tbAprobados_View
---AS
---SELECT	apro_Id, 
---		stud_Id, 
---		T1.empe_Id, 
---		T2.empe_Nombres,
---		apro_Aceptado, 
---		apro_Observaciones, 
---		apro_Fecha, 
---		apro_UsuCreacion, 
---		T3.user_NombreUsuario AS UsuarioCreacion,
---		apro_FechaCreacion, 
---		apro_UsuModificacion, 
---		T4.user_NombreUsuario AS UsuarioModificacion,
---		apro_FechaModificacion, 
---		apro_Estado
---FROM [lice].[tbAprobados] AS T1 INNER JOIN [lice].[tbEmpleados] AS T2
---ON T1.empe_Id = T2.empe_Id INNER JOIN [acce].[tbUsuarios] AS T3
---ON T1.apro_UsuCreacion = T3.[user_Id] LEFT JOIN [acce].[tbUsuarios] AS T4
---ON T1.apro_UsuModificacion = T4.[user_Id]
+---*** VISTA ***---
+GO
+CREATE OR ALTER VIEW lice.VW_tbAprobados_View
+AS
+SELECT	apro_Id, 
+		T1.stud_Id, 
+		T5.soli_Id,
+		T6.soli_Nombre,
+		T6.soli_Apellido,
+		T6.soli_Nombre + ' ' + T6.soli_Apellido AS soli_NombreCompleto,
+		T6.soli_Identidad,
+		T6.soli_Sexo,
+		T7.tili_Id,
+		T7.tili_Descripcion,
+		T8.sucu_Id,
+		T8.sucu_Direccion,
+		T1.empe_Id, 
+		T2.empe_Nombres,
+		T2.empe_Apellidos,
+		T2.empe_Nombres + ' ' + T2.empe_Apellidos as empe_NombreCompleto,
+		apro_Observaciones, 
+		apro_Fecha, 
+		apro_UsuCreacion, 
+		T3.user_NombreUsuario AS UsuarioCreacion,
+		apro_FechaCreacion, 
+		apro_UsuModificacion, 
+		T4.user_NombreUsuario AS UsuarioModificacion,
+		apro_FechaModificacion, 
+		apro_Estado
+FROM [lice].[tbAprobados] AS T1 INNER JOIN [lice].[tbEmpleados] AS T2
+ON T1.empe_Id = T2.empe_Id INNER JOIN [acce].[tbUsuarios] AS T3
+ON T1.apro_UsuCreacion = T3.[user_Id] LEFT JOIN [acce].[tbUsuarios] AS T4
+ON T1.apro_UsuModificacion = T4.[user_Id] INNER JOIN lice.tbSolicitud T5
+ON t5.stud_Id = T1.stud_Id INNER JOIN lice.tbSolicitantes T6
+ON T6.soli_Id = T5.soli_Id INNER JOIN lice.tbTiposLicencias T7
+ON t7.tili_Id = T5.tili_Id INNER JOIN Lice.tbSucursales T8
+ON T8.sucu_Id = T5.sucu_Id
 
 
-----*** RUN VIEW PROCEDURE ***--
---GO
---CREATE OR ALTER PROCEDURE lice.UDP_tbAprovados_SELECT
---AS
---BEGIN
---	SELECT * FROM LICE.VW_tbAprobados_View
---	WHERE apro_Estado = 1;
---END
---GO
 
+--*** RUN VIEW PROCEDURE ***--
+GO
+CREATE OR ALTER PROCEDURE lice.UDP_tbAprovados_SELECT
+AS
+BEGIN
+	SELECT * FROM LICE.VW_tbAprobados_View
+	WHERE apro_Estado = 1;
+END
+GO
+
+
+GO
+GO
+CREATE OR ALTER VIEW lice.VW_tbRechazados_View
+AS
+SELECT	rech_Id, 
+		T1.stud_Id, 
+		T5.soli_Id,
+		T6.soli_Nombre,
+		T6.soli_Apellido,
+		T6.soli_Nombre + ' ' + T6.soli_Apellido AS soli_NombreCompleto,
+		T6.soli_Identidad,
+		T6.soli_Sexo,
+		T7.tili_Id,
+		T7.tili_Descripcion,
+		T8.sucu_Id,
+		T8.sucu_Direccion,
+		T1.empe_Id, 
+		T2.empe_Nombres,
+		T2.empe_Apellidos,
+		T2.empe_Nombres + ' ' + T2.empe_Apellidos as empe_NombreCompleto,
+		rech_Observaciones, 
+		rech_Fecha, 
+		rech_UsuCreacion, 
+		T3.user_NombreUsuario AS UsuarioCreacion,
+		rech_FechaCreacion, 
+		rech_UsuModificacion, 
+		T4.user_NombreUsuario AS UsuarioModificacion,
+		rech_FechaModificacion, 
+		rech_Estado
+FROM [lice].[tbRechazados] AS T1 INNER JOIN [lice].[tbEmpleados] AS T2
+ON T1.empe_Id = T2.empe_Id INNER JOIN [acce].[tbUsuarios] AS T3
+ON T1.rech_UsuCreacion = T3.[user_Id] LEFT JOIN [acce].[tbUsuarios] AS T4
+ON T1.rech_UsuModificacion = T4.[user_Id] INNER JOIN lice.tbSolicitud T5
+ON t5.stud_Id = T1.stud_Id INNER JOIN lice.tbSolicitantes T6
+ON T6.soli_Id = T5.soli_Id INNER JOIN lice.tbTiposLicencias T7
+ON t7.tili_Id = T5.tili_Id INNER JOIN Lice.tbSucursales T8
+ON T8.sucu_Id = T5.sucu_Id
+
+
+GO
+CREATE OR ALTER PROCEDURE lice.UDP_tbRechazados_SELECT
+AS
+BEGIN
+	SELECT DISTINCT(soli_Id) rech_Id, stud_Id,soli_Id, soli_Nombre, soli_Apellido, soli_NombreCompleto, soli_Identidad, soli_Sexo, tili_Id, tili_Descripcion, sucu_Id, sucu_Direccion, empe_Id, empe_Nombres, empe_Apellidos, empe_NombreCompleto, rech_Observaciones, rech_Fecha, rech_UsuCreacion, UsuarioCreacion, rech_FechaCreacion, rech_UsuModificacion, UsuarioModificacion, rech_FechaModificacion, rech_Estado FROM LICE.VW_tbRechazados_View
+	WHERE rech_Estado = 1;
+END
+GO
 
 GO
 CREATE OR ALTER PROCEDURE lice.UDP_VW_tbTiposLicencias_View_FIND
@@ -2038,3 +2165,5 @@ BEGIN
 	WHERE eciv_Estado = 1;
 END
 GO
+
+

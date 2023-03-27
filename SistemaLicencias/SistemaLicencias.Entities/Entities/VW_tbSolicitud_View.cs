@@ -11,11 +11,14 @@ namespace SistemaLicencias.Entities.Entities
         public int stud_Id { get; set; }
         public int soli_Id { get; set; }
         public string soli_Nombre { get; set; }
+        public string soli_Apellido { get; set; }
+        public string soli_NombreCompleto { get; set; }
         public int sucu_Id { get; set; }
         public string sucu_Nombre { get; set; }
         public int tili_Id { get; set; }
         public string tili_Descripcion { get; set; }
         public bool stud_Pago { get; set; }
+        public int stud_Intentos { get; set; }
         public int stud_UsuCreacion { get; set; }
         public string UsuarioCreacion { get; set; }
         public DateTime stud_FechaCreacion { get; set; }

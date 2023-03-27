@@ -57,6 +57,15 @@ namespace SistemaLicencias.WebUI.Controllers
         {
             using (var httpClient = new HttpClient())
             {
+
+                var responseDepartamento = await httpClient.GetAsync(_baseurl + "api/Solicitante/DepartamentoDropDownList");
+
+                var jsonResponse = await responseDepartamento.Content.ReadAsStringAsync();
+                JObject jsonObj = JObject.Parse(jsonResponse);
+                JArray depa_Id = JArray.Parse(jsonObj["data"].ToString());
+
+                ViewBag.depa_Id = new SelectList(depa_Id, "depa_Id", "depa_Nombre");
+
                 var responseCargos = await httpClient.GetAsync(_baseurl + "api/Empleado/Cargos");
 
                 if (responseCargos.IsSuccessStatusCode)
@@ -164,6 +173,27 @@ namespace SistemaLicencias.WebUI.Controllers
                 var lice = JsonConvert.DeserializeObject<EmpleadosViewModel>(jsonResponse);
 
                 var responseCargos = await httpClient.GetAsync(_baseurl + "api/Empleado/Cargos");
+
+                //CARGAR VIEW BAG "DEPARTAMENTOS" 
+                var responseDepto = await httpClient.GetAsync(_baseurl + "api/Solicitante/DepartamentoDropDownList");
+
+                var jsonResponseDepto = await responseDepto.Content.ReadAsStringAsync();
+                JObject jsonObj = JObject.Parse(jsonResponseDepto);
+                JArray depa_Id = JArray.Parse(jsonObj["data"].ToString());
+                ViewBag.depa_Id = new SelectList(depa_Id, "depa_Id", "depa_Nombre", lice.depa_Id);
+
+
+                //ViewBag.muni = lice.muni_Id;
+
+                var LoadMunicipios = await httpClient.GetAsync(_baseurl + "api/Solicitante/MunicipioDropDownList?id=" + lice.depa_Id);
+
+                var LoadMunicipio = await LoadMunicipios.Content.ReadAsStringAsync();
+                JObject jsonObjMuni = JObject.Parse(LoadMunicipio);
+                JArray muni_Id = JArray.Parse(jsonObjMuni["data"].ToString());
+                ViewBag.muni_Id = new SelectList(muni_Id, "muni_Id", "muni_Nombre", lice.muni_Id);
+
+
+
 
                 if (responseCargos.IsSuccessStatusCode)
                 {

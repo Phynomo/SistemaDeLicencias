@@ -54,6 +54,10 @@
          "ObjectType": 0
       },
       {
+         "Name": "[lice].[tbRechazados]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[lice].[tbSolicitantes]",
          "ObjectType": 0
       },
@@ -90,6 +94,10 @@
          "ObjectType": 3
       },
       {
+         "Name": "[lice].[VW_tbRechazados_View]",
+         "ObjectType": 3
+      },
+      {
          "Name": "[lice].[VW_tbSolicitantes_View]",
          "ObjectType": 3
       },
@@ -102,7 +110,7 @@
          "ObjectType": 3
       }
    ],
-   "UiHint": "DESKTOP-51051C3\\SQLEXPRESS.SistemaDeLicencias",
+   "UiHint": "DESKTOP-383CMQ3\\MSSQLSERVERLOCAL.SistemaDeLicencias",
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": true,
    "UseDbContextSplitting": false,

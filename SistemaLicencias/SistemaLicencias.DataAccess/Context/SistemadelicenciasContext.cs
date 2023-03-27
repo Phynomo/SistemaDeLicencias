@@ -22,6 +22,7 @@ namespace SistemaLicencias.DataAccess.Context
         public virtual DbSet<VW_tbAprobados_View> VW_tbAprobados_View { get; set; }
         public virtual DbSet<VW_tbEmpleados_View> VW_tbEmpleados_View { get; set; }
         public virtual DbSet<VW_tbPantallasPorRoles_View> VW_tbPantallasPorRoles_View { get; set; }
+        public virtual DbSet<VW_tbRechazados_View> VW_tbRechazados_View { get; set; }
         public virtual DbSet<VW_tbRoles_View> VW_tbRoles_View { get; set; }
         public virtual DbSet<VW_tbSolicitantes_View> VW_tbSolicitantes_View { get; set; }
         public virtual DbSet<VW_tbSolicitud_View> VW_tbSolicitud_View { get; set; }
@@ -35,6 +36,7 @@ namespace SistemaLicencias.DataAccess.Context
         public virtual DbSet<tbMunicipios> tbMunicipios { get; set; }
         public virtual DbSet<tbPantallas> tbPantallas { get; set; }
         public virtual DbSet<tbPantallasPorRoles> tbPantallasPorRoles { get; set; }
+        public virtual DbSet<tbRechazados> tbRechazados { get; set; }
         public virtual DbSet<tbRoles> tbRoles { get; set; }
         public virtual DbSet<tbSolicitantes> tbSolicitantes { get; set; }
         public virtual DbSet<tbSolicitud> tbSolicitud { get; set; }
@@ -66,59 +68,9 @@ namespace SistemaLicencias.DataAccess.Context
 
                 entity.Property(e => e.apro_Observaciones).HasMaxLength(500);
 
-                entity.Property(e => e.empe_Nombres)
-                    .IsRequired()
-                    .HasMaxLength(200);
-            });
-
-            modelBuilder.Entity<VW_tbEmpleados_View>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("VW_tbEmpleados_View", "lice");
-
-                entity.Property(e => e.UsuarioCreacion).HasMaxLength(100);
-
-                entity.Property(e => e.UsuarioModificacion).HasMaxLength(100);
-
-                entity.Property(e => e.carg_Descripcion)
-                    .IsRequired()
-                    .HasMaxLength(100);
-
-                entity.Property(e => e.depa_Codigo)
-                    .IsRequired()
-                    .HasMaxLength(2)
-                    .IsUnicode(false)
-                    .IsFixedLength(true);
-
-                entity.Property(e => e.depa_Nombre)
-                    .IsRequired()
-                    .HasMaxLength(100);
-
-                entity.Property(e => e.eciv_Descripcion)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
                 entity.Property(e => e.empe_Apellidos)
                     .IsRequired()
                     .HasMaxLength(200);
-
-                entity.Property(e => e.empe_CorreoElectronico).HasMaxLength(200);
-
-                entity.Property(e => e.empe_DireccionExacta)
-                    .IsRequired()
-                    .HasMaxLength(250);
-
-                entity.Property(e => e.empe_FechaCreacion).HasColumnType("datetime");
-
-                entity.Property(e => e.empe_FechaModificacion).HasColumnType("datetime");
-
-                entity.Property(e => e.empe_FechaNacimiento).HasColumnType("date");
-
-                entity.Property(e => e.empe_Identidad)
-                    .IsRequired()
-                    .HasMaxLength(13)
-                    .IsUnicode(false);
 
                 entity.Property(e => e.empe_NombreCompleto)
                     .IsRequired()
@@ -128,122 +80,9 @@ namespace SistemaLicencias.DataAccess.Context
                     .IsRequired()
                     .HasMaxLength(200);
 
-                entity.Property(e => e.empe_Sexo)
-                    .IsRequired()
-                    .HasMaxLength(1)
-                    .IsUnicode(false)
-                    .IsFixedLength(true);
-
-                entity.Property(e => e.empe_Telefono)
-                    .IsRequired()
-                    .HasMaxLength(20);
-
-                entity.Property(e => e.muni_Codigo)
-                    .IsRequired()
-                    .HasMaxLength(4)
-                    .IsUnicode(false)
-                    .IsFixedLength(true);
-
-                entity.Property(e => e.muni_Nombre)
-                    .IsRequired()
-                    .HasMaxLength(80);
-
-                entity.Property(e => e.sucu_Nombre)
-                    .IsRequired()
-                    .HasMaxLength(200);
-            });
-
-            modelBuilder.Entity<VW_tbPantallasPorRoles_View>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("VW_tbPantallasPorRoles_View", "acce");
-
-                entity.Property(e => e.UsuarioCreacion)
-                    .IsRequired()
-                    .HasMaxLength(100);
-
-                entity.Property(e => e.UsuarioModificacion).HasMaxLength(100);
-
-                entity.Property(e => e.pant_HtmlId)
-                    .IsRequired()
-                    .HasMaxLength(80);
-
-                entity.Property(e => e.pant_Menu)
-                    .IsRequired()
-                    .HasMaxLength(300);
-
-                entity.Property(e => e.pant_Nombre)
-                    .IsRequired()
-                    .HasMaxLength(100);
-
-                entity.Property(e => e.pant_Url)
-                    .IsRequired()
-                    .HasMaxLength(300);
-
-                entity.Property(e => e.prol_FechaCreacion).HasColumnType("datetime");
-
-                entity.Property(e => e.prol_FechaModificacion).HasColumnType("datetime");
-
-                entity.Property(e => e.role_Nombre)
-                    .IsRequired()
-                    .HasMaxLength(100);
-            });
-
-            modelBuilder.Entity<VW_tbRoles_View>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("VW_tbRoles_View", "acce");
-
-                entity.Property(e => e.UsuarioCreacion)
-                    .IsRequired()
-                    .HasMaxLength(100);
-
-                entity.Property(e => e.UsuarioModificacion).HasMaxLength(100);
-
-                entity.Property(e => e.role_FechaCreacion).HasColumnType("datetime");
-
-                entity.Property(e => e.role_FechaModificacion).HasColumnType("datetime");
-
-                entity.Property(e => e.role_Nombre)
-                    .IsRequired()
-                    .HasMaxLength(100);
-            });
-
-            modelBuilder.Entity<VW_tbSolicitantes_View>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("VW_tbSolicitantes_View", "lice");
-
-                entity.Property(e => e.UsuarioCreacion)
-                    .IsRequired()
-                    .HasMaxLength(100);
-
-                entity.Property(e => e.UsuarioModificacion).HasMaxLength(100);
-
-                entity.Property(e => e.depa_Nombre)
-                    .IsRequired()
-                    .HasMaxLength(100);
-
-                entity.Property(e => e.muni_Nombre)
-                    .IsRequired()
-                    .HasMaxLength(80);
-
                 entity.Property(e => e.soli_Apellido)
                     .IsRequired()
                     .HasMaxLength(200);
-
-                entity.Property(e => e.soli_Direccion)
-                    .IsRequired()
-                    .HasMaxLength(300);
-
-                entity.Property(e => e.soli_FechaCreacion).HasColumnType("datetime");
-
-                entity.Property(e => e.soli_FechaModificacion).HasColumnType("datetime");
-
-                entity.Property(e => e.soli_FechaNacimiento).HasColumnType("date");
 
                 entity.Property(e => e.soli_Identidad)
                     .IsRequired()
@@ -263,30 +102,7 @@ namespace SistemaLicencias.DataAccess.Context
                     .IsUnicode(false)
                     .IsFixedLength(true);
 
-                entity.Property(e => e.soli_Telefono).HasMaxLength(20);
-            });
-
-            modelBuilder.Entity<VW_tbSolicitud_View>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("VW_tbSolicitud_View", "lice");
-
-                entity.Property(e => e.UsuarioCreacion)
-                    .IsRequired()
-                    .HasMaxLength(100);
-
-                entity.Property(e => e.UsuarioModificacion).HasMaxLength(100);
-
-                entity.Property(e => e.soli_Nombre)
-                    .IsRequired()
-                    .HasMaxLength(200);
-
-                entity.Property(e => e.stud_FechaCreacion).HasColumnType("datetime");
-
-                entity.Property(e => e.stud_FechaModificacion).HasColumnType("datetime");
-
-                entity.Property(e => e.sucu_Nombre)
+                entity.Property(e => e.sucu_Direccion)
                     .IsRequired()
                     .HasMaxLength(200);
 
@@ -295,38 +111,15 @@ namespace SistemaLicencias.DataAccess.Context
                     .HasMaxLength(100);
             });
 
-            modelBuilder.Entity<VW_tbAprobados_View>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("VW_tbAprobados_View", "lice");
-
-                entity.Property(e => e.UsuarioCreacion)
-                    .IsRequired()
-                    .HasMaxLength(100);
-
-                entity.Property(e => e.UsuarioModificacion).HasMaxLength(100);
-
-                entity.Property(e => e.apro_Fecha).HasColumnType("date");
-
-                entity.Property(e => e.apro_FechaCreacion).HasColumnType("datetime");
-
-                entity.Property(e => e.apro_FechaModificacion).HasColumnType("datetime");
-
-                entity.Property(e => e.apro_Observaciones).HasMaxLength(500);
-
-                entity.Property(e => e.empe_Nombres)
-                    .IsRequired()
-                    .HasMaxLength(200);
-            });
-
             modelBuilder.Entity<VW_tbEmpleados_View>(entity =>
             {
                 entity.HasNoKey();
 
                 entity.ToView("VW_tbEmpleados_View", "lice");
 
-                entity.Property(e => e.UsuarioCreacion).HasMaxLength(100);
+                entity.Property(e => e.UsuarioCreacion)
+                    .IsRequired()
+                    .HasMaxLength(100);
 
                 entity.Property(e => e.UsuarioModificacion).HasMaxLength(100);
 
@@ -366,7 +159,7 @@ namespace SistemaLicencias.DataAccess.Context
 
                 entity.Property(e => e.empe_Identidad)
                     .IsRequired()
-                    .HasMaxLength(13)
+                    .HasMaxLength(15)
                     .IsUnicode(false);
 
                 entity.Property(e => e.empe_NombreCompleto)
@@ -435,6 +228,69 @@ namespace SistemaLicencias.DataAccess.Context
                 entity.Property(e => e.prol_FechaModificacion).HasColumnType("datetime");
 
                 entity.Property(e => e.role_Nombre)
+                    .IsRequired()
+                    .HasMaxLength(100);
+            });
+
+            modelBuilder.Entity<VW_tbRechazados_View>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("VW_tbRechazados_View", "lice");
+
+                entity.Property(e => e.UsuarioCreacion)
+                    .IsRequired()
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.UsuarioModificacion).HasMaxLength(100);
+
+                entity.Property(e => e.empe_Apellidos)
+                    .IsRequired()
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.empe_NombreCompleto)
+                    .IsRequired()
+                    .HasMaxLength(401);
+
+                entity.Property(e => e.empe_Nombres)
+                    .IsRequired()
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.rech_Fecha).HasColumnType("date");
+
+                entity.Property(e => e.rech_FechaCreacion).HasColumnType("datetime");
+
+                entity.Property(e => e.rech_FechaModificacion).HasColumnType("datetime");
+
+                entity.Property(e => e.rech_Observaciones).HasMaxLength(500);
+
+                entity.Property(e => e.soli_Apellido)
+                    .IsRequired()
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.soli_Identidad)
+                    .IsRequired()
+                    .HasMaxLength(13);
+
+                entity.Property(e => e.soli_Nombre)
+                    .IsRequired()
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.soli_NombreCompleto)
+                    .IsRequired()
+                    .HasMaxLength(401);
+
+                entity.Property(e => e.soli_Sexo)
+                    .IsRequired()
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength(true);
+
+                entity.Property(e => e.sucu_Direccion)
+                    .IsRequired()
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.tili_Descripcion)
                     .IsRequired()
                     .HasMaxLength(100);
             });
@@ -527,9 +383,17 @@ namespace SistemaLicencias.DataAccess.Context
 
                 entity.Property(e => e.UsuarioModificacion).HasMaxLength(100);
 
+                entity.Property(e => e.soli_Apellido)
+                    .IsRequired()
+                    .HasMaxLength(200);
+
                 entity.Property(e => e.soli_Nombre)
                     .IsRequired()
                     .HasMaxLength(200);
+
+                entity.Property(e => e.soli_NombreCompleto)
+                    .IsRequired()
+                    .HasMaxLength(401);
 
                 entity.Property(e => e.stud_FechaCreacion).HasColumnType("datetime");
 
@@ -742,7 +606,7 @@ namespace SistemaLicencias.DataAccess.Context
 
                 entity.Property(e => e.empe_Identidad)
                     .IsRequired()
-                    .HasMaxLength(13)
+                    .HasMaxLength(15)
                     .IsUnicode(false);
 
                 entity.Property(e => e.empe_Nombres)
@@ -948,6 +812,51 @@ namespace SistemaLicencias.DataAccess.Context
                     .HasConstraintName("FK_acce_tbPantallasPorRoles_acce_tbRoles_role_Id");
             });
 
+            modelBuilder.Entity<tbRechazados>(entity =>
+            {
+                entity.HasKey(e => e.rech_Id)
+                    .HasName("PK_lice_tbRechazados_apro_Id");
+
+                entity.ToTable("tbRechazados", "lice");
+
+                entity.Property(e => e.rech_Estado)
+                    .IsRequired()
+                    .HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.rech_Fecha).HasColumnType("date");
+
+                entity.Property(e => e.rech_FechaCreacion)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.rech_FechaModificacion).HasColumnType("datetime");
+
+                entity.Property(e => e.rech_Observaciones).HasMaxLength(500);
+
+                entity.HasOne(d => d.empe)
+                    .WithMany(p => p.tbRechazados)
+                    .HasForeignKey(d => d.empe_Id)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_lice_tbRechazados_lice_tbEmpleados_empe_Id");
+
+                entity.HasOne(d => d.rech_UsuCreacionNavigation)
+                    .WithMany(p => p.tbRechazadosrech_UsuCreacionNavigation)
+                    .HasForeignKey(d => d.rech_UsuCreacion)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_lice_tbRechazados_acce_tbUsuarios_UserCreate");
+
+                entity.HasOne(d => d.rech_UsuModificacionNavigation)
+                    .WithMany(p => p.tbRechazadosrech_UsuModificacionNavigation)
+                    .HasForeignKey(d => d.rech_UsuModificacion)
+                    .HasConstraintName("FK_lice_tbRechazados_acce_tbUsuarios_UserUpdate");
+
+                entity.HasOne(d => d.stud)
+                    .WithMany(p => p.tbRechazados)
+                    .HasForeignKey(d => d.stud_Id)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_lice_tbRechazados_lice_tbSolicitud_stud_Id");
+            });
+
             modelBuilder.Entity<tbRoles>(entity =>
             {
                 entity.HasKey(e => e.role_Id)
@@ -955,7 +864,7 @@ namespace SistemaLicencias.DataAccess.Context
 
                 entity.ToTable("tbRoles", "acce");
 
-                entity.HasIndex(e => e.role_Nombre, "UQ__tbRoles__3895D82ED59CB88B")
+                entity.HasIndex(e => e.role_Nombre, "UQ__tbRoles__3895D82E48ECBD8F")
                     .IsUnique();
 
                 entity.Property(e => e.role_Estado)
@@ -991,7 +900,7 @@ namespace SistemaLicencias.DataAccess.Context
 
                 entity.ToTable("tbSolicitantes", "lice");
 
-                entity.HasIndex(e => e.soli_Identidad, "UQ__tbSolici__ACE8F0CB2717AA8E")
+                entity.HasIndex(e => e.soli_Identidad, "UQ__tbSolici__ACE8F0CBB28D8084")
                     .IsUnique();
 
                 entity.Property(e => e.soli_Apellido)
@@ -1062,6 +971,8 @@ namespace SistemaLicencias.DataAccess.Context
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.stud_FechaModificacion).HasColumnType("datetime");
+
+                entity.Property(e => e.stud_Intentos).HasDefaultValueSql("((5))");
 
                 entity.HasOne(d => d.soli)
                     .WithMany(p => p.tbSolicitud)
@@ -1141,7 +1052,7 @@ namespace SistemaLicencias.DataAccess.Context
 
                 entity.ToTable("tbTiposLicencias", "lice");
 
-                entity.HasIndex(e => e.tili_Descripcion, "UQ__tbTiposL__F7BA37CAB7F26992")
+                entity.HasIndex(e => e.tili_Descripcion, "UQ__tbTiposL__F7BA37CA0324A85C")
                     .IsUnique();
 
                 entity.Property(e => e.tili_Descripcion)

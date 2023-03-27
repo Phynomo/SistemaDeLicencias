@@ -46,6 +46,10 @@ namespace SistemaLicencias.DataAccess.Repository
 
 
 
+        public static string UDP_tbAprovados_Listado = "lice.UDP_tbAprovados_SELECT";
+
+        public static string UDP_tbRechazados_Listado = "lice.UDP_tbRechazados_SELECT";
+
 
         public static string UDP_tbCargos_Listado = "lice.UDP_tbCargos_SELECT";
         public static string UDP_tbSucursales_Listado = "lice.UDP_tbSucursales_SELECT";

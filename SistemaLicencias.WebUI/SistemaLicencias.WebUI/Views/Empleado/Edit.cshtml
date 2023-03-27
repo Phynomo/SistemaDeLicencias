@@ -73,12 +73,16 @@
             <div class="row">
                 <div class="form-group col">
                     <label asp-for="depa_Id" class="control-label"></label>
-                    <input asp-for="depa_Id" placeholder="AKi deverya il el depaltamento" id="depa_Id" class="form-control" />
+                    <select id="depa_Id" name="depa_Id" class="form-control" asp-items="ViewBag.depa_Id">
+                        <option value=""> -- Seleccione un Departamento -- </option>
+                    </select>                    
                     <span id="lbldepa_Id" class="text-danger" hidden> Este campo es requerido</span>
                 </div>
                 <div class="form-group col">
                     <label asp-for="muni_Id" class="control-label"></label>
-                    <input asp-for="muni_Id" id="muni_Id" class="form-control" />
+                    <select asp-for="muni_Id" id="muni_Id" name="muni_Id" class="form-control" asp-items="ViewBag.muni_Id">
+                        <option value="">-- Seleccione un Municipio --</option>
+                    </select>                    
                     <span id="lblmuni_Id" class="text-danger" hidden> Este campo es requerido</span>
                 </div>
             </div>

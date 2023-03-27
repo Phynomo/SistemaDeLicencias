@@ -1,4 +1,43 @@
 ﻿$(document).ready(function () {
+
+    if ($("#muni_Id").val() == "") {
+
+        $.getJSON('/Solicitante/MunicipiosDropDownList', { id: $("#depa_Id").val() })
+
+            .done(function (municipios) {
+
+                console.log(municipios)
+
+                $("#muni_Id").prop("disabled", false);
+                var municipiosSelect = $('#muni_Id');
+                municipiosSelect.empty();
+
+                municipiosSelect.append($('<option>', {
+                    value: '',
+                    text: '--Selecciona un municipio--'
+                }));
+
+                $.each(municipios, function (index, item) {
+                    municipiosSelect.append($('<option>', {
+                        value: item.value,
+                        text: item.text
+                    }));
+
+                });
+
+
+
+
+            })
+
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                console.error('Error al cargar los municipios: ' + textStatus + ', ' + errorThrown);
+            });
+
+    }
+
+
+
     var resultado = $("#resultado").val();
     if (resultado == "CreateSuccess") {
         swal({
@@ -273,3 +312,38 @@ function PostModalDelete() {
         $("#formDelete").submit();
     }
 }
+
+
+$("#depa_Id").change(function () {
+    var departamentoId = $("#depa_Id").val();
+
+    $.getJSON('/Solicitante/MunicipiosDropDownList', { id: departamentoId })
+
+        .done(function (municipios) {
+
+            console.log(municipios)
+
+            $("#muni_Id").prop("disabled", false);
+            var municipiosSelect = $('#muni_Id');
+            municipiosSelect.empty();
+
+            municipiosSelect.append($('<option>', {
+                value: '',
+                text: '--Selecciona un municipio--'
+            }));
+
+            $.each(municipios, function (index, item) {
+                municipiosSelect.append($('<option>', {
+                    value: item.value,
+                    text: item.text
+                }));
+
+            });
+
+        })
+
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.error('Error al cargar los municipios: ' + textStatus + ', ' + errorThrown);
+        });
+
+});

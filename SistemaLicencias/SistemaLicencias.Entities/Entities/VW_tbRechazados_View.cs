@@ -6,9 +6,9 @@ using System.Collections.Generic;
 
 namespace SistemaLicencias.Entities.Entities
 {
-    public partial class VW_tbAprobados_View
+    public partial class VW_tbRechazados_View
     {
-        public int apro_Id { get; set; }
+        public int rech_Id { get; set; }
         public int stud_Id { get; set; }
         public int soli_Id { get; set; }
         public string soli_Nombre { get; set; }
@@ -24,14 +24,14 @@ namespace SistemaLicencias.Entities.Entities
         public string empe_Nombres { get; set; }
         public string empe_Apellidos { get; set; }
         public string empe_NombreCompleto { get; set; }
-        public string apro_Observaciones { get; set; }
-        public DateTime apro_Fecha { get; set; }
-        public int apro_UsuCreacion { get; set; }
+        public string rech_Observaciones { get; set; }
+        public DateTime rech_Fecha { get; set; }
+        public int rech_UsuCreacion { get; set; }
         public string UsuarioCreacion { get; set; }
-        public DateTime apro_FechaCreacion { get; set; }
-        public int? apro_UsuModificacion { get; set; }
+        public DateTime rech_FechaCreacion { get; set; }
+        public int? rech_UsuModificacion { get; set; }
         public string UsuarioModificacion { get; set; }
-        public DateTime? apro_FechaModificacion { get; set; }
-        public bool apro_Estado { get; set; }
+        public DateTime? rech_FechaModificacion { get; set; }
+        public bool rech_Estado { get; set; }
     }
 }

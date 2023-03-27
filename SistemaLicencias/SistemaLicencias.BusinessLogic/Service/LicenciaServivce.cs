@@ -12,14 +12,20 @@ namespace SistemaLicencias.BusinessLogic.Service
         private readonly TipoLicenciaRepository _tipoLicenciaRepository;
         private readonly SolicitanteRepository _solicitanteRepository;
         private readonly EmpleadoRepository _empleadosRepository;
+        private readonly AprobadosRepository _aprobadosRepository;
+        private readonly RechazadosRepository _rechazadosRepository;
 
         public LicenciaServivce(TipoLicenciaRepository tipoLicenciaRepository,
                                 SolicitanteRepository solicitanteRepository,
-                                EmpleadoRepository empleadoRepository)
+                                EmpleadoRepository empleadoRepository,
+                                AprobadosRepository aprobadosRepository,
+                                RechazadosRepository rechazadosRepository)
         {
             _tipoLicenciaRepository = tipoLicenciaRepository;
             _solicitanteRepository = solicitanteRepository;
             _empleadosRepository = empleadoRepository;
+            _aprobadosRepository = aprobadosRepository;
+            _rechazadosRepository = rechazadosRepository;
         }
 
 
@@ -396,7 +402,41 @@ namespace SistemaLicencias.BusinessLogic.Service
         }
         #endregion
 
+        #region Aprovados
+        public ServiceResult ListadoAprovados()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _aprobadosRepository.List();
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
 
+                return result.Error(e.Message);
+
+            }
+        }
+        #endregion
+
+        #region Rechazados
+        public ServiceResult ListadoRechzados()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _rechazadosRepository.List();
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+
+                return result.Error(e.Message);
+
+            }
+        }
+        #endregion
 
         #region DROP DOWN LIST
 
