@@ -89,8 +89,8 @@ namespace SistemaLicencias.WebUI.Controllers
             }
 
 
-            return View(tipoLicenciasViewModel);
-          
+            return RedirectToAction("Index");
+
         }
 
 
@@ -115,7 +115,7 @@ namespace SistemaLicencias.WebUI.Controllers
         public async Task<IActionResult> Edit(TipoLicenciasViewModel tipoLicenciasViewModel)
         {
 
-            tipoLicenciasViewModel.tili_UsuCreacion = 1;
+            tipoLicenciasViewModel.tili_UsuModificacion = 1;
             string json = JsonConvert.SerializeObject(tipoLicenciasViewModel);
 
             var client = new HttpClient();

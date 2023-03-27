@@ -1,10 +1,12 @@
 ﻿$(document).ready(function () {
+
     var resultado = $("#resultado").val();
     if (resultado == "CreateSuccess") {
         swal({
             title: 'Guardado',
             text: 'El registro se creo con exito',
             type: 'success',
+            icon: '../../gif/36108-driver-licence-scan.gif',
             timer: 2500,
             showConfirmButton: false,
             showCancelButton: false,
@@ -106,15 +108,15 @@ function PostModalCreate() {
     if (tili_Descripcion != "") {
         $("#FormCreate").submit();
     } else {
+        toastr.warning("Completa todos los campos para continuar", "Campos vacios")
         $('#ModalCreateClass').addClass('bounce');
         $("#lbltili_Descripcion").attr('hidden', false);
     }
 }
 
-function OpenModalEdit(Cadena) {
-    var datos = Cadena.split(",$$,");
-    $("#tili_IdE").val(datos[0]);
-    $("#tili_DescripcionE").val(datos[1]);
+$("#OpenModalEdit").on('click', function () {
+    $("#tili_IdE").val($(this).data("id"));
+    $("#tili_DescripcionE").val($(this).data("descripcion"));
 
 
     $("#lbltili_DescripcionE").attr('hidden', true);
@@ -122,7 +124,7 @@ function OpenModalEdit(Cadena) {
     $('#ModalEditClass').removeClass('flipInY');
     $('#ModalEditClass').addClass('flipInY');
     $("#ModalEdit").appendTo('body').modal('show');
-}
+});
 
 function PostModalEdit() {
     var tili_Descripcion = $("#tili_DescripcionE").val();
@@ -134,6 +136,7 @@ function PostModalEdit() {
     if (tili_Descripcion != "") {
         $("#FormEdit").submit();
     } else {
+        toastr.warning("Completa todos los campos para continuar", "Campos vacios")
         $('#ModalEditClass').addClass('bounce');
         $("#lbltili_DescripcionE").attr('hidden', false);
     }

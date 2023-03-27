@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
     $('.dataTables').DataTable({
+        fixedHeader: false,
         pageLength: 25,
         responsive: true,
         dom: '<"html5buttons"B>lTfgitp',
@@ -248,6 +249,13 @@
         buttons: [
         ]
 
+    });
+
+    $('.footable').footable({
+        "paging": {
+            "enabled": true,
+            "size": 25
+        }
     });
 
 });

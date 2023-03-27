@@ -11,6 +11,7 @@ namespace SistemaLicencias.Entities.Entities
         public tbSucursales()
         {
             tbEmpleados = new HashSet<tbEmpleados>();
+            tbSolicitud = new HashSet<tbSolicitud>();
         }
 
         public int sucu_Id { get; set; }
@@ -27,5 +28,6 @@ namespace SistemaLicencias.Entities.Entities
         public virtual tbUsuarios sucu_UsuCreacionNavigation { get; set; }
         public virtual tbUsuarios sucu_UsuModificacionNavigation { get; set; }
         public virtual ICollection<tbEmpleados> tbEmpleados { get; set; }
+        public virtual ICollection<tbSolicitud> tbSolicitud { get; set; }
     }
 }

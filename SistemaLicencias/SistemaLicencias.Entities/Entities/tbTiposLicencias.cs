@@ -8,6 +8,11 @@ namespace SistemaLicencias.Entities.Entities
 {
     public partial class tbTiposLicencias
     {
+        public tbTiposLicencias()
+        {
+            tbSolicitud = new HashSet<tbSolicitud>();
+        }
+
         public int tili_Id { get; set; }
         public string tili_Descripcion { get; set; }
         public int tili_UsuCreacion { get; set; }
@@ -18,5 +23,6 @@ namespace SistemaLicencias.Entities.Entities
 
         public virtual tbUsuarios tili_UsuCreacionNavigation { get; set; }
         public virtual tbUsuarios tili_UsuModificacionNavigation { get; set; }
+        public virtual ICollection<tbSolicitud> tbSolicitud { get; set; }
     }
 }

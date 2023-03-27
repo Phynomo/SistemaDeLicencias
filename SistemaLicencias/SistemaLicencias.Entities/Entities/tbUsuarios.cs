@@ -12,6 +12,8 @@ namespace SistemaLicencias.Entities.Entities
         {
             Inverseuser_UsuCreacionNavigation = new HashSet<tbUsuarios>();
             Inverseuser_UsuModificacionNavigation = new HashSet<tbUsuarios>();
+            tbAprobadosapro_UsuCreacionNavigation = new HashSet<tbAprobados>();
+            tbAprobadosapro_UsuModificacionNavigation = new HashSet<tbAprobados>();
             tbCargoscarg_UsuCreacionNavigation = new HashSet<tbCargos>();
             tbCargoscarg_UsuModificacionNavigation = new HashSet<tbCargos>();
             tbDepartamentosdepa_UsuCreacionNavigation = new HashSet<tbDepartamentos>();
@@ -28,6 +30,8 @@ namespace SistemaLicencias.Entities.Entities
             tbRolesrole_UsuModificacionNavigation = new HashSet<tbRoles>();
             tbSolicitantessoli_UsuCreacionNavigation = new HashSet<tbSolicitantes>();
             tbSolicitantessoli_UsuModificacionNavigation = new HashSet<tbSolicitantes>();
+            tbSolicitudstud_UsuCreacionNavigation = new HashSet<tbSolicitud>();
+            tbSolicitudstud_UsuModificacionNavigation = new HashSet<tbSolicitud>();
             tbSucursalessucu_UsuCreacionNavigation = new HashSet<tbSucursales>();
             tbSucursalessucu_UsuModificacionNavigation = new HashSet<tbSucursales>();
             tbTiposLicenciastili_UsuCreacionNavigation = new HashSet<tbTiposLicencias>();
@@ -52,6 +56,8 @@ namespace SistemaLicencias.Entities.Entities
         public virtual tbUsuarios user_UsuModificacionNavigation { get; set; }
         public virtual ICollection<tbUsuarios> Inverseuser_UsuCreacionNavigation { get; set; }
         public virtual ICollection<tbUsuarios> Inverseuser_UsuModificacionNavigation { get; set; }
+        public virtual ICollection<tbAprobados> tbAprobadosapro_UsuCreacionNavigation { get; set; }
+        public virtual ICollection<tbAprobados> tbAprobadosapro_UsuModificacionNavigation { get; set; }
         public virtual ICollection<tbCargos> tbCargoscarg_UsuCreacionNavigation { get; set; }
         public virtual ICollection<tbCargos> tbCargoscarg_UsuModificacionNavigation { get; set; }
         public virtual ICollection<tbDepartamentos> tbDepartamentosdepa_UsuCreacionNavigation { get; set; }
@@ -68,6 +74,8 @@ namespace SistemaLicencias.Entities.Entities
         public virtual ICollection<tbRoles> tbRolesrole_UsuModificacionNavigation { get; set; }
         public virtual ICollection<tbSolicitantes> tbSolicitantessoli_UsuCreacionNavigation { get; set; }
         public virtual ICollection<tbSolicitantes> tbSolicitantessoli_UsuModificacionNavigation { get; set; }
+        public virtual ICollection<tbSolicitud> tbSolicitudstud_UsuCreacionNavigation { get; set; }
+        public virtual ICollection<tbSolicitud> tbSolicitudstud_UsuModificacionNavigation { get; set; }
         public virtual ICollection<tbSucursales> tbSucursalessucu_UsuCreacionNavigation { get; set; }
         public virtual ICollection<tbSucursales> tbSucursalessucu_UsuModificacionNavigation { get; set; }
         public virtual ICollection<tbTiposLicencias> tbTiposLicenciastili_UsuCreacionNavigation { get; set; }

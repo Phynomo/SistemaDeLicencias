@@ -8,6 +8,11 @@ namespace SistemaLicencias.Entities.Entities
 {
     public partial class tbSolicitantes
     {
+        public tbSolicitantes()
+        {
+            tbSolicitud = new HashSet<tbSolicitud>();
+        }
+
         public int soli_Id { get; set; }
         public string soli_Nombre { get; set; }
         public string soli_Apellido { get; set; }
@@ -26,5 +31,6 @@ namespace SistemaLicencias.Entities.Entities
         public virtual tbMunicipios muni { get; set; }
         public virtual tbUsuarios soli_UsuCreacionNavigation { get; set; }
         public virtual tbUsuarios soli_UsuModificacionNavigation { get; set; }
+        public virtual ICollection<tbSolicitud> tbSolicitud { get; set; }
     }
 }

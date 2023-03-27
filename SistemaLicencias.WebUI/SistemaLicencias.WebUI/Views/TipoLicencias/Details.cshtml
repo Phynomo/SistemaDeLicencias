@@ -8,11 +8,11 @@
 <h1></h1>
 
 <div class="card" style="border:1px solid #283c4c;">
-    <div class="card-header text-center" style="background: #283c4c;">
+    <div class="card-header text-center" style="background: radial-gradient(circle, rgba(30,45,93,1) 50%, rgba(32,164,140,1) 100%);">
 
         <div class="row">
             <div class="col">
-                <h1 class="text-white">Detalles</h1>
+                <h1 class="text-white" style="margin-top:0px;">Detalles</h1>
             </div>
         </div>
         <div class="row d-flex justify-content-center">
@@ -38,49 +38,52 @@
         </div>
 
 
-        <div class="row mt-4">
-            <div class="col">
-                <div class="ibox ">
-                    <div class="ibox-title bg-dark">
-                        <h5 class="text-white" >Auditoria</h5>
-                        <div class="ibox-tools">
-                            <a class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
-                            <a class="close-link">
-                                <i class="fa fa-times"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="ibox-content" style="display:none; border: 1px solid black; border-top:none;">
 
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Accion</th>
-                                    <th>Usuario</th>
-                                    <th>Fecha</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Creacion</td>
-                                    <td>@Html.DisplayFor(model => model.UsuarioCreacion)</td>
-                                    <td>@Html.DisplayFor(model => model.tili_FechaCreacion)</td>
-                                </tr>
-                                <tr>
-                                    <td>Modificacion</td>
-                                    <td>@Html.DisplayFor(model => model.UsuarioModificacion)</td>
-                                    <td>@Html.DisplayFor(model => model.tili_FechaModificacion)</td>
-                                </tr>
-                            </tbody>
-                        </table>
+    </div>
 
-                    </div>
+    
+</div>
+
+
+<div class="row mt-4">
+    <div class="col">
+        <div class="ibox ">
+            <div class="ibox-title bg-dark">
+                <h5 class="text-white">Auditoría</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-down"></i>
+                    </a>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
                 </div>
+            </div>
+            <div class="ibox-content" style="display:none; border: 1px solid black; border-top:none;">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Accion</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Creacion</td>
+                            <td>@Html.DisplayFor(model => model.UsuarioCreacion)</td>
+                            <td>@Html.DisplayFor(model => model.tili_FechaCreacion)</td>
+                        </tr>
+                        <tr>
+                            <td>Modificacion</td>
+                            <td>@Html.DisplayFor(model => model.UsuarioModificacion)</td>
+                            <td>@Html.DisplayFor(model => model.tili_FechaModificacion)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
             </div>
         </div>
     </div>
 </div>
-
-

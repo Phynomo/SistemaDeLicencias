@@ -8,11 +8,11 @@
 <input hidden id="resultado" value="@ViewBag.Resultado"/>
 
 <div class="card" style="border:1px solid #283c4c;">
-    <div class="card-header text-center" style="background: #283c4c;">
+    <div class="card-header text-center" style="background: radial-gradient(circle, rgba(30,45,93,1) 50%, rgba(32,164,140,1) 100%);">
 
         <div class="row">
             <div class="col">
-                <h1 class="text-white">Tipos de licencias</h1>
+                <h1 class="text-white" style="margin-top:0px;">Tipos de licencias</h1>
             </div>
         </div>
         <div class="row d-flex justify-content-center">
@@ -48,8 +48,8 @@
                             @Html.DisplayFor(modelItem => item.tili_Descripcion)
                         </td>
                         <td class="d-flex justify-content-end">
-                            <button class="btn btn-warning btn-sm  btn-outline" type="button" onclick="OpenModalEdit('@item.tili_Id,$$,@item.tili_Descripcion')">Editar</button> 
-                            @Html.ActionLink("Details", "Details", new { id = item.tili_Id}, new { @class = "btn btn-info mx-1 btn-outline btn-sm" }) 
+                            <button class="btn btn-warning btn-sm  btn-outline" type="button" id="OpenModalEdit" data-id="@item.tili_Id" data-descripcion="@item.tili_Descripcion">Editar</button> 
+                            @Html.ActionLink("Detalles", "Details", new { id = item.tili_Id}, new { @class = "btn btn-info mx-1 btn-outline btn-sm" }) 
                             <button class="btn btn-danger btn-sm btn-outline" type="button" onclick="OpenModalDelete('@item.tili_Id')">Eliminar</button>
                         </td>
                     </tr>

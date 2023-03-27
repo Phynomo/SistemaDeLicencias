@@ -42,6 +42,10 @@
          "ObjectType": 0
       },
       {
+         "Name": "[lice].[tbAprobados]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[lice].[tbCargos]",
          "ObjectType": 0
       },
@@ -54,6 +58,10 @@
          "ObjectType": 0
       },
       {
+         "Name": "[lice].[tbSolicitud]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[lice].[tbSucursales]",
          "ObjectType": 0
       },
@@ -62,11 +70,39 @@
          "ObjectType": 0
       },
       {
+         "Name": "[acce].[VW_tbPantallasPorRoles_View]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[acce].[VW_tbRoles_View]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[acce].[VW_tbUsuarios_View]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[lice].[VW_tbAprobados_View]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[lice].[VW_tbEmpleados_View]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[lice].[VW_tbSolicitantes_View]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[lice].[VW_tbSolicitud_View]",
+         "ObjectType": 3
+      },
+      {
          "Name": "[lice].[VW_tbTiposLicencias_View]",
          "ObjectType": 3
       }
    ],
-   "UiHint": "DESKTOP-NC80200\\SQLEXPRESS.SistemaDeLicencias",
+   "UiHint": "DESKTOP-51051C3\\SQLEXPRESS.SistemaDeLicencias",
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": true,
    "UseDbContextSplitting": false,

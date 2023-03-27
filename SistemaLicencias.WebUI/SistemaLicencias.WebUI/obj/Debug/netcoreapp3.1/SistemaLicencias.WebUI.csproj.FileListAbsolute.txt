@@ -358,3 +358,8 @@ C:\Users\danie\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\Sistem
 C:\Users\danie\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\TipoLicencias\_CreateViewPartial.cshtml.g.cs
 C:\Users\danie\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\TipoLicencias\_EditViewPartial.cshtml.g.cs
 C:\Users\danie\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\TipoLicencias\Details.cshtml.g.cs
+C:\Users\danie\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Empleado\Index.cshtml.g.cs
+C:\Users\danie\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Empleado\Create.cshtml.g.cs
+C:\Users\danie\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Empleado\Edit.cshtml.g.cs
+C:\Users\danie\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Empleado\_DeleteViewPartial.cshtml.g.cs
+C:\Users\danie\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Empleado\Details.cshtml.g.cs

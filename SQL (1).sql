@@ -240,7 +240,7 @@ CREATE TABLE lice.tbEmpleados(
 	empe_Id						INT IDENTITY(1,1),
 	empe_Nombres				NVARCHAR(200)	NOT NULL,
 	empe_Apellidos				NVARCHAR(200)	NOT NULL,
-	empe_Identidad				VARCHAR(13)		NOT NULL,
+	empe_Identidad				VARCHAR(15)		NOT NULL,
 	empe_FechaNacimiento		DATE			NOT NULL,
 	empe_Sexo					CHAR(1)			NOT NULL,
 	eciv_Id					    INT				NOT NULL,
@@ -705,15 +705,15 @@ VALUES	('Servicios Policiales San Marcos',	63,	'Col. Satelite'			,1,NULL, NULL )
 --********** EMPLEADOS TABLE ***************--
 GO
 INSERT INTO [lice].[tbEmpleados] (empe_Nombres, empe_Apellidos, empe_Identidad, empe_FechaNacimiento, empe_Sexo, eciv_Id, muni_Id, empe_DireccionExacta, empe_Telefono, empe_CorreoElectronico, sucu_Id, carg_Id, empe_UsuCreacion,  empe_UsuModificacion, empe_FechaModificacion)
-VALUES	('Lionel',	'Messi',	'0309198600998', '10-07-1986', 'M', 1, 1, 'calle y #444',	'88264741',  'leoMessi@gmail.com',			1, 1, 1,NULL, NULL),
-		('Ana',		'García',	'1234567890123', '1990-06-15', 'F', 1, 15,'Calle A #123',	'2233-4455', 'ana.garcia@email.com',		1, 1, 1,NULL, NULL),
-		('Juan',	'Pérez',	'0801199901234', '1999-01-08', 'M', 2, 22,'Avenida B #456', '9988-7766', 'juan.perez@email.com',		2, 2, 1,NULL, NULL),
-		('María',	'Fernández','0404199101234', '1991-04-04', 'F', 1, 3, 'Calle C #789',	'3344-5566', 'maria.fernandez@email.com',	1, 3, 1,NULL, NULL),
-		('Pedro',	'López',	'1509198801234', '1988-09-15', 'M', 2, 41,'Avenida D #1011','6677-8899', 'pedro.lopez@email.com',		2, 2, 1,NULL, NULL),
-		('Sofía',	'Hernández','2802199601234', '1996-02-28', 'F', 1, 52,'Calle E #1213',	'9900-1122', 'sofia.hernandez@email.com',	1, 1, 1,NULL, NULL),
-		('Carlos',	'Gutiérrez','2207198501234', '1985-07-22', 'M', 2, 6, 'Avenida F #1415','5544-3322', 'carlos.gutierrez@email.com',	2, 2, 1,NULL, NULL),
-		('Luisa',	'Martínez', '0703198101234', '1981-03-07', 'F', 1, 37,'Calle G #1617',	'8877-6655', 'luisa.martinez@email.com',	1, 3, 1,NULL, NULL),
-		('Javier',	'Díaz',		'2705199401234', '1994-05-27', 'M', 2, 8, 'Avenida H #1819','4455-6677', 'javier.diaz@email.com',		2, 4, 1,NULL, NULL);
+VALUES	('Lionel',	'Messi',	'0309-1986-00998', '10-07-1986', 'M', 1, 1, 'calle y #444',	'88264741',  'leoMessi@gmail.com',			1, 1, 1,NULL, NULL),
+		('Ana',		'García',	'1234-5678-90123', '1990-06-15', 'F', 1, 15,'Calle A #123',	'2233-4455', 'ana.garcia@email.com',		1, 1, 1,NULL, NULL),
+		('Juan',	'Pérez',	'0801-1999-01234', '1999-01-08', 'M', 2, 22,'Avenida B #456', '9988-7766', 'juan.perez@email.com',		2, 2, 1,NULL, NULL),
+		('María',	'Fernández','0404-1991-01234', '1991-04-04', 'F', 1, 3, 'Calle C #789',	'3344-5566', 'maria.fernandez@email.com',	1, 3, 1,NULL, NULL),
+		('Pedro',	'López',	'1509-1988-01234', '1988-09-15', 'M', 2, 41,'Avenida D #1011','6677-8899', 'pedro.lopez@email.com',		2, 2, 1,NULL, NULL),
+		('Sofía',	'Hernández','2802-1996-01234', '1996-02-28', 'F', 1, 52,'Calle E #1213',	'9900-1122', 'sofia.hernandez@email.com',	1, 1, 1,NULL, NULL),
+		('Carlos',	'Gutiérrez','2207-1985-01234', '1985-07-22', 'M', 2, 6, 'Avenida F #1415','5544-3322', 'carlos.gutierrez@email.com',	2, 2, 1,NULL, NULL),
+		('Luisa',	'Martínez', '0703-1981-01234', '1981-03-07', 'F', 1, 37,'Calle G #1617',	'8877-6655', 'luisa.martinez@email.com',	1, 3, 1,NULL, NULL),
+		('Javier',	'Díaz',		'2705-1994-01234', '1994-05-27', 'M', 2, 8, 'Avenida H #1819','4455-6677', 'javier.diaz@email.com',		2, 4, 1,NULL, NULL);
 
 
 
@@ -1168,7 +1168,7 @@ SELECT T1.[empe_Id]
       ,T8.[carg_Id]
 	  ,T8.carg_Descripcion
       ,[empe_UsuCreacion]
-	  ,t3.user_NombreUsuario AS UsuarioCreacion
+	  ,t2.user_NombreUsuario AS UsuarioCreacion
       ,[empe_FechaCreacion]
       ,[empe_UsuModificacion]
 	  ,t3.user_NombreUsuario AS UsuarioModificacion
@@ -1187,18 +1187,34 @@ SELECT T1.[empe_Id]
   GO
   CREATE OR ALTER PROCEDURE lice.UDP_tbEmpleados_Select
   AS 
-  BEGIN
+  BEGIN--das
   
   SELECT * FROM lice.VW_tbEmpleados_View
   WHERE empe_Estado = 1
 
   END
   GO
+
+    GO
+  CREATE OR ALTER PROCEDURE lice.UDP_tbEmpleados_Find
+  @empe_Id	INT
+  AS 
+  BEGIN
+  
+  SELECT * FROM lice.VW_tbEmpleados_View
+  WHERE empe_Id = @empe_Id
+
+  END
+  GO
+  SELECT * from lice.tbSolicitantes
+  SELECT * from lice.tbCargos
+  SELECT * from lice.tbEmpleados
+  SELECT * from lice.tbTiposLicencias
   GO
   CREATE OR ALTER PROCEDURE lice.UDP_tbEmpleados_Insert 
 	@empe_Nombres nvarchar(200),
 	@empe_Apellidos nvarchar(200),
-	@empe_Identidad varchar(13),
+	@empe_Identidad varchar(15),
 	@empe_FechaNacimiento date,
 	@empe_Sexo char(1),
 	@eciv_Id int,
@@ -1263,7 +1279,7 @@ Go
 	@empe_Id INT,
 	@empe_Nombres nvarchar(200),
 	@empe_Apellidos nvarchar(200),
-	@empe_Identidad varchar(13),
+	@empe_Identidad varchar(15),
 	@empe_FechaNacimiento date,
 	@empe_Sexo char(1),
 	@eciv_Id int,

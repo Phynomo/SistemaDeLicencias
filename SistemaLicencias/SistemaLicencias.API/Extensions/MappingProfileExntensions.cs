@@ -13,6 +13,7 @@ namespace SistemaLicencias.API.Extensions
         public MappingProfileExntensions()
         {
             CreateMap<TipoLicenciaViewModel, tbTiposLicencias>().ReverseMap();
+            CreateMap<EmpleadoViewModel, tbEmpleados>().ReverseMap();
         }
     }
 }
