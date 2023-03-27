@@ -1415,15 +1415,12 @@ END
 --** DELETE PROCEDURE **--
 GO
 CREATE OR ALTER PROCEDURE lice.UDP_tbSolicitantes_DELETE
-(@soli_Id INT,
- @soli_UsuModificacion INT)
+(@soli_Id INT)
 AS
 BEGIN
 	BEGIN TRY
 		UPDATE	[lice].[tbSolicitantes]
-		SET		soli_Estado = 0,
-				soli_UsuModificacion = @soli_UsuModificacion,
-				soli_FechaNacimiento = GETDATE()
+		SET		soli_Estado = 0
 		WHERE	soli_Id = @soli_Id
 
 		SELECT 1 AS	Proceso
@@ -1448,6 +1445,7 @@ SELECT	soli_Id,
 		soli_Telefono, 
 		T1.muni_Id,
 		T2.muni_Nombre,
+		T2.depa_Id,
 		T3.depa_Nombre,
 		soli_Direccion,
 		soli_UsuCreacion,
@@ -1471,6 +1469,17 @@ AS
 BEGIN
 	SELECT * FROM VW_tbSolicitantes_View
 	WHERE soli_Estado = 1
+END
+
+
+--*** FIND PROCEDURE ***--
+GO
+CREATE OR ALTER PROCEDURE lice.UDP_VW_tbSolicitantes_View_FIND
+(@soli_Id INT)
+AS
+BEGIN
+	SELECT * FROM VW_tbSolicitantes_View
+	WHERE soli_Id = @soli_Id;
 END
 
 
@@ -1905,10 +1914,36 @@ BEGIN
 	WHERE apro_Estado = 1;
 END
 GO
+
+
+
 CREATE OR ALTER PROCEDURE lice.UDP_VW_tbTiposLicencias_View_FIND
 (@tili_Id INT)
 AS
 BEGIN
     SELECT * FROM lice.VW_tbTiposLicencias_View 
     WHERE tili_Id = @tili_Id;
+END
+
+
+---*** DROP DOWN LIST DEPARTAMENTOS ***---
+GO
+CREATE OR ALTER PROCEDURE gral.UDP_tbDepartamentos_DDL
+AS
+BEGIN
+	SELECT depa_Id, depa_Nombre
+	FROM gral.tbDepartamentos 
+	WHERE depa_Estado = 1
+END
+
+
+---*** DROP DOWN LIST MUNICIPIO POR DEPARTAMENTO ***---
+GO
+CREATE OR ALTER PROCEDURE gral.UDP_tbMunicipios_DDL
+(@depa_Id INT)
+AS
+BEGIN
+	SELECT muni_Id, muni_Nombre
+	FROM gral.tbMunicipios 
+	WHERE depa_Id = @depa_Id
 END
