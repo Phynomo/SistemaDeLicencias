@@ -1,0 +1,100 @@
+﻿@model IEnumerable<SistemaLicencias.WebUI.Models.VWSolicitantesViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.soli_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.soli_NombreCompleto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.soli_Identidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.soli_Sexo)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.soli_Telefono)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.soli_Direccion)
+            </th>
+
+
+
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.soli_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.soli_NombreCompleto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.soli_Identidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.soli_Sexo)
+                </td>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.soli_Telefono)
+                </td>
+               
+                <td>
+                    @Html.DisplayFor(modelItem => item.soli_Direccion)
+                </td>
+             
+               
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.soli_Id }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    <button type="button" onclick="AbrirModalDelete('@item.soli_Id')">Eliminar</button>>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@Html.Partial("_DeleteViewPartial", new SistemaLicencias.WebUI.Models.SolicitantesViewModel())
+
+
+@section scripts {
+
+
+    <script>
+
+        function AbrirModalDelete(id) {
+            $("#tili_IdD").val(id);
+            $("#ModalDelete").appendTo('body').modal('show');
+        }
+
+        function EnviarModalDelete() {
+            if ($("#tili_IdD").val() != "") {
+
+                $("#formDelete").submit();
+            }
+
+        }
+    </script>
+}

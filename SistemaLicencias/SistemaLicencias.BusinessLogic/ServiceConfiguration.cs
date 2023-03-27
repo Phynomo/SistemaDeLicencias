@@ -13,6 +13,8 @@ namespace SistemaLicencias.BusinessLogic
         public static void DataAcces(this IServiceCollection service, string connectionString)
         {
             service.AddScoped<TipoLicenciaRepository>();
+            service.AddScoped<SolicitanteRepository>();
+
 
 
             LicenciaContext.BuildConnectionString(connectionString);
