@@ -15,12 +15,16 @@ namespace SistemaLicencias.Entities.Entities
         public int? role_Id { get; set; }
         public string role_Nombre { get; set; }
         public int? empe_Id { get; set; }
+        public string empe_Nombres { get; set; }
+        public string empe_Apellidos { get; set; }
         public string empe_NombreCompleto { get; set; }
+        public int sucu_Id { get; set; }
+        public string sucu_Nombre { get; set; }
+        public int carg_Id { get; set; }
+        public string carg_Descripcion { get; set; }
         public int user_UsuCreacion { get; set; }
-        public string UsuarioCreacion { get; set; }
         public DateTime user_FechaCreacion { get; set; }
         public int? user_UsuModificacion { get; set; }
-        public string UsuarioModificacion { get; set; }
         public DateTime? user_FechaModificacion { get; set; }
         public bool user_Estado { get; set; }
     }

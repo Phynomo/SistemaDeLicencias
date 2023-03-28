@@ -2201,4 +2201,57 @@ BEGIN
 END
 GO
 
+UPDATE [acce].[tbUsuarios]
+   SET [role_Id] = 1
+ WHERE [user_Id] = 1
+GO
 
+
+
+
+CREATE OR ALTER VIEW acce.VW_tbUsuarios_View
+AS
+SELECT T1.[user_Id]
+      ,T1.[user_NombreUsuario]
+      ,T1.[user_Contrasena]
+      ,T1.[user_EsAdmin]
+      ,T1.[role_Id]
+	  ,T4.role_Nombre
+      ,T1.[empe_Id]
+	  ,T5.empe_Nombres
+	  ,T5.empe_Apellidos
+	  ,T5.empe_Nombres + ' ' + T5.empe_Apellidos As empe_NombreCompleto
+	  ,T5.sucu_Id
+	  ,T7.sucu_Nombre
+	  ,T5.carg_Id
+	  ,T6.carg_Descripcion
+      ,T1.[user_UsuCreacion]
+      ,T1.[user_FechaCreacion]
+      ,T1.[user_UsuModificacion]
+      ,T1.[user_FechaModificacion]
+      ,T1.[user_Estado]
+  FROM [acce].[tbUsuarios] T1 LEFT JOIN acce.tbRoles T4
+  ON T1.role_Id = T4.role_Id INNER JOIN lice.tbEmpleados T5
+  ON T1.empe_Id = T5.empe_Id INNER JOIN lice.tbCargos T6
+  ON T5.carg_Id = T6.carg_Id INNER JOIN Lice.tbSucursales T7 
+  ON T5.sucu_Id = T7.sucu_Id INNER JOIN acce.tbUsuarios T2
+  ON T1.user_UsuCreacion = T2.[user_Id] LEFT JOIN acce.tbUsuarios T3
+  ON T1.user_UsuModificacion = T3.[user_Id]
+		
+GO
+
+CREATE OR ALTER PROCEDURE acce.UDP_IniciarSesion
+@user_NombreUsuario	NVARCHAR(100),
+@user_Contrasena	NVARCHAR(MAX)
+AS
+BEGIN
+DECLARE @password NVARCHAR(MAX)=(SELECT HASHBYTES('Sha2_512', @user_Contrasena));
+
+
+SELECT *
+  FROM acce.VW_tbUsuarios_View
+  WHERE user_NombreUsuario = @user_NombreUsuario AND user_Contrasena = @password
+
+
+
+END

@@ -77,6 +77,37 @@ namespace SistemaLicencias.WebUI.Controllers
 
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Delete(AprobadosViewModel AprobadosViewModel)
+        {
+
+
+            string json = JsonConvert.SerializeObject(AprobadosViewModel);
+
+            var client = new HttpClient();
+            client.BaseAddress = new Uri(_baseurl + "api/Aprobados/Eliminar");
+
+            var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+
+            var response = await client.PutAsync(_baseurl + "api/Aprobados/Eliminar", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var responseContent = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(responseContent);
+                TempData["apro"] = "DeleteSuccess";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                TempData["apro"] = "DeleteError";
+                Console.WriteLine("La solicitud falló con el código de estado: " + response.StatusCode);
+            }
+
+
+            return RedirectToAction("Index");
+
+        }
 
     }
 }

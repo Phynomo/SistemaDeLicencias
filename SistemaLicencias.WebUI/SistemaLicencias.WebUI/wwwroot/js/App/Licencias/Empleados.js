@@ -132,7 +132,6 @@ function PostCreate()
     var sucu_Id = $("#sucu_Id").val();
     var carg_Id = $("#carg_Id").val();
     var empe_DireccionExacta = $("#empe_DireccionExacta").val();
-    
 
     $("#lblempe_Nombres").attr('hidden', true);
     $("#lblempe_Apellidos").attr('hidden', true);

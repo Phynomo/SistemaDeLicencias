@@ -26,7 +26,7 @@ namespace SistemaLicencias.WebUI.Models
         public string soli_Sexo { get; set; }
         [Display(Name = "Licencia")]
         public int tili_Id { get; set; }
-        [Display(Name = "Descripcion")]
+        [Display(Name = "Licencia")]
         public string tili_Descripcion { get; set; }
         [Display(Name = "Sucursal")]
         public int sucu_Id { get; set; }

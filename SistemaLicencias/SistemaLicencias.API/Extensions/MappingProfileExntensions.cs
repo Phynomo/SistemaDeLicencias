@@ -15,6 +15,8 @@ namespace SistemaLicencias.API.Extensions
             CreateMap<TipoLicenciaViewModel, tbTiposLicencias>().ReverseMap();
             CreateMap<SolicitanteViewModel, tbSolicitantes>().ReverseMap();
             CreateMap<EmpleadoViewModel, tbEmpleados>().ReverseMap();
+            CreateMap<AprobadosViewModel, tbAprobados>().ReverseMap();
+            CreateMap<UsuariosViewModel, tbUsuarios>().ReverseMap();
         }
     }
 }

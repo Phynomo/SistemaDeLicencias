@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using SistemaLicencias.API.models;
 using SistemaLicencias.BusinessLogic.Service;
+using SistemaLicencias.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +39,12 @@ namespace SistemaLicencias.API.Controllers
             return Ok(list);
         }
 
-
+        [HttpPut("Eliminar")]
+        public IActionResult Delete(AprobadosViewModel AprobadosViewModel)
+        {
+            var item = _mapper.Map<tbAprobados>(AprobadosViewModel);
+            var result = _licenciaServivce.EliminarAprobado(item);
+            return Ok(result);
+        }
     }
 }

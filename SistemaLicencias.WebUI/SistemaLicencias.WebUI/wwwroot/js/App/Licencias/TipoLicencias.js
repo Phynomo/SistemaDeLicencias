@@ -114,9 +114,10 @@ function PostModalCreate() {
     }
 }
 
-$("#OpenModalEdit").on('click', function () {
-    $("#tili_IdE").val($(this).data("id"));
-    $("#tili_DescripcionE").val($(this).data("descripcion"));
+function OpenModalEdit(Cadena) {
+    var datos = Cadena.split(",$$,");
+    $("#tili_IdE").val(datos[0]);
+    $("#tili_DescripcionE").val(datos[1]);
 
 
     $("#lbltili_DescripcionE").attr('hidden', true);
@@ -124,7 +125,7 @@ $("#OpenModalEdit").on('click', function () {
     $('#ModalEditClass').removeClass('flipInY');
     $('#ModalEditClass').addClass('flipInY');
     $("#ModalEdit").appendTo('body').modal('show');
-});
+}
 
 function PostModalEdit() {
     var tili_Descripcion = $("#tili_DescripcionE").val();

@@ -12,7 +12,13 @@ namespace SistemaLicencias.DataAccess.Repository
     {
         public RequestStatus Delete(tbAprobados item)
         {
-            throw new NotImplementedException();
+            using var db = new SqlConnection(LicenciaContext.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@apro_Id", item.apro_Id, DbType.Int32, ParameterDirection.Input);
+
+            var result = db.QueryFirst<RequestStatus>(ScriptsDataBase.UDP_tbAprovados_Eliminar, parametros, commandType: System.Data.CommandType.StoredProcedure);
+            return result;
+
         }
 
         public VW_tbAprobados_View Find(int? id)

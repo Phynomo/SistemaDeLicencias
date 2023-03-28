@@ -1,0 +1,54 @@
+﻿@*@model SistemaLicencias.WebUI.Models.*@
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="~/css/Login.css" rel="stylesheet">
+</head>
+<body>
+    <div class="main">
+        <div class="container a-container" id="a-container">
+            <form class="form" id="b-form" method="post" asp-action="Index">
+                <h2 class="form_title title">Licencias licenciado</h2>
+                <div class="form__icons"><h2>Iniciar sesión</h2></div><span class="form__span">Ingresa tu usuario y contraseña</span>
+                <input class="form__input" type="text" placeholder="Usuario" autocomplete="off">
+                <input class="form__input" type="password" placeholder="Contraseña" autocomplete="off"><a class="form__link"></a>
+                <button class="form__button button submit">INICIAR</button>
+            </form>
+            
+        </div>
+        <div class="container b-container" id="b-container">
+            <form class="form" id="a-form" method="post" asp-action="">
+                <h2 class="form_title title">Licencias licenciado</h2>
+                <div class="form__icons">Recuperar Usuario</div><span class="form__span">Ingresa tu usuario y la nueva contraseña que deseas</span>
+                <input class="form__input" type="text" placeholder="Usuario">
+                <input class="form__input" type="text" placeholder="Contraseña">
+                <button class="form__button button submit">RECUPERAR</button>
+            </form>
+        </div>
+        <div class="switch" id="switch-cnt">
+            <div class="switch__circle"></div>
+            <div class="switch__circle switch__circle--t"></div>
+            <div class="switch__container" id="switch-c1">
+                <h2 class="switch__title title">Bienvenido</h2>
+                <p class="switch__description description">Si no recuerdas tu usuario puedes recuperarlo</p>
+                <button class="switch__button button switch-btn">RECUPERAR</button>
+            </div>
+            <div class="switch__container is-hidden" id="switch-c2">
+                <h2 class="switch__title title">¡Hola!</h2>
+                <p class="switch__description description">Si ya tienes un usuario y una contraseña puedes inicar sesión</p>
+                <button class="switch__button button switch-btn">INICIAR SESIÓN</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script src="~/js/App/Seguridad/Login.js"></script>

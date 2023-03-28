@@ -435,19 +435,27 @@ namespace SistemaLicencias.DataAccess.Context
 
                 entity.ToView("VW_tbUsuarios_View", "acce");
 
-                entity.Property(e => e.UsuarioCreacion)
+                entity.Property(e => e.carg_Descripcion)
                     .IsRequired()
                     .HasMaxLength(100);
 
-                entity.Property(e => e.UsuarioModificacion).HasMaxLength(100);
+                entity.Property(e => e.empe_Apellidos)
+                    .IsRequired()
+                    .HasMaxLength(200);
 
                 entity.Property(e => e.empe_NombreCompleto)
                     .IsRequired()
                     .HasMaxLength(401);
 
-                entity.Property(e => e.role_Nombre)
+                entity.Property(e => e.empe_Nombres)
                     .IsRequired()
-                    .HasMaxLength(100);
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.role_Nombre).HasMaxLength(100);
+
+                entity.Property(e => e.sucu_Nombre)
+                    .IsRequired()
+                    .HasMaxLength(200);
 
                 entity.Property(e => e.user_Contrasena).IsRequired();
 
@@ -864,7 +872,7 @@ namespace SistemaLicencias.DataAccess.Context
 
                 entity.ToTable("tbRoles", "acce");
 
-                entity.HasIndex(e => e.role_Nombre, "UQ__tbRoles__3895D82ECFEEE426")
+                entity.HasIndex(e => e.role_Nombre, "UQ__tbRoles__3895D82ED0F8CF8D")
                     .IsUnique();
 
                 entity.Property(e => e.role_Estado)
@@ -900,7 +908,7 @@ namespace SistemaLicencias.DataAccess.Context
 
                 entity.ToTable("tbSolicitantes", "lice");
 
-                entity.HasIndex(e => e.soli_Identidad, "UQ__tbSolici__ACE8F0CBC2660907")
+                entity.HasIndex(e => e.soli_Identidad, "UQ__tbSolici__ACE8F0CBBE1BCDC1")
                     .IsUnique();
 
                 entity.Property(e => e.soli_Apellido)
@@ -1052,7 +1060,7 @@ namespace SistemaLicencias.DataAccess.Context
 
                 entity.ToTable("tbTiposLicencias", "lice");
 
-                entity.HasIndex(e => e.tili_Descripcion, "UQ__tbTiposL__F7BA37CA645A3E84")
+                entity.HasIndex(e => e.tili_Descripcion, "UQ__tbTiposL__F7BA37CA1328BAF7")
                     .IsUnique();
 
                 entity.Property(e => e.tili_Descripcion)

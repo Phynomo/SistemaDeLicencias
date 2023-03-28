@@ -7,7 +7,7 @@ using System.Text;
 
 namespace SistemaLicencias.BusinessLogic.Service
 {
-    public class  LicenciaServivce
+    public class LicenciaServivce
     {
         private readonly TipoLicenciaRepository _tipoLicenciaRepository;
         private readonly SolicitanteRepository _solicitanteRepository;
@@ -434,6 +434,29 @@ namespace SistemaLicencias.BusinessLogic.Service
             }
         }
 
+        public ServiceResult EliminarAprobado(tbAprobados tbAprobados)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var map = _aprobadosRepository.Delete(tbAprobados);
+                if (map.CodeStatus > 0)
+                {
+                    return result.Ok(map);
+                }
+                else
+                {
+                    map.MessageStatus = (map.CodeStatus == 0) ? "404 Error de consulta" : map.MessageStatus;
+                    return result.Error(map);
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
 
         #endregion
 
@@ -488,6 +511,9 @@ namespace SistemaLicencias.BusinessLogic.Service
 
 
         #endregion
+
+
+      
 
         #region DROP DOWN LIST
 

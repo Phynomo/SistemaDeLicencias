@@ -44,10 +44,14 @@ namespace SistemaLicencias.DataAccess.Repository
         public static string UDP_tbEmpleados_Buscar = "lice.UDP_tbEmpleados_Find";
         #endregion
 
+        #region Usuarios
+        public static string UDP_tbAprovados_Login = "acce.UDP_IniciarSesion";
 
+        #endregion
 
         public static string UDP_tbAprovados_Listado = "lice.UDP_tbAprovados_SELECT";
         public static string UDP_tbAprovados_Buscar = "lice.UDP_tbAprovados_Find";
+        public static string UDP_tbAprovados_Eliminar = "lice.UDP_tbAprobados_DELETE";
 
         public static string UDP_tbRechazados_Listado = "lice.UDP_tbRechazados_SELECT";
         public static string UDP_tbRechazados_ListadoXSolicitud = "lice.UDP_tbRechazados_SELECTXSolicitud";
