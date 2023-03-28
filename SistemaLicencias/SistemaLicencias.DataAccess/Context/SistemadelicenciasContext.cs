@@ -102,7 +102,7 @@ namespace SistemaLicencias.DataAccess.Context
                     .IsUnicode(false)
                     .IsFixedLength(true);
 
-                entity.Property(e => e.sucu_Direccion)
+                entity.Property(e => e.sucu_Nombre)
                     .IsRequired()
                     .HasMaxLength(200);
 
@@ -286,7 +286,7 @@ namespace SistemaLicencias.DataAccess.Context
                     .IsUnicode(false)
                     .IsFixedLength(true);
 
-                entity.Property(e => e.sucu_Direccion)
+                entity.Property(e => e.sucu_Nombre)
                     .IsRequired()
                     .HasMaxLength(200);
 
@@ -864,7 +864,7 @@ namespace SistemaLicencias.DataAccess.Context
 
                 entity.ToTable("tbRoles", "acce");
 
-                entity.HasIndex(e => e.role_Nombre, "UQ__tbRoles__3895D82E48ECBD8F")
+                entity.HasIndex(e => e.role_Nombre, "UQ__tbRoles__3895D82ECFEEE426")
                     .IsUnique();
 
                 entity.Property(e => e.role_Estado)
@@ -900,7 +900,7 @@ namespace SistemaLicencias.DataAccess.Context
 
                 entity.ToTable("tbSolicitantes", "lice");
 
-                entity.HasIndex(e => e.soli_Identidad, "UQ__tbSolici__ACE8F0CBB28D8084")
+                entity.HasIndex(e => e.soli_Identidad, "UQ__tbSolici__ACE8F0CBC2660907")
                     .IsUnique();
 
                 entity.Property(e => e.soli_Apellido)
@@ -1052,7 +1052,7 @@ namespace SistemaLicencias.DataAccess.Context
 
                 entity.ToTable("tbTiposLicencias", "lice");
 
-                entity.HasIndex(e => e.tili_Descripcion, "UQ__tbTiposL__F7BA37CA0324A85C")
+                entity.HasIndex(e => e.tili_Descripcion, "UQ__tbTiposL__F7BA37CA645A3E84")
                     .IsUnique();
 
                 entity.Property(e => e.tili_Descripcion)

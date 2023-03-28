@@ -19,7 +19,7 @@ namespace SistemaLicencias.Entities.Entities
         public int tili_Id { get; set; }
         public string tili_Descripcion { get; set; }
         public int sucu_Id { get; set; }
-        public string sucu_Direccion { get; set; }
+        public string sucu_Nombre { get; set; }
         public int empe_Id { get; set; }
         public string empe_Nombres { get; set; }
         public string empe_Apellidos { get; set; }

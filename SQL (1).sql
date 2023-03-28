@@ -2024,12 +2024,13 @@ SELECT	apro_Id,
 		T7.tili_Id,
 		T7.tili_Descripcion,
 		T8.sucu_Id,
-		T8.sucu_Direccion,
+		T8.[sucu_Nombre],
 		T1.empe_Id, 
 		T2.empe_Nombres,
 		T2.empe_Apellidos,
 		T2.empe_Nombres + ' ' + T2.empe_Apellidos as empe_NombreCompleto,
-		apro_Observaciones, 
+		apro_Observaciones,
+		T1.apro_Intentos, 
 		apro_Fecha, 
 		apro_UsuCreacion, 
 		T3.user_NombreUsuario AS UsuarioCreacion,
@@ -2058,6 +2059,15 @@ BEGIN
 	WHERE apro_Estado = 1;
 END
 GO
+GO
+CREATE OR ALTER PROCEDURE lice.UDP_tbAprovados_Find
+@apro_Id INT
+AS
+BEGIN
+	SELECT * FROM LICE.VW_tbAprobados_View
+	WHERE apro_Id = @apro_Id;
+END
+GO
 
 
 GO
@@ -2075,7 +2085,7 @@ SELECT	rech_Id,
 		T7.tili_Id,
 		T7.tili_Descripcion,
 		T8.sucu_Id,
-		T8.sucu_Direccion,
+		T8.[sucu_Nombre],
 		T1.empe_Id, 
 		T2.empe_Nombres,
 		T2.empe_Apellidos,
@@ -2103,10 +2113,35 @@ GO
 CREATE OR ALTER PROCEDURE lice.UDP_tbRechazados_SELECT
 AS
 BEGIN
-	SELECT DISTINCT(soli_Id) rech_Id, stud_Id,soli_Id, soli_Nombre, soli_Apellido, soli_NombreCompleto, soli_Identidad, soli_Sexo, tili_Id, tili_Descripcion, sucu_Id, sucu_Direccion, empe_Id, empe_Nombres, empe_Apellidos, empe_NombreCompleto, rech_Observaciones, rech_Fecha, rech_UsuCreacion, UsuarioCreacion, rech_FechaCreacion, rech_UsuModificacion, UsuarioModificacion, rech_FechaModificacion, rech_Estado FROM LICE.VW_tbRechazados_View
-	WHERE rech_Estado = 1;
+	SELECT DISTINCT stud_Id,soli_Id, soli_Nombre, soli_Apellido, soli_NombreCompleto, soli_Identidad, soli_Sexo, tili_Id, tili_Descripcion, sucu_Id, [sucu_Nombre], empe_Id, empe_Nombres, empe_Apellidos, empe_NombreCompleto        
+	FROM lice.VW_tbRechazados_View
+	WHERE rech_Estado = 1
 END
 GO
+
+
+GO
+CREATE OR ALTER PROCEDURE lice.UDP_tbRechazados_SELECTXSolicitud
+@stud_Id	INT
+AS
+BEGIN
+	SELECT *        
+	FROM lice.VW_tbRechazados_View
+	WHERE rech_Estado = 1 AND stud_Id = @stud_Id
+END
+GO
+
+GO
+CREATE OR ALTER PROCEDURE lice.UDP_tbRechazados_Find
+@stud_Id	INT
+AS
+BEGIN
+	SELECT TOP(1) *        
+	FROM lice.VW_tbRechazados_View
+	WHERE rech_Estado = 1 AND stud_Id = @stud_Id
+END
+GO
+
 
 GO
 CREATE OR ALTER PROCEDURE lice.UDP_VW_tbTiposLicencias_View_FIND

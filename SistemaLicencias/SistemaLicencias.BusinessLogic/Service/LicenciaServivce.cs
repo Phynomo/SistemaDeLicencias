@@ -418,6 +418,23 @@ namespace SistemaLicencias.BusinessLogic.Service
 
             }
         }
+
+        public VW_tbAprobados_View BuscarAprovados(int? id)
+        {
+            try
+            {
+                var list = _aprobadosRepository.Find(id);
+                return list;
+            }
+            catch (Exception)
+            {
+
+                return null;
+
+            }
+        }
+
+
         #endregion
 
         #region Rechazados
@@ -436,6 +453,40 @@ namespace SistemaLicencias.BusinessLogic.Service
 
             }
         }
+
+        public IEnumerable<VW_tbRechazados_View> ListadoXSolicitud(int id)
+        {
+
+            try
+            {
+                var list = _rechazadosRepository.RechazadosXSolicitud(id);
+                return list;
+            }
+            catch (Exception)
+            {
+
+                return null;
+
+            }
+        }
+
+        public VW_tbRechazados_View BuscarRechzados(int? id)
+        {
+            try
+            {
+                var list = _rechazadosRepository.Find(id);
+                return list;
+            }
+            catch (Exception)
+            {
+
+                return null;
+
+            }
+        }
+
+
+
         #endregion
 
         #region DROP DOWN LIST

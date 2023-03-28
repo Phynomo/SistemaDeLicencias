@@ -1,0 +1,207 @@
+﻿@model SistemaLicencias.WebUI.Models.VWAprobadosViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card" style="border:1px solid #283c4c;">
+    <div class="card-header text-center" style="background: radial-gradient(circle, rgba(30,45,93,1) 50%, rgba(32,164,140,1) 100%);">
+
+        <div class="row">
+            <div class="col">
+                <h1 class="text-white" style="margin-top:0px;">Detalles</h1>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col">
+                <h4 class="text-white">Solicitud aprobada de @Model.soli_NombreCompleto</h4>
+            </div>
+        </div>
+
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col">
+                <label class="text-black font-weight-bold">@Html.DisplayNameFor(model => model.soli_Nombre)</label><br />
+                <label>@Html.DisplayFor(model => model.soli_Nombre)</label>
+            </div>
+            <div class="col">
+                <label class="text-black font-weight-bold">@Html.DisplayNameFor(model => model.soli_Apellido)</label><br />
+                <label>@Html.DisplayFor(model => model.soli_Apellido)</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label class="text-black font-weight-bold">@Html.DisplayNameFor(model => model.soli_Identidad)</label><br />
+                <label>@Html.DisplayFor(model => model.soli_Identidad)</label>
+            </div>
+            <div class="col">
+                <label class="text-black font-weight-bold">@Html.DisplayNameFor(model => model.soli_Sexo)</label><br />
+                <label>@Html.DisplayFor(model => model.soli_Sexo)</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label class="text-black font-weight-bold"> @Html.DisplayNameFor(model => model.tili_Descripcion)</label><br />
+                <label> @Html.DisplayFor(model => model.tili_Descripcion)</label>
+            </div>
+            <div class="col">
+                <label class="text-black font-weight-bold">@Html.DisplayNameFor(model => model.sucu_Nombre)</label><br />
+                <label>@Html.DisplayFor(model => model.sucu_Nombre)</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label class="text-black font-weight-bold"> @Html.DisplayNameFor(model => model.empe_NombreCompleto)</label><br />
+                <label> @Html.DisplayFor(model => model.empe_NombreCompleto)</label>
+            </div>
+            <div class="col">
+                <label class="text-black font-weight-bold">@Html.DisplayNameFor(model => model.apro_Intentos)</label><br />
+                <label>@Html.DisplayFor(model => model.apro_Intentos)</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col d-flex justify-content-end">
+                <a class="btn btn-secondary" asp-action="Index">Regresar al listado</a>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+</div>
+
+
+
+
+
+<div class="row mt-2 d-flex justify-content-center">
+    <div class="col">
+        <div class="ibox ">
+            <div class="ibox-title" style="background: rgb(30,45,93); background: radial-gradient(circle, rgba(30,45,93,1) 50%, rgba(0,193,199,1) 100%); ">
+                <h5 class="text-white text-center">Intento Aprovado</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-down"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content" style="display:none; border: 1px solid black; border-top:none;">
+
+
+
+                <div class="row">
+                    <div class="col">
+                        <label class="text-black font-weight-bold">Nombre completo</label><br />
+                        <label>@Model.soli_NombreCompleto</label>
+                    </div>
+                    <div class="col">
+                        <label class="text-black font-weight-bold">DNI</label><br />
+                        <label>@Model.soli_Identidad</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label class="text-black font-weight-bold">Licencia</label><br />
+                        <label>@Model.tili_Descripcion</label>
+                    </div>
+                    <div class="col">
+                        <label class="text-black font-weight-bold">Sucursal</label><br />
+                        <label>@Model.sucu_Nombre</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label class="text-black font-weight-bold">Supervisor</label><br />
+                        <label>@Model.empe_NombreCompleto</label>
+                    </div>
+                    <div class="col">
+                        <label class="text-black font-weight-bold">Fecha</label><br />
+                        <label>@Model.apro_Fecha</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label class="text-black font-weight-bold">Observacion</label><br />
+                        <label>@Model.apro_Observaciones</label>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+@foreach (var Listado in ViewBag.ListadoRechazos)
+{
+
+    <div class="row mt-2 d-flex justify-content-center">
+        <div class="col">
+            <div class="ibox ">
+                <div class="ibox-title" style="background: rgb(30,45,93); background: radial-gradient(circle, rgba(30,45,93,1) 50%, rgba(199,48,0,1) 100%);">
+                    <h5 class="text-white text-center">Intento fallido</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-down"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content" style="display:none; border: 1px solid black; border-top:none;">
+
+
+
+                    <div class="row">
+                        <div class="col">
+                            <label class="text-black font-weight-bold">Nombre completo</label><br />
+                            <label>@Listado.soli_NombreCompleto</label>
+                        </div>
+                        <div class="col">
+                            <label class="text-black font-weight-bold">DNI</label><br />
+                            <label>@Listado.soli_Identidad</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label class="text-black font-weight-bold">Licencia</label><br />
+                            <label>@Listado.tili_Descripcion</label>
+                        </div>
+                        <div class="col">
+                            <label class="text-black font-weight-bold">Sucursal</label><br />
+                            <label>@Listado.sucu_Nombre</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label class="text-black font-weight-bold">Supervisor</label><br />
+                            <label>@Listado.empe_NombreCompleto</label>
+                        </div>
+                        <div class="col">
+                            <label class="text-black font-weight-bold">Fecha</label><br />
+                            <label>@Listado.rech_Fecha</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label class="text-black font-weight-bold">Observacion</label><br />
+                            <label>@Listado.rech_Observaciones</label>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,91 @@
+﻿@model IEnumerable<SistemaLicencias.WebUI.Models.VWRechazadosViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<input hidden id="resultado" value="@ViewBag.Resultado" />
+
+<div class="card" style="border:1px solid #283c4c;">
+    <div class="card-header text-center" style="background: radial-gradient(circle, rgba(30,45,93,1) 50%, rgba(32,164,140,1) 100%); ">
+
+        <div class="row">
+            <div class="col">
+                <h1 class="text-white" style="margin-top:0px;">Solocitudes Rechazadas</h1>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-4">
+                @*<a asp-action="Create" class="btn btn-block btn-primary">Agregar</a>*@
+                @*<button onclick="OpenModalCreate()" type="button" class="btn btn-block btn-primary">
+                        Agregar
+                    </button>*@
+            </div>
+        </div>
+
+    </div>
+    <div class="card-body table-responsive">
+        <table class="table table-hover dataTables">
+            <thead style=background-color: transparent;>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.stud_Id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.soli_NombreCompleto)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.soli_Identidad)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.soli_Sexo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.tili_Descripcion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.sucu_Nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.empe_NombreCompleto)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.stud_Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.soli_NombreCompleto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.soli_Identidad)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.soli_Sexo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tili_Descripcion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.sucu_Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.empe_NombreCompleto)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Details", "Details", new { id=item.stud_Id }, new { @class = "btn btn-info mx-1 btn-outline btn-sm" }) 
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
