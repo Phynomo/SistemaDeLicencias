@@ -5,153 +5,123 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<div class="card" style="border:1px solid #283c4c;">
+    <div class="card-header text-center" style="background: rgb(30,45,93); background: radial-gradient(circle, rgba(30,45,93,1) 50%, rgba(122,255,163,1) 100%); ">
 
-<h4>SolicitantesViewModel</h4>
-<hr />
-
-<form asp-action="Create">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-    <div class="row">
-
-        <div class="col-sm-6">
-            <div class="form-group">
-                <label asp-for="soli_Nombre" class="control-label"></label>
-                <input asp-for="soli_Nombre" class="form-control" />
-                <span asp-validation-for="soli_Nombre" class="text-danger"></span>
+        <div class="row">
+            <div class="col">
+                <h1 class="text-white" style="margin-top:0px;">Agregar Solictante</h1>
             </div>
         </div>
-        <div class="col-sm-6">
-            <div class="form-group">
-                <label asp-for="soli_Apellido" class="control-label"></label>
-                <input asp-for="soli_Apellido" class="form-control" />
-                <span asp-validation-for="soli_Apellido" class="text-danger"></span>
+        <div class="row d-flex justify-content-center">
+            <div class="col">
+                <h4 class="text-white">Ingrese los datos del nuevo Solicitante</h4>
             </div>
         </div>
-        <div class="col-sm-6">
-            <div class="form-group">
-                <label asp-for="soli_Identidad" class="control-label"></label>
-                <input asp-for="soli_Identidad" class="form-control" />
-                <span asp-validation-for="soli_Identidad" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="col-6">
-            <div class="form-group">
-                <label asp-for="soli_Sexo" class="control-label"></label>
-                <div>
-                    <input type="radio" asp-for="soli_Sexo" value="F" /> Femenino
-                    <input type="radio" asp-for="soli_Sexo" value="M" /> Masculino
+
+    </div>
+    <div class="card-body">
+
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="row">
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label asp-for="soli_Nombre" class="control-label"></label>
+                        <input asp-for="soli_Nombre" class="form-control" />
+                        <span asp-validation-for="soli_Nombre" class="text-danger"></span>
+                    </div>
                 </div>
-                <span asp-validation-for="soli_Sexo" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="form-group">
-                <label asp-for="soli_FechaNacimiento" class="control-label"></label>
-                <input asp-for="soli_FechaNacimiento" class="form-control" />
-                <span asp-validation-for="soli_FechaNacimiento" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="form-group">
-                <label asp-for="soli_Telefono" class="control-label"></label>
-                <input asp-for="soli_Telefono" class="form-control" />
-                <span asp-validation-for="soli_Telefono" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="col-6">
-            <div class="form-group">
-                <label class="control-label">Departamentos</label>
-                <select asp-for="depa_Id" id="depa_Id" class="form-control" asp-items="ViewBag.depa_Id">
-                    <option value="0"> -- Seleccione un Departamento -- </option>
-                </select>
-                <span class="text-danger">@Html.ValidationMessage("ValidacionDepartamento") </span>
-            </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label asp-for="soli_Apellido" class="control-label"></label>
+                        <input asp-for="soli_Apellido" class="form-control" />
+                        <span asp-validation-for="soli_Apellido" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label asp-for="soli_Identidad" class="control-label"></label>
+                        <input asp-for="soli_Identidad" data-mask="9999-9999-99999" class="form-control" />
+                        <span asp-validation-for="soli_Identidad" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="soli_Sexo" class="control-label"></label>
+                        <div>
+                            <input type="radio" asp-for="soli_Sexo" value="F" /> Femenino
+                            <input type="radio" asp-for="soli_Sexo" value="M" /> Masculino
+                        </div>
+                        <span asp-validation-for="soli_Sexo" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label asp-for="soli_FechaNacimiento" class="control-label"></label>
+                        <input asp-for="soli_FechaNacimiento" type="date" class="form-control" />
+                        <span asp-validation-for="soli_FechaNacimiento" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label asp-for="soli_Telefono" class="control-label"></label>
+                        <input asp-for="soli_Telefono" data-mask="9999-9999" class="form-control" />
+                        <span asp-validation-for="soli_Telefono" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label class="control-label">Departamentos</label>
+                        <select asp-for="depa_Id" id="depa_Id" class="form-control" asp-items="ViewBag.depa_Id">
+                            <option value="0"> -- Seleccione un Departamento -- </option>
+                        </select>
+                        <span class="text-danger">@Html.ValidationMessage("ValidacionDepartamento") </span>
+                    </div>
 
 
-        </div>
-        <div class="col-6">
-            <div class="form-group">
-                <label asp-for="muni_Id" class="control-label"></label>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="muni_Id" class="control-label"></label>
 
-                <select asp-for="muni_Id" name="muni_Id" id="muni_Id" class="form-control" asp-items="ViewBag.muni_Id">
-                    <option value="">-- Seleccione un Municipio --</option>
-                </select>
-                <span class="text-danger">@Html.ValidationMessage("ValidacionMunicipio") </span>
+                        <select asp-for="muni_Id" name="muni_Id" id="muni_Id" class="form-control" asp-items="ViewBag.muni_Id">
+                            <option value="">-- Seleccione un Municipio --</option>
+                        </select>
+                        <span class="text-danger">@Html.ValidationMessage("ValidacionMunicipio") </span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label asp-for="soli_Direccion" class="control-label"></label>
+                        <input asp-for="soli_Direccion" class="form-control" />
+                        <span asp-validation-for="soli_Direccion" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label asp-for="soli_UsuCreacion" class="control-label"></label>
+                        <input asp-for="soli_UsuCreacion" class="form-control" />
+                        <span asp-validation-for="soli_UsuCreacion" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="form-group">
-                <label asp-for="soli_Direccion" class="control-label"></label>
-                <input asp-for="soli_Direccion" class="form-control" />
-                <span asp-validation-for="soli_Direccion" class="text-danger"></span>
+
+            <div class="row">
+                <div class="col d-flex justify-content-end">
+                    <a class="btn btn-secondary mx-1" asp-action="Index">Regresar al listado</a>
+                    <button type="submit" class="btn btn-primary">Agregar Solicitante</button>
+                </div>
             </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="form-group">
-                <label asp-for="soli_UsuCreacion" class="control-label"></label>
-                <input asp-for="soli_UsuCreacion" class="form-control" />
-                <span asp-validation-for="soli_UsuCreacion" class="text-danger"></span>
-            </div>
-        </div>
+        </form>
+
+
     </div>
-
-    <div class="form-group">
-        <input type="submit" value="Create" class="btn btn-primary" />
-    </div>
-</form>
-
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 
 
-
-
-
-@section scripts{
-
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-
-    <script>
-        $("#depa_Id").change(function () {
-            var departamentoId = $("#depa_Id").val();
-
-            $.getJSON('/Solicitante/MunicipiosDropDownList', { id: departamentoId })
-
-                .done(function (municipios) {
-
-                    console.log(municipios)
-
-                    $("#muni_Id").prop("disabled", false);
-                    var municipiosSelect = $('#muni_Id');
-                    municipiosSelect.empty();
-
-                    municipiosSelect.append($('<option>', {
-                        value: '',
-                        text: '--Selecciona un municipio--'
-                    }));
-
-                    $.each(municipios, function (index, item) {
-                        municipiosSelect.append($('<option>', {
-                            value: item.value,
-                            text: item.text
-                        }));
-
-                    });
-
-                })
-
-                .fail(function (jqXHR, textStatus, errorThrown) {
-                    console.error('Error al cargar los municipios: ' + textStatus + ', ' + errorThrown);
-                });
-
-        });
-    </script>
-
-}
-
+<script src="~/js/App/Licencias/Solicitante.js"></script>
 

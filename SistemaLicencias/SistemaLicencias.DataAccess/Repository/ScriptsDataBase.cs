@@ -9,8 +9,15 @@ namespace SistemaLicencias.DataAccess.Repository
 
         #region DROP DOWN LIST
 
-        public static string UDP_tbDepartamentos_DDL = "gral.UDP_tbDepartamentos_DDL";
-        public static string UDP_tbMunicipios_DDL = "gral.UDP_tbMunicipios_DDL";
+        public static string UDP_tbDepartamentos_DDL    = "gral.UDP_tbDepartamentos_DDL";
+        public static string UDP_tbMunicipios_DDL       = "gral.UDP_tbMunicipios_DDL";
+        public static string UDP_tbTipoLicencis_DDL     = "lice.UDP_tbTipoLicencis_DDL";
+        public static string UDP_tbSolicitantes_DDL     = "lice.UDP_tbSolicitantes_DDL";
+
+
+        public static string UDP_tbCargos_Listado           = "lice.UDP_tbCargos_SELECT";
+        public static string UDP_tbSucursales_Listado       = "lice.UDP_tbSucursales_SELECT";
+        public static string UDP_tbEstadosCiviles_Listado   = "gral.UDP_tbEstadosCiviles_SELECT";
 
         #endregion
 
@@ -32,7 +39,18 @@ namespace SistemaLicencias.DataAccess.Repository
 
 
 
+        #region Solicitud
+        public static string UDP_tbSolicitud_Insertar       = "lice.UDP_tbSolicitud_INSERT";
+        public static string UDP_tbSolicitud_Editar         = "lice.UDP_tbSolicitud_UPDATE";
+        public static string UDP_tbSolicitud_Eliminar       = "lice.UDP_tbSolicitud_DELETE";
+        public static string UDP_tbSolicitud_Listado        = "lice.UDP_tbSolicitud_SELECT";
+        public static string UDP_tbSolicitud_Buscar         = "lice.UDP_VW_tbSolicitud_View_FIND";
+        public static string UDP_tbSolicitud_Rechazar       = "lice.UDP_tbSolicitud_REJECT";
+        public static string UDP_tbSolicitud_ACCEPT         = "lice.UDP_tbSolicitud_ACCEPT";
 
+
+
+        #endregion
 
 
 
@@ -47,8 +65,6 @@ namespace SistemaLicencias.DataAccess.Repository
 
 
 
-        public static string UDP_tbCargos_Listado = "lice.UDP_tbCargos_SELECT";
-        public static string UDP_tbSucursales_Listado = "lice.UDP_tbSucursales_SELECT";
-        public static string UDP_tbEstadosCiviles_Listado = "gral.UDP_tbEstadosCiviles_SELECT";
+
     }
 }

@@ -11,6 +11,7 @@ namespace SistemaLicencias.Entities.Entities
         public tbEmpleados()
         {
             tbAprobados = new HashSet<tbAprobados>();
+            tbRechazados = new HashSet<tbRechazados>();
             tbUsuarios = new HashSet<tbUsuarios>();
         }
 
@@ -40,6 +41,7 @@ namespace SistemaLicencias.Entities.Entities
         public virtual tbMunicipios muni { get; set; }
         public virtual tbSucursales sucu { get; set; }
         public virtual ICollection<tbAprobados> tbAprobados { get; set; }
+        public virtual ICollection<tbRechazados> tbRechazados { get; set; }
         public virtual ICollection<tbUsuarios> tbUsuarios { get; set; }
     }
 }

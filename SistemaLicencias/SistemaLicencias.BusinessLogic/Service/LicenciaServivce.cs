@@ -10,16 +10,19 @@ namespace SistemaLicencias.BusinessLogic.Service
     public class  LicenciaServivce
     {
         private readonly TipoLicenciaRepository _tipoLicenciaRepository;
-        private readonly SolicitanteRepository _solicitanteRepository;
-        private readonly EmpleadoRepository _empleadosRepository;
+        private readonly SolicitanteRepository  _solicitanteRepository;
+        private readonly EmpleadoRepository     _empleadosRepository;
+        private readonly SolicitudRepository    _solicitudRepository;
 
         public LicenciaServivce(TipoLicenciaRepository tipoLicenciaRepository,
                                 SolicitanteRepository solicitanteRepository,
-                                EmpleadoRepository empleadoRepository)
+                                EmpleadoRepository empleadoRepository,
+                                SolicitudRepository solicitudRepository)
         {
             _tipoLicenciaRepository = tipoLicenciaRepository;
-            _solicitanteRepository = solicitanteRepository;
-            _empleadosRepository = empleadoRepository;
+            _solicitanteRepository  = solicitanteRepository;
+            _empleadosRepository    = empleadoRepository;
+            _solicitudRepository    = solicitudRepository;
         }
 
 
@@ -241,6 +244,163 @@ namespace SistemaLicencias.BusinessLogic.Service
         #endregion
 
 
+        #region Solicitud
+        public ServiceResult ListadoSolicitud()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _solicitudRepository.List();
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+
+                return result.Error(e.Message);
+
+            }
+        }
+
+
+        public VW_tbSolicitud_View BuscarSoliciud(int? id)
+        {
+            try
+            {
+                var list = _solicitudRepository.Find(id);
+                return list;
+            }
+            catch (Exception)
+            {
+
+                return null;
+
+            }
+        }
+
+        public ServiceResult InsertarSolicitud(tbSolicitud solicitud)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var map = _solicitudRepository.Insert(solicitud);
+                if (map.CodeStatus > 0)
+                {
+                    return result.Ok(map);
+                }
+                else
+                {
+                    map.MessageStatus = (map.CodeStatus == 0) ? "404 Error de consulta" : map.MessageStatus;
+                    return result.Error(map);
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public ServiceResult EditarSolicitud(tbSolicitud solicitud)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var map = _solicitudRepository.Update(solicitud);
+                if (map.CodeStatus > 0)
+                {
+                    return result.Ok(map);
+                }
+                else
+                {
+                    map.MessageStatus = (map.CodeStatus == 0) ? "404 Error de consulta" : map.MessageStatus;
+                    return result.Error(map);
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public ServiceResult EliminarSolicitud(tbSolicitud solicitud)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var map = _solicitudRepository.Delete(solicitud);
+                if (map.CodeStatus > 0)
+                {
+                    return result.Ok(map);
+                }
+                else
+                {
+                    map.MessageStatus = (map.CodeStatus == 0) ? "404 Error de consulta" : map.MessageStatus;
+                    return result.Error(map);
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
+        public ServiceResult Rezachar(tbRechazados rechazados)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var map = _solicitudRepository.Reject(rechazados);
+                if (map.CodeStatus > 0)
+                {
+                    return result.Ok(map);
+                }
+                else
+                {
+                    map.MessageStatus = (map.CodeStatus == 0) ? "404 Error de consulta" : map.MessageStatus;
+                    return result.Error(map);
+                }
+            }
+            catch (Exception)
+            { 
+                throw;
+            }
+        }
+
+
+        public ServiceResult Aceptar(tbAprobados aprobados)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var map = _solicitudRepository.Accept(aprobados);
+                if (map.CodeStatus > 0)
+                {
+                    return result.Ok(map);
+                }
+                else
+                {
+                    map.MessageStatus = (map.CodeStatus == 0) ? "404 Error de consulta" : map.MessageStatus;
+                    return result.Error(map);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        #endregion
+
+
+
+
+
+
 
 
         public IEnumerable<tbCargos> ListadoCargos()
@@ -423,6 +583,33 @@ namespace SistemaLicencias.BusinessLogic.Service
             try
             {
                 var list = _solicitanteRepository.MunicipiosDropDownList(id);
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+
+        public ServiceResult TipoLocenciDropDownList()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _solicitudRepository.TipoLicenciaDropDownList();
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+        public ServiceResult SolicitanteDropDownList()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _solicitudRepository.SolicitanteDropDownList();
                 return result.Ok(list);
             }
             catch (Exception e)

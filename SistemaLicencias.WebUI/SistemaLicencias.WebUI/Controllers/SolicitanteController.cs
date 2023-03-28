@@ -26,6 +26,8 @@ namespace SistemaLicencias.WebUI.Controllers
 
         public async Task<IActionResult> Index()
         {
+            ViewBag.Resultado = TempData["soli"];
+
             List<VWSolicitantesViewModel> listado = new List<VWSolicitantesViewModel>();
             using (var httpClient = new HttpClient())
             {
@@ -122,6 +124,7 @@ namespace SistemaLicencias.WebUI.Controllers
                     var responseContent = await response.Content.ReadAsStringAsync();
                     Console.WriteLine(responseContent);
 
+                    TempData["soli"] = "CreateSuccess";
                     return RedirectToAction("Index");
                 }
                 else
@@ -223,10 +226,12 @@ namespace SistemaLicencias.WebUI.Controllers
                     var responseContent = await response.Content.ReadAsStringAsync();
                     Console.WriteLine(responseContent);
 
+                    TempData["soli"] = "EditSuccess";
                     return RedirectToAction("Index");
                 }
                 else
                 {
+                    TempData["soli"] = "EditError";
                     Console.WriteLine("La solicitud falló con el código de estado: " + response.StatusCode);
                 }
             }
@@ -250,14 +255,42 @@ namespace SistemaLicencias.WebUI.Controllers
             {
                 var responseContent = await response.Content.ReadAsStringAsync();
                 Console.WriteLine(responseContent);
+
+                TempData["soli"] = "DeleteSuccess";
                 return RedirectToAction("Index");
             }
             else
             {
+                TempData["tili"] = "DeleteError";
                 Console.WriteLine("La solicitud falló con el código de estado: " + response.StatusCode);
             }
             return RedirectToAction("Index");
         }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int? id)
+        {
+
+            using (var httpClient = new HttpClient())
+            {
+                var response = await httpClient.GetAsync(_baseurl + "api/Solicitante/Buscar?id=" + id);
+
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+
+                var lice = JsonConvert.DeserializeObject<VWSolicitantesViewModel>(jsonResponse);
+                return View(lice);
+            }
+
+        }
+
+
+
+
+
+
+
+
 
         //DROP DOWN LIST "MUNICIPIOS"
         [HttpGet]

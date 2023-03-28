@@ -252,7 +252,7 @@ namespace SistemaLicencias.WebUI.Controllers
             }
             else
             {
-                TempData["tili"] = "DeleteError";
+                TempData["soli"] = "DeleteError";
                 Console.WriteLine("La solicitud falló con el código de estado: " + response.StatusCode);
             }
 

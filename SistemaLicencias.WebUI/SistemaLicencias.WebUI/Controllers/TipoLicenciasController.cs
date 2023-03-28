@@ -146,8 +146,6 @@ namespace SistemaLicencias.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(TipoLicenciasViewModel tipoLicenciasViewModel)
         {
-
-            
             string json = JsonConvert.SerializeObject(tipoLicenciasViewModel);
 
             var client = new HttpClient();
@@ -170,10 +168,12 @@ namespace SistemaLicencias.WebUI.Controllers
                 Console.WriteLine("La solicitud falló con el código de estado: " + response.StatusCode);
             }
 
-
             return RedirectToAction("Index");
 
         }
+
+
+
 
     }
 }
