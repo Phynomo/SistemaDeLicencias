@@ -78,9 +78,9 @@ namespace SistemaLicencias.API.Controllers
         }
 
         [HttpPost("AceptarSolicitud")]
-        public IActionResult Accept(AprovadosViewModel aprovados)
+        public IActionResult Accept(AprobadosViewModel aprobados)
         {
-            var item = _mapper.Map<tbAprobados>(aprovados);
+            var item = _mapper.Map<tbAprobados>(aprobados);
             var response = _licenciaServivce.Aceptar(item);
             return Ok(response);
         }

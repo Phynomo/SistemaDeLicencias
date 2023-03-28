@@ -47,3 +47,4 @@ C:\Users\LAB01\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicen
 C:\Users\LAB01\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\obj\Debug\netcoreapp3.1\SistemaLicencias.Entities.csproj.CoreCompileInputs.cache
 C:\Users\LAB01\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\obj\Debug\netcoreapp3.1\SistemaLicencias.Entities.dll
 C:\Users\LAB01\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\obj\Debug\netcoreapp3.1\SistemaLicencias.Entities.pdb
+C:\Users\LAB01\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\obj\Debug\netcoreapp3.1\SistemaLicencias.Entities.csproj.AssemblyReference.cache
