@@ -18,6 +18,7 @@ namespace SistemaLicencias.BusinessLogic
             service.AddScoped<AprobadosRepository>();
             service.AddScoped<RechazadosRepository>();
             service.AddScoped<UsuarioRepository>();
+            service.AddScoped<SolicitudRepository>();
 
 
             LicenciaContext.BuildConnectionString(connectionString);

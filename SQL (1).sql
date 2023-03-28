@@ -1533,15 +1533,6 @@ BEGIN
 	WHERE soli_Estado = 1
 END
 
---*** FIND PROCEDURE ***--
-GO
-CREATE OR ALTER PROCEDURE lice.UDP_VW_tbSolicitantes_View_FIND
-(@soli_Id INT)
-AS
-BEGIN
-	SELECT * FROM VW_tbSolicitantes_View
-	WHERE soli_Id = @soli_Id;
-END
 
 
 --*** FIND PROCEDURE ***--
@@ -1826,6 +1817,15 @@ BEGIN
 END
 
 
+--*** FIND PROCEDURE ***--
+GO
+CREATE OR ALTER PROCEDURE lice.UDP_VW_tbSolicitud_View_FIND
+(@stud_Id INT)
+AS
+BEGIN
+	SELECT * FROM VW_tbSolicitud_View
+	WHERE stud_Id = @stud_Id;
+END
 
 
 --*****************************************************************************--
@@ -1874,7 +1874,7 @@ END
 
 
 
--- ** INSERT PROCEDURE **--
+-- ** ACCEPT PROCEDURE **--
 GO
 CREATE OR ALTER PROCEDURE lice.UDP_tbSolicitud_ACCEPT
 (@stud_Id INT,
@@ -2144,6 +2144,45 @@ GO
 
 
 GO
+GO
+CREATE OR ALTER VIEW lice.VW_tbRechazados_View
+AS
+SELECT	rech_Id, 
+		T1.stud_Id, 
+		T5.soli_Id,
+		T6.soli_Nombre,
+		T6.soli_Apellido,
+		T6.soli_Nombre + ' ' + T6.soli_Apellido AS soli_NombreCompleto,
+		T6.soli_Identidad,
+		T6.soli_Sexo,
+		T7.tili_Id,
+		T7.tili_Descripcion,
+		T8.sucu_Id,
+		T8.sucu_Direccion,
+		T1.empe_Id, 
+		T2.empe_Nombres,
+		T2.empe_Apellidos,
+		T2.empe_Nombres + ' ' + T2.empe_Apellidos as empe_NombreCompleto,
+		rech_Observaciones, 
+		rech_Fecha, 
+		rech_UsuCreacion, 
+		T3.user_NombreUsuario AS UsuarioCreacion,
+		rech_FechaCreacion, 
+		rech_UsuModificacion, 
+		T4.user_NombreUsuario AS UsuarioModificacion,
+		rech_FechaModificacion, 
+		rech_Estado
+FROM [lice].[tbRechazados] AS T1 INNER JOIN [lice].[tbEmpleados] AS T2
+ON T1.empe_Id = T2.empe_Id INNER JOIN [acce].[tbUsuarios] AS T3
+ON T1.rech_UsuCreacion = T3.[user_Id] LEFT JOIN [acce].[tbUsuarios] AS T4
+ON T1.rech_UsuModificacion = T4.[user_Id] INNER JOIN lice.tbSolicitud T5
+ON t5.stud_Id = T1.stud_Id INNER JOIN lice.tbSolicitantes T6
+ON T6.soli_Id = T5.soli_Id INNER JOIN lice.tbTiposLicencias T7
+ON t7.tili_Id = T5.tili_Id INNER JOIN Lice.tbSucursales T8
+ON T8.sucu_Id = T5.sucu_Id
+
+
+GO
 CREATE OR ALTER PROCEDURE lice.UDP_VW_tbTiposLicencias_View_FIND
 (@tili_Id INT)
 AS
@@ -2174,6 +2213,8 @@ BEGIN
 	FROM gral.tbMunicipios 
 	WHERE depa_Id = @depa_Id
 END
+
+
 GO
 CREATE OR ALTER PROCEDURE lice.UDP_tbCargos_SELECT
 AS
@@ -2254,4 +2295,22 @@ SELECT *
 
 
 
+END
+GO
+CREATE OR ALTER PROCEDURE lice.UDP_tbSolicitantes_DDL
+AS
+BEGIN
+	SELECT soli_Id, soli_Nombre + ' ' + soli_Apellido AS NombreCompleto
+	FROM lice.tbSolicitantes
+	WHERE soli_Estado = 1;
+END
+
+
+GO
+CREATE OR ALTER PROCEDURE lice.UDP_tbTipoLicencis_DDL
+AS
+BEGIN
+	SELECT tili_Id, tili_Descripcion
+	FROM lice.tbTiposLicencias
+	WHERE tili_Estado = 1;
 END

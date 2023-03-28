@@ -1,0 +1,37 @@
+﻿
+@model SistemaLicencias.WebUI.Models.AprovadosViewModel
+
+
+<div class="modal inmodal" id="ModalAccept" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated" id="ModalAcceptClass">
+            <div class="modal-header">
+                <h4 class="modal-title">Aceptar Solicitud</h4>
+                <small class="font-bold"></small>
+            </div>
+            <div class="modal-body">
+                <form asp-controller="Solicitud" asp-action="Accept" id="FormAccept">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <input asp-for="stud_Id" type="text" id="stud_IdAccept" hidden />
+
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <div style="text-align:center"><label class="control-label">Observacion</label></div>
+                            <textarea asp-for="apro_Observaciones" class="form-control" id="apro_ObservacionAccept"></textarea>
+                            <span id="lbapro_ObservacionAccept" class="text-danger" hidden>Este campo es requerido</span>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="PostModalAccept()">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+

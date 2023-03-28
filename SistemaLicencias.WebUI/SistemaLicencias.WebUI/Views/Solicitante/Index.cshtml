@@ -5,96 +5,93 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<input hidden id="resultado" value="@ViewBag.Resultado" />
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
+<div class="card" style="border:1px solid #283c4c;">
+    <div class="card-header text-center" style="background: radial-gradient(circle, rgba(30,45,93,1) 50%, rgba(32,164,140,1) 100%); ">
 
-            <th>
-                @Html.DisplayNameFor(model => model.soli_Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.soli_NombreCompleto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.soli_Identidad)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.soli_Sexo)
-            </th>
+        <div class="row">
+            <div class="col">
+                <h1 class="text-white" style="margin-top:0px;">Solicitantes</h1>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-4">
+                <a asp-action="Create" class="btn btn-block btn-primary">Agregar</a>
+            </div>
+        </div>
 
-            <th>
-                @Html.DisplayNameFor(model => model.soli_Telefono)
-            </th>
+    </div>
+    <div class="card-body table-responsive">
+        <table class="table table-hover dataTables" data-filtering="true">
+            <thead style=background-color: transparent;>
+                <tr>
 
-            <th>
-                @Html.DisplayNameFor(model => model.soli_Direccion)
-            </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.soli_Id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.soli_NombreCompleto)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.soli_Identidad)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.soli_Sexo)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.soli_Telefono)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.soli_Direccion)
+                    </th>
 
 
 
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.soli_Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.soli_NombreCompleto)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.soli_Identidad)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.soli_Sexo)
-                </td>
-                
-                <td>
-                    @Html.DisplayFor(modelItem => item.soli_Telefono)
-                </td>
-               
-                <td>
-                    @Html.DisplayFor(modelItem => item.soli_Direccion)
-                </td>
-             
-               
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.soli_Id }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    <button type="button" onclick="AbrirModalDelete('@item.soli_Id')">Eliminar</button>>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.soli_Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.soli_NombreCompleto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.soli_Identidad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.soli_Sexo)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.soli_Telefono)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.soli_Direccion)
+                    </td>
+
+
+                    <td class="d-flex justify-content-start">
+                        @Html.ActionLink("Editar", "Edit", new { id = item.soli_Id }, new { @class = "btn btn-warning btn-sm  btn-outline" })
+                        @Html.ActionLink("Detalles", "Details", new { id = item.soli_Id }, new { @class = "btn btn-info mx-1 btn-outline btn-sm" })
+                        <button class="btn btn-danger btn-sm btn-outline" type="button" onclick="OpenModalDelete('@item.soli_Id')">Eliminar</button>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
 
 @Html.Partial("_DeleteViewPartial", new SistemaLicencias.WebUI.Models.SolicitantesViewModel())
 
 
-@section scripts {
-
-
-    <script>
-
-        function AbrirModalDelete(id) {
-            $("#tili_IdD").val(id);
-            $("#ModalDelete").appendTo('body').modal('show');
-        }
-
-        function EnviarModalDelete() {
-            if ($("#tili_IdD").val() != "") {
-
-                $("#formDelete").submit();
-            }
-
-        }
-    </script>
-}
+<script src="~/js/App/Licencias/Solicitante.js"></script>

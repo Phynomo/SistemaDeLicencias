@@ -116,12 +116,7 @@
                             @Html.ActionLink("Editar", "Edit", new { id = item.empe_Id }, new { @class= "btn btn-warning btn-sm  btn-outline" }) 
                             @Html.ActionLink("Detalles", "Details", new { id = item.empe_Id }, new { @class= "btn btn-info mx-1 btn-outline btn-sm" }) 
                             <button class="btn btn-danger btn-sm btn-outline" type="button" onclick="OpenModalDelete('@item.empe_Id')">Eliminar</button>
-                        </td>
-                        @*<td class="d-flex justify-content-end">
-                                <button class="" type="button" onclick="OpenModalEdit('@item.tili_Id,$$,@item.tili_Descripcion')">Editar</button>
-                                @Html.ActionLink("Details", "Details", new { id = item.tili_Id }, new { @class = "" })
-                                <button class="btn btn-danger btn-sm btn-outline" type="button" onclick="OpenModalDelete('@item.tili_Id')">Eliminar</button>
-                            </td>*@
+                        </td>                     
                     </tr>
 }
             </tbody>
