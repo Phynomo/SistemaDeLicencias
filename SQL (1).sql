@@ -339,6 +339,20 @@ CREATE TABLE lice.tbRechazados(
 --******************** INSERTS *******************---
 
 
+
+--** PANTALLAS TABLE ***--
+GO
+INSERT INTO acce.tbPantallas(pant_Nombre, pant_Url, pant_Menu, pant_HtmlId, pant_UsuCreacion)
+VALUES ('Aprobados',        '/Aprobados',                'Licencia',        'AprobadosItem',        1),
+       ('Empleado',            '/Empleado',                'Licencia',        'EmpleadoItem',            1),
+       ('Rechazos',            '/Rechazos',                'Licencia',        'RechazosItem',            1),
+       ('Home',                '/Home',                    'Licencia',        'HomeItem',                1),
+       ('Solicitante',        '/Solicitante',                'Licencia',        'SolicitanteItem',        1),
+       ('Solicitud',        '/Solicitud',                'Licencia',        'SolicitudItem',        1),
+       ('TipoLicencias',    '/TipoLicencias',            'Licencia',        'TipoLicenciassItem',    1),
+       ('Roles',            '/Roles',                    'Acceso',        'RolesItem',            1),
+       ('Usuario',            '/Usuario',                    'Acceso',        'UsuarioItem',            1);
+
 --********** ESTADOS CIVILES TABLE ***************--
 GO
 INSERT INTO gral.tbEstadosCiviles (eciv_Descripcion, eciv_Estado, eciv_UsuCreacion, eciv_FechaCreacion, eciv_UsuModificacion, eciv_FechaModificacion)
@@ -943,6 +957,17 @@ END
   END
 
 
+  
+  GO
+  CREATE OR ALTER PROCEDURE acce.UDP_tbRoles_Find
+  @role_Id	INT
+  AS 
+  BEGIN
+  
+  SELECT * FROM acce.VW_tbRoles_View
+  WHERE role_Id = @role_Id
+
+  END
 
 
 
@@ -2275,8 +2300,10 @@ SELECT T1.[user_Id]
 	  ,T5.carg_Id
 	  ,T6.carg_Descripcion
       ,T1.[user_UsuCreacion]
+      ,t2.user_NombreUsuario AS UsuarioCreacion
       ,T1.[user_FechaCreacion]
       ,T1.[user_UsuModificacion]
+      ,t3.user_NombreUsuario AS UsuarioModificacion
       ,T1.[user_FechaModificacion]
       ,T1.[user_Estado]
   FROM [acce].[tbUsuarios] T1 LEFT JOIN acce.tbRoles T4
@@ -2333,7 +2360,7 @@ END CATCH
 
 
 
-END--quiero guardarlo xd
+END
 GO
 
 CREATE OR ALTER PROCEDURE lice.UDP_tbSolicitantes_DDL
@@ -2353,3 +2380,36 @@ BEGIN
 	FROM lice.tbTiposLicencias
 	WHERE tili_Estado = 1;
 END
+
+
+GO 
+CREATE VIEW acce.VW_tbPantallas_View
+AS
+SELECT [pant_Id]
+      ,[pant_Nombre]
+      ,[pant_Url]
+      ,[pant_Menu]
+      ,[pant_HtmlId]
+      ,[pant_UsuCreacion]
+      ,t2.user_NombreUsuario AS UsuarioCreacion
+      ,[pant_FechaCreacion]
+      ,[pant_UsuModificacion]
+      ,t3.user_NombreUsuario AS UsuarioModificacion
+      ,[pant_FechaModificacion]
+      ,[pant_Estado]
+  FROM [acce].[tbPantallas] T1 INNER JOIN acce.tbUsuarios T2
+  ON T1.pant_UsuCreacion = T2.[user_Id] LEFT JOIN acce.tbUsuarios T3
+  ON T1.pant_UsuModificacion = T3.[user_Id]
+
+GO
+
+GO
+CREATE OR ALTER PROCEDURE acce.UDP_tbPantallas_SELECT
+AS
+BEGIN
+	SELECT * FROM acce.VW_tbPantallas_View
+	WHERE pant_Estado = 1;
+END
+GO
+
+--Guarda

@@ -88,5 +88,22 @@ namespace SistemaLicencias.DataAccess.Repository
         public static string UDP_tbRechazados_Buscar = "lice.UDP_tbRechazados_Find";
 
 
+        #region Solicitantes
+        public static string UDP_tbRoles_Insertar = "acce.UDP_tbRoles_Insert";
+        public static string UDP_tbRoles_Editar = "acce.UDP_tbRoles_Update";
+        public static string UDP_tbRoles_Eliminar = "acce.UDP_tbRoles_Delete";
+        public static string UDP_tbRoles_Listado = "acce.UDP_tbRoles_Select";
+        public static string UDP_tbRoles_Buscar = "acce.UDP_tbRoles_Find";
+        #endregion
+
+
+        #region Solicitantes
+        //public static string UDP_tbRoles_Insertar = "acce.UDP_tbRoles_Insert";
+        //public static string UDP_tbRoles_Editar = "acce.UDP_tbRoles_Update";
+        //public static string UDP_tbRoles_Eliminar = "acce.UDP_tbRoles_Delete";
+        public static string UDP_tbPantallas_Listado = "acce.UDP_tbPantallas_SELECT";
+        //public static string UDP_tbRoles_Buscar = "acce.UDP_tbRoles_Find";
+        #endregion
+
     }
 }

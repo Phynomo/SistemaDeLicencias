@@ -1,0 +1,84 @@
+﻿@model IEnumerable<SistemaLicencias.WebUI.Models.VWRolesViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.role_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.role_Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.role_UsuCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UsuarioCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.role_FechaCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.role_UsuModificacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UsuarioModificacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.role_FechaModificacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.role_Estado)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.role_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.role_Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.role_UsuCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UsuarioCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.role_FechaCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.role_UsuModificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UsuarioModificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.role_FechaModificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.role_Estado)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

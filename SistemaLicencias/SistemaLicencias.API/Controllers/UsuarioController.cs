@@ -48,7 +48,7 @@ namespace SistemaLicencias.API.Controllers
         }
 
         [HttpPut("Editar")]
-        public IActionResult Update(tbUsuarios usuarios)
+        public IActionResult Update(UsuariosViewModel usuarios)
         {
             var item = _mapper.Map<tbUsuarios>(usuarios);
             var result = _seguridadServivce.EditarUsuario(item);
@@ -56,7 +56,7 @@ namespace SistemaLicencias.API.Controllers
         }
 
         [HttpPut("Eliminar")]
-        public IActionResult Delete(tbUsuarios usuarios)
+        public IActionResult Delete(UsuariosViewModel usuarios)
         {
             var item = _mapper.Map<tbUsuarios>(usuarios);
             var result = _seguridadServivce.EliminarUsuario(item);

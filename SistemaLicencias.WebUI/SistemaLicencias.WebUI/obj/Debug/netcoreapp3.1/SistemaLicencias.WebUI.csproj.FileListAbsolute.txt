@@ -412,3 +412,5 @@ C:\Users\LAB01\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\Sistem
 C:\Users\LAB01\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\SistemaLicencias.WebUI.dll
 C:\Users\LAB01\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\SistemaLicencias.WebUI.pdb
 C:\Users\LAB01\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\SistemaLicencias.WebUI.genruntimeconfig.cache
+C:\Users\LAB01\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Roles\Index.cshtml.g.cs
+C:\Users\LAB01\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Roles\Create.cshtml.g.cs
