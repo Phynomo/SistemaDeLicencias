@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -64,7 +65,7 @@ namespace SistemaLicencias.WebUI.Controllers
         public async Task<IActionResult> Create(TipoLicenciasViewModel tipoLicenciasViewModel)
         {
 
-            tipoLicenciasViewModel.tili_UsuCreacion = 1;
+            tipoLicenciasViewModel.tili_UsuCreacion = Convert.ToInt32(HttpContext.Session.GetInt32("usur_Id")); 
             string json = JsonConvert.SerializeObject(tipoLicenciasViewModel);
 
             var client = new HttpClient();
@@ -115,7 +116,7 @@ namespace SistemaLicencias.WebUI.Controllers
         public async Task<IActionResult> Edit(TipoLicenciasViewModel tipoLicenciasViewModel)
         {
 
-            tipoLicenciasViewModel.tili_UsuModificacion = 1;
+            tipoLicenciasViewModel.tili_UsuModificacion = Convert.ToInt32(HttpContext.Session.GetInt32("usur_Id"));
             string json = JsonConvert.SerializeObject(tipoLicenciasViewModel);
 
             var client = new HttpClient();

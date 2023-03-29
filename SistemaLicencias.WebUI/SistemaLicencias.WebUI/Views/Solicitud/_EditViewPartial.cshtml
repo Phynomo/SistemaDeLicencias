@@ -45,9 +45,11 @@
                        
                         <div class="col-sm-6">
                             <label class="control-label">Pago</label>
-                            <div class="form-group">
-                                <label class="form-check-label">
-                                    <input class="js-switch" style="margin-left:-10px" id="stud_pagoEdit" type="checkbox" asp-for="stud_Pago" />
+                            <div class="form-group">                             
+                                <!-- Rounded switch -->
+                                <label class="switch">
+                                    <input style="margin-left:-10px" type="checkbox" asp-for="stud_Pago" id="stud_pagoEdit" />
+                                    <span class="slider round"></span>
                                 </label>
                             </div>
                         </div>

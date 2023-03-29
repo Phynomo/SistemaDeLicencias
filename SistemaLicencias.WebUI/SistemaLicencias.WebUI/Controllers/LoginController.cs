@@ -52,16 +52,17 @@ namespace SistemaLicencias.WebUI.Controllers
                 var lice = JsonConvert.DeserializeObject<VWUsuariosViewModel>(jsonResponse);
                 if (lice == null)
                 {
-                ViewBag.Resultado = "InicioFallido";
-                return View();
+                    ViewBag.Resultado = "InicioFallido";
+                    return View();
                 }
 
-                //HttpContext.Session.SetString("Nombre", lice.empe_NombreCompleto);
-                //HttpContext.Session.SetString("Cargo", lice.carg_Descripcion);
-                //HttpContext.Session.SetInt32("Sucursal", lice.sucu_Id);
-                //HttpContext.Session.SetInt32("usur_Id", lice.user_Id);
-                //HttpContext.Session.SetString("EsAdmin", lice.user_EsAdmin.ToString());
-                //HttpContext.Session.SetInt32("Rol", Convert.ToInt32(lice.role_Id));
+                HttpContext.Session.SetInt32("empe_Id",     Convert.ToInt32(lice.empe_Id));
+                HttpContext.Session.SetString("Nombre",     lice.empe_NombreCompleto);
+                HttpContext.Session.SetString("Cargo",      lice.carg_Descripcion);
+                HttpContext.Session.SetInt32("Sucursal",    lice.sucu_Id);
+                HttpContext.Session.SetInt32("usur_Id",     lice.user_Id);
+                HttpContext.Session.SetString("EsAdmin",    lice.user_EsAdmin.ToString());
+                HttpContext.Session.SetInt32("Rol",         Convert.ToInt32(lice.role_Id));
 
                 return RedirectToAction("Index","Home");
             }

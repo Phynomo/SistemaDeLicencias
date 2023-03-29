@@ -5,6 +5,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<link href="~/css/switches.css" rel="stylesheet" />
+
 <input hidden id="resultado" value="@ViewBag.Resultado" />
 
 <div class="card" style="border:1px solid #283c4c;">
@@ -73,9 +75,13 @@
 
                             <button class="btn btn-danger btn-sm btn-outline" type="button" onclick="OpenModalDelete('@item.stud_Id')">Eliminar</button>
 
-                            <button class="btn btn-secondary btn-sm  btn-outline" type="button" onclick="Rejeact(@item.stud_Id)">Rechazar</button>
-
-                            <button class="btn btn-secondary btn-sm  btn-outline" type="button" onclick="Accept(@item.stud_Id)">Aceptar</button>
+                            <div class="btn-group">
+                                <button data-toggle="dropdown" class="btn btn-secondary btn-sm  btn-outline dropdown-toggle">Action</button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" onclick="Rejeact(@item.stud_Id)">Rechazar</a></li>
+                                    <li><a class="dropdown-item" onclick="Accept(@item.stud_Id)">Aceptar</a></li>
+                                </ul>
+                            </div>
 
                         </td>
                     </tr>

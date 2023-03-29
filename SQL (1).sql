@@ -339,6 +339,23 @@ CREATE TABLE lice.tbRechazados(
 --******************** INSERTS *******************---
 
 
+
+--********** PANTALLAS TABLE ***************--
+GO
+INSERT INTO acce.tbPantallas(pant_Nombre, pant_Url, pant_Menu, pant_HtmlId, pant_UsuCreacion)
+VALUES ('Aprobados',		'/Aprobados',				'Licencia',		'AprobadosItem',		1),
+       ('Empleado',			'/Empleado',				'Licencia',		'EmpleadoItem',			1),
+	   ('Rechazos',			'/Rechazos',				'Licencia',		'RechazosItem',			1),
+	   ('Home',				'/Home',					'Licencia',		'HomeItem',				1),
+	   ('Solicitante',		'/Solicitante',				'Licencia',		'SolicitanteItem',		1),
+	   ('Solicitud',		'/Solicitud',				'Licencia',		'SolicitudItem',		1),
+	   ('TipoLicencias',	'/TipoLicencias',			'Licencia',		'TipoLicenciassItem',	1),
+	   ('Roles',			'/Roles',					'Acceso',		'RolesItem',			1),
+	   ('Usuario',			'/Usuario',					'Acceso',		'UsuarioItem',			1);
+
+	
+
+
 --********** ESTADOS CIVILES TABLE ***************--
 GO
 INSERT INTO gral.tbEstadosCiviles (eciv_Descripcion, eciv_Estado, eciv_UsuCreacion, eciv_FechaCreacion, eciv_UsuModificacion, eciv_FechaModificacion)

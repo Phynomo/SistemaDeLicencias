@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -101,62 +102,72 @@ namespace SistemaLicencias.WebUI.Controllers
         public async Task<IActionResult> Create(EmpleadosViewModel empleadosViewModel)
         {
 
-            empleadosViewModel.empe_UsuCreacion = 1;
-            string json = JsonConvert.SerializeObject(empleadosViewModel);
-
-            var client = new HttpClient();
-            client.BaseAddress = new Uri(_baseurl + "api/Empleado/Insertar");
-
-            var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
-
-            var response = await client.PostAsync(_baseurl + "api/Empleado/Insertar", content);
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                var responseContent = await response.Content.ReadAsStringAsync();
-                TempData["empe"] = "CreateSuccess";
-                Console.WriteLine(responseContent);
+                empleadosViewModel.empe_UsuCreacion = Convert.ToInt32(HttpContext.Session.GetInt32("usur_Id"));
+                string json = JsonConvert.SerializeObject(empleadosViewModel);
 
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                TempData["empe"] = "CreateError";
-                Console.WriteLine("La solicitud falló con el código de estado: " + response.StatusCode);
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(_baseurl + "api/Empleado/Insertar");
 
-                using (var httpClient = new HttpClient())
+                var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+
+                var response = await client.PostAsync(_baseurl + "api/Empleado/Insertar", content);
+
+                if (response.IsSuccessStatusCode)
                 {
-                    var responseCargos = await httpClient.GetAsync(_baseurl + "api/Empleado/Cargos");
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    TempData["empe"] = "CreateSuccess";
+                    Console.WriteLine(responseContent);
 
-                    if (responseCargos.IsSuccessStatusCode)
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    TempData["empe"] = "CreateError";
+                    Console.WriteLine("La solicitud falló con el código de estado: " + response.StatusCode);
+
+                    using (var httpClient = new HttpClient())
                     {
-                        var Cargos = await responseCargos.Content.ReadAsStringAsync();
-                        var listadoCargos = JsonConvert.DeserializeObject<List<VWEmpleadosViewModel>>(Cargos);
-                        ViewBag.Cargos = new SelectList(listadoCargos, "carg_Id", "carg_Descripcion", empleadosViewModel.carg_Id);
+                        var responseCargos = await httpClient.GetAsync(_baseurl + "api/Empleado/Cargos");
+
+                        if (responseCargos.IsSuccessStatusCode)
+                        {
+                            var Cargos = await responseCargos.Content.ReadAsStringAsync();
+                            var listadoCargos = JsonConvert.DeserializeObject<List<VWEmpleadosViewModel>>(Cargos);
+                            ViewBag.Cargos = new SelectList(listadoCargos, "carg_Id", "carg_Descripcion", empleadosViewModel.carg_Id);
+                        }
+
+                        var responseSucursales = await httpClient.GetAsync(_baseurl + "api/Empleado/Sucursales");
+
+                        if (responseSucursales.IsSuccessStatusCode)
+                        {
+                            var Sucursales = await responseSucursales.Content.ReadAsStringAsync();
+                            var listadoSucursales = JsonConvert.DeserializeObject<List<VWEmpleadosViewModel>>(Sucursales);
+                            ViewBag.Sucursales = new SelectList(listadoSucursales, "sucu_Id", "sucu_Nombre", empleadosViewModel.sucu_Id);
+                        }
+
+                        var responseECiviles = await httpClient.GetAsync(_baseurl + "api/Empleado/EstadosCiviles");
+
+                        if (responseECiviles.IsSuccessStatusCode)
+                        {
+                            var Estados = await responseECiviles.Content.ReadAsStringAsync();
+                            var listadoEstados = JsonConvert.DeserializeObject<List<VWEmpleadosViewModel>>(Estados);
+                            ViewBag.EstadosCiviles = new SelectList(listadoEstados, "eciv_Id", "eciv_Descripcion", empleadosViewModel.eciv_Id);
+                        }
                     }
 
-                    var responseSucursales = await httpClient.GetAsync(_baseurl + "api/Empleado/Sucursales");
-
-                    if (responseSucursales.IsSuccessStatusCode)
-                    {
-                        var Sucursales = await responseSucursales.Content.ReadAsStringAsync();
-                        var listadoSucursales = JsonConvert.DeserializeObject<List<VWEmpleadosViewModel>>(Sucursales);
-                        ViewBag.Sucursales = new SelectList(listadoSucursales, "sucu_Id", "sucu_Nombre", empleadosViewModel.sucu_Id);
-                    }
-
-                    var responseECiviles = await httpClient.GetAsync(_baseurl + "api/Empleado/EstadosCiviles");
-
-                    if (responseECiviles.IsSuccessStatusCode)
-                    {
-                        var Estados = await responseECiviles.Content.ReadAsStringAsync();
-                        var listadoEstados = JsonConvert.DeserializeObject<List<VWEmpleadosViewModel>>(Estados);
-                        ViewBag.EstadosCiviles = new SelectList(listadoEstados, "eciv_Id", "eciv_Descripcion", empleadosViewModel.eciv_Id );
-                    }
                 }
 
+                
+                return View(empleadosViewModel);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("ERRORFIU","Home");
             }
 
-            return View(empleadosViewModel);
+            
 
         }
 
@@ -231,7 +242,7 @@ namespace SistemaLicencias.WebUI.Controllers
         public async Task<IActionResult> Edit(EmpleadosViewModel empleadosViewModel)
         {
 
-            empleadosViewModel.empe_UsuModificacion = 1;
+            empleadosViewModel.empe_UsuModificacion = Convert.ToInt32(HttpContext.Session.GetInt32("usur_Id")); ;
             string json = JsonConvert.SerializeObject(empleadosViewModel);
 
             var client = new HttpClient();

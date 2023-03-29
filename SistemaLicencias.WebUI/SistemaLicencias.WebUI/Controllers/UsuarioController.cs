@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -79,7 +80,7 @@ namespace SistemaLicencias.WebUI.Controllers
         public async Task<IActionResult> Create(UsuariosViewModel usuario)
         {
 
-            usuario.user_UsuCreacion = 1;
+            usuario.user_UsuCreacion = Convert.ToInt32(HttpContext.Session.GetInt32("usur_Id"));
             string json = JsonConvert.SerializeObject(usuario);
 
             var client = new HttpClient();
@@ -112,6 +113,8 @@ namespace SistemaLicencias.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(UsuariosViewModel usuarios)
         {
+
+            usuarios.user_UsuModificacion = Convert.ToInt32(HttpContext.Session.GetInt32("usur_Id"));
             string json = JsonConvert.SerializeObject(usuarios);
 
             var client = new HttpClient();

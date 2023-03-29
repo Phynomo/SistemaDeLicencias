@@ -2,15 +2,15 @@
 
 @using Microsoft.AspNetCore.Http
 @{
-    @*var session = Context.RequestServices.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
+    var session = Context.RequestServices.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
     int user_Id = ViewBag.user_Id = Convert.ToInt32(session?.GetInt32("usur_Id"));
     string Nombre = ViewBag.Nombre = session?.GetString("Nombre");
     string Cargo = ViewBag.Cargo = session?.GetString("Cargo");
     int Sucursal = ViewBag.Sucursal = Convert.ToInt32(session?.GetInt32("Sucursal"));
     if (user_Id == 0)
     {
-        <script>window.location.href = '/Login/Index';</script>
-    }*@
+        <script>window.location.href = '/Login';</script>
+    }
 }
 
 

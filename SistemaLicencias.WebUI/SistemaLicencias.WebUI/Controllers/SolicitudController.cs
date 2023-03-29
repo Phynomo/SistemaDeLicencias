@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -85,7 +86,7 @@ namespace SistemaLicencias.WebUI.Controllers
         public async Task<IActionResult> Create(SolicitudViewModel solicitud)
         {
 
-            solicitud.stud_UsuCreacion = 1;
+            solicitud.stud_UsuCreacion = Convert.ToInt32(HttpContext.Session.GetInt32("usur_Id")); ;
             string json = JsonConvert.SerializeObject(solicitud);
 
             var client = new HttpClient();
@@ -118,7 +119,7 @@ namespace SistemaLicencias.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(SolicitudViewModel solicitud)
         {
-            solicitud.stud_UsuModificacion = 1;
+            solicitud.stud_UsuModificacion = Convert.ToInt32(HttpContext.Session.GetInt32("usur_Id")); ;
             string json = JsonConvert.SerializeObject(solicitud);
             var client = new HttpClient();
             client.BaseAddress = new Uri(_baseurl + "api/Solicitud/Editar");
@@ -185,8 +186,8 @@ namespace SistemaLicencias.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> Reject(RechazadosViewModel rechazados)
         {
-            rechazados.empe_Id = 1;
-            rechazados.rech_UsuCreacion = 1;
+            rechazados.empe_Id = Convert.ToInt32(HttpContext.Session.GetInt32("empe_Id")); 
+            rechazados.rech_UsuCreacion = Convert.ToInt32(HttpContext.Session.GetInt32("usur_Id")); ;
             
             string json = JsonConvert.SerializeObject(rechazados);
             var client = new HttpClient();
@@ -211,8 +212,8 @@ namespace SistemaLicencias.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> Accept(AprovadosViewModel aprovados)
         {
-            aprovados.empe_Id = 1;
-            aprovados.apro_UsuCreacion = 1;
+            aprovados.empe_Id = Convert.ToInt32(HttpContext.Session.GetInt32("empe_Id"));
+            aprovados.apro_UsuCreacion = Convert.ToInt32(HttpContext.Session.GetInt32("usur_Id")); ;
 
             string json = JsonConvert.SerializeObject(aprovados);
             var client = new HttpClient();
