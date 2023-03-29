@@ -6374,19 +6374,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\danie\\.nuget\\packages\\": {}
+    "C:\\Users\\LAB01\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\danie\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias.WebUI\\SistemaLicencias.WebUI\\SistemaLicencias.WebUI.csproj",
+      "projectUniqueName": "C:\\Users\\LAB01\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias.WebUI\\SistemaLicencias.WebUI\\SistemaLicencias.WebUI.csproj",
       "projectName": "SistemaLicencias.WebUI",
-      "projectPath": "C:\\Users\\danie\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias.WebUI\\SistemaLicencias.WebUI\\SistemaLicencias.WebUI.csproj",
-      "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\danie\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias.WebUI\\SistemaLicencias.WebUI\\obj\\",
+      "projectPath": "C:\\Users\\LAB01\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias.WebUI\\SistemaLicencias.WebUI\\SistemaLicencias.WebUI.csproj",
+      "packagesPath": "C:\\Users\\LAB01\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\LAB01\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias.WebUI\\SistemaLicencias.WebUI\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\LAB01\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
