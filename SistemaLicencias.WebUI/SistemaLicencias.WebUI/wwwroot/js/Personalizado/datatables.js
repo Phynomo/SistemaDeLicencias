@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
 
-    var elem = document.querySelector('.js-switch');
-    var switchery = new Switchery(elem, { color: '#1AB394' });
+    //var elem = document.querySelector('.js-switch');
+    //var switchery = new Switchery(elem, { color: '#1AB394' });
 
 
     $(".select2").select2({
@@ -9,7 +9,7 @@
     });
 
 
-    $('.dataTables').DataTable({
+    var tabla = $('.dataTables').DataTable({
         fixedHeader: false,
         pageLength: 25,
         responsive: true,
@@ -255,11 +255,35 @@
                 "removeTitle": "Remover Estado",
                 "renameTitle": "Cambiar Nombre Estado"
             }
-        },
+        }, 
         buttons: [
+            {
+                extend: 'pdfHtml5',
+                download: 'open',
+                exportOptions: {
+                    columns: ':not(:last-child)' // Excluye la última columna
+                },
+                customize: function (doc) {
+                    // Agrega un encabezado personalizado
+                    doc.content.splice(0, 0, {
+                        text: 'Encabezado personalizado',
+                        fontSize: 18,
+                        margin: [0, 0, 0, 10]
+                    });
+                },
+                title: 'Title',
+                window: {
+                    title: 'PDF Title',
+                    // Abre el PDF en una nueva pestaña
+                    open: '_blank'
+                }
+            }
         ]
 
     });
+
+    //var numColumns = tabla.columns().count();
+    //console.log(numColumns);
 
     $('.footable').footable({
         "paging": {
