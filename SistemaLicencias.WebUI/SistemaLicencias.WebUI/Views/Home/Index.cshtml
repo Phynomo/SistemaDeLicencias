@@ -5,6 +5,44 @@
 <div class="text-center">
     <h1 class="display-4">Licencias licenciado</h1>
 
+    <input id="CantidadHombres" type="text" value="@ViewBag.Hombre" hidden />
+    <input id="CantidadMujeres" type="text" value="@ViewBag.Mujer"  hidden/>
+
+
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>Pie</h5>
+
+                </div>
+                <div class="ibox-content">
+                    <div>
+                        <canvas id="doughnutChart" height="140"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+
+
     <img src="~/gif/42809-driving-license-scanning-unscreen (1).gif" />
     <h2 class="display-4">Las unicas y mejores</h2>
 </div>
+
+
+<script src="~/js/jquery-3.1.1.min.js"></script>
+<script src="~/js/popper.min.js"></script>
+<script src="~/js/bootstrap.js"></script>
+<script src="~/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="~/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+<!-- Custom and plugin javascript -->
+<script src="~/js/inspinia.js"></script>
+<script src="~/js/plugins/pace/pace.min.js"></script>
+
+<!-- ChartJS-->
+<script src="~/js/plugins/chartJs/Chart.min.js"></script>
+<script src="~/js/demo/chartjs-demo.js"></script>

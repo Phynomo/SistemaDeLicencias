@@ -1,8 +1,5 @@
 ﻿$(document).ready(function () {
 
-    var elem = document.querySelector('.js-switch');
-    var switchery = new Switchery(elem, { color: '#1AB394' });
-
 
     $(".select2").select2({
         theme: 'bootstrap4',

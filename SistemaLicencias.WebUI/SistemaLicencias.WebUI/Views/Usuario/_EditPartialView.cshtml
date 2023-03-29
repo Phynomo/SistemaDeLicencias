@@ -1,0 +1,57 @@
+﻿
+@model SistemaLicencias.WebUI.Models.UsuariosViewModel
+
+
+<div class="modal inmodal" id="ModalEdit" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated" id="ModalEditClass">
+            <div class="modal-header">
+                <h4 class="modal-title">Editar</h4>
+                <small class="font-bold">Editar Usuario</small>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Edit" id="FormEdit">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <input asp-for="user_Id" id="user_IdEdit" type="hidden" />
+
+
+
+                    <div class="row">                       
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Rol</label>
+                                <select asp-for="role_Id" id="role_IdEdit" class="form-control" asp-items="ViewBag.role_Id">
+                                    <option value="0"> -- Seleccione un Rol -- </option>
+                                </select>
+                                <span id="lbrole_IdEdit" class="text-danger" hidden>Este campo es requerido</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Empleado</label>
+                                <select asp-for="empe_Id" id="empe_IdEdit" class="form-control" asp-items="ViewBag.empe_Id">
+                                    <option value="0"> -- Seleccione un Empleado -- </option>
+                                </select>
+                                <span id="lbempe_IdEdit" class="text-danger" hidden>Este campo es requerido</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="control-label">Es Admin</label>
+                            <div class="form-group">
+                                <label class="form-check-label">
+                                    <input style="margin-left:-10px"  type="checkbox" class="js-switch" asp-for="user_EsAdmin" id="user_EsAdminEdit" />
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="PostModalEdit()">Agregar</button>
+            </div>
+        </div>
+    </div>
+</div>

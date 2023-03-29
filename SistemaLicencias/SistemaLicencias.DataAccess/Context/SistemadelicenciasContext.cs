@@ -46,7 +46,7 @@ namespace SistemaLicencias.DataAccess.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("Relational:Collation", "Modern_Spanish_CI_AS");
+            modelBuilder.HasAnnotation("Relational:Collation", "Latin1_General_CI_AI");
 
             modelBuilder.Entity<VW_tbAprobados_View>(entity =>
             {
@@ -286,7 +286,7 @@ namespace SistemaLicencias.DataAccess.Context
                     .IsUnicode(false)
                     .IsFixedLength(true);
 
-                entity.Property(e => e.sucu_Nombre)
+                entity.Property(e => e.sucu_Direccion)
                     .IsRequired()
                     .HasMaxLength(200);
 
@@ -872,7 +872,7 @@ namespace SistemaLicencias.DataAccess.Context
 
                 entity.ToTable("tbRoles", "acce");
 
-                entity.HasIndex(e => e.role_Nombre, "UQ__tbRoles__3895D82ED0F8CF8D")
+                entity.HasIndex(e => e.role_Nombre, "UQ__tbRoles__3895D82EEBC90CEE")
                     .IsUnique();
 
                 entity.Property(e => e.role_Estado)
@@ -908,7 +908,7 @@ namespace SistemaLicencias.DataAccess.Context
 
                 entity.ToTable("tbSolicitantes", "lice");
 
-                entity.HasIndex(e => e.soli_Identidad, "UQ__tbSolici__ACE8F0CBBE1BCDC1")
+                entity.HasIndex(e => e.soli_Identidad, "UQ__tbSolici__ACE8F0CB7B5B68BB")
                     .IsUnique();
 
                 entity.Property(e => e.soli_Apellido)
@@ -1060,7 +1060,7 @@ namespace SistemaLicencias.DataAccess.Context
 
                 entity.ToTable("tbTiposLicencias", "lice");
 
-                entity.HasIndex(e => e.tili_Descripcion, "UQ__tbTiposL__F7BA37CA1328BAF7")
+                entity.HasIndex(e => e.tili_Descripcion, "UQ__tbTiposL__F7BA37CA25E200F0")
                     .IsUnique();
 
                 entity.Property(e => e.tili_Descripcion)

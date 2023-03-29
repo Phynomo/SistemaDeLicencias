@@ -1,0 +1,42 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace SistemaLicencias.WebUI.Models
+{
+    public class VWUsuarioViewModel
+    {
+        [Display(Name = "Id")]
+        public int user_Id { get; set; }
+
+        [Display(Name = "Nombre  Usuario")]
+        public string user_NombreUsuario { get; set; }
+
+        [Display(Name = "Contraseña")]
+        public string user_Contrasena { get; set; }
+
+        [Display(Name = "Es Admin")]
+        public bool? user_EsAdmin { get; set; }
+        public int? role_Id { get; set; }
+
+        [Display(Name = "Rol")]
+        public string role_Nombre { get; set; }
+        public int? empe_Id { get; set; }
+        public string empe_Nombres { get; set; }
+        public string empe_Apellidos { get; set; }
+
+        [Display(Name = "Empleado")]
+        public string empe_NombreCompleto { get; set; }
+        public int sucu_Id { get; set; }
+        public string sucu_Nombre { get; set; }
+        public int carg_Id { get; set; }
+        public string carg_Descripcion { get; set; }
+        public int user_UsuCreacion { get; set; }
+        public DateTime user_FechaCreacion { get; set; }
+        public int? user_UsuModificacion { get; set; }
+        public DateTime? user_FechaModificacion { get; set; }
+        public bool user_Estado { get; set; }
+    }
+}

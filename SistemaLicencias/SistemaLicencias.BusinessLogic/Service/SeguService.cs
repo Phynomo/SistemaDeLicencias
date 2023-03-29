@@ -26,11 +26,121 @@ namespace SistemaLicencias.BusinessLogic.Service
             }
             catch (Exception)
             {
-
                 return null;
-
             }
         }
+
+
+        public ServiceResult ListadoUsuarios()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _usuarioRepository.List();
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+
+
+        public VW_tbUsuarios_View BuscarUsuario(int? id)
+        {
+            try
+            {
+                var list = _usuarioRepository.Find(id);
+                return list;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public ServiceResult InsertarUsuario(tbUsuarios usuario)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var map = _usuarioRepository.Insert(usuario);
+                if (map.CodeStatus > 0)
+                {
+                    return result.Ok(map);
+                }
+                else
+                {
+                    map.MessageStatus = (map.CodeStatus == 0) ? "404 Error de consulta" : map.MessageStatus;
+                    return result.Error(map);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public ServiceResult EditarUsuario(tbUsuarios usuario)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var map = _usuarioRepository.Update(usuario);
+                if (map.CodeStatus > 0)
+                {
+                    return result.Ok(map);
+                }
+                else
+                {
+                    map.MessageStatus = (map.CodeStatus == 0) ? "404 Error de consulta" : map.MessageStatus;
+                    return result.Error(map);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
+        public ServiceResult EliminarUsuario(tbUsuarios usuario)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var map = _usuarioRepository.Delete(usuario);
+                if (map.CodeStatus > 0)
+                {
+                    return result.Ok(map);
+                }
+                else
+                {
+                    map.MessageStatus = (map.CodeStatus == 0) ? "404 Error de consulta" : map.MessageStatus;
+                    return result.Error(map);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
+        public ServiceResult RolDropDownList()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _usuarioRepository.RolesDropDownList();
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+
 
         #endregion
 

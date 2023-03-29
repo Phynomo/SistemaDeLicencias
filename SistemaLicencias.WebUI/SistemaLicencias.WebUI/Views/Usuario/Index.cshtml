@@ -1,0 +1,100 @@
+﻿@model IEnumerable<SistemaLicencias.WebUI.Models.VWUsuarioViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<input hidden id="resultado" value="@ViewBag.Resultado" />
+
+<div class="card" style="border:1px solid #283c4c;">
+    <div class="card-header text-center" style="background: radial-gradient(circle, rgba(30,45,93,1) 50%, rgba(32,164,140,1) 100%); ">
+
+        <div class="row">
+            <div class="col">
+                <h1 class="text-white" style="margin-top:0px;">Usuarios</h1>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-4">
+                <button onclick="OpenModalCreate()" type="button" class="btn btn-block btn-primary">
+                    Agregar
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="card-body table-responsive">
+        <table class="table table-hover dataTables" data-filtering="true">
+            <thead style=background-color: transparent;>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.user_Id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.user_NombreUsuario)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.user_EsAdmin)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.role_Nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.empe_NombreCompleto)
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.user_Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.user_NombreUsuario)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.user_EsAdmin)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.role_Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.empe_NombreCompleto)
+                        </td>
+                        <td>
+                            <button class="btn btn-warning btn-sm  btn-outline" type="button" onclick="Editar('@item.user_Id,$$,@item.user_EsAdmin,$$,@item.role_Id,$$,@item.empe_Id')">Editar</button>
+                            @Html.ActionLink("Detalles", "Details", new { id = item.user_Id }, new { @class = "btn btn-info mx-1 btn-outline btn-sm" })
+                            <button class="btn btn-danger btn-sm btn-outline" type="button" onclick="OpenModalDelete('@item.user_Id')">Eliminar</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@Html.Partial("_CreateViewPartial", new SistemaLicencias.WebUI.Models.UsuariosViewModel())
+@Html.Partial("_DeleteViewPartial", new SistemaLicencias.WebUI.Models.UsuariosViewModel())
+@Html.Partial("_EditPartialView", new SistemaLicencias.WebUI.Models.UsuariosViewModel())
+
+
+
+
+
+
+    <script src="~/js/App/Seguridad/Usuario.js"></script>
+
+
+
+
+
+
+
