@@ -902,8 +902,7 @@ BEGIN
 		SELECT 0 as Proceso
 	END CATCH
 END
-GO
-GO
+
 
 GO
 CREATE OR ALTER VIEW acce.VW_tbRoles_View
@@ -933,12 +932,6 @@ END
 
 
 
-
-
-
-
-
-
   GO
   CREATE OR ALTER PROCEDURE acce.UDP_tbRoles_Select
   AS 
@@ -948,8 +941,8 @@ END
   WHERE role_Estado = 1
 
   END
-  GO
-  GO
+
+
 
 
 
@@ -1629,14 +1622,12 @@ END
 --** DELETE PROCEDURE **--
 GO
 CREATE OR ALTER PROCEDURE acce.UDP_tbusuarios_DELETE
-(@user_Id INT,
- @user_UsuModificacion INT)
+(@user_Id INT)
 AS
 BEGIN
 	BEGIN TRY
 		UPDATE [acce].[tbUsuarios]
 		SET [user_Estado]  = 0,
-			[user_UsuModificacion] = @user_UsuModificacion,
 			[user_FechaModificacion] = GETDATE()
 		WHERE [user_Id] = @user_Id
 
@@ -1653,27 +1644,32 @@ END
 GO
 CREATE OR ALTER VIEW acce.VW_tbUsuarios_View
 AS
-SELECT	T1.[user_Id], 
-		T1.user_NombreUsuario, 
-		T1.user_Contrasena, 
-		T1.user_EsAdmin, 
-		T1.role_Id, 
-		T2.role_Nombre,
-		T1.empe_Id,
-		T3.empe_Nombres +' '+ T3.empe_Apellidos AS empe_NombreCompleto,
-		T1.user_UsuCreacion, 
-		T4.user_NombreUsuario AS UsuarioCreacion,
-		T1.user_FechaCreacion, 
-		T1.user_UsuModificacion, 
-		T5.user_NombreUsuario AS UsuarioModificacion,
-		T1.user_FechaModificacion, 
-		T1.user_Estado
-FROM acce.tbUsuarios AS T1 INNER JOIN [acce].[tbRoles] AS T2
-ON T1.role_Id = T2.role_Id INNER JOIN [lice].[tbEmpleados] AS T3
-ON T1.empe_Id = T3.empe_Id INNER JOIN [acce].[tbUsuarios] AS T4
-ON T1.user_UsuCreacion = T4.[user_Id] LEFT JOIN [acce].[tbUsuarios] AS T5
-ON T1.user_UsuModificacion = T5.[user_Id]
-
+SELECT T1.[user_Id]
+      ,T1.[user_NombreUsuario]
+      ,T1.[user_Contrasena]
+      ,T1.[user_EsAdmin]
+      ,T1.[role_Id]
+	  ,T4.role_Nombre
+      ,T1.[empe_Id]
+	  ,T5.empe_Nombres
+	  ,T5.empe_Apellidos
+	  ,T5.empe_Nombres + ' ' + T5.empe_Apellidos As empe_NombreCompleto
+	  ,T5.sucu_Id
+	  ,T7.sucu_Nombre
+	  ,T5.carg_Id
+	  ,T6.carg_Descripcion
+      ,T1.[user_UsuCreacion]
+      ,T1.[user_FechaCreacion]
+      ,T1.[user_UsuModificacion]
+      ,T1.[user_FechaModificacion]
+      ,T1.[user_Estado]
+  FROM [acce].[tbUsuarios] T1 LEFT JOIN acce.tbRoles T4
+  ON T1.role_Id = T4.role_Id INNER JOIN lice.tbEmpleados T5
+  ON T1.empe_Id = T5.empe_Id INNER JOIN lice.tbCargos T6
+  ON T5.carg_Id = T6.carg_Id INNER JOIN Lice.tbSucursales T7 
+  ON T5.sucu_Id = T7.sucu_Id INNER JOIN acce.tbUsuarios T2
+  ON T1.user_UsuCreacion = T2.[user_Id] LEFT JOIN acce.tbUsuarios T3
+  ON T1.user_UsuModificacion = T3.[user_Id]
 
 
 --*** RUN VIEW PROCEDURE ***--
@@ -1684,6 +1680,18 @@ BEGIN
 	SELECT * FROM acce.VW_tbUsuarios_View
 	WHERE user_Estado = 1
 END
+
+
+--*** FIND PROCEDURE ***--
+GO
+CREATE OR ALTER PROCEDURE acce.UDP_VW_tbUsuarios_View_FIND 
+(@user_Id INT)
+AS
+BEGIN
+	SELECT * FROM acce.VW_tbUsuarios_View
+	WHERE [user_Id] = @user_Id;
+END
+
 
  --*****************************************************************************--
 --*****************************************************************************--

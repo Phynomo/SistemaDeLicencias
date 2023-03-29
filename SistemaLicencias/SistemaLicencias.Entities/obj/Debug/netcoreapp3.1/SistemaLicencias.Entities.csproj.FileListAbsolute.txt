@@ -48,3 +48,13 @@ C:\Users\LAB01\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicen
 C:\Users\LAB01\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\obj\Debug\netcoreapp3.1\SistemaLicencias.Entities.dll
 C:\Users\LAB01\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\obj\Debug\netcoreapp3.1\SistemaLicencias.Entities.pdb
 C:\Users\LAB01\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\obj\Debug\netcoreapp3.1\SistemaLicencias.Entities.csproj.AssemblyReference.cache
+C:\Users\ALEXANDER\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\bin\Debug\netcoreapp3.1\SistemaLicencias.Entities.deps.json
+C:\Users\ALEXANDER\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\bin\Debug\netcoreapp3.1\SistemaLicencias.Entities.dll
+C:\Users\ALEXANDER\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\bin\Debug\netcoreapp3.1\SistemaLicencias.Entities.pdb
+C:\Users\ALEXANDER\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\obj\Debug\netcoreapp3.1\SistemaLicencias.Entities.csproj.AssemblyReference.cache
+C:\Users\ALEXANDER\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\obj\Debug\netcoreapp3.1\SistemaLicencias.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ALEXANDER\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\obj\Debug\netcoreapp3.1\SistemaLicencias.Entities.AssemblyInfoInputs.cache
+C:\Users\ALEXANDER\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\obj\Debug\netcoreapp3.1\SistemaLicencias.Entities.AssemblyInfo.cs
+C:\Users\ALEXANDER\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\obj\Debug\netcoreapp3.1\SistemaLicencias.Entities.csproj.CoreCompileInputs.cache
+C:\Users\ALEXANDER\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\obj\Debug\netcoreapp3.1\SistemaLicencias.Entities.dll
+C:\Users\ALEXANDER\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\obj\Debug\netcoreapp3.1\SistemaLicencias.Entities.pdb

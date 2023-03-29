@@ -13,6 +13,8 @@ namespace SistemaLicencias.DataAccess.Repository
         public static string UDP_tbMunicipios_DDL       = "gral.UDP_tbMunicipios_DDL";
         public static string UDP_tbTipoLicencis_DDL     = "lice.UDP_tbTipoLicencis_DDL";
         public static string UDP_tbSolicitantes_DDL     = "lice.UDP_tbSolicitantes_DDL";
+        public static string UDP_tbRoles_DDL            = "acce.UDP_tbRoles_Select";
+
 
 
         public static string UDP_tbCargos_Listado           = "lice.UDP_tbCargos_SELECT";
@@ -66,7 +68,16 @@ namespace SistemaLicencias.DataAccess.Repository
         public static string UDP_tbAprovados_Login = "acce.UDP_IniciarSesion";
         public static string UDP_tbAprovados_Recuperar = "acce.UDP_RecuperarUsuario";
 
+
+
+        public static string UDP_tbusuarios_Insertar        = "acce.UDP_tbusuarios_INSERT";
+        public static string UDP_tbusuarios_Editar          = "acce.UDP_tbusuarios_UPDATE";
+        public static string UDP_tbusuarios_Eliminar        = "acce.UDP_tbusuarios_DELETE";
+        public static string UDP_tbUsuarios_Listado         = "acce.UDP_tbUsuarios_SELECT";
+        public static string UDP_tbUsuarios_Buscar          = "acce.UDP_VW_tbUsuarios_View_FIND";
         #endregion
+
+
 
         public static string UDP_tbAprovados_Listado = "lice.UDP_tbAprovados_SELECT";
         public static string UDP_tbAprovados_Buscar = "lice.UDP_tbAprovados_Find";

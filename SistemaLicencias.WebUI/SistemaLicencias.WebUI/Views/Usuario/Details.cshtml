@@ -1,0 +1,115 @@
+﻿@model SistemaLicencias.WebUI.Models.VWUsuarioViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card" style="border:1px solid #283c4c;">
+    <div class="card-header text-center" style="background: radial-gradient(circle, rgba(30,45,93,1) 50%, rgba(32,164,140,1) 100%);">
+
+        <div class="row">
+            <div class="col">
+                <h1 class="text-white" style="margin-top:0px;">Detalles</h1>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col">
+                <h4 class="text-white">Usuarios</h4>
+            </div>
+        </div>
+
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col">
+                <label class="text-black font-weight-bold"> @Html.DisplayNameFor(model => model.user_Id)</label><br />
+                <label>@Html.DisplayFor(model => model.user_Id)</label>
+            </div>
+            <div class="col">
+                <label class="text-black font-weight-bold"></label><br />
+                <label></label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label class="text-black font-weight-bold"> @Html.DisplayNameFor(model => model.user_NombreUsuario)</label><br />
+                <label>@Html.DisplayFor(model => model.user_NombreUsuario)</label>
+            </div>
+            <div class="col">
+                <label class="text-black font-weight-bold"> @Html.DisplayNameFor(model => model.user_Contrasena)</label><br />
+                <label>******************</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label class="text-black font-weight-bold">@Html.DisplayNameFor(model => model.user_EsAdmin)</label><br />
+                <label>@Html.DisplayFor(model => model.user_EsAdmin)</label>
+            </div>
+            <div class="col">
+                <label class="text-black font-weight-bold">@Html.DisplayNameFor(model => model.empe_NombreCompleto)</label><br />
+                <label>@Html.DisplayFor(model => model.empe_NombreCompleto)</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label class="text-black font-weight-bold">@Html.DisplayNameFor(model => model.role_Nombre)</label><br />
+                <label>@Html.DisplayFor(model => model.role_Nombre)</label>
+            </div>
+            <div class="col">
+                <label class="text-black font-weight-bold"></label><br />
+                <label></label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col d-flex justify-content-end">
+                <a class="btn btn-secondary" asp-action="Index">Regresar al listado</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row mt-4">
+    <div class="col">
+        <div class="ibox ">
+            <div class="ibox-title bg-dark">
+                <h5 class="text-white">Auditoría</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-down"></i>
+                    </a>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content" style="display:none; border: 1px solid black; border-top:none;">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Accion</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Creacion</td>
+                            <td>@Html.DisplayFor(model => model.user_UsuCreacion)</td>
+                            <td>@Html.DisplayFor(model => model.user_FechaCreacion)</td>
+                        </tr>
+                        <tr>
+                            <td>Modificacion</td>
+                            <td>@Html.DisplayFor(model => model.user_UsuCreacion)</td>
+                            <td>@Html.DisplayFor(model => model.user_UsuModificacion)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

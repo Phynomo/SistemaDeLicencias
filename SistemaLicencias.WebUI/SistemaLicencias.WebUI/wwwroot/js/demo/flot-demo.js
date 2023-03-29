@@ -115,7 +115,7 @@ $(function() {
         color: "#79d2c0",
     }, {
         label: "Sales 4",
-        data: 52,
+        data: 1,
         color: "#1ab394",
     }];
 

@@ -10,7 +10,7 @@ namespace SistemaLicencias.WebUI.Models
         public int user_Id { get; set; }
         public string user_NombreUsuario { get; set; }
         public string user_Contrasena { get; set; }
-        public bool? user_EsAdmin { get; set; }
+        public bool user_EsAdmin { get; set; }
         public int? role_Id { get; set; }
         public int? empe_Id { get; set; }
         public int user_UsuCreacion { get; set; }
@@ -18,6 +18,5 @@ namespace SistemaLicencias.WebUI.Models
         public int? user_UsuModificacion { get; set; }
         public DateTime? user_FechaModificacion { get; set; }
         public bool? user_Estado { get; set; }
-
     }
 }

@@ -61,15 +61,12 @@ namespace SistemaLicencias.WebUI.Controllers
 
 
                 var responseSucursales = await httpClient.GetAsync(_baseurl + "api/Empleado/Sucursales");
-
                 if (responseSucursales.IsSuccessStatusCode)
                 {
                     var Sucursales = await responseSucursales.Content.ReadAsStringAsync();
                     var listadoSucursales = JsonConvert.DeserializeObject<List<VWEmpleadosViewModel>>(Sucursales);
                     ViewBag.sucu_Id = new SelectList(listadoSucursales, "sucu_Id", "sucu_Nombre");
                 }
-
-
                 return View(listado);
             }
         }
