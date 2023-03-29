@@ -1,4 +1,4 @@
-﻿@*@model SistemaLicencias.WebUI.Models.*@
+﻿@model SistemaLicencias.WebUI.Models.UsuariosViewModel
 @{
     Layout = null;
 }
@@ -10,27 +10,40 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="~/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+    <link href="~/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="~/css/animate.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
     <link href="~/css/Login.css" rel="stylesheet">
 </head>
 <body>
+
+
+    <input hidden id="resultado" value="@ViewBag.Resultado" />
+
     <div class="main">
         <div class="container a-container" id="a-container">
             <form class="form" id="b-form" method="post" asp-action="Index">
                 <h2 class="form_title title">Licencias licenciado</h2>
                 <div class="form__icons"><h2>Iniciar sesión</h2></div><span class="form__span">Ingresa tu usuario y contraseña</span>
-                <input class="form__input" type="text" placeholder="Usuario" autocomplete="off">
-                <input class="form__input" type="password" placeholder="Contraseña" autocomplete="off"><a class="form__link"></a>
-                <button class="form__button button submit">INICIAR</button>
+                <input asp-for="user_NombreUsuario" id="user_NombreUsuarioL" class="form__input" type="text" placeholder="Usuario" autocomplete="off" />
+                <label style="color:red;" id="lbluser_NombreUsuarioL" hidden>Complete el campo "Usuario"</label>
+                <input asp-for="user_Contrasena" id="user_ContrasenaL" class="form__input" type="password" placeholder="Contraseña" autocomplete="off" />
+                <label style="color:red;" id="lbluser_ContrasenaL" hidden>Complete el campo "Contraseña"</label>
+                <a class="form__link"></a>
+                <button type="button" style="cursor:pointer;" onclick="btnLogin()" class="form__button button">INICIAR</button>
             </form>
-            
+
         </div>
         <div class="container b-container" id="b-container">
-            <form class="form" id="a-form" method="post" asp-action="">
+            <form class="form" id="a-form" method="post" asp-action="Recuperar">
                 <h2 class="form_title title">Licencias licenciado</h2>
                 <div class="form__icons">Recuperar Usuario</div><span class="form__span">Ingresa tu usuario y la nueva contraseña que deseas</span>
-                <input class="form__input" type="text" placeholder="Usuario">
-                <input class="form__input" type="text" placeholder="Contraseña">
-                <button class="form__button button submit">RECUPERAR</button>
+                <input asp-for="user_NombreUsuario" id="user_NombreUsuarioR" class="form__input" type="text" placeholder="Usuario">
+                <label style="color:red;" id="lbluser_NombreUsuarioR" hidden>Complete el campo "Usuario"</label>
+                <input asp-for="user_Contrasena" id="user_ContrasenaR" class="form__input" type="password" placeholder="Nueva Contraseña">
+                <label style="color:red;" id="lbluser_ContrasenaR" hidden>Complete el campo "Contraseña"</label>
+                <button type="button" style="cursor:pointer;" onclick="btnRecuperar()" class="form__button button">RECUPERAR</button>
             </form>
         </div>
         <div class="switch" id="switch-cnt">
@@ -51,4 +64,7 @@
 </body>
 </html>
 
+<script src="~/js/jquery-3.1.1.min.js"></script>
+<script src="~/js/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="~/js/plugins/toastr/toastr.min.js"></script>
 <script src="~/js/App/Seguridad/Login.js"></script>

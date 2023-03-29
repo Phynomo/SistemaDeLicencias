@@ -31,6 +31,31 @@ namespace SistemaLicencias.BusinessLogic.Service
 
             }
         }
+        
+        public ServiceResult Recuperar(tbUsuarios item)
+        {
+
+            var result = new ServiceResult();
+            try
+            {
+                var map = _usuarioRepository.Recuperar(item);
+                if (map.CodeStatus > 0)
+                {
+                    return result.SetMessage("Usuario Recuperado", ServiceResultType.Success);
+                }
+                else
+                {
+                    map.MessageStatus = (map.CodeStatus == 0) ? "404 Error de consulta" : map.MessageStatus;
+                    return result.SetMessage("Recuperacion Fallida", ServiceResultType.Conflict);
+                }
+            }
+            catch (Exception)
+            {
+
+                return null;
+
+            }
+        }
 
         #endregion
 

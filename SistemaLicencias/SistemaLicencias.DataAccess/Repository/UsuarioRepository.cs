@@ -30,6 +30,19 @@ namespace SistemaLicencias.DataAccess.Repository
 
 
         }
+        public RequestStatus Recuperar(tbUsuarios item)
+        {
+            RequestStatus result = new RequestStatus();
+            using var db = new SqlConnection(LicenciaContext.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@user_NombreUsuario", item.user_NombreUsuario, DbType.String, ParameterDirection.Input);
+            parametros.Add("@user_Contrasena", item.user_Contrasena, DbType.String, ParameterDirection.Input);
+
+            var respuesta = db.QueryFirst<int>(ScriptsDataBase.UDP_tbAprovados_Recuperar, parametros, commandType: System.Data.CommandType.StoredProcedure);
+
+            result.CodeStatus = respuesta;
+            return result;
+        }
 
         public RequestStatus Insert(tbUsuarios item)
         {

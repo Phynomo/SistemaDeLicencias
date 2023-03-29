@@ -64,6 +64,7 @@ namespace SistemaLicencias.DataAccess.Repository
 
         #region Usuarios
         public static string UDP_tbAprovados_Login = "acce.UDP_IniciarSesion";
+        public static string UDP_tbAprovados_Recuperar = "acce.UDP_RecuperarUsuario";
 
         #endregion
 

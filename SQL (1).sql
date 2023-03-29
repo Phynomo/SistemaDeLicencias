@@ -2158,7 +2158,7 @@ SELECT	rech_Id,
 		T7.tili_Id,
 		T7.tili_Descripcion,
 		T8.sucu_Id,
-		T8.sucu_Direccion,
+		T8.sucu_Nombre,
 		T1.empe_Id, 
 		T2.empe_Nombres,
 		T2.empe_Apellidos,
@@ -2297,6 +2297,37 @@ SELECT *
 
 END
 GO
+CREATE OR ALTER PROCEDURE acce.UDP_RecuperarUsuario
+@user_NombreUsuario	NVARCHAR(100),
+@user_Contrasena	NVARCHAR(MAX)
+AS
+BEGIN
+BEGIN TRY
+
+DECLARE @password NVARCHAR(MAX)=(SELECT HASHBYTES('Sha2_512', @user_Contrasena));
+
+UPDATE [acce].[tbUsuarios]
+   SET [user_Contrasena] = @password
+ WHERE @user_NombreUsuario = user_NombreUsuario
+
+ 
+ IF EXISTS (select * FROM acce.tbUsuarios WHERE user_NombreUsuario = @user_NombreUsuario
+												AND [user_Contrasena] = @Password)
+ BEGIN
+ SELECT 1 as Proceso
+ END
+ ELSE
+ SELECT 0 as Proceso
+END TRY
+BEGIN CATCH
+ SELECT 0 as Proceso
+END CATCH
+
+
+
+END--quiero guardarlo xd
+GO
+
 CREATE OR ALTER PROCEDURE lice.UDP_tbSolicitantes_DDL
 AS
 BEGIN

@@ -36,6 +36,14 @@ namespace SistemaLicencias.API.Controllers
             var list = _seguridadServivce.Login(item);
             return Ok(list);
         }
+        
+        [HttpPut("Recuperar")]
+        public IActionResult Recuperar(UsuariosViewModel usuariosView)
+        {
+            var item = _mapper.Map<tbUsuarios>(usuariosView);
+            var list = _seguridadServivce.Recuperar(item);
+            return Ok(list);
+        }
 
     }
 }
