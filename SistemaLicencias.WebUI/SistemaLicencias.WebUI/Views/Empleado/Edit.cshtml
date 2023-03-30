@@ -128,16 +128,16 @@
 
 
 
-            <div class="row">
-                <div class="col d-flex justify-content-end">
-                    @*<button class="btn btn-warning mx-1" type="button" id="btnEditar" onclick="AbrirModalEdit('@item.carg_Id,@item.carg_Descripcion')">Editar</button>*@
-                    <a class="btn btn-secondary mx-1" asp-action="Index">Regresar al listado</a>
-                    <button type="button" class="btn btn-primary" onclick="PostEdit()" >Editar empleado</button>
-                </div>
-            </div>
+            
 
         </form>
-
+        <div class="row">
+            <div class="col d-flex justify-content-end">
+                @*<button class="btn btn-warning mx-1" type="button" id="btnEditar" onclick="AbrirModalEdit('@item.carg_Id,@item.carg_Descripcion')">Editar</button>*@
+                <a class="btn btn-secondary mx-1" asp-action="Index">Regresar al listado</a>
+                <button type="button" class="btn btn-primary" onclick="PostEdit()">Editar empleado</button>
+            </div>
+        </div>
 
     </div>
 

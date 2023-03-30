@@ -81,6 +81,7 @@ namespace SistemaLicencias.DataAccess.Repository
 
         public RequestStatus Accept(tbAprobados item)
         {
+            RequestStatus result = new RequestStatus();
             using var db = new SqlConnection(LicenciaContext.ConnectionString);
             var parametros = new DynamicParameters();
             parametros.Add("@stud_Id",              item.stud_Id,               DbType.Int32, ParameterDirection.Input);
@@ -88,7 +89,9 @@ namespace SistemaLicencias.DataAccess.Repository
             parametros.Add("@apro_Observaciones",   item.apro_Observaciones,    DbType.String, ParameterDirection.Input);
             parametros.Add("@apro_UsuCreacion",     item.apro_UsuCreacion,      DbType.Int32, ParameterDirection.Input);
 
-            var result = db.QueryFirst<RequestStatus>(ScriptsDataBase.UDP_tbSolicitud_ACCEPT, parametros, commandType: System.Data.CommandType.StoredProcedure);
+            var respuesta = db.QueryFirst<int>(ScriptsDataBase.UDP_tbSolicitud_ACCEPT, parametros, commandType: System.Data.CommandType.StoredProcedure);
+
+            result.CodeStatus = respuesta;
             return result;
         }
 

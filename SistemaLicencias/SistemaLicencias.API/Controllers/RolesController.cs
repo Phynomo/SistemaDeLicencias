@@ -30,6 +30,13 @@ namespace SistemaLicencias.API.Controllers
             var list = _seguridadServivce.ListadoRoles();
             return Ok(list);
         }
+        
+        [HttpGet("ListadoPXRPorR")]
+        public IActionResult ListPXRxR(int? role_Id)
+        {
+            var list = _seguridadServivce.ListadoPxRxR(role_Id);
+            return Ok(list);
+        }
 
 
         [HttpGet("Buscar")]
@@ -47,6 +54,15 @@ namespace SistemaLicencias.API.Controllers
             var response = _seguridadServivce.InsertarRoles(item);
             return Ok(response);
         }
+        
+        [HttpPost("InsertarPantallasXRol")]
+        public IActionResult InsertPantallasXRoll(PantallasPorRolViewModel pant)
+        {
+
+            var item = _mapper.Map<tbPantallasPorRoles>(pant);
+            var response = _seguridadServivce.InsertarPantallasPorRol(item);
+            return Ok(response);
+        }
 
         [HttpPut("Editar")]
         public IActionResult Update(RolesViewModel roles)
@@ -61,6 +77,14 @@ namespace SistemaLicencias.API.Controllers
         {
             var item = _mapper.Map<tbRoles>(roles);
             var result = _seguridadServivce.EliminarRoles(item);
+            return Ok(result);
+        }
+
+        [HttpPut("EliminarPantallasXRol")]
+        public IActionResult DeletePantallasXRol(PantallasPorRolViewModel pant)
+        {
+            var item = _mapper.Map<tbPantallasPorRoles>(pant);
+            var result = _seguridadServivce.EliminarPantallasXRol(item);
             return Ok(result);
         }
 

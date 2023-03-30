@@ -17,5 +17,6 @@ namespace SistemaLicencias.WebUI.Models
         public DateTime? role_FechaModificacion { get; set; }
         public bool role_Estado { get; set; }
 
+        public string[] pantallas { get; set; }
     }
 }

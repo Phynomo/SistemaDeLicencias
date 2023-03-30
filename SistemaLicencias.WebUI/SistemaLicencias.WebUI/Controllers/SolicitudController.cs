@@ -222,6 +222,14 @@ namespace SistemaLicencias.WebUI.Controllers
             if (response.IsSuccessStatusCode)
             {
                 var responseContent = await response.Content.ReadAsStringAsync();
+                JObject jsonObj = JObject.Parse(responseContent);
+                string message = (string)jsonObj["message"];
+                if (message == "La solicitud debe ser pagada")
+                {
+                    TempData["stud"] = "DebePagar";
+                    return RedirectToAction("Index");
+                }
+
                 TempData["stud"] = "AcceptSuccess";
                 Console.WriteLine(responseContent);
                 return RedirectToAction("Index");

@@ -20,6 +20,7 @@ namespace SistemaLicencias.API.Extensions
             CreateMap<SolicitudViewModel, tbSolicitud>().ReverseMap();
             CreateMap<RechazadosViewModel, tbRechazados>().ReverseMap();
             CreateMap<RolesViewModel, tbRoles>().ReverseMap();
+            CreateMap<PantallasPorRolViewModel, tbPantallasPorRoles>().ReverseMap();
 
         }
     }

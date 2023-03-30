@@ -414,3 +414,13 @@ C:\Users\LAB01\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\Sistem
 C:\Users\LAB01\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\SistemaLicencias.WebUI.genruntimeconfig.cache
 C:\Users\LAB01\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Roles\Index.cshtml.g.cs
 C:\Users\LAB01\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Roles\Create.cshtml.g.cs
+C:\Users\danie\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Roles\Create.cshtml.g.cs
+C:\Users\danie\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Roles\Index.cshtml.g.cs
+C:\Users\danie\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Usuario\Details.cshtml.g.cs
+C:\Users\danie\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Usuario\Index.cshtml.g.cs
+C:\Users\danie\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Usuario\_CreateViewPartial.cshtml.g.cs
+C:\Users\danie\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Usuario\_DeleteViewPartial.cshtml.g.cs
+C:\Users\danie\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Usuario\_EditPartialView.cshtml.g.cs
+C:\Users\danie\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Roles\Edit.cshtml.g.cs
+C:\Users\danie\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Roles\_DeleteViewPartial.cshtml.g.cs
+C:\Users\danie\Documents\GitHub\SistemaDeLicencias\SistemaLicencias.WebUI\SistemaLicencias.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Roles\Details.cshtml.g.cs

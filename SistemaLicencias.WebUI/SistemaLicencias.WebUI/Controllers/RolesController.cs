@@ -61,21 +61,309 @@ namespace SistemaLicencias.WebUI.Controllers
                 if (responsePantallas.IsSuccessStatusCode)
                 {
                     var Listado = await responsePantallas.Content.ReadAsStringAsync();
-                    var listadoPantallas = JsonConvert.DeserializeObject<List<VWPantallasViewModelcs>>(Listado);
-                    ViewBag.Pantallas = listadoPantallas;
+                    JObject jsonObj = JObject.Parse(Listado);
+                    JArray listadoPantallas = JArray.Parse(jsonObj["data"].ToString());
+
+                    //var listadoPantallas = JsonConvert.DeserializeObject<List<VWPantallasViewModelcs>>(Listado);
+                    //ViewBag.Pantallas = listadoPantallas;
+                    ViewBag.Pantallas = new SelectList(listadoPantallas, "pant_Id", "pant_Nombre");
                 }
 
                 return View();
+                }
+            }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(RolesViewModel roles)
+        {
+
+            roles.role_UsuCreacion = 1;
+            string json = JsonConvert.SerializeObject(roles);
+
+            var client = new HttpClient();
+            client.BaseAddress = new Uri(_baseurl + "api/Roles/Insertar");
+            var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(_baseurl + "api/Roles/Insertar", content);
+            if (response.IsSuccessStatusCode)
+            {
+                var responseContent = await response.Content.ReadAsStringAsync();
+                JObject jsonObj = JObject.Parse(responseContent);
+                string message = (string)jsonObj["message"];
+                int code = (int)jsonObj["code"];
+                if (code == 200)
+                {
+                    PantallasPorRolesViewModel pant = new PantallasPorRolesViewModel();
+                    pant.role_Id = Convert.ToInt32(message);
+                    var client2 = new HttpClient();
+                    var clientD = new HttpClient();
+
+                    string jsonD = JsonConvert.SerializeObject(pant);
+                    clientD.BaseAddress = new Uri(_baseurl + "api/Roles/EliminarPantallasXRol");
+                    var contentD = new StringContent(jsonD, System.Text.Encoding.UTF8, "application/json");
+                    var responseD = await client.PostAsync(_baseurl + "api/Roles/EliminarPantallasXRol", contentD);
+
+                    foreach (var item in roles.pantallas)
+                    {
+                        pant.pant_Id = Convert.ToInt32(item);
+                        pant.prol_UsuCreacion = roles.role_UsuCreacion;
+                        string json2 = JsonConvert.SerializeObject(pant);
+
+                        client2.BaseAddress = new Uri(_baseurl + "api/Roles/InsertarPantallasXRol");
+                    var content2 = new StringContent(json2, System.Text.Encoding.UTF8, "application/json");
+                    var response2 = await client.PostAsync(_baseurl + "api/Roles/InsertarPantallasXRol", content2);
+
+                    }
+
+                }
+                else if (message == "Registro repetido")
+                {
+                    ViewBag.Resultado = "RolRepetido";
+                    using (var httpClient = new HttpClient())
+                    {
+                        var responsePantallas = await httpClient.GetAsync(_baseurl + "api/Pantallas/Listado");
+                        if (responsePantallas.IsSuccessStatusCode)
+                        {
+                            var Listado = await responsePantallas.Content.ReadAsStringAsync();
+                            JObject jsonObj2 = JObject.Parse(Listado);
+                            JArray listadoPantallas = JArray.Parse(jsonObj2["data"].ToString());
+                            ViewBag.Pantallas = new SelectList(listadoPantallas, "pant_Id", "pant_Nombre", roles.pantallas);
+                        }
+
+                    }
+
+                    return View(roles);
+                }
+                else
+                {
+                    ViewBag.Resultado = "ErrorInesperado";
+                    using (var httpClient = new HttpClient())
+                    {
+                        var responsePantallas = await httpClient.GetAsync(_baseurl + "api/Pantallas/Listado");
+                        if (responsePantallas.IsSuccessStatusCode)
+                        {
+                            var Listado = await responsePantallas.Content.ReadAsStringAsync();
+                            JObject jsonObj2 = JObject.Parse(Listado);
+                            JArray listadoPantallas = JArray.Parse(jsonObj2["data"].ToString());
+                            ViewBag.Pantallas = new SelectList(listadoPantallas, "pant_Id", "pant_Nombre", roles.pantallas);
+                        }
+
+                    }
+                    return View(roles);
+                }
+
+                TempData["role"] = "CreateSuccess";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.Resultado = "ErrorInesperado";
+                using (var httpClient = new HttpClient())
+                {
+                    var responsePantallas = await httpClient.GetAsync(_baseurl + "api/Pantallas/Listado");
+                    if (responsePantallas.IsSuccessStatusCode)
+                    {
+                        var Listado = await responsePantallas.Content.ReadAsStringAsync();
+                        JObject jsonObj2 = JObject.Parse(Listado);
+                        JArray listadoPantallas = JArray.Parse(jsonObj2["data"].ToString());
+                        ViewBag.Pantallas = new SelectList(listadoPantallas, "pant_Id", "pant_Nombre", roles.pantallas);
+                    }
+
+                }
+                return View(roles);
             }
         }
-        
-            [HttpPost]
-            public IActionResult Create(RolesViewModel item)
+
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int? id)
+        {
+            using (var httpClient = new HttpClient())
             {
+                var response = await httpClient.GetAsync(_baseurl + "api/Roles/Buscar?id=" + id);
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+                var lice = JsonConvert.DeserializeObject<RolesViewModel>(jsonResponse);
+                
+                var response2 = await httpClient.GetAsync(_baseurl + "api/Roles/ListadoPXRPorR?role_Id=" + id);
+                var jsonResponse2 = await response2.Content.ReadAsStringAsync();
+                var Pantallas = JsonConvert.DeserializeObject<List<PantallasViewModel>>(jsonResponse2 );
+                
+                string[] pant_IDs = new string[Pantallas.Count()];
+                int i = 0;
+               
+                foreach (var item in Pantallas)
+                {
+                    pant_IDs[i] = item.pant_Id.ToString();
+                    i++;
+                }
 
-
-                return View();
+                var responsePantallas = await httpClient.GetAsync(_baseurl + "api/Pantallas/Listado");
+                if (responsePantallas.IsSuccessStatusCode)
+                {
+                    var Listado = await responsePantallas.Content.ReadAsStringAsync();
+                    JObject jsonObj = JObject.Parse(Listado);
+                    JArray listadoPantallas = JArray.Parse(jsonObj["data"].ToString());
+                    ViewBag.Pantallas = new SelectList(listadoPantallas, "pant_Id", "pant_Nombre", pant_IDs);
+                }
+                lice.pantallas = pant_IDs;
+                return View(lice);
             }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(RolesViewModel roles)
+        {
+
+            roles.role_UsuModificacion= 1;
+            string json = JsonConvert.SerializeObject(roles);
+
+            var client = new HttpClient();
+            client.BaseAddress = new Uri(_baseurl + "api/Roles/Editar");
+            var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+            var response = await client.PutAsync(_baseurl + "api/Roles/Editar", content);
+            if (response.IsSuccessStatusCode)
+            {
+                var responseContent = await response.Content.ReadAsStringAsync();
+                JObject jsonObj = JObject.Parse(responseContent);
+                string message = (string)jsonObj["message"];
+                int code = (int)jsonObj["code"];
+                if (code == 200)
+                {
+                    PantallasPorRolesViewModel pant = new PantallasPorRolesViewModel();
+                    pant.role_Id = roles.role_Id;
+                    var client2 = new HttpClient();
+                    var clientD = new HttpClient();
+
+                    string jsonD = JsonConvert.SerializeObject(pant);
+                    clientD.BaseAddress = new Uri(_baseurl + "api/Roles/EliminarPantallasXRol");
+                    var contentD = new StringContent(jsonD, System.Text.Encoding.UTF8, "application/json");
+                    var responseD = await client.PutAsync(_baseurl + "api/Roles/EliminarPantallasXRol", contentD);
+
+                    foreach (var item in roles.pantallas)
+                    {
+                        pant.pant_Id = Convert.ToInt32(item);
+                        pant.prol_UsuCreacion = Convert.ToInt32(roles.role_UsuModificacion);
+                        string json2 = JsonConvert.SerializeObject(pant);
+
+                        client2.BaseAddress = new Uri(_baseurl + "api/Roles/InsertarPantallasXRol");
+                        var content2 = new StringContent(json2, System.Text.Encoding.UTF8, "application/json");
+                        var response2 = await client.PostAsync(_baseurl + "api/Roles/InsertarPantallasXRol", content2);
+
+                    }
+
+                }
+                else if (message == "Registro repetido")
+                {
+                    ViewBag.Resultado = "RolRepetido";
+                    using (var httpClient = new HttpClient())
+                    {
+                        var responsePantallas = await httpClient.GetAsync(_baseurl + "api/Pantallas/Listado");
+                        if (responsePantallas.IsSuccessStatusCode)
+                        {
+                            var Listado = await responsePantallas.Content.ReadAsStringAsync();
+                            JObject jsonObj2 = JObject.Parse(Listado);
+                            JArray listadoPantallas = JArray.Parse(jsonObj2["data"].ToString());
+                            ViewBag.Pantallas = new SelectList(listadoPantallas, "pant_Id", "pant_Nombre", roles.pantallas);
+                        }
+
+                    }
+
+                    return View(roles);
+                }
+                else
+                {
+                    ViewBag.Resultado = "ErrorInesperado";
+                    using (var httpClient = new HttpClient())
+                    {
+                        var responsePantallas = await httpClient.GetAsync(_baseurl + "api/Pantallas/Listado");
+                        if (responsePantallas.IsSuccessStatusCode)
+                        {
+                            var Listado = await responsePantallas.Content.ReadAsStringAsync();
+                            JObject jsonObj2 = JObject.Parse(Listado);
+                            JArray listadoPantallas = JArray.Parse(jsonObj2["data"].ToString());
+                            ViewBag.Pantallas = new SelectList(listadoPantallas, "pant_Id", "pant_Nombre", roles.pantallas);
+                        }
+
+                    }
+                    return View(roles);
+                }
+
+                TempData["role"] = "CreateSuccess";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.Resultado = "ErrorInesperado";
+                using (var httpClient = new HttpClient())
+                {
+                    var responsePantallas = await httpClient.GetAsync(_baseurl + "api/Pantallas/Listado");
+                    if (responsePantallas.IsSuccessStatusCode)
+                    {
+                        var Listado = await responsePantallas.Content.ReadAsStringAsync();
+                        JObject jsonObj2 = JObject.Parse(Listado);
+                        JArray listadoPantallas = JArray.Parse(jsonObj2["data"].ToString());
+                        ViewBag.Pantallas = new SelectList(listadoPantallas, "pant_Id", "pant_Nombre", roles.pantallas);
+                    }
+
+                }
+                return View(roles);
+            }
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(RolesViewModel roles)
+        {
+            string json = JsonConvert.SerializeObject(roles);
+
+            var client = new HttpClient();
+            client.BaseAddress = new Uri(_baseurl + "api/Roles/Eliminar");
+
+            var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+
+            var response = await client.PutAsync(_baseurl + "api/Roles/Eliminar", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var responseContent = await response.Content.ReadAsStringAsync();
+                JObject jsonObj = JObject.Parse(responseContent);
+                string message = (string)jsonObj["message"];
+                if (message == "Rol en uso")
+                {
+                    TempData["role"] = "UsoRol";
+                    return RedirectToAction("Index");
+                }
+                Console.WriteLine(responseContent);
+                TempData["role"] = "DeleteSuccess";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                TempData["role"] = "DeleteError";
+                Console.WriteLine("La solicitud falló con el código de estado: " + response.StatusCode);
+            }
+
+            return RedirectToAction("Index");
+
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int? id)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                var response = await httpClient.GetAsync(_baseurl + "api/Roles/Buscar?id=" + id);
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+                var lice = JsonConvert.DeserializeObject<VWRolesViewModel>(jsonResponse);
+
+                var response2 = await httpClient.GetAsync(_baseurl + "api/Roles/ListadoPXRPorR?role_Id=" + id);
+                var jsonResponse2 = await response2.Content.ReadAsStringAsync();
+                var Pantallas = JsonConvert.DeserializeObject<List<PantallasViewModel>>(jsonResponse2);
+
+                ViewBag.Pantallas = Pantallas;
+                return View(lice);
+            }
+        }
+
 
     }
 }

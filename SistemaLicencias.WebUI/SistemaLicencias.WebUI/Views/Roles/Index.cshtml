@@ -5,80 +5,60 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<input hidden id="resultado" value="@ViewBag.Resultado" />
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.role_Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.role_Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.role_UsuCreacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UsuarioCreacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.role_FechaCreacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.role_UsuModificacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UsuarioModificacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.role_FechaModificacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.role_Estado)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.role_Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.role_Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.role_UsuCreacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UsuarioCreacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.role_FechaCreacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.role_UsuModificacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UsuarioModificacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.role_FechaModificacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.role_Estado)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="card" style="border:1px solid #283c4c;">
+    <div class="card-header text-center" style="background: radial-gradient(circle, rgba(30,45,93,1) 50%, rgba(32,164,140,1) 100%);">
+
+        <div class="row">
+            <div class="col">
+                <h1 class="text-white" style="margin-top:0px;">Roles</h1>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-4">
+                <a asp-action="Create" class="btn btn-block btn-primary">Crear un rol</a>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="card-body table-responsive">
+        <table class="table table-hover dataTables" id="mi-tabla">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.role_Id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.role_Nombre)
+                    </th>
+                    <th class="d-flex justify-content-end">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.role_Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.role_Nombre)
+                    </td>
+                    <td class="d-flex justify-content-end">
+                        @Html.ActionLink("Editar", "Edit", new { id = item.role_Id }, new { @class = "btn btn-warning btn-outline btn-sm" }) 
+                        @Html.ActionLink("Detalles", "Details", new { id=item.role_Id }, new { @class = "btn btn-info mx-1 btn-outline btn-sm" }) 
+                        <button class="btn btn-danger btn-sm btn-outline" type="button" onclick="OpenModalDelete('@item.role_Id')">Eliminar</button>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@Html.Partial("_DeleteViewPartial", new SistemaLicencias.WebUI.Models.RolesViewModel())
+
+
+<script src="~/js/App/Seguridad/Roles.js"></script>

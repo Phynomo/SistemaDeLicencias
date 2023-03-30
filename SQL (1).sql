@@ -346,7 +346,6 @@ INSERT INTO acce.tbPantallas(pant_Nombre, pant_Url, pant_Menu, pant_HtmlId, pant
 VALUES ('Aprobados',        '/Aprobados',                'Licencia',        'AprobadosItem',        1),
        ('Empleado',            '/Empleado',                'Licencia',        'EmpleadoItem',            1),
        ('Rechazos',            '/Rechazos',                'Licencia',        'RechazosItem',            1),
-       ('Home',                '/Home',                    'Licencia',        'HomeItem',                1),
        ('Solicitante',        '/Solicitante',                'Licencia',        'SolicitanteItem',        1),
        ('Solicitud',        '/Solicitud',                'Licencia',        'SolicitudItem',        1),
        ('TipoLicencias',    '/TipoLicencias',            'Licencia',        'TipoLicenciassItem',    1),
@@ -982,7 +981,7 @@ BEGIN
         IF EXISTS (SELECT * FROM acce.tbRoles WHERE role_Nombre = @role_Nombre AND role_Estado = 1)
         BEGIN
 
-            SELECT 2 as Proceso
+            SELECT -2 as Proceso
 
         END
         ELSE IF NOT EXISTS (SELECT * FROM acce.tbRoles WHERE role_Nombre = @role_Nombre)
@@ -1002,8 +1001,8 @@ BEGIN
 				   ,Null
 				   ,1)
 
-            SELECT 1 as Proceso
-        END
+            SELECT SCOPE_IDENTITY() 
+			END
         ELSE
         BEGIN
             UPDATE acce.tbRoles
@@ -1015,7 +1014,7 @@ BEGIN
 				,role_FechaModificacion = NULL
             WHERE role_Nombre = @role_Nombre
 
-            select 1
+            select role_Id From acce.tbRoles  WHERE role_Nombre = @role_Nombre
         END
 
     END TRY
@@ -1056,7 +1055,7 @@ BEGIN
     BEGIN CATCH
         SELECT 0 as Proceso
     END CATCH
-END
+END--guarda
 GO
   Go
 CREATE OR ALTER PROCEDURE acce.UDP_tbRoles_Delete
@@ -1065,11 +1064,23 @@ AS
 BEGIN
 	BEGIN TRY
 		
+		  IF EXISTS (SELECT * FROM acce.tbUsuarios WHERE (role_Id = @role_Id))
+        BEGIN
+		
+		SELECT -1
+
+		END
+		ELSE
+		BEGIN 
 		UPDATE acce.tbRoles
 		SET role_Estado = 0
 		WHERE role_Id = @role_Id
 		
+		DELETE FROM [acce].[tbPantallasPorRoles]
+		WHERE role_Id = @role_Id
+
 		SELECT 1
+		END
 	
 	END TRY
 	BEGIN CATCH
@@ -1114,7 +1125,19 @@ SELECT [prol_Id]
 
   END
   GO
+      GO
+  CREATE OR ALTER PROCEDURE acce.UDP_tbPantallasPorRoles_SelectPorRol
+  @role_Id INT
+  AS 
+  BEGIN
+  
+  SELECT * FROM acce.VW_tbPantallasPorRoles_View
+  WHERE prol_Estado = 1 AND role_Id = @role_Id
+
+  END
   GO
+
+
 
 CREATE OR ALTER PROCEDURE acce.UDP_tbPantallasPorRoles_Insert 
 	@role_Id int,
@@ -1126,7 +1149,7 @@ BEGIN
         IF EXISTS (SELECT * FROM acce.tbPantallasPorRoles WHERE role_Id = @role_Id AND pant_Id = @pant_Id AND prol_Estado = 1)
         BEGIN
 
-            SELECT 2 as Proceso
+            SELECT -2 as Proceso
 
         END
         ELSE IF NOT EXISTS (SELECT * FROM acce.tbPantallasPorRoles WHERE role_Id = @role_Id AND pant_Id = @pant_Id)
@@ -1172,15 +1195,13 @@ GO
 
 
 CREATE OR ALTER PROCEDURE acce.UDP_tbPantallasPorRoles_Delete
-	@role_Id int,
-	@pant_Id int
+	@role_Id int
 AS
 BEGIN
     BEGIN TRY
         
-        UPDATE acce.tbPantallasPorRoles
-        SET  prol_Estado = 0
-        WHERE role_Id = @role_Id AND pant_Id = @pant_Id
+      DELETE FROM [acce].[tbPantallasPorRoles]
+		WHERE role_Id = @role_Id
 
         select 1
      

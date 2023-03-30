@@ -11,15 +11,18 @@ namespace SistemaLicencias.BusinessLogic.Service
         private readonly UsuarioRepository _usuarioRepository;
         private readonly RolesRepository _rolesRepository;
         private readonly PantallasRepository _pantallasRepository;
+        private readonly PantallasPorRolRepository _pantallasPorRolRepository;
 
         public SeguService(UsuarioRepository usuarioRepository,
                             RolesRepository rolesRepository,
-                            PantallasRepository pantallasRepository
+                            PantallasRepository pantallasRepository,
+                            PantallasPorRolRepository pantallasPorRolRepository
             )
         {
             _usuarioRepository = usuarioRepository;
             _rolesRepository = rolesRepository;
             _pantallasRepository = pantallasRepository;
+            _pantallasPorRolRepository = pantallasPorRolRepository;
         }
 
         #region Usuarios
@@ -198,11 +201,11 @@ namespace SistemaLicencias.BusinessLogic.Service
             try
             {
                 var map = _rolesRepository.Insert(roles);
-                if (map.CodeStatus == 1)
+                if (map.CodeStatus > 0)
                 {
-                    return result.Ok(map);
+                    return result.SetMessage( map.CodeStatus.ToString() , ServiceResultType.Success);
                 }
-                else if (map.CodeStatus == 2)
+                else if (map.CodeStatus == -2)
                 {
                     return result.SetMessage("Registro repetido", ServiceResultType.Conflict);
                 }
@@ -260,6 +263,10 @@ namespace SistemaLicencias.BusinessLogic.Service
                 {
                     return result.Ok(map);
                 }
+                else if (map.CodeStatus == -1)
+                {
+                    return result.SetMessage("Rol en uso", ServiceResultType.Conflict);
+                }
                 else if (map.CodeStatus == 0)
                 {
                     return result.SetMessage("Delete fallido", ServiceResultType.Error);
@@ -305,6 +312,80 @@ namespace SistemaLicencias.BusinessLogic.Service
             catch (Exception e)
             {
                 return result.Error(e.Message);
+            }
+        }
+
+        #endregion
+
+
+        #region Pantallas por Roles
+
+        public ServiceResult InsertarPantallasPorRol(tbPantallasPorRoles pantxrol)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var map = _pantallasPorRolRepository.Insert(pantxrol);
+                if (map.CodeStatus > 0)
+                {
+                    return result.SetMessage(map.CodeStatus.ToString(), ServiceResultType.Success);
+                }
+                else if (map.CodeStatus == -2)
+                {
+                    return result.SetMessage("Registro repetido", ServiceResultType.Conflict);
+                }
+                else if (map.CodeStatus == 0)
+                {
+                    return result.SetMessage("Insert fallido", ServiceResultType.Error);
+                }
+                else
+                {
+                    return result.SetMessage("Error inesperado", ServiceResultType.Error);
+                }
+            }
+            catch (Exception)
+            {
+                return result.SetMessage("Error inesperado", ServiceResultType.Error);
+            }
+        }
+
+
+        public ServiceResult EliminarPantallasXRol(tbPantallasPorRoles pant)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var map = _pantallasPorRolRepository.Delete(pant);
+                if (map.CodeStatus == 1)
+                {
+                    return result.Ok(map);
+                }
+                else if (map.CodeStatus == 0)
+                {
+                    return result.SetMessage("Delete fallido", ServiceResultType.Error);
+                }
+                else
+                {
+                    return result.SetMessage("Error inesperado", ServiceResultType.Error);
+                }
+            }
+            catch (Exception)
+            {
+                return result.SetMessage("Error inesperado", ServiceResultType.Error);
+            }
+        }
+
+
+        public IEnumerable<VW_tbPantallasPorRoles_View> ListadoPxRxR(int? rol_Id)
+        {
+            try
+            {
+                var list = _pantallasPorRolRepository.ListPxRxR(rol_Id);
+                return list;
+            }
+            catch (Exception e)
+            {
+                return null;
             }
         }
 

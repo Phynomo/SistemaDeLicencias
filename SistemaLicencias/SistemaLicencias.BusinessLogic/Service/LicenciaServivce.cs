@@ -384,9 +384,14 @@ namespace SistemaLicencias.BusinessLogic.Service
             try
             {
                 var map = _solicitudRepository.Accept(aprobados);
-                if (map.CodeStatus > 0)
+                if (map.CodeStatus == 1)
                 {
                     return result.Ok(map);
+                }
+                else if (map.CodeStatus == 99)
+                {
+                    return result.SetMessage("La solicitud debe ser pagada", ServiceResultType.Conflict);
+
                 }
                 else
                 {

@@ -5,89 +5,57 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
 
-<h4>RolesViewModel</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="role_Nombre" class="control-label"></label>
-                <input asp-for="role_Nombre" class="form-control" />
-                <span asp-validation-for="role_Nombre" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+<input hidden id="resultado" value="@ViewBag.Resultado" />
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="ibox">
-            <div class="ibox-title">
-                <h5>Dual Listbox</h5>
-                <div class="ibox-tools">
-                    <a class="collapse-link">
-                        <i class="fa fa-chevron-up"></i>
-                    </a>
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="form_advanced.html#">
-                        <i class="fa fa-wrench"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li>
-                            <a href="form_advanced.html#" class="dropdown-item">Config option 1</a>
-                        </li>
-                        <li>
-                            <a href="form_advanced.html#" class="dropdown-item">Config option 2</a>
-                        </li>
-                    </ul>
-                    <a class="close-link">
-                        <i class="fa fa-times"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="ibox-content">
-                <p>
-                    Bootstrap Dual Listbox is a responsive dual listbox widget optimized for Twitter Bootstrap. It works on all modern browsers and on touch devices.
-                </p>
+<div class="card" style="border:1px solid #283c4c;">
+    <div class="card-header text-center" style="background: rgb(30,45,93); background: radial-gradient(circle, rgba(30,45,93,1) 50%, rgba(122,255,163,1) 100%); ">
 
-                <form id="Pantallasform" asp-action="Create" method="post" class="wizard-big">
-                  
-                    
-                    <select asp-for="pantallas" class="form-control dual_select" multiple>
-                   
-                        @foreach (var Listado in ViewBag.Pantallas)
-                        {
-
-                    <option value="@Listado.pant_Id">@Listado.pant_Nombre</option>
-
-                        }
-
-                    </select>
-
-                    <input type="submit"/>
-                </form>
+        <div class="row">
+            <div class="col">
+                <h1 class="text-white" style="margin-top:0px;">Agregar Rol</h1>
             </div>
         </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col">
+                <h4 class="text-white">Dale un nombre al rol y selecciona sus pantallas</h4>
+            </div>
+        </div>
+
     </div>
+    <div class="card-body">
+        <form asp-action="Create" id="formCreate">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="form-group col">
+                    <label asp-for="role_Nombre" class="control-label"></label>
+                    <input asp-for="role_Nombre" id="role_Nombre" class="form-control" />
+                    <span id="lblrole_Nombre" hidden class="text-danger">Este campo es requerido</span>
+                </div>
+                <div class="form-group col">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <select asp-for="pantallas" asp-items="ViewBag.Pantallas" class="form-control dual_select" multiple>
+                    </select>
+                </div>
+            </div>
+        </form>
 
+        <div class="row mt-2">
+            <div class="col d-flex justify-content-end">
+                @*<button class="btn btn-warning mx-1" type="button" id="btnEditar" onclick="AbrirModalEdit('@item.carg_Id,@item.carg_Descripcion')">Editar</button>*@
+                <a class="btn btn-secondary mx-1" asp-action="Index">Regresar al listado</a>
+                <button type="button" class="btn btn-primary" onclick="PostCreate()">Crear rol</button>
+            </div>
+        </div>
+
+    </div>
 </div>
 
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 
 <script src="~/js/Personalizado/Multiple.js"></script>
-
-<script>
-    function inserta() {
-        alert("Hola");
-    }
-
-</script>
+<script src="~/js/App/Seguridad/Roles.js"></script>
