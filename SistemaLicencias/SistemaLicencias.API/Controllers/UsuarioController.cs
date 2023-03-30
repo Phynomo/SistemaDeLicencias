@@ -88,5 +88,13 @@ namespace SistemaLicencias.API.Controllers
             return Ok(list);
         }
 
+
+        [HttpPut("PantallasMenu")]
+        public IActionResult GenerarMenu(PantallaViewModel pantalla)
+        {
+            var item = _mapper.Map<tbPantallas>(pantalla);
+            var list = _seguridadServivce.ListadoMenu(item);
+            return Ok(list);
+        }
     }
 }

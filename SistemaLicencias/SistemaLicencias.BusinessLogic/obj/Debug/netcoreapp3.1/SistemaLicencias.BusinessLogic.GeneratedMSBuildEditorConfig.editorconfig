@@ -1,3 +1,7 @@
 is_global = true
 build_property.RootNamespace = SistemaLicencias.BusinessLogic
+<<<<<<< Updated upstream
 build_property.ProjectDir = C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.BusinessLogic\
+=======
+build_property.ProjectDir = C:\Users\LAB01.DESKTOP-36LBO8D\Desktop\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.BusinessLogic\
+>>>>>>> Stashed changes

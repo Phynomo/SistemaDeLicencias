@@ -10,6 +10,10 @@ $(function () {
     var proMujer = (mujer / parseInt(max)) * 100;
 
 
+    proHombre = proHombre.toFixed(2);
+    proMujer = proMujer.toFixed(2);
+
+
     var doughnutData = {
         labels: ["Hombre Aprobados " + proHombre + "%"  ,"Mujeres Aprobadas " + proMujer +"%"],
         datasets: [{

@@ -177,6 +177,23 @@ namespace SistemaLicencias.BusinessLogic.Service
         }
 
 
+
+
+        public ServiceResult ListadoMenu(tbPantallas item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _usuarioRepository.PantallasMenu(item);
+                return result.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return result.Error(e.Message);
+            }
+        }
+       
+
         #endregion
 
         #region Roles

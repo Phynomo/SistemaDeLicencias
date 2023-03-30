@@ -340,6 +340,7 @@ CREATE TABLE lice.tbRechazados(
 
 
 
+<<<<<<< Updated upstream
 --** PANTALLAS TABLE ***--
 GO
 INSERT INTO acce.tbPantallas(pant_Nombre, pant_Url, pant_Menu, pant_HtmlId, pant_UsuCreacion)
@@ -351,6 +352,36 @@ VALUES ('Aprobados',        '/Aprobados',                'Licencia',        'Apr
        ('TipoLicencias',    '/TipoLicencias',            'Licencia',        'TipoLicenciassItem',    1),
        ('Roles',            '/Roles',                    'Acceso',        'RolesItem',            1),
        ('Usuario',            '/Usuario',                    'Acceso',        'UsuarioItem',            1);
+=======
+--********** PANTALLAS TABLE ***************--
+GO
+INSERT INTO acce.tbPantallas(pant_Nombre, pant_Url, pant_Menu, pant_HtmlId, pant_UsuCreacion)
+VALUES ('Aprobados',		'/Aprobados',				'Licencia',		'AprobadosItem',		1),
+       ('Empleado',			'/Empleado',				'Licencia',		'EmpleadoItem',			1),
+	   ('Rechazos',			'/Rechazos',				'Licencia',		'RechazosItem',			1),
+	   ('Solicitante',		'/Solicitante',				'Licencia',		'SolicitanteItem',		1),
+	   ('Solicitud',		'/Solicitud',				'Licencia',		'SolicitudItem',		1),
+	   ('TipoLicencias',	'/TipoLicencias',			'Licencia',		'TipoLicenciassItem',	1),
+	   ('Roles',			'/Roles',					'Acceso',		'RolesItem',			1),
+	   ('Reportes',			'/Reportes',				'Reporte',		'ReportesItem',			1),
+	   ('Usuario',			'/Usuario',					'Acceso',		'UsuarioItem',			1);
+
+	
+
+--********** PANTALLAS ROL ***************--
+GO 
+INSERT INTO acce.tbRoles (role_Nombre, role_UsuCreacion, role_UsuModificacion, role_FechaModificacion)
+ VALUES ('Digitador', 1, NULL, NULL);
+
+
+--********** PANTALLAS ROL/PANTALLA ***************--
+GO 
+INSERT INTO [acce].[tbPantallasPorRoles] (role_Id, pant_Id, prol_UsuCreacion, prol_UsuModificacion, prol_FechaModificacion)
+VALUES	(2,2,1,NULL,NULL),
+		(2,4,1,NULL,NULL);
+
+
+>>>>>>> Stashed changes
 
 --********** ESTADOS CIVILES TABLE ***************--
 GO
@@ -1612,7 +1643,7 @@ BEGIN
 		ELSE IF NOT EXISTS (SELECT * FROM acce.tbUsuarios WHERE user_NombreUsuario = @user_NombreUsuario)
 			BEGIN
 				INSERT INTO [acce].[tbUsuarios] (user_NombreUsuario, user_Contrasena, user_EsAdmin, role_Id, empe_Id, user_UsuCreacion, user_UsuModificacion, user_FechaModificacion)
-				VALUES (@user_NombreUsuario, @user_Contrasena, @user_EsAdmin, @role_Id, @empe_Id, @user_UsuCreacion, NULL, NULL)
+				VALUES (@user_NombreUsuario, HASHBYTES('SHA2_512',@user_Contrasena), @user_EsAdmin, @role_Id, @empe_Id, @user_UsuCreacion, NULL, NULL)
 				SELECT 1 AS Proceso
 
 				SELECT 1 AS Proceso
@@ -2407,6 +2438,7 @@ BEGIN
 END
 
 
+<<<<<<< Updated upstream
 GO 
 CREATE VIEW acce.VW_tbPantallas_View
 AS
@@ -2438,3 +2470,24 @@ END
 GO
 
 --Guarda
+=======
+
+	
+GO 
+CREATE OR ALTER PROCEDURE acce.tbRolesPorPantallaMenu 
+	@role_Id	INT,
+	@esAdmin	BIT
+AS
+BEGIN
+	IF @esAdmin = 1
+		BEGIN
+			SELECT DISTINCT pant_Id, pant_Nombre, pant_Url, pant_Menu, pant_HtmlId, @role_Id AS role_Id, @esAdmin AS esAdmin
+			FROM [acce].[tbPantallas] 
+		END
+	ELSE
+		SELECT DISTINCT T1.pant_Id, pant_Nombre, pant_Url, pant_Menu, pant_HtmlId, @role_Id AS role_Id, @esAdmin AS esAdmin
+		FROM [acce].[tbPantallas] T1 INNER JOIN [acce].[tbPantallasPorRoles] T2
+		ON T1.pant_Id = T2.pant_Id
+		WHERE role_Id = @role_Id
+END
+>>>>>>> Stashed changes

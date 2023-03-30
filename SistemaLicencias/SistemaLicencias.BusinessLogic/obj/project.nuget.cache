@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< Updated upstream
   "dgSpecHash": "xBvxFO+1hGHTNGIRnJmXLZIvolUWV+WWV7Jx+Bx8HGLTKBqfqXEYOmEPI7cEMvNNsLANxdIU4kBvH+xMpsQDmg==",
   "success": true,
   "projectFilePath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.BusinessLogic\\SistemaLicencias.BusinessLogic.csproj",
+=======
+  "dgSpecHash": "fauFjOL7QcLUNJegtD13o5YlwQ2UhM08e8PLl1AKRcIQ7KBnXK+5+kYiD4XC/hJuNqQYhMxGsGc2e6E4QJZEwQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.BusinessLogic\\SistemaLicencias.BusinessLogic.csproj",
+>>>>>>> Stashed changes
   "expectedPackageFiles": [
     "C:\\Users\\LAB01.DESKTOP-36LBO8D\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
     "C:\\Users\\LAB01.DESKTOP-36LBO8D\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

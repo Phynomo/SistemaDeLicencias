@@ -91,5 +91,15 @@ namespace SistemaLicencias.DataAccess.Repository
             return db.Query<tbRoles>(ScriptsDataBase.UDP_tbRoles_DDL, null, commandType: System.Data.CommandType.StoredProcedure);
         }
 
+        public  IEnumerable<tbPantallas> PantallasMenu(tbPantallas item)
+        {
+            using var db = new SqlConnection(LicenciaContext.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@role_Id", item.role_Id, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@esAdmin", item.esAdmin, DbType.Int32, ParameterDirection.Input);
+            return db.Query<tbPantallas>(ScriptsDataBase.UDP_tbRolesPorPantallaMenu, parametros, commandType: System.Data.CommandType.StoredProcedure);
+        }
+
+
     }
 }

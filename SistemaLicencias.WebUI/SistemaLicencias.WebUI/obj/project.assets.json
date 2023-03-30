@@ -6380,11 +6380,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< Updated upstream
       "projectUniqueName": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias.WebUI\\SistemaLicencias.WebUI\\SistemaLicencias.WebUI.csproj",
       "projectName": "SistemaLicencias.WebUI",
       "projectPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias.WebUI\\SistemaLicencias.WebUI\\SistemaLicencias.WebUI.csproj",
       "packagesPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias.WebUI\\SistemaLicencias.WebUI\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias.WebUI\\SistemaLicencias.WebUI\\SistemaLicencias.WebUI.csproj",
+      "projectName": "SistemaLicencias.WebUI",
+      "projectPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias.WebUI\\SistemaLicencias.WebUI\\SistemaLicencias.WebUI.csproj",
+      "packagesPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias.WebUI\\SistemaLicencias.WebUI\\obj\\",
+>>>>>>> Stashed changes
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

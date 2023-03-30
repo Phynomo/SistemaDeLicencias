@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< Updated upstream
     "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.API\\SistemaLicencias.API.csproj": {}
   },
   "projects": {
@@ -12,6 +13,19 @@
         "projectPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.API\\SistemaLicencias.API.csproj",
         "packagesPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.API\\obj\\",
+=======
+    "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.API\\SistemaLicencias.API.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.API\\SistemaLicencias.API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.API\\SistemaLicencias.API.csproj",
+        "projectName": "SistemaLicencias.API",
+        "projectPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.API\\SistemaLicencias.API.csproj",
+        "packagesPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.API\\obj\\",
+>>>>>>> Stashed changes
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,8 +46,13 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
+<<<<<<< Updated upstream
               "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.BusinessLogic\\SistemaLicencias.BusinessLogic.csproj": {
                 "projectPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.BusinessLogic\\SistemaLicencias.BusinessLogic.csproj"
+=======
+              "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.BusinessLogic\\SistemaLicencias.BusinessLogic.csproj": {
+                "projectPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.BusinessLogic\\SistemaLicencias.BusinessLogic.csproj"
+>>>>>>> Stashed changes
               }
             }
           }
@@ -97,6 +116,7 @@
         }
       }
     },
+<<<<<<< Updated upstream
     "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.BusinessLogic\\SistemaLicencias.BusinessLogic.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -105,6 +125,16 @@
         "projectPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.BusinessLogic\\SistemaLicencias.BusinessLogic.csproj",
         "packagesPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.BusinessLogic\\obj\\",
+=======
+    "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.BusinessLogic\\SistemaLicencias.BusinessLogic.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.BusinessLogic\\SistemaLicencias.BusinessLogic.csproj",
+        "projectName": "SistemaLicencias.BusinessLogic",
+        "projectPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.BusinessLogic\\SistemaLicencias.BusinessLogic.csproj",
+        "packagesPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.BusinessLogic\\obj\\",
+>>>>>>> Stashed changes
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -125,8 +155,13 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
+<<<<<<< Updated upstream
               "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.DataAccess\\SistemaLicencias.DataAccess.csproj": {
                 "projectPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.DataAccess\\SistemaLicencias.DataAccess.csproj"
+=======
+              "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.DataAccess\\SistemaLicencias.DataAccess.csproj": {
+                "projectPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.DataAccess\\SistemaLicencias.DataAccess.csproj"
+>>>>>>> Stashed changes
               }
             }
           }
@@ -159,6 +194,7 @@
         }
       }
     },
+<<<<<<< Updated upstream
     "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.DataAccess\\SistemaLicencias.DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -167,6 +203,16 @@
         "projectPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.DataAccess\\SistemaLicencias.DataAccess.csproj",
         "packagesPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.DataAccess\\obj\\",
+=======
+    "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.DataAccess\\SistemaLicencias.DataAccess.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.DataAccess\\SistemaLicencias.DataAccess.csproj",
+        "projectName": "SistemaLicencias.DataAccess",
+        "projectPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.DataAccess\\SistemaLicencias.DataAccess.csproj",
+        "packagesPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.DataAccess\\obj\\",
+>>>>>>> Stashed changes
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -187,8 +233,13 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
+<<<<<<< Updated upstream
               "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.Entities\\SistemaLicencias.Entities.csproj": {
                 "projectPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.Entities\\SistemaLicencias.Entities.csproj"
+=======
+              "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.Entities\\SistemaLicencias.Entities.csproj": {
+                "projectPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.Entities\\SistemaLicencias.Entities.csproj"
+>>>>>>> Stashed changes
               }
             }
           }
@@ -235,6 +286,7 @@
         }
       }
     },
+<<<<<<< Updated upstream
     "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.Entities\\SistemaLicencias.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -243,6 +295,16 @@
         "projectPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.Entities\\SistemaLicencias.Entities.csproj",
         "packagesPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.Entities\\obj\\",
+=======
+    "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.Entities\\SistemaLicencias.Entities.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.Entities\\SistemaLicencias.Entities.csproj",
+        "projectName": "SistemaLicencias.Entities",
+        "projectPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.Entities\\SistemaLicencias.Entities.csproj",
+        "packagesPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.Entities\\obj\\",
+>>>>>>> Stashed changes
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
