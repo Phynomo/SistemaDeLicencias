@@ -26,8 +26,43 @@ namespace SistemaLicencias.API.Controllers
         [HttpGet("Listado")]
         public IActionResult Index()
         {
-            return View();
+            var list = _seguridadServivce.ListadoUsuarios();
+            return Ok(list);
         }
+
+
+        [HttpGet("Buscar")]
+        public IActionResult Find(int? id)
+        {
+            var list = _seguridadServivce.BuscarUsuario(id);
+            return Ok(list);
+        }
+
+        [HttpPost("Insertar")]
+        public IActionResult Insert(UsuariosViewModel usuarios)
+        {
+
+            var item = _mapper.Map<tbUsuarios>(usuarios);
+            var response = _seguridadServivce.InsertarUsuario(item);
+            return Ok(response);
+        }
+
+        [HttpPut("Editar")]
+        public IActionResult Update(tbUsuarios usuarios)
+        {
+            var item = _mapper.Map<tbUsuarios>(usuarios);
+            var result = _seguridadServivce.EditarUsuario(item);
+            return Ok(result);
+        }
+
+        [HttpPut("Eliminar")]
+        public IActionResult Delete(tbUsuarios usuarios)
+        {
+            var item = _mapper.Map<tbUsuarios>(usuarios);
+            var result = _seguridadServivce.EliminarUsuario(item);
+            return Ok(result);
+        }
+
 
         [HttpPut("IniciarSesion")]
         public IActionResult Login(UsuariosViewModel usuariosView)
@@ -36,6 +71,30 @@ namespace SistemaLicencias.API.Controllers
             var list = _seguridadServivce.Login(item);
             return Ok(list);
         }
+        
+        [HttpPut("Recuperar")]
+        public IActionResult Recuperar(UsuariosViewModel usuariosView)
+        {
+            var item = _mapper.Map<tbUsuarios>(usuariosView);
+            var list = _seguridadServivce.Recuperar(item);
+            return Ok(list);
+        }
 
+
+        [HttpGet("RolDropDownList")]
+        public IActionResult RolDropDownList()
+        {
+            var list = _seguridadServivce.RolDropDownList();
+            return Ok(list);
+        }
+
+
+        [HttpPut("PantallasMenu")]
+        public IActionResult GenerarMenu(PantallaViewModel pantalla)
+        {
+            var item = _mapper.Map<tbPantallas>(pantalla);
+            var list = _seguridadServivce.ListadoMenu(item);
+            return Ok(list);
+        }
     }
 }

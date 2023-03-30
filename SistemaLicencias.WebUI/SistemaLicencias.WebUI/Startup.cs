@@ -24,11 +24,28 @@ namespace SistemaLicencias.WebUI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDistributedMemoryCache();
+            services.AddSession(); // habilita el soporte de sesión
+            services.AddHttpContextAccessor();
+            
+
+
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.UseSession(); // configura la aplicación para usar la sesión
+            app.UseRouting();
+
+            app.UseAuthorization();
+
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

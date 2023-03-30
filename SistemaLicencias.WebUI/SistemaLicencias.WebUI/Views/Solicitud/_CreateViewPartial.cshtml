@@ -44,12 +44,17 @@
                         <div class="col-sm-6">
                             <label class="control-label">Pago</label>
                             <div class="form-group">
-                                <label class="form-check-label">
-                                    <input style="margin-left:-10px" type="checkbox" class="js-switch"  asp-for="stud_Pago" />
+                                <!-- Rounded switch -->
+                                <label class="switch">
+                                    <input style="margin-left:-10px" type="checkbox" asp-for="stud_Pago" />
+                                    <span class="slider round"></span>
                                 </label>
                             </div>
                         </div>
+    
                     </div>
+                    
+
                 </form>
             </div>
             <div class="modal-footer">
@@ -61,7 +66,6 @@
 </div>
 
 
-<script src="~/js/App/Licencias/Solicitud.js"></script>
 
 
 

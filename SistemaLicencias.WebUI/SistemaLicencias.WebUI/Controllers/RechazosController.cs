@@ -41,10 +41,7 @@ namespace SistemaLicencias.WebUI.Controllers
                     JArray jsonArray = JArray.Parse(jsonObj["data"].ToString());
                     string message = (string)jsonObj["message"];
 
-
                     listado = JsonConvert.DeserializeObject<List<VWRechazadosViewModel>>(jsonArray.ToString());
-
-
                 }
                 return View(listado);
             }

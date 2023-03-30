@@ -23,6 +23,7 @@ namespace SistemaLicencias.WebUI.Controllers
 
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             ViewBag.Resultado = TempData["apro"];

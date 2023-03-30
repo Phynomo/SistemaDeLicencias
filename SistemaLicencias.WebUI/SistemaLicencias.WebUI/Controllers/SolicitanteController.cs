@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -108,7 +109,7 @@ namespace SistemaLicencias.WebUI.Controllers
             if (ModelState.IsValid)
             {
 
-
+                solicitantes.soli_UsuCreacion = Convert.ToInt32(HttpContext.Session.GetInt32("usur_Id"));
 
                 string json = JsonConvert.SerializeObject(solicitantes);
 
@@ -212,6 +213,9 @@ namespace SistemaLicencias.WebUI.Controllers
 
             if (ModelState.IsValid)
             {
+
+                solicitantesViewModel.soli_UsuModificacion = Convert.ToInt32(HttpContext.Session.GetInt32("usur_Id"));
+
                 string json = JsonConvert.SerializeObject(solicitantesViewModel);
 
                 var client = new HttpClient();
