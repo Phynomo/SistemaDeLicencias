@@ -241,5 +241,34 @@ namespace SistemaLicencias.WebUI.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        //[HttpGet("ReportesAprobados")]
+        //public async Task<IActionResult> ReportesAprobados()
+        //{
+        //    ViewBag.Resultado = TempData["apro"];
+
+        //    List<ReporteAprobadosViewModel> listado = new List<ReporteAprobadosViewModel>();
+
+        //    using (var httpClient = new HttpClient())
+        //    {
+        //        var response = await httpClient.GetAsync(_baseurl + "api/Aprobados/Listado");
+
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            var jsonResponse = await response.Content.ReadAsStringAsync();
+
+        //            JObject jsonObj = JObject.Parse(jsonResponse);
+        //            JArray jsonArray = JArray.Parse(jsonObj["data"].ToString());
+        //            string message = (string)jsonObj["message"];
+
+
+        //            listado = JsonConvert.DeserializeObject<List<ReporteAprobadosViewModel>>(jsonArray.ToString());
+
+
+        //        }
+        //        return View(listado);
+        //    }
+        //}
+
     }
 }

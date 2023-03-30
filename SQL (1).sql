@@ -1976,6 +1976,10 @@ INSERT INTO [lice].[tbAprobados]
 		   SET [stud_Estado] = 0
 		 WHERE stud_Id = @stud_Id
 
+		 
+		UPDATE [lice].tbRechazados
+		   SET [rech_Estado] = 0
+		 WHERE stud_Id = @stud_Id
 
 
 
@@ -2181,9 +2185,9 @@ AS
 BEGIN
 	SELECT *        
 	FROM lice.VW_tbRechazados_View
-	WHERE rech_Estado = 1 AND stud_Id = @stud_Id
+	WHERE stud_Id = @stud_Id
 END
-GO
+GO--Guardatodo
 
 GO
 CREATE OR ALTER PROCEDURE lice.UDP_tbRechazados_Find
