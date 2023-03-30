@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "o+bbJUMtrwkuBRBXPjM9qgcOphrk/xPCTi6jA3S9VMi2/Laprr+Ka7hXxM+StnT7yv8onJKCVcskJy8+IuWX8A==",
+  "dgSpecHash": "aIDnXWekxamw3+JSZiDn4Drf79EnH/d076PXvmfq+NIOtT/MN0q/mmpS9mVdFUh6FMz6qmDITy/w7QDaVjwxDw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.API\\SistemaLicencias.API.csproj",
+  "projectFilePath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.API\\SistemaLicencias.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\LAB01.DESKTOP-36LBO8D\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\LAB01.DESKTOP-36LBO8D\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",

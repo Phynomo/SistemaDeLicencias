@@ -1,13 +1,3 @@
-C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\bin\Debug\netcoreapp3.1\SistemaLicencias.Entities.deps.json
-C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\bin\Debug\netcoreapp3.1\SistemaLicencias.Entities.dll
-C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\bin\Debug\netcoreapp3.1\SistemaLicencias.Entities.pdb
-C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\obj\Debug\netcoreapp3.1\SistemaLicencias.Entities.csproj.AssemblyReference.cache
-C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\obj\Debug\netcoreapp3.1\SistemaLicencias.Entities.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\obj\Debug\netcoreapp3.1\SistemaLicencias.Entities.AssemblyInfoInputs.cache
-C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\obj\Debug\netcoreapp3.1\SistemaLicencias.Entities.AssemblyInfo.cs
-C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\obj\Debug\netcoreapp3.1\SistemaLicencias.Entities.csproj.CoreCompileInputs.cache
-C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\obj\Debug\netcoreapp3.1\SistemaLicencias.Entities.dll
-C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\obj\Debug\netcoreapp3.1\SistemaLicencias.Entities.pdb
 C:\Users\ALEXANDER\Desktop\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\bin\Debug\netcoreapp3.1\SistemaLicencias.Entities.deps.json
 C:\Users\ALEXANDER\Desktop\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\bin\Debug\netcoreapp3.1\SistemaLicencias.Entities.dll
 C:\Users\ALEXANDER\Desktop\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\bin\Debug\netcoreapp3.1\SistemaLicencias.Entities.pdb
@@ -58,3 +48,12 @@ C:\Users\danie\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicen
 C:\Users\danie\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\obj\Debug\netcoreapp3.1\SistemaLicencias.Entities.csproj.CoreCompileInputs.cache
 C:\Users\danie\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\obj\Debug\netcoreapp3.1\SistemaLicencias.Entities.dll
 C:\Users\danie\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\obj\Debug\netcoreapp3.1\SistemaLicencias.Entities.pdb
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\bin\Debug\netcoreapp3.1\SistemaLicencias.Entities.deps.json
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\bin\Debug\netcoreapp3.1\SistemaLicencias.Entities.dll
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\bin\Debug\netcoreapp3.1\SistemaLicencias.Entities.pdb
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\obj\Debug\netcoreapp3.1\SistemaLicencias.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\obj\Debug\netcoreapp3.1\SistemaLicencias.Entities.AssemblyInfoInputs.cache
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\obj\Debug\netcoreapp3.1\SistemaLicencias.Entities.AssemblyInfo.cs
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\obj\Debug\netcoreapp3.1\SistemaLicencias.Entities.csproj.CoreCompileInputs.cache
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\obj\Debug\netcoreapp3.1\SistemaLicencias.Entities.dll
+C:\Users\LAB01.DESKTOP-36LBO8D\Documents\GitHub\SistemaDeLicencias\SistemaLicencias\SistemaLicencias.Entities\obj\Debug\netcoreapp3.1\SistemaLicencias.Entities.pdb

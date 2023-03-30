@@ -182,7 +182,6 @@ namespace SistemaLicencias.BusinessLogic.Service
             try
             {
                 var list = _usuarioRepository.PantallasMenu(item);
-                var list = _rolesRepository.List();
                 return result.Ok(list);
             }
             catch (Exception e)
@@ -399,7 +398,7 @@ namespace SistemaLicencias.BusinessLogic.Service
                 var list = _pantallasPorRolRepository.ListPxRxR(rol_Id);
                 return list;
             }
-            catch (Exception e)
+            catch (Exception )
             {
                 return null;
             }

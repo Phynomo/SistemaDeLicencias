@@ -89,14 +89,6 @@ namespace SistemaLicencias.API.Controllers
         }
 
 
-        [HttpGet("RolDropDownList")]
-        public IActionResult RolDropDownList()
-        {
-            var list = _seguridadServivce.RolDropDownList();
-            return Ok(list);
-        }
-
-
         [HttpPut("PantallasMenu")]
         public IActionResult GenerarMenu(PantallaViewModel pantalla)
         {
