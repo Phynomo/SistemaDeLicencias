@@ -22,6 +22,7 @@ namespace SistemaLicencias.DataAccess.Context
         public virtual DbSet<VW_tbAprobados_View> VW_tbAprobados_View { get; set; }
         public virtual DbSet<VW_tbEmpleados_View> VW_tbEmpleados_View { get; set; }
         public virtual DbSet<VW_tbPantallasPorRoles_View> VW_tbPantallasPorRoles_View { get; set; }
+        public virtual DbSet<VW_tbPantallas_View> VW_tbPantallas_View { get; set; }
         public virtual DbSet<VW_tbRechazados_View> VW_tbRechazados_View { get; set; }
         public virtual DbSet<VW_tbRoles_View> VW_tbRoles_View { get; set; }
         public virtual DbSet<VW_tbSolicitantes_View> VW_tbSolicitantes_View { get; set; }
@@ -230,6 +231,39 @@ namespace SistemaLicencias.DataAccess.Context
                 entity.Property(e => e.role_Nombre)
                     .IsRequired()
                     .HasMaxLength(100);
+            });
+
+            modelBuilder.Entity<VW_tbPantallas_View>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("VW_tbPantallas_View", "acce");
+
+                entity.Property(e => e.UsuarioCreacion)
+                    .IsRequired()
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.UsuarioModificacion).HasMaxLength(100);
+
+                entity.Property(e => e.pant_FechaCreacion).HasColumnType("datetime");
+
+                entity.Property(e => e.pant_FechaModificacion).HasColumnType("datetime");
+
+                entity.Property(e => e.pant_HtmlId)
+                    .IsRequired()
+                    .HasMaxLength(80);
+
+                entity.Property(e => e.pant_Menu)
+                    .IsRequired()
+                    .HasMaxLength(300);
+
+                entity.Property(e => e.pant_Nombre)
+                    .IsRequired()
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.pant_Url)
+                    .IsRequired()
+                    .HasMaxLength(300);
             });
 
             modelBuilder.Entity<VW_tbRechazados_View>(entity =>

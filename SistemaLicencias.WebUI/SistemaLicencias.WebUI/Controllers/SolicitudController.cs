@@ -223,6 +223,14 @@ namespace SistemaLicencias.WebUI.Controllers
             if (response.IsSuccessStatusCode)
             {
                 var responseContent = await response.Content.ReadAsStringAsync();
+                JObject jsonObj = JObject.Parse(responseContent);
+                string message = (string)jsonObj["message"];
+                if (message == "La solicitud debe ser pagada")
+                {
+                    TempData["stud"] = "DebePagar";
+                    return RedirectToAction("Index");
+                }
+
                 TempData["stud"] = "AcceptSuccess";
                 Console.WriteLine(responseContent);
                 return RedirectToAction("Index");
@@ -234,5 +242,34 @@ namespace SistemaLicencias.WebUI.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        //[HttpGet("ReportesAprobados")]
+        //public async Task<IActionResult> ReportesAprobados()
+        //{
+        //    ViewBag.Resultado = TempData["apro"];
+
+        //    List<ReporteAprobadosViewModel> listado = new List<ReporteAprobadosViewModel>();
+
+        //    using (var httpClient = new HttpClient())
+        //    {
+        //        var response = await httpClient.GetAsync(_baseurl + "api/Aprobados/Listado");
+
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            var jsonResponse = await response.Content.ReadAsStringAsync();
+
+        //            JObject jsonObj = JObject.Parse(jsonResponse);
+        //            JArray jsonArray = JArray.Parse(jsonObj["data"].ToString());
+        //            string message = (string)jsonObj["message"];
+
+
+        //            listado = JsonConvert.DeserializeObject<List<ReporteAprobadosViewModel>>(jsonArray.ToString());
+
+
+        //        }
+        //        return View(listado);
+        //    }
+        //}
+
     }
 }

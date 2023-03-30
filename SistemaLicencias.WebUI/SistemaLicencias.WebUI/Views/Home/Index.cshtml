@@ -2,36 +2,70 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Licencias licenciado</h1>
-
-    <input id="CantidadHombres" type="text" value="@ViewBag.Hombre" hidden />
-    <input id="CantidadMujeres" type="text" value="@ViewBag.Mujer"  hidden/>
 
 
-    <div class="row">
-        <div class="col-lg-1"></div>
-        <div class="col-lg-10">
-            <div class="ibox ">
-                <div class="ibox-title">
-                    <h5>Pie</h5>
+<div class="container-fluid wrapper border-bottom white-bg">
 
-                </div>
-                <div class="ibox-content">
-                    <div>
-                        <canvas id="doughnutChart" height="140"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-1"></div>
+    <div class="text-center row d-flex justify-content-center">
+        <h1 class="display-4">Licencias licenciado</h1>
     </div>
 
 
-    <img src="~/gif/42809-driving-license-scanning-unscreen (1).gif" />
-    <h2 class="display-4">Las unicas y mejores</h2>
-</div>
 
+</div>
+<input id="CantidadHombres" type="text" value="@ViewBag.Hombre" hidden />
+<input id="CantidadMujeres" type="text" value="@ViewBag.Mujer" hidden />
+
+
+
+
+
+<div class="row mt-3">
+    <div class="col-lg-6 col-md-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5>Hombres y mujeres aprobados</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link" href="index.html">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="index.html#">
+                        <i class="fa fa-wrench"></i>
+                    </a>
+                    <a class="close-link" href="index.html">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <canvas id="doughnutChart" height="140"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-12">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5>Haz tu solicitud</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link" href="index.html">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="index.html#">
+                        <i class="fa fa-wrench"></i>
+                    </a>
+                    <a class="close-link" href="index.html">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content text-center">
+                <a href="/Solicitud"  > <img class="mb-4" src="~/gif/42809-driving-license-scanning-unscreen (1).gif" /></a>
+               
+            </div>
+        </div>
+
+    </div>
+</div>
 
 <script src="~/js/jquery-3.1.1.min.js"></script>
 <script src="~/js/popper.min.js"></script>

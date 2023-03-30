@@ -137,6 +137,11 @@ namespace SistemaLicencias.BusinessLogic
             return SetMessage(message, ServiceResultType.NotFound);
         }
 
+        internal ServiceResult SetMessage(string v, object con)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Resultado de servicio cuando un objeto o recurso no es aceptado (406).
         /// </summary>

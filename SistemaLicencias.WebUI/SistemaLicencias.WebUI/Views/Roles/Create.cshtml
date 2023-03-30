@@ -1,0 +1,61 @@
+﻿@model SistemaLicencias.WebUI.Models.RolesViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<input hidden id="resultado" value="@ViewBag.Resultado" />
+
+<div class="card" style="border:1px solid #283c4c;">
+    <div class="card-header text-center" style="background: rgb(30,45,93); background: radial-gradient(circle, rgba(30,45,93,1) 50%, rgba(122,255,163,1) 100%); ">
+
+        <div class="row">
+            <div class="col">
+                <h1 class="text-white" style="margin-top:0px;">Agregar Rol</h1>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col">
+                <h4 class="text-white">Dale un nombre al rol y selecciona sus pantallas</h4>
+            </div>
+        </div>
+
+    </div>
+    <div class="card-body">
+        <form asp-action="Create" id="formCreate">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="form-group col">
+                    <label asp-for="role_Nombre" class="control-label"></label>
+                    <input asp-for="role_Nombre" id="role_Nombre" class="form-control" />
+                    <span id="lblrole_Nombre" hidden class="text-danger">Este campo es requerido</span>
+                </div>
+                <div class="form-group col">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <select asp-for="pantallas" asp-items="ViewBag.Pantallas" class="form-control dual_select" multiple>
+                    </select>
+                </div>
+            </div>
+        </form>
+
+        <div class="row mt-2">
+            <div class="col d-flex justify-content-end">
+                @*<button class="btn btn-warning mx-1" type="button" id="btnEditar" onclick="AbrirModalEdit('@item.carg_Id,@item.carg_Descripcion')">Editar</button>*@
+                <a class="btn btn-secondary mx-1" asp-action="Index">Regresar al listado</a>
+                <button type="button" class="btn btn-primary" onclick="PostCreate()">Crear rol</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<script src="~/js/Personalizado/Multiple.js"></script>
+<script src="~/js/App/Seguridad/Roles.js"></script>

@@ -124,6 +124,18 @@ $(document).ready(function () {
             closeOnEsc: false,
         });
     }
+    if (resultado == "DebePagar") {
+        swal({
+            title: 'Debe pagar',
+            text: 'La Solicitud fue rechazada debido a que no ha sido pagada',
+            type: 'error',
+            timer: 2500,
+            showConfirmButton: false,
+            showCancelButton: false,
+            closeOnClickOutside: false,
+            closeOnEsc: false,
+        });
+    }
 });
 
 
