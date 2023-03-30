@@ -72,6 +72,9 @@ namespace SistemaLicencias.DataAccess.Repository
 
 
 
+
+
+
         public static string UDP_tbusuarios_Insertar        = "acce.UDP_tbusuarios_INSERT";
         public static string UDP_tbusuarios_Editar          = "acce.UDP_tbusuarios_UPDATE";
         public static string UDP_tbusuarios_Eliminar        = "acce.UDP_tbusuarios_DELETE";
@@ -89,6 +92,31 @@ namespace SistemaLicencias.DataAccess.Repository
         public static string UDP_tbRechazados_ListadoXSolicitud = "lice.UDP_tbRechazados_SELECTXSolicitud";
         public static string UDP_tbRechazados_Buscar = "lice.UDP_tbRechazados_Find";
 
+
+        #region Roles
+        public static string UDP_tbRoles_Insertar = "acce.UDP_tbRoles_Insert";
+        public static string UDP_tbRoles_Editar = "acce.UDP_tbRoles_Update";
+        public static string UDP_tbRoles_Eliminar = "acce.UDP_tbRoles_Delete";
+        public static string UDP_tbRoles_Listado = "acce.UDP_tbRoles_Select";
+        public static string UDP_tbRoles_Buscar = "acce.UDP_tbRoles_Find";
+        #endregion
+
+        #region Pantallas por roles
+        public static string UDP_tbPantallasXRoles_Insertar = "acce.UDP_tbPantallasPorRoles_Insert";
+        //public static string UDP_tbPantallasXRoles_Editar = "acce.UDP_tbRoles_Update";
+        public static string UDP_tbPantallasXRoles_Eliminar = "acce.UDP_tbPantallasPorRoles_Delete";
+        public static string UDP_tbPantallasXRoles_ListadoPxRxR = "acce.UDP_tbPantallasPorRoles_SelectPorRol";
+        //public static string UDP_tbPantallasXRoles_Buscar = "acce.UDP_tbRoles_Find";
+        #endregion
+
+
+        #region Solicitantes
+        //public static string UDP_tbRoles_Insertar = "acce.UDP_tbRoles_Insert";
+        //public static string UDP_tbRoles_Editar = "acce.UDP_tbRoles_Update";
+        //public static string UDP_tbRoles_Eliminar = "acce.UDP_tbRoles_Delete";
+        public static string UDP_tbPantallas_Listado = "acce.UDP_tbPantallas_SELECT";
+        //public static string UDP_tbRoles_Buscar = "acce.UDP_tbRoles_Find";
+        #endregion
 
     }
 }

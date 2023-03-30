@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
@@ -50,7 +50,7 @@ namespace SistemaLicencias.WebUI.Controllers
                     int Mujer = 0;
                     foreach (var item in listado)
                     {
-                        if (item.soli_Sexo == "M")
+                        if(item.soli_Sexo == "M")
                         {
                             Hombre += 1;
                         }
@@ -59,8 +59,8 @@ namespace SistemaLicencias.WebUI.Controllers
                             Mujer += 1;
                         }
                     }
-                    ViewBag.Hombre = Hombre;
-                    ViewBag.Mujer = Mujer;
+                    ViewBag.Hombre  = Hombre;
+                    ViewBag.Mujer   = Mujer;
 
                 }
                 return View(listado);

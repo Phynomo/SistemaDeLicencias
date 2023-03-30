@@ -973,6 +973,17 @@ END
   END
 
 
+  
+  GO
+  CREATE OR ALTER PROCEDURE acce.UDP_tbRoles_Find
+  @role_Id	INT
+  AS 
+  BEGIN
+  
+  SELECT * FROM acce.VW_tbRoles_View
+  WHERE role_Id = @role_Id
+
+  END
 
 
 
@@ -987,7 +998,7 @@ BEGIN
         IF EXISTS (SELECT * FROM acce.tbRoles WHERE role_Nombre = @role_Nombre AND role_Estado = 1)
         BEGIN
 
-            SELECT 2 as Proceso
+            SELECT -2 as Proceso
 
         END
         ELSE IF NOT EXISTS (SELECT * FROM acce.tbRoles WHERE role_Nombre = @role_Nombre)
@@ -1007,8 +1018,8 @@ BEGIN
 				   ,Null
 				   ,1)
 
-            SELECT 1 as Proceso
-        END
+            SELECT SCOPE_IDENTITY() 
+			END
         ELSE
         BEGIN
             UPDATE acce.tbRoles
@@ -1020,7 +1031,7 @@ BEGIN
 				,role_FechaModificacion = NULL
             WHERE role_Nombre = @role_Nombre
 
-            select 1
+            select role_Id From acce.tbRoles  WHERE role_Nombre = @role_Nombre
         END
 
     END TRY
@@ -1061,7 +1072,7 @@ BEGIN
     BEGIN CATCH
         SELECT 0 as Proceso
     END CATCH
-END
+END--guarda
 GO
   Go
 CREATE OR ALTER PROCEDURE acce.UDP_tbRoles_Delete
@@ -1070,11 +1081,23 @@ AS
 BEGIN
 	BEGIN TRY
 		
+		  IF EXISTS (SELECT * FROM acce.tbUsuarios WHERE (role_Id = @role_Id))
+        BEGIN
+		
+		SELECT -1
+
+		END
+		ELSE
+		BEGIN 
 		UPDATE acce.tbRoles
 		SET role_Estado = 0
 		WHERE role_Id = @role_Id
 		
+		DELETE FROM [acce].[tbPantallasPorRoles]
+		WHERE role_Id = @role_Id
+
 		SELECT 1
+		END
 	
 	END TRY
 	BEGIN CATCH
@@ -1119,7 +1142,19 @@ SELECT [prol_Id]
 
   END
   GO
+      GO
+  CREATE OR ALTER PROCEDURE acce.UDP_tbPantallasPorRoles_SelectPorRol
+  @role_Id INT
+  AS 
+  BEGIN
+  
+  SELECT * FROM acce.VW_tbPantallasPorRoles_View
+  WHERE prol_Estado = 1 AND role_Id = @role_Id
+
+  END
   GO
+
+
 
 CREATE OR ALTER PROCEDURE acce.UDP_tbPantallasPorRoles_Insert 
 	@role_Id int,
@@ -1131,7 +1166,7 @@ BEGIN
         IF EXISTS (SELECT * FROM acce.tbPantallasPorRoles WHERE role_Id = @role_Id AND pant_Id = @pant_Id AND prol_Estado = 1)
         BEGIN
 
-            SELECT 2 as Proceso
+            SELECT -2 as Proceso
 
         END
         ELSE IF NOT EXISTS (SELECT * FROM acce.tbPantallasPorRoles WHERE role_Id = @role_Id AND pant_Id = @pant_Id)
@@ -1177,15 +1212,13 @@ GO
 
 
 CREATE OR ALTER PROCEDURE acce.UDP_tbPantallasPorRoles_Delete
-	@role_Id int,
-	@pant_Id int
+	@role_Id int
 AS
 BEGIN
     BEGIN TRY
         
-        UPDATE acce.tbPantallasPorRoles
-        SET  prol_Estado = 0
-        WHERE role_Id = @role_Id AND pant_Id = @pant_Id
+      DELETE FROM [acce].[tbPantallasPorRoles]
+		WHERE role_Id = @role_Id
 
         select 1
      
@@ -1960,6 +1993,10 @@ INSERT INTO [lice].[tbAprobados]
 		   SET [stud_Estado] = 0
 		 WHERE stud_Id = @stud_Id
 
+		 
+		UPDATE [lice].tbRechazados
+		   SET [rech_Estado] = 0
+		 WHERE stud_Id = @stud_Id
 
 
 
@@ -2165,9 +2202,9 @@ AS
 BEGIN
 	SELECT *        
 	FROM lice.VW_tbRechazados_View
-	WHERE rech_Estado = 1 AND stud_Id = @stud_Id
+	WHERE stud_Id = @stud_Id
 END
-GO
+GO--Guardatodo
 
 GO
 CREATE OR ALTER PROCEDURE lice.UDP_tbRechazados_Find
@@ -2305,8 +2342,10 @@ SELECT T1.[user_Id]
 	  ,T5.carg_Id
 	  ,T6.carg_Descripcion
       ,T1.[user_UsuCreacion]
+      ,t2.user_NombreUsuario AS UsuarioCreacion
       ,T1.[user_FechaCreacion]
       ,T1.[user_UsuModificacion]
+      ,t3.user_NombreUsuario AS UsuarioModificacion
       ,T1.[user_FechaModificacion]
       ,T1.[user_Estado]
   FROM [acce].[tbUsuarios] T1 LEFT JOIN acce.tbRoles T4
@@ -2363,7 +2402,7 @@ END CATCH
 
 
 
-END--quiero guardarlo xd
+END
 GO
 
 CREATE OR ALTER PROCEDURE lice.UDP_tbSolicitantes_DDL
@@ -2404,3 +2443,34 @@ BEGIN
 		ON T1.pant_Id = T2.pant_Id
 		WHERE role_Id = @role_Id
 END
+GO 
+CREATE VIEW acce.VW_tbPantallas_View
+AS
+SELECT [pant_Id]
+      ,[pant_Nombre]
+      ,[pant_Url]
+      ,[pant_Menu]
+      ,[pant_HtmlId]
+      ,[pant_UsuCreacion]
+      ,t2.user_NombreUsuario AS UsuarioCreacion
+      ,[pant_FechaCreacion]
+      ,[pant_UsuModificacion]
+      ,t3.user_NombreUsuario AS UsuarioModificacion
+      ,[pant_FechaModificacion]
+      ,[pant_Estado]
+  FROM [acce].[tbPantallas] T1 INNER JOIN acce.tbUsuarios T2
+  ON T1.pant_UsuCreacion = T2.[user_Id] LEFT JOIN acce.tbUsuarios T3
+  ON T1.pant_UsuModificacion = T3.[user_Id]
+
+GO
+
+GO
+CREATE OR ALTER PROCEDURE acce.UDP_tbPantallas_SELECT
+AS
+BEGIN
+	SELECT * FROM acce.VW_tbPantallas_View
+	WHERE pant_Estado = 1;
+END
+GO
+
+--Guarda

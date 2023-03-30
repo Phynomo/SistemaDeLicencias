@@ -25,7 +25,7 @@ namespace SistemaLicencias.WebUI
         {
             services.AddControllersWithViews();
             services.AddDistributedMemoryCache();
-            services.AddSession(); // habilita el soporte de sesión
+            services.AddSession(); // habilita el soporte de sesiï¿½n
             services.AddHttpContextAccessor();
             
 
@@ -40,7 +40,7 @@ namespace SistemaLicencias.WebUI
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseSession(); // configura la aplicación para usar la sesión
+            app.UseSession(); // configura la aplicaciï¿½n para usar la sesiï¿½n
             app.UseRouting();
 
             app.UseAuthorization();

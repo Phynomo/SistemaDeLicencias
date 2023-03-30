@@ -1,6 +1,9 @@
 ﻿
 $(document).ready(function () {
 
+    var elem = document.querySelector('.js-switch');
+    var switchery = new Switchery(elem, { color: '#1AB394' });
+
     var resultado = $("#resultado").val();
 
     if (resultado == "CreateSuccess") {
@@ -124,7 +127,18 @@ $(document).ready(function () {
             closeOnEsc: false,
         });
     }
-
+ if (resultado == "DebePagar") {
+        swal({
+            title: 'Debe pagar',
+            text: 'La Solicitud fue rechazada debido a que no ha sido pagada',
+            type: 'error',
+            timer: 2500,
+            showConfirmButton: false,
+            showCancelButton: false,
+            closeOnClickOutside: false,
+            closeOnEsc: false,
+        });
+    }
 
     setTimeout(addClass, 100);
     setTimeout(addClass, 200);
@@ -136,6 +150,9 @@ $(document).ready(function () {
     setTimeout(addClass, 800);
     setTimeout(addClass, 900);
     setTimeout(addClass, 1000);
+
+
+   
 });
 
 
