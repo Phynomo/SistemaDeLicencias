@@ -100,9 +100,13 @@ namespace SistemaLicencias.BusinessLogic.Service
             try
             {
                 var map = _usuarioRepository.Insert(usuario);
-                if (map.CodeStatus > 0)
+                if (map.CodeStatus == 1)
                 {
                     return result.Ok(map);
+                }
+                else if (map.CodeStatus == 2)
+                {
+                    return result.SetMessage("Repetido", ServiceResultType.Conflict);
                 }
                 else
                 {

@@ -20,5 +20,4 @@ function addClass() {
     $('#subMenuLicencia').delay(1000).attr('aria-expanded', true);
     $('#subMenuLicencia').delay(1000).addClass('in');
     $('#RechazosItem').delay(1000).addClass('active');
-
 }

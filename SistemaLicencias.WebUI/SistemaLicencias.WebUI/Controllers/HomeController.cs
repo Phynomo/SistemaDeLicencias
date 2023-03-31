@@ -108,6 +108,9 @@ namespace SistemaLicencias.WebUI.Controllers
             HttpContext.Session.SetInt32("usur_Id", 0);
             HttpContext.Session.SetString("EsAdmin", "");
             HttpContext.Session.SetInt32("Rol", 0);
+            HttpContext.Response.Headers.Add("Cache-Control", "no-cache, no-store, must-revalidate");
+            HttpContext.Response.Headers.Add("Pragma", "no-cache");
+            HttpContext.Response.Headers.Add("Expires", "0");
 
 
             return RedirectToAction("Index","Login");

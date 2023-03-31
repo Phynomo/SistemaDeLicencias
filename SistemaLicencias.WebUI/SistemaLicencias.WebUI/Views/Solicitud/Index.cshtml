@@ -32,9 +32,6 @@
             <thead style=background-color: transparent;>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.stud_Id)
-                    </th>
-                    <th>
                         @Html.DisplayNameFor(model => model.soli_NombreCompleto)
                     </th>
                     <th>
@@ -54,10 +51,7 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.stud_Id)
-                        </td>
+                    <tr>  
                         <td>
                             @Html.DisplayFor(modelItem => item.soli_NombreCompleto)
                         </td>
@@ -78,7 +72,7 @@
                             <button class="btn btn-danger btn-sm btn-outline" type="button" onclick="OpenModalDelete('@item.stud_Id')">Eliminar</button>
 
                             <div class="btn-group">
-                                <button data-toggle="dropdown" class="btn btn-secondary btn-sm  btn-outline dropdown-toggle">Action</button>
+                                <button data-toggle="dropdown" class="btn btn-secondary btn-sm  btn-outline dropdown-toggle">Aceptar/Rechazar</button>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" onclick="Rejeact(@item.stud_Id)">Rechazar</a></li>
                                     <li><a class="dropdown-item" onclick="Accept(@item.stud_Id)">Aceptar</a></li>

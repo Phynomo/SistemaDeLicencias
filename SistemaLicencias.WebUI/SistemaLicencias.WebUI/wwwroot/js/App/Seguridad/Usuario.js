@@ -76,6 +76,18 @@ $(document).ready(function () {
             closeOnEsc: false,
         });
     }
+    if (resultado == "Repetido") {
+        swal({
+            title: 'Invalido',
+            text: 'No pueden existir dos usuarios con el mismo nombre',
+            type: 'warning',
+            timer: 2500,
+            showConfirmButton: false,
+            showCancelButton: false,
+            closeOnClickOutside: false,
+            closeOnEsc: false,
+        });
+    }
 
 
     setTimeout(addClass, 100);

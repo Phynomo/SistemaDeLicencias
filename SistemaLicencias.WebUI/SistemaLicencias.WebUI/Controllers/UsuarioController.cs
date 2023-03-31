@@ -108,8 +108,14 @@ namespace SistemaLicencias.WebUI.Controllers
             if (response.IsSuccessStatusCode)
             {
                 var responseContent = await response.Content.ReadAsStringAsync();
+                JObject jsonObj = JObject.Parse(responseContent);
+                string message = (string)jsonObj["message"];
+                if (message == "Repetido")
+                {
+                    TempData["user"] = "Repetido";
+                    return RedirectToAction("Index");
+                }
                 TempData["user"] = "CreateSuccess";
-                Console.WriteLine(responseContent);
                 return RedirectToAction("Index");
             }
             else

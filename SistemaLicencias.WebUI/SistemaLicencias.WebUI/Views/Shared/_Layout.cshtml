@@ -1,17 +1,5 @@
 ﻿@using Microsoft.Extensions.DependencyInjection
 
-@using Microsoft.AspNetCore.Http
-@{
-    var session = Context.RequestServices.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
-    int user_Id = ViewBag.user_Id = Convert.ToInt32(session?.GetInt32("usur_Id"));
-    string Nombre = ViewBag.Nombre = session?.GetString("Nombre");
-    string Cargo = ViewBag.Cargo = session?.GetString("Cargo");
-    int Sucursal = ViewBag.Sucursal = Convert.ToInt32(session?.GetInt32("Sucursal"));
-    if (user_Id == 0)
-    {
-        <script>window.location.href = '/Login';</script>
-    }
-}
 
 
 <!DOCTYPE html>
@@ -24,6 +12,18 @@
     <link href="~/css/bootstrap.min.css" rel="stylesheet">
     <link href="~/font-awesome/css/font-awesome.css" rel="stylesheet">
 
+    @using Microsoft.AspNetCore.Http
+    @{
+        var session = Context.RequestServices.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
+        int user_Id = ViewBag.user_Id = Convert.ToInt32(session?.GetInt32("usur_Id"));
+        string Nombre = ViewBag.Nombre = session?.GetString("Nombre");
+        string Cargo = ViewBag.Cargo = session?.GetString("Cargo");
+        int Sucursal = ViewBag.Sucursal = Convert.ToInt32(session?.GetInt32("Sucursal"));
+        if (user_Id == 0)
+        {
+            <script>window.location.href = '/Login';</script>
+        }
+    }
 
 
     <link href="~/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
@@ -91,7 +91,7 @@
                         <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
 
                     </div>
-                    
+
                     <ul class="nav navbar-top-links navbar-right">
                         <li class="text-center">
                             @*<span >Las unicas y mejores licencias</span>*@
@@ -99,11 +99,11 @@
                         </li>
 
                         <li>
-                         
+
                             <a asp-action="Destroysession" asp-controller="Home">
                                 <i class="fa fa-sign-out"></i> Log out
                             </a>
-                           
+
                         </li>
                     </ul>
 
@@ -172,8 +172,15 @@
     <script src="~/js/Personalizado/datatables.js"></script>
     <script src="~/js/Personalizado/toast.js"></script>
 
-
-
+    <script>
+        $(document).ready(function () {
+            $('input').keypress(function (event) {
+                var inputValue = event.which;
+                if (inputValue == 34 || inputValue == 39) { // bloquea las comillas dobles y simples
+                    event.preventDefault();
+                }
+            });
+        });</script>
 
 
 </body>

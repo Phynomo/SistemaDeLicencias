@@ -52,6 +52,8 @@ namespace SistemaLicencias.DataAccess.Repository
 
         public RequestStatus Insert(tbUsuarios item)
         {
+            RequestStatus result = new RequestStatus();
+
             using var db = new SqlConnection(LicenciaContext.ConnectionString);
             var parametros = new DynamicParameters();
             parametros.Add("@user_NombreUsuario",   item.user_NombreUsuario,    DbType.String,  ParameterDirection.Input);
@@ -61,7 +63,9 @@ namespace SistemaLicencias.DataAccess.Repository
             parametros.Add("@empe_Id",              item.empe_Id,               DbType.Int32,   ParameterDirection.Input);
             parametros.Add("@user_UsuCreacion",     item.user_UsuCreacion,      DbType.Int32,   ParameterDirection.Input);
 
-            var result = db.QueryFirst<RequestStatus>(ScriptsDataBase.UDP_tbusuarios_Insertar, parametros, commandType: System.Data.CommandType.StoredProcedure);
+            var resultado = db.QueryFirst<int>(ScriptsDataBase.UDP_tbusuarios_Insertar, parametros, commandType: System.Data.CommandType.StoredProcedure);
+            result.CodeStatus = resultado;
+
             return result;
         }
 
@@ -73,6 +77,9 @@ namespace SistemaLicencias.DataAccess.Repository
 
         public RequestStatus Update(tbUsuarios item)
         {
+
+            RequestStatus result = new RequestStatus();
+
             using var db = new SqlConnection(LicenciaContext.ConnectionString);
             var parametros = new DynamicParameters();   
             parametros.Add("@user_Id",              item.user_Id,               DbType.Int32,   ParameterDirection.Input);
@@ -81,7 +88,10 @@ namespace SistemaLicencias.DataAccess.Repository
             parametros.Add("@empe_Id",              item.empe_Id,               DbType.Int32,   ParameterDirection.Input);
             parametros.Add("@user_UsuModificacion", item.user_UsuModificacion,  DbType.Int32,   ParameterDirection.Input);
 
-            var result = db.QueryFirst<RequestStatus>(ScriptsDataBase.UDP_tbusuarios_Editar, parametros, commandType: System.Data.CommandType.StoredProcedure);
+            var resultado = db.QueryFirst<int>(ScriptsDataBase.UDP_tbusuarios_Editar, parametros, commandType: System.Data.CommandType.StoredProcedure);
+
+            result.CodeStatus = resultado;
+
             return result;
         }
 

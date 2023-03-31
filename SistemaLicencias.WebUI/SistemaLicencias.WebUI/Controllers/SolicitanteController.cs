@@ -119,6 +119,7 @@ namespace SistemaLicencias.WebUI.Controllers
 
             return View();
         }
+        [HttpPost]
         public async Task<IActionResult> Create(SolicitantesViewModel solicitantes)
         {
             //CARGAR VIEW BAG "DEPARTAMENTOS"
@@ -150,11 +151,13 @@ namespace SistemaLicencias.WebUI.Controllers
             if (Convert.ToString(solicitantes.depa_Id) == "0" || Convert.ToString(solicitantes.depa_Id) == "")
             {
                 ModelState.AddModelError("ValidacionDepartamento", "El campo 'Departamento' es requerido");
+                ViewBag.Resultado = "Camposvacios";
             }
 
             if (Convert.ToString(solicitantes.muni_Id) == "0" || Convert.ToString(solicitantes.muni_Id) == "")
             {
-                ModelState.AddModelError("ValidacionMunicipio", "El campo 'Municipio' es requerido");
+                ModelState.AddModelError("ValidacionMunicipio", "El campo 'Municipio' es requerido"); 
+                ViewBag.Resultado = "Camposvacios";
             }
 
             if (ModelState.IsValid)
@@ -183,6 +186,10 @@ namespace SistemaLicencias.WebUI.Controllers
                 {
                     Console.WriteLine("La solicitud falló con el código de estado: " + response.StatusCode);
                 }
+            }
+            else
+            {
+                ViewBag.Resultado = "Camposvacios";
             }
 
             
@@ -247,6 +254,7 @@ namespace SistemaLicencias.WebUI.Controllers
                 return View(lice);
             }
         }
+        [HttpPost]
         public async Task<IActionResult> Edit(SolicitantesViewModel solicitantesViewModel)
         {
 
@@ -279,11 +287,13 @@ namespace SistemaLicencias.WebUI.Controllers
             if (Convert.ToString(solicitantesViewModel.depa_Id) == "0" || Convert.ToString(solicitantesViewModel.depa_Id) == "")
             {
                 ModelState.AddModelError("ValidacionDepartamento", "El campo 'Departamento' es requerido");
+                ViewBag.Resultado = "Camposvacios";
             }
 
             if (Convert.ToString(solicitantesViewModel.muni_Id) == "0" || Convert.ToString(solicitantesViewModel.muni_Id) == "")
             {
                 ModelState.AddModelError("ValidacionMunicipio", "El campo 'Municipio' es requerido");
+                ViewBag.Resultado = "Camposvacios";
             }
 
             if (ModelState.IsValid)
@@ -313,6 +323,10 @@ namespace SistemaLicencias.WebUI.Controllers
                     TempData["soli"] = "EditError";
                     Console.WriteLine("La solicitud falló con el código de estado: " + response.StatusCode);
                 }
+            }
+            else
+            {
+                ViewBag.Resultado = "Camposvacios";
             }
             return View(solicitantesViewModel);
         }

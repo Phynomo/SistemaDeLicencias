@@ -74,6 +74,9 @@
             closeOnEsc: false,
         });
     }
+    if (resultado == "Camposvacios") {
+        toastr.warning("Completa todos los campos para continuar", "Campos vacios")
+    }
 
 
 
