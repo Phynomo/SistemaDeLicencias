@@ -2474,3 +2474,27 @@ END
 GO
 
 --Guarda
+
+GO
+CREATE OR ALTER PROCEDURE acce.UDP_AccesoAPantallas
+@esAdmin	INT,
+@role_Id	INT,
+@pant_Id	Int
+AS
+BEGIN
+
+	IF @esAdmin = 1 
+	BEGIN
+	SELECT 1
+	END
+	ELSE IF EXISTS (select * FROM acce.tbPantallasPorRoles WHERE role_Id = @role_Id
+												AND pant_Id = @pant_Id)
+	BEGIN
+	SELECT 1
+	END
+	ELSE
+	BEGIN
+	SELECT 0
+	END
+END
+GO

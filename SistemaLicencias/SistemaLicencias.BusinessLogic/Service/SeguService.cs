@@ -189,6 +189,31 @@ namespace SistemaLicencias.BusinessLogic.Service
                 return result.Error(e.Message);
             }
         }
+        
+        public ServiceResult AccesoAPantallas(int? esAdmin, int? role_Id, int? pant_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var map = _usuarioRepository.AccesoAPantalla(esAdmin,role_Id,pant_Id);
+                if (map.CodeStatus == 1)
+                {
+                    return result.SetMessage(map.CodeStatus.ToString(), ServiceResultType.Success);
+                }
+                else if (map.CodeStatus == 0)
+                {
+                    return result.SetMessage(map.CodeStatus.ToString(), ServiceResultType.Conflict);
+                }
+                else
+                {
+                    return result.SetMessage("0", ServiceResultType.Error);
+                }
+            }
+            catch (Exception e)
+            {
+                return result.SetMessage("0", ServiceResultType.Error);
+            }
+        }
 
 
         #endregion

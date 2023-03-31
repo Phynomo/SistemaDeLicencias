@@ -96,5 +96,12 @@ namespace SistemaLicencias.API.Controllers
             var list = _seguridadServivce.ListadoMenu(item);
             return Ok(list);
         }
+
+        [HttpGet("AccesoAPantalla")]
+        public IActionResult AccesoAPantalla(int? esAdmin, int? role_Id, int? pant_Id)
+        {
+            var list = _seguridadServivce.AccesoAPantallas(esAdmin,role_Id,pant_Id);
+            return Ok(list);
+        }
     }
 }

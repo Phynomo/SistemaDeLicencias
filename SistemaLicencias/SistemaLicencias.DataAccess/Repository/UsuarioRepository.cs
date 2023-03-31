@@ -101,5 +101,20 @@ namespace SistemaLicencias.DataAccess.Repository
         }
 
 
+        public RequestStatus AccesoAPantalla(int? esAdmin, int? role_Id, int? pant_Id)
+        {
+            RequestStatus result = new RequestStatus();
+            using var db = new SqlConnection(LicenciaContext.ConnectionString);
+            var parametros = new DynamicParameters();
+            parametros.Add("@esAdmin", esAdmin, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@role_Id", role_Id, DbType.Int32, ParameterDirection.Input);
+            parametros.Add("@pant_Id", pant_Id, DbType.Int32, ParameterDirection.Input);
+
+            var respuesta = db.QueryFirst<int>(ScriptsDataBase.UDP_tbUsuarios_Acceso, parametros, commandType: System.Data.CommandType.StoredProcedure);
+
+            result.CodeStatus = respuesta;
+
+            return result;
+        }
     }
 }

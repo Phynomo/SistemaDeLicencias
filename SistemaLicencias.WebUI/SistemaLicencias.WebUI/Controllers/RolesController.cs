@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -27,6 +28,31 @@ namespace SistemaLicencias.WebUI.Controllers
 
         public async Task<IActionResult> Index()
         {
+            #region Tiene permiso?
+            var client = new HttpClient();
+            int esAdmin = 0;
+            if (HttpContext.Session.GetString("EsAdmin") == "True")
+            {
+                esAdmin = 1;
+            }
+
+            client.BaseAddress = new Uri(_baseurl + $"api/Usuario/AccesoAPantalla?esAdmin={esAdmin}&role_Id={HttpContext.Session.GetInt32("Rol")}&pant_Id=7");//donde dice pant id tenes que metelo en duro y tiene que se el mismo id que en la base de datos sql
+
+            var Acceso = await client.GetAsync(_baseurl + $"api/Usuario/AccesoAPantalla?esAdmin={esAdmin}&role_Id={HttpContext.Session.GetInt32("Rol")}&pant_Id=7");
+
+            if (Acceso.IsSuccessStatusCode)
+            {
+                var responseContent = await Acceso.Content.ReadAsStringAsync();
+                JObject jsonObj = JObject.Parse(responseContent);
+                string message = (string)jsonObj["message"];
+                if (message == "0")
+                {
+                    return RedirectToAction("Index","Home");
+                }
+            }
+            #endregion
+
+
             ViewBag.Resultado = TempData["role"];
 
             List<VWRolesViewModel> listado = new List<VWRolesViewModel>();

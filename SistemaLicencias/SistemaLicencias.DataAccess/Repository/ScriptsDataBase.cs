@@ -80,6 +80,7 @@ namespace SistemaLicencias.DataAccess.Repository
         public static string UDP_tbusuarios_Eliminar        = "acce.UDP_tbusuarios_DELETE";
         public static string UDP_tbUsuarios_Listado         = "acce.UDP_tbUsuarios_SELECT";
         public static string UDP_tbUsuarios_Buscar          = "acce.UDP_VW_tbUsuarios_View_FIND";
+        public static string UDP_tbUsuarios_Acceso          = "acce.UDP_AccesoAPantallas";
         #endregion
 
 
