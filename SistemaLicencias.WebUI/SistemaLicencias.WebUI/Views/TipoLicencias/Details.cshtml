@@ -1,0 +1,89 @@
+﻿@model SistemaLicencias.WebUI.Models.VWTiposLicenciasViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1></h1>
+
+<div class="card" style="border:1px solid #283c4c;">
+    <div class="card-header text-center" style="background: radial-gradient(circle, rgba(30,45,93,1) 50%, rgba(32,164,140,1) 100%);">
+
+        <div class="row">
+            <div class="col">
+                <h1 class="text-white" style="margin-top:0px;">Detalles</h1>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col">
+                <h4 class="text-white">Tipo de licencia</h4>
+            </div>
+        </div>
+
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col">
+                <label class="text-black font-weight-bold">@Html.DisplayNameFor(model => model.tili_Descripcion)</label><br />
+                <label> @Html.DisplayFor(model => model.tili_Descripcion)</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col d-flex justify-content-end">
+                @*<button class="btn btn-warning mx-1" type="button" id="btnEditar" onclick="AbrirModalEdit('@item.carg_Id,@item.carg_Descripcion')">Editar</button>*@
+                <a class="btn btn-secondary" asp-action="Index">Regresar al listado</a>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    
+</div>
+
+
+<div class="row mt-4">
+    <div class="col">
+        <div class="ibox ">
+            <div class="ibox-title bg-dark">
+                <h5 class="text-white">Auditoría</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-down"></i>
+                    </a>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content" style="display:none; border: 1px solid black; border-top:none;">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Accion</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Creacion</td>
+                            <td>@Html.DisplayFor(model => model.UsuarioCreacion)</td>
+                            <td>@Html.DisplayFor(model => model.tili_FechaCreacion)</td>
+                        </tr>
+                        <tr>
+                            <td>Modificacion</td>
+                            <td>@Html.DisplayFor(model => model.UsuarioModificacion)</td>
+                            <td>@Html.DisplayFor(model => model.tili_FechaModificacion)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

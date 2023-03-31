@@ -1,0 +1,99 @@
+﻿@model IEnumerable<SistemaLicencias.WebUI.Models.VWSolicitudViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/css/switches.css" rel="stylesheet" />
+
+<input hidden id="resultado" value="@ViewBag.Resultado" />
+
+<div class="card" style="border:1px solid #283c4c;">
+    <div class="card-header text-center" style="background: radial-gradient(circle, rgba(30,45,93,1) 50%, rgba(32,164,140,1) 100%); ">
+
+        <div class="row">
+            <div class="col">
+                <h1 class="text-white" style="margin-top:0px;">Solicitud</h1>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-4">
+                <button onclick="OpenModalCreate()" type="button" class="btn btn-block btn-primary">
+                    Agregar
+                </button>
+
+                @*@Html.ActionLink("ReportesAprobados", "ReportesAprobados", new { @class = "btn btn-info mx-1 btn-outline btn-sm" })*@
+            </div>
+        </div>
+    </div>
+    <div class="card-body table-responsive">
+        <table class="table table-hover dataTables" data-filtering="true">
+            <thead style=background-color: transparent;>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.soli_NombreCompleto)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.sucu_Nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.tili_Descripcion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.stud_Pago)
+                    </th>
+
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>  
+                        <td>
+                            @Html.DisplayFor(modelItem => item.soli_NombreCompleto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.sucu_Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tili_Descripcion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.stud_Pago)
+                        </td>
+                        <td>
+                            <button class="btn btn-warning btn-sm  btn-outline" type="button" id="OpenModalEdit" onclick="Editar('@item.stud_Id,$$,@item.soli_Id,$$,@item.sucu_Id,$$,@item.tili_Id,$$,@item.stud_Pago')">Editar</button>
+
+                            @Html.ActionLink("Detalles", "Details", new { id = item.stud_Id }, new { @class = "btn btn-info mx-1 btn-outline btn-sm" })
+
+                            <button class="btn btn-danger btn-sm btn-outline" type="button" onclick="OpenModalDelete('@item.stud_Id')">Eliminar</button>
+
+                            <div class="btn-group">
+                                <button data-toggle="dropdown" class="btn btn-secondary btn-sm  btn-outline dropdown-toggle">Aceptar/Rechazar</button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" onclick="Rejeact(@item.stud_Id)">Rechazar</a></li>
+                                    <li><a class="dropdown-item" onclick="Accept(@item.stud_Id)">Aceptar</a></li>
+                                </ul>
+                            </div>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@Html.Partial("_DeleteViewPartial", new SistemaLicencias.WebUI.Models.SolicitudViewModel())
+@Html.Partial("_CreateViewPartial", new SistemaLicencias.WebUI.Models.SolicitudViewModel())
+@Html.Partial("_EditViewPartial", new SistemaLicencias.WebUI.Models.SolicitudViewModel())
+@Html.Partial("_RejectViewPartial", new SistemaLicencias.WebUI.Models.RechazadosViewModel())
+@Html.Partial("_AcceptViewPartial", new SistemaLicencias.WebUI.Models.AprovadosViewModel())
+
+
+
+<script src="~/js/App/Licencias/Solicitud.js"></script>

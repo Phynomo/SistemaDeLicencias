@@ -1,0 +1,147 @@
+﻿@model SistemaLicencias.WebUI.Models.EmpleadosViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="card" style="border:1px solid #283c4c;">
+    <div class="card-header text-center" style="background: rgb(30,45,93); background: radial-gradient(circle, rgba(30,45,93,1) 50%, rgba(122,255,163,1) 100%); ">
+
+        <div class="row">
+            <div class="col">
+                <h1 class="text-white" style="margin-top:0px;">Agregar empleado</h1>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col">
+                <h4 class="text-white">Ingrese los datos del nuevo empleado</h4>
+            </div>
+        </div>
+
+    </div>
+    <div class="card-body">
+
+        <form asp-action="Create" id="formCreate">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="form-group col">
+                    <label asp-for="empe_Nombres" class="control-label"></label>
+                    <input asp-for="empe_Nombres" id="empe_Nombres" class="form-control" />
+                    <span id="lblempe_Nombres" class="text-danger" hidden> Este campo es requerido</span>
+                </div>
+                <div class="form-group col">
+                    <label asp-for="empe_Apellidos" class="control-label"></label>
+                    <input asp-for="empe_Apellidos" id="empe_Apellidos" class="form-control" />
+                    <span id="lblempe_Apellidos" class="text-danger" hidden> Este campo es requerido</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <label asp-for="empe_Identidad" class="control-label"></label>
+                    <input asp-for="empe_Identidad" id="empe_Identidad" data-mask="9999-9999-99999" class="form-control" />
+                    <span id="lblempe_Identidad" class="text-danger" hidden> Este campo es requerido</span>
+                </div>
+                <div class="form-group col">
+                    <label asp-for="empe_FechaNacimiento" class="control-label"></label>
+                    <input asp-for="empe_FechaNacimiento" id="empe_FechaNacimiento" type="date" class="form-control" />
+                    <span id="lblempe_FechaNacimiento" class="text-danger" hidden> Este campo es requerido</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col">
+                    <label asp-for="empe_Sexo" class="control-label"></label>
+                    <br />
+                    @Html.RadioButtonFor(model => model.empe_Sexo, "M", new { id = "M" }) Masculino
+                    @Html.RadioButtonFor(model => model.empe_Sexo, "F", new { id = "F" }) Femenino
+                    <br />
+                    <span id="lblempe_Sexo" class="text-danger" hidden> Este campo es requerido</span>
+                </div>
+                <div class="form-group col">
+                    <label asp-for="eciv_Id" class="control-label"></label>
+                    <select asp-for="eciv_Id" id="eciv_Id" class="form-control" asp-items="ViewBag.EstadosCiviles">
+                        <option value="">-- Seleccione un estado civil --</option>
+                    </select>
+                    <span id="lbleciv_Id" class="text-danger" hidden> Este campo es requerido</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col">
+                    <label asp-for="depa_Id" class="control-label"></label>
+                    <select id="depa_Id" name="depa_Id" class="form-control" asp-items="ViewBag.depa_Id">
+                        <option value=""> -- Seleccione un Departamento -- </option>
+                    </select>
+                    <span id="lbldepa_Id" class="text-danger" hidden> Este campo es requerido</span>
+                </div>
+                <div class="form-group col">
+                    <label asp-for="muni_Id" class="control-label"></label>
+                    <select asp-for="muni_Id" id="muni_Id" name="muni_Id" class="form-control" asp-items="ViewBag.muni_Id">
+                        <option value="">-- Seleccione un Municipio --</option>
+                    </select>
+                    <span id="lblmuni_Id" class="text-danger" hidden> Este campo es requerido</span>
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="form-group col">
+                    <label asp-for="empe_Telefono" class="control-label"></label>
+                    <input asp-for="empe_Telefono" data-mask="9999-9999" id="empe_Telefono" class="form-control" />
+                    <span id="lblempe_Telefono" class="text-danger" hidden> Este campo es requerido</span>
+                </div>
+                <div class="form-group col">
+                    <label asp-for="empe_CorreoElectronico" class="control-label"></label>
+                    <input asp-for="empe_CorreoElectronico" id="empe_CorreoElectronico" type="email" class="form-control" />
+                    <span id="lblempe_CorreoElectronico" class="text-danger" hidden> Este campo es requerido</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <label asp-for="sucu_Id" class="control-label"></label>
+                    <select asp-for="sucu_Id" id="sucu_Id" class="form-control" asp-items="ViewBag.Sucursales">
+                        <option value="">-- Seleccione un sucursales --</option>
+                    </select>
+                    <span id="lblsucu_Id" class="text-danger" hidden> Este campo es requerido</span>
+                </div>
+                <div class="form-group col">
+                    <label asp-for="carg_Id" class="control-label"></label>
+                    <select asp-for="carg_Id" id="carg_Id" class="form-control" asp-items="ViewBag.Cargos">
+                        <option value="">-- Seleccione un cargo --</option>
+                    </select>
+                    <span id="lblcarg_Id" class="text-danger" hidden> Este campo es requerido</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col">
+                    <label asp-for="empe_DireccionExacta" class="control-label"></label>
+                    <textarea maxlength="500" asp-for="empe_DireccionExacta" id="empe_DireccionExacta" class="form-control"></textarea>
+                    <span id="lblempe_DireccionExacta" class="text-danger" hidden> Este campo es requerido</span>
+                </div>
+            </div>
+
+        </form>
+
+            <div class="row">
+                <div class="col d-flex justify-content-end">
+                    @*<button class="btn btn-warning mx-1" type="button" id="btnEditar" onclick="AbrirModalEdit('@item.carg_Id,@item.carg_Descripcion')">Editar</button>*@
+                    <a class="btn btn-secondary mx-1" asp-action="Index">Regresar al listado</a>
+                    <button type="button" class="btn btn-primary" onclick="PostCreate()" >Agregar empleado</button>
+                </div>
+            </div>
+
+        
+
+
+    </div>
+
+
+</div>
+
+
+<script src="~/js/App/Licencias/Empleados.js"></script>

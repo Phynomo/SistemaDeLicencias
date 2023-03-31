@@ -1,0 +1,304 @@
+﻿@model SistemaLicencias.WebUI.Models.VWAprobadosViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/css/Carnte.css" rel="stylesheet" />
+
+<div class="row d-flex justify-content-center" >
+    <div class="col-8">
+        <div class="container2">
+            <div class="front side">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="row">
+                                <img src="~/img/logo.png" style="height: 50px; filter: invert(100%);" />
+                            </div>
+                            <div class="row">
+                                <img src="~/img/10.png" style="width:100%; border-radius:100%; " />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <img src="~/img/logo_itm.png" style="height:60px; margin:auto;" />
+                            </div>
+                            <div style="margin:5% 0px 0px 20%">
+                                <div class="row mt-4">
+                                    <label class="text-black font-weight-bold" style="font-size:1.8em;">Nombre completo: </label><br />
+                                    <label style="font-size:1.8em;">@Html.DisplayFor(model => model.soli_NombreCompleto)</label>
+                                </div>
+                                <div class="row mt-4">
+                                    <label style="font-size:1.8em;" class="text-black font-weight-bold">DNI: </label><br />
+                                    <label style="font-size:1.8em;">@Html.DisplayFor(model => model.soli_Identidad)</label>
+                                </div>
+                                <div class="row mt-4">
+                                    <label style="font-size:1.8em;" class="text-black font-weight-bold">Tipo de licencia: </label><br />
+                                    <label style="font-size:1.8em;">@Html.DisplayFor(model => model.tili_Descripcion)</label>
+                                </div>
+                                <div class="row mt-4">
+                                    <label style="font-size:1.8em;" class="text-black font-weight-bold">Aprobada el: </label><br />
+                                    <label style="font-size:1.8em;">@Html.DisplayFor(model => model.apro_Fecha)</label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="back side">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-3">
+                            <img src="~/img/logo.png" style="height: 90px; filter: invert(100%);" />
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <p style="font-size:1.8em;">Mediante este documento se acredita que el presente tiene el derecho a poder transitar con vehiculos por las vias publicas de la ciudad</p>
+                            </div>
+                            <div class="row mt-4 d-flex justify-content-center">
+                                <label style="font-size:1.8em;" class="text-black font-weight-bold">Documento acreditado en:</label><br />
+                                <label style="font-size:1.8em;">@Html.DisplayFor(model => model.sucu_Nombre)</label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card mt-4" style="border:1px solid #283c4c;">
+    <div class="card-header text-center" style="background: radial-gradient(circle, rgba(30,45,93,1) 50%, rgba(32,164,140,1) 100%);">
+
+        <div class="row">
+            <div class="col">
+                <h1 class="text-white" style="margin-top:0px;">Detalles</h1>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col">
+                <h4 class="text-white">Solicitud aprobada de @Model.soli_NombreCompleto</h4>
+            </div>
+        </div>
+
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col">
+                <label class="text-black font-weight-bold">@Html.DisplayNameFor(model => model.soli_Nombre)</label><br />
+                <label>@Html.DisplayFor(model => model.soli_Nombre)</label>
+            </div>
+            <div class="col">
+                <label class="text-black font-weight-bold">@Html.DisplayNameFor(model => model.soli_Apellido)</label><br />
+                <label>@Html.DisplayFor(model => model.soli_Apellido)</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label class="text-black font-weight-bold">@Html.DisplayNameFor(model => model.soli_Identidad)</label><br />
+                <label>@Html.DisplayFor(model => model.soli_Identidad)</label>
+            </div>
+            <div class="col">
+                <label class="text-black font-weight-bold">@Html.DisplayNameFor(model => model.soli_Sexo)</label><br />
+                <label>@Html.DisplayFor(model => model.soli_Sexo)</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label class="text-black font-weight-bold"> @Html.DisplayNameFor(model => model.tili_Descripcion)</label><br />
+                <label> @Html.DisplayFor(model => model.tili_Descripcion)</label>
+            </div>
+            <div class="col">
+                <label class="text-black font-weight-bold">@Html.DisplayNameFor(model => model.sucu_Nombre)</label><br />
+                <label>@Html.DisplayFor(model => model.sucu_Nombre)</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label class="text-black font-weight-bold"> @Html.DisplayNameFor(model => model.empe_NombreCompleto)</label><br />
+                <label> @Html.DisplayFor(model => model.empe_NombreCompleto)</label>
+            </div>
+            <div class="col">
+                <label class="text-black font-weight-bold">@Html.DisplayNameFor(model => model.apro_Intentos)</label><br />
+                <label>@Html.DisplayFor(model => model.apro_Intentos)</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col d-flex justify-content-end">
+                <a class="btn btn-secondary" asp-action="Index">Regresar al listado</a>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+</div>
+
+
+
+
+
+<div class="row mt-2 d-flex justify-content-center">
+    <div class="col">
+        <div class="ibox ">
+            <div class="card-header text-center collapse-link" style="background: rgb(30,45,93); background: radial-gradient(circle, rgba(30,45,93,1) 50%, rgba(0,193,199,1) 100%); ">
+                <div class="row">
+                    <div class="col d-flex justify-content-start">
+                        <a class="">
+                            <i class="fa fa-chevron-down"></i>
+                        </a>
+                    </div>
+                    <div class="col d-flex justify-content-center">
+                        <h3 class="text-white text-center">Intento Aprobado</h3>
+                    </div>
+                    <div class="col d-flex justify-content-end">
+                        <a class="">
+                            <i class="fa fa-chevron-down"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="ibox-content" style="display:none; border: 1px solid black; border-top:none;">
+
+
+
+                <div class="row">
+                    <div class="col">
+                        <label class="text-black font-weight-bold">Nombre completo</label><br />
+                        <label>@Model.soli_NombreCompleto</label>
+                    </div>
+                    <div class="col">
+                        <label class="text-black font-weight-bold">DNI</label><br />
+                        <label>@Model.soli_Identidad</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label class="text-black font-weight-bold">Licencia</label><br />
+                        <label>@Model.tili_Descripcion</label>
+                    </div>
+                    <div class="col">
+                        <label class="text-black font-weight-bold">Sucursal</label><br />
+                        <label>@Model.sucu_Nombre</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label class="text-black font-weight-bold">Supervisor</label><br />
+                        <label>@Model.empe_NombreCompleto</label>
+                    </div>
+                    <div class="col">
+                        <label class="text-black font-weight-bold">Fecha</label><br />
+                        <label>@Model.apro_Fecha</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label class="text-black font-weight-bold">Observacion</label><br />
+                        <label>@Model.apro_Observaciones</label>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+@foreach (var Listado in ViewBag.ListadoRechazos)
+{
+
+    <div class="row mt-2 d-flex justify-content-center">
+        <div class="col">
+            <div class="ibox ">
+                <div class="card-header text-center collapse-link" style="background: rgb(30,45,93); background: radial-gradient(circle, rgba(30,45,93,1) 50%, rgba(199,48,0,1) 100%);">
+                    <div class="row">
+                        <div class="col d-flex justify-content-start">
+                            <a class="">
+                                <i class="fa fa-chevron-down"></i>
+                            </a>
+                        </div>
+                        <div class="col d-flex justify-content-center">
+                            <h3 class="text-white text-center">Intento fallido</h3>
+                        </div>
+                        <div class="col d-flex justify-content-end">
+                            <a class="">
+                                <i class="fa fa-chevron-down"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="ibox-content" style="display:none; border: 1px solid black; border-top:none;">
+
+
+
+                    <div class="row">
+                        <div class="col">
+                            <label class="text-black font-weight-bold">Nombre completo</label><br />
+                            <label>@Listado.soli_NombreCompleto</label>
+                        </div>
+                        <div class="col">
+                            <label class="text-black font-weight-bold">DNI</label><br />
+                            <label>@Listado.soli_Identidad</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label class="text-black font-weight-bold">Licencia</label><br />
+                            <label>@Listado.tili_Descripcion</label>
+                        </div>
+                        <div class="col">
+                            <label class="text-black font-weight-bold">Sucursal</label><br />
+                            <label>@Listado.sucu_Nombre</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label class="text-black font-weight-bold">Supervisor</label><br />
+                            <label>@Listado.empe_NombreCompleto</label>
+                        </div>
+                        <div class="col">
+                            <label class="text-black font-weight-bold">Fecha</label><br />
+                            <label>@Listado.rech_Fecha</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label class="text-black font-weight-bold">Observacion</label><br />
+                            <label>@Listado.rech_Observaciones</label>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+<script>
+
+</script>
