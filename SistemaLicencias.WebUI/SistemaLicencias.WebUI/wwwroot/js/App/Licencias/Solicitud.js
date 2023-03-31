@@ -1,9 +1,6 @@
 ﻿
 $(document).ready(function () {
 
-    var elem = document.querySelector('.js-switch');
-    var switchery = new Switchery(elem, { color: '#1AB394' });
-
     var resultado = $("#resultado").val();
 
     if (resultado == "CreateSuccess") {
@@ -127,7 +124,7 @@ $(document).ready(function () {
             closeOnEsc: false,
         });
     }
- if (resultado == "DebePagar") {
+    if (resultado == "DebePagar") {
         swal({
             title: 'Debe pagar',
             text: 'La Solicitud fue rechazada debido a que no ha sido pagada',
@@ -174,6 +171,9 @@ function OpenModalCreate() {
     $('#ModalCreateClass').removeClass('bounce');
     $('#ModalCreateClass').removeClass('flipInY');
     $('#ModalCreateClass').addClass('flipInY');
+    $("#lbSoli_Id").attr('hidden', true);
+    $("#lbSucu_Id").attr('hidden', true);
+    $("#lbtili_Id").attr('hidden', true);
     $("#ModalCreate").appendTo('body').modal('show');
 }
 

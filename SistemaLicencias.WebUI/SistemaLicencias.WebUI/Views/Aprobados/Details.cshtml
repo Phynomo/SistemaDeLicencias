@@ -5,7 +5,79 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="card" style="border:1px solid #283c4c;">
+<link href="~/css/Carnte.css" rel="stylesheet" />
+
+<div class="row d-flex justify-content-center" >
+    <div class="col-8">
+        <div class="container2">
+            <div class="front side">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="row">
+                                <img src="~/img/logo.png" style="height: 50px; filter: invert(100%);" />
+                            </div>
+                            <div class="row">
+                                <img src="~/img/10.png" style="width:100%; border-radius:100%; " />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <img src="~/img/logo_itm.png" style="height:60px; margin:auto;" />
+                            </div>
+                            <div style="margin:5% 0px 0px 20%">
+                                <div class="row mt-4">
+                                    <label class="text-black font-weight-bold" style="font-size:1.8em;">Nombre completo: </label><br />
+                                    <label style="font-size:1.8em;">@Html.DisplayFor(model => model.soli_NombreCompleto)</label>
+                                </div>
+                                <div class="row mt-4">
+                                    <label style="font-size:1.8em;" class="text-black font-weight-bold">DNI: </label><br />
+                                    <label style="font-size:1.8em;">@Html.DisplayFor(model => model.soli_Identidad)</label>
+                                </div>
+                                <div class="row mt-4">
+                                    <label style="font-size:1.8em;" class="text-black font-weight-bold">Tipo de licencia: </label><br />
+                                    <label style="font-size:1.8em;">@Html.DisplayFor(model => model.tili_Descripcion)</label>
+                                </div>
+                                <div class="row mt-4">
+                                    <label style="font-size:1.8em;" class="text-black font-weight-bold">Aprobada el: </label><br />
+                                    <label style="font-size:1.8em;">@Html.DisplayFor(model => model.apro_Fecha)</label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="back side">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-3">
+                            <img src="~/img/logo.png" style="height: 90px; filter: invert(100%);" />
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <p style="font-size:1.8em;">Mediante este documento se acredita que el presente tiene el derecho a poder transitar con vehiculos por las vias publicas de la ciudad</p>
+                            </div>
+                            <div class="row mt-4 d-flex justify-content-center">
+                                <label style="font-size:1.8em;" class="text-black font-weight-bold">Documento acreditado en:</label><br />
+                                <label style="font-size:1.8em;">@Html.DisplayFor(model => model.sucu_Nombre)</label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card mt-4" style="border:1px solid #283c4c;">
     <div class="card-header text-center" style="background: radial-gradient(circle, rgba(30,45,93,1) 50%, rgba(32,164,140,1) 100%);">
 
         <div class="row">
@@ -225,3 +297,8 @@
         </div>
     </div>
 }
+
+
+<script>
+
+</script>

@@ -80,6 +80,29 @@ namespace SistemaLicencias.WebUI.Controllers
             [HttpGet]
             public async Task<IActionResult> Create()
             {
+            #region Tiene permiso?
+            var client = new HttpClient();
+            int esAdmin = 0;
+            if (HttpContext.Session.GetString("EsAdmin") == "True")
+            {
+                esAdmin = 1;
+            }
+
+            client.BaseAddress = new Uri(_baseurl + $"api/Usuario/AccesoAPantalla?esAdmin={esAdmin}&role_Id={HttpContext.Session.GetInt32("Rol")}&pant_Id=7");//donde dice pant id tenes que metelo en duro y tiene que se el mismo id que en la base de datos sql
+
+            var Acceso = await client.GetAsync(_baseurl + $"api/Usuario/AccesoAPantalla?esAdmin={esAdmin}&role_Id={HttpContext.Session.GetInt32("Rol")}&pant_Id=7");
+
+            if (Acceso.IsSuccessStatusCode)
+            {
+                var responseContent = await Acceso.Content.ReadAsStringAsync();
+                JObject jsonObj = JObject.Parse(responseContent);
+                string message = (string)jsonObj["message"];
+                if (message == "0")
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            #endregion
             using (var httpClient = new HttpClient())
             {
 
@@ -128,17 +151,21 @@ namespace SistemaLicencias.WebUI.Controllers
                     var contentD = new StringContent(jsonD, System.Text.Encoding.UTF8, "application/json");
                     var responseD = await client.PostAsync(_baseurl + "api/Roles/EliminarPantallasXRol", contentD);
 
-                    foreach (var item in roles.pantallas)
+                    if (roles.pantallas != null)
                     {
-                        pant.pant_Id = Convert.ToInt32(item);
-                        pant.prol_UsuCreacion = roles.role_UsuCreacion;
-                        string json2 = JsonConvert.SerializeObject(pant);
+                         foreach (var item in roles.pantallas)
+                        {
+                            pant.pant_Id = Convert.ToInt32(item);
+                            pant.prol_UsuCreacion = roles.role_UsuCreacion;
+                            string json2 = JsonConvert.SerializeObject(pant);
 
-                        client2.BaseAddress = new Uri(_baseurl + "api/Roles/InsertarPantallasXRol");
-                    var content2 = new StringContent(json2, System.Text.Encoding.UTF8, "application/json");
-                    var response2 = await client.PostAsync(_baseurl + "api/Roles/InsertarPantallasXRol", content2);
+                            client2.BaseAddress = new Uri(_baseurl + "api/Roles/InsertarPantallasXRol");
+                        var content2 = new StringContent(json2, System.Text.Encoding.UTF8, "application/json");
+                        var response2 = await client.PostAsync(_baseurl + "api/Roles/InsertarPantallasXRol", content2);
 
+                        }
                     }
+                   
 
                 }
                 else if (message == "Registro repetido")
@@ -203,6 +230,30 @@ namespace SistemaLicencias.WebUI.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
+            #region Tiene permiso?
+            var client = new HttpClient();
+            int esAdmin = 0;
+            if (HttpContext.Session.GetString("EsAdmin") == "True")
+            {
+                esAdmin = 1;
+            }
+
+            client.BaseAddress = new Uri(_baseurl + $"api/Usuario/AccesoAPantalla?esAdmin={esAdmin}&role_Id={HttpContext.Session.GetInt32("Rol")}&pant_Id=7");//donde dice pant id tenes que metelo en duro y tiene que se el mismo id que en la base de datos sql
+
+            var Acceso = await client.GetAsync(_baseurl + $"api/Usuario/AccesoAPantalla?esAdmin={esAdmin}&role_Id={HttpContext.Session.GetInt32("Rol")}&pant_Id=7");
+
+            if (Acceso.IsSuccessStatusCode)
+            {
+                var responseContent = await Acceso.Content.ReadAsStringAsync();
+                JObject jsonObj = JObject.Parse(responseContent);
+                string message = (string)jsonObj["message"];
+                if (message == "0")
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            #endregion
+
             using (var httpClient = new HttpClient())
             {
                 var response = await httpClient.GetAsync(_baseurl + "api/Roles/Buscar?id=" + id);
@@ -264,17 +315,21 @@ namespace SistemaLicencias.WebUI.Controllers
                     var contentD = new StringContent(jsonD, System.Text.Encoding.UTF8, "application/json");
                     var responseD = await client.PutAsync(_baseurl + "api/Roles/EliminarPantallasXRol", contentD);
 
-                    foreach (var item in roles.pantallas)
+                    if (roles.pantallas != null)
                     {
-                        pant.pant_Id = Convert.ToInt32(item);
-                        pant.prol_UsuCreacion = Convert.ToInt32(roles.role_UsuModificacion);
-                        string json2 = JsonConvert.SerializeObject(pant);
+                        foreach (var item in roles.pantallas)
+                        {
+                            pant.pant_Id = Convert.ToInt32(item);
+                            pant.prol_UsuCreacion = Convert.ToInt32(roles.role_UsuModificacion);
+                            string json2 = JsonConvert.SerializeObject(pant);
 
-                        client2.BaseAddress = new Uri(_baseurl + "api/Roles/InsertarPantallasXRol");
-                        var content2 = new StringContent(json2, System.Text.Encoding.UTF8, "application/json");
-                        var response2 = await client.PostAsync(_baseurl + "api/Roles/InsertarPantallasXRol", content2);
+                            client2.BaseAddress = new Uri(_baseurl + "api/Roles/InsertarPantallasXRol");
+                            var content2 = new StringContent(json2, System.Text.Encoding.UTF8, "application/json");
+                            var response2 = await client.PostAsync(_baseurl + "api/Roles/InsertarPantallasXRol", content2);
 
+                        }
                     }
+                   
 
                 }
                 else if (message == "Registro repetido")
@@ -313,7 +368,7 @@ namespace SistemaLicencias.WebUI.Controllers
                     return View(roles);
                 }
 
-                TempData["role"] = "CreateSuccess";
+                TempData["role"] = "EditSuccess";
                 return RedirectToAction("Index");
             }
             else
@@ -375,6 +430,30 @@ namespace SistemaLicencias.WebUI.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int? id)
         {
+            #region Tiene permiso?
+            var client = new HttpClient();
+            int esAdmin = 0;
+            if (HttpContext.Session.GetString("EsAdmin") == "True")
+            {
+                esAdmin = 1;
+            }
+
+            client.BaseAddress = new Uri(_baseurl + $"api/Usuario/AccesoAPantalla?esAdmin={esAdmin}&role_Id={HttpContext.Session.GetInt32("Rol")}&pant_Id=7");//donde dice pant id tenes que metelo en duro y tiene que se el mismo id que en la base de datos sql
+
+            var Acceso = await client.GetAsync(_baseurl + $"api/Usuario/AccesoAPantalla?esAdmin={esAdmin}&role_Id={HttpContext.Session.GetInt32("Rol")}&pant_Id=7");
+
+            if (Acceso.IsSuccessStatusCode)
+            {
+                var responseContent = await Acceso.Content.ReadAsStringAsync();
+                JObject jsonObj = JObject.Parse(responseContent);
+                string message = (string)jsonObj["message"];
+                if (message == "0")
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            #endregion
+
             using (var httpClient = new HttpClient())
             {
                 var response = await httpClient.GetAsync(_baseurl + "api/Roles/Buscar?id=" + id);

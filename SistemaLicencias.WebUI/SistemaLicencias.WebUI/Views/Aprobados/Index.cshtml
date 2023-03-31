@@ -67,7 +67,7 @@
                             @Html.DisplayFor(modelItem => item.sucu_Nombre)
                         </td>
                         <td>
-                            @Html.ActionLink("Details", "Details", new { id = item.apro_Id }, new { @class = "btn btn-info mx-1 btn-outline btn-sm mx-1" }) 
+                            @Html.ActionLink("Detalles", "Details", new { id = item.apro_Id }, new { @class = "btn btn-info mx-1 btn-outline btn-sm mx-1" }) 
                             <button class="btn btn-danger btn-sm btn-outline" type="button" onclick="OpenModalDelete('@item.apro_Id')">Eliminar</button>
                         </td>
                     </tr>

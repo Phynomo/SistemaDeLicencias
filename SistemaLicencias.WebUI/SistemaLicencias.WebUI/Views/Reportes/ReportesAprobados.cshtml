@@ -144,7 +144,7 @@
         var config = {
             head: [encabezados],
             body: datos,
-            startY: 65,
+            startY: 70,
             didDrawPage: function (data) {
                 // Establecer el margen superior de la tabla en cada página
                 data.settings.margin.top = 45;
@@ -152,7 +152,7 @@
                 ///reyeno
                 var img = new Image();
                 img.src = '/img/Banner_Aprobados.png';
-                data.doc.addImage(img, 'JPEG', data.settings.margin.left, 10, 182, 50);
+                data.doc.addImage(img, 'JPEG', data.settings.margin.left, 10, 182, 55);
 
 
                 // Establecer la posición de inicio de la tabla en cada página

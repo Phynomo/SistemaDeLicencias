@@ -74,6 +74,18 @@
             closeOnEsc: false,
         });
     }
+    if (resultado == "YaExiste") {
+        swal({
+            title: 'Dato invalido',
+            text: 'No pueden existir dos registros con el mismo nombre',
+            type: 'error',
+            timer: 2500,
+            showConfirmButton: false,
+            showCancelButton: false,
+            closeOnClickOutside: false,
+            closeOnEsc: false,
+        });
+    }
 
 
 

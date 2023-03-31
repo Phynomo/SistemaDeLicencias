@@ -54,13 +54,17 @@ namespace SistemaLicencias.DataAccess.Repository
 
         public RequestStatus Update(tbTiposLicencias item)
         {
+            RequestStatus result = new RequestStatus();
             using var db = new SqlConnection(LicenciaContext.ConnectionString);
             var parametros = new DynamicParameters();
             parametros.Add("@tili_Id", item.tili_Id, DbType.Int32, ParameterDirection.Input);
             parametros.Add("@tili_Descripcion", item.tili_Descripcion, DbType.String, ParameterDirection.Input);
             parametros.Add("@tili_UsuModificacion", item.tili_UsuModificacion, DbType.Int32, ParameterDirection.Input);
 
-            var result = db.QueryFirst<RequestStatus>(ScriptsDataBase.UDP_tbTiposLicencias_Editar, parametros, commandType: System.Data.CommandType.StoredProcedure);
+            var resultado = db.QueryFirst<int>(ScriptsDataBase.UDP_tbTiposLicencias_Editar, parametros, commandType: System.Data.CommandType.StoredProcedure);
+
+            result.CodeStatus = resultado;
+            
             return result;
         }
 

@@ -73,9 +73,12 @@ namespace SistemaLicencias.BusinessLogic.Service
             try
             {
                 var map = _tipoLicenciaRepository.Insert(tbTipos);
-                if (map.CodeStatus > 0)
+                if (map.CodeStatus == 1)
                 {
                     return result.Ok(map);
+                }else if (map.CodeStatus == 2)
+                {
+                    return result.SetMessage("YaExiste", ServiceResultType.Conflict);
                 }
                 else
                 {
@@ -97,9 +100,14 @@ namespace SistemaLicencias.BusinessLogic.Service
             try
             {
                 var map = _tipoLicenciaRepository.Update(tbTipos);
-                if (map.CodeStatus > 0)
+                
+                if (map.CodeStatus == 1)
                 {
                     return result.Ok(map);
+                }
+                else if (map.CodeStatus == 2)
+                {
+                    return result.SetMessage("YaExiste", ServiceResultType.Conflict);
                 }
                 else
                 {

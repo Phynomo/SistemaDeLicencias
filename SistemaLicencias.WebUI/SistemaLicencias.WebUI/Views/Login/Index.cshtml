@@ -24,7 +24,9 @@
     <div class="main">
         <div class="container a-container" id="a-container">
             <form class="form" id="b-form" method="post" asp-action="Index">
-                <h2 class="form_title title">Licencias licenciado</h2>
+                <h2 class="form_title title">
+                    <img src="~/img/logo_itm.png" style="height:80px"/>
+                </h2>
                 <div class="form__icons"><h2>Iniciar sesión</h2></div><span class="form__span">Ingresa tu usuario y contraseña</span>
                 <input asp-for="user_NombreUsuario" id="user_NombreUsuarioL" class="form__input" type="text" placeholder="Usuario" autocomplete="off" />
                 <label style="color:red;" id="lbluser_NombreUsuarioL" hidden>Complete el campo "Usuario"</label>
@@ -37,7 +39,9 @@
         </div>
         <div class="container b-container" id="b-container">
             <form class="form" id="a-form" method="post" asp-action="Recuperar">
-                <h2 class="form_title title">Licencias licenciado</h2>
+                <h2 class="form_title title">
+                    <img src="~/img/logo_itm.png" style="height:80px" />
+                </h2>
                 <div class="form__icons">Recuperar Usuario</div><span class="form__span">Ingresa tu usuario y la nueva contraseña que deseas</span>
                 <input asp-for="user_NombreUsuario" id="user_NombreUsuarioR" class="form__input" type="text" placeholder="Usuario">
                 <label style="color:red;" id="lbluser_NombreUsuarioR" hidden>Complete el campo "Usuario"</label>

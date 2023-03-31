@@ -78,9 +78,14 @@ namespace SistemaLicencias.WebUI.Controllers
             if (response.IsSuccessStatusCode)
             {
                 var responseContent = await response.Content.ReadAsStringAsync();
+                JObject jsonObj = JObject.Parse(responseContent);
+                string message = (string)jsonObj["message"];
+                if (message == "YaExiste")
+                {
+                    TempData["tili"] = "YaExiste";
+                    return RedirectToAction("Index");
+                }
                 TempData["tili"] = "CreateSuccess";
-                Console.WriteLine(responseContent);
-
                 return RedirectToAction("Index");
             }
             else
@@ -129,6 +134,13 @@ namespace SistemaLicencias.WebUI.Controllers
             if (response.IsSuccessStatusCode)
             {
                 var responseContent = await response.Content.ReadAsStringAsync();
+                JObject jsonObj = JObject.Parse(responseContent);
+                string message = (string)jsonObj["message"];
+                if (message == "YaExiste")
+                {
+                    TempData["tili"] = "YaExiste";
+                    return RedirectToAction("Index");
+                }
                 Console.WriteLine(responseContent);
                 TempData["tili"] = "EditSuccess";
                 return RedirectToAction("Index");
