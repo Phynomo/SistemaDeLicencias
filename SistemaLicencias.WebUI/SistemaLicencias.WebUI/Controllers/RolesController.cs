@@ -77,9 +77,10 @@ namespace SistemaLicencias.WebUI.Controllers
             }
 
         }
-            [HttpGet]
-            public async Task<IActionResult> Create()
-            {
+
+        [HttpGet]
+        public async Task<IActionResult> Create()
+        {
             #region Tiene permiso?
             var client = new HttpClient();
             int esAdmin = 0;
@@ -88,7 +89,7 @@ namespace SistemaLicencias.WebUI.Controllers
                 esAdmin = 1;
             }
 
-            client.BaseAddress = new Uri(_baseurl + $"api/Usuario/AccesoAPantalla?esAdmin={esAdmin}&role_Id={HttpContext.Session.GetInt32("Rol")}&pant_Id=7");//donde dice pant id tenes que metelo en duro y tiene que se el mismo id que en la base de datos sql
+            client.BaseAddress = new Uri(_baseurl + $"api/Usuario/AccesoAPantalla?esAdmin={esAdmin}&role_Id={HttpContext.Session.GetInt32("Rol")}&pant_Id=7");
 
             var Acceso = await client.GetAsync(_baseurl + $"api/Usuario/AccesoAPantalla?esAdmin={esAdmin}&role_Id={HttpContext.Session.GetInt32("Rol")}&pant_Id=7");
 
@@ -103,6 +104,7 @@ namespace SistemaLicencias.WebUI.Controllers
                 }
             }
             #endregion
+
             using (var httpClient = new HttpClient())
             {
 
@@ -119,8 +121,8 @@ namespace SistemaLicencias.WebUI.Controllers
                 }
 
                 return View();
-                }
             }
+        }
 
         [HttpPost]
         public async Task<IActionResult> Create(RolesViewModel roles)
@@ -238,7 +240,7 @@ namespace SistemaLicencias.WebUI.Controllers
                 esAdmin = 1;
             }
 
-            client.BaseAddress = new Uri(_baseurl + $"api/Usuario/AccesoAPantalla?esAdmin={esAdmin}&role_Id={HttpContext.Session.GetInt32("Rol")}&pant_Id=7");//donde dice pant id tenes que metelo en duro y tiene que se el mismo id que en la base de datos sql
+            client.BaseAddress = new Uri(_baseurl + $"api/Usuario/AccesoAPantalla?esAdmin={esAdmin}&role_Id={HttpContext.Session.GetInt32("Rol")}&pant_Id=7");
 
             var Acceso = await client.GetAsync(_baseurl + $"api/Usuario/AccesoAPantalla?esAdmin={esAdmin}&role_Id={HttpContext.Session.GetInt32("Rol")}&pant_Id=7");
 
@@ -438,7 +440,7 @@ namespace SistemaLicencias.WebUI.Controllers
                 esAdmin = 1;
             }
 
-            client.BaseAddress = new Uri(_baseurl + $"api/Usuario/AccesoAPantalla?esAdmin={esAdmin}&role_Id={HttpContext.Session.GetInt32("Rol")}&pant_Id=7");//donde dice pant id tenes que metelo en duro y tiene que se el mismo id que en la base de datos sql
+            client.BaseAddress = new Uri(_baseurl + $"api/Usuario/AccesoAPantalla?esAdmin={esAdmin}&role_Id={HttpContext.Session.GetInt32("Rol")}&pant_Id=7");
 
             var Acceso = await client.GetAsync(_baseurl + $"api/Usuario/AccesoAPantalla?esAdmin={esAdmin}&role_Id={HttpContext.Session.GetInt32("Rol")}&pant_Id=7");
 

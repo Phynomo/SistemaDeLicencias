@@ -155,13 +155,12 @@ $(document).ready(function () {
 
 
 function addClass() {
-    console.log(1);
+   
     $('#lice').delay(1000).addClass('active');
     $('#MenuLicencia').delay(1000).attr('aria-expanded', true);
     $('#subMenuLicencia').delay(1000).attr('aria-expanded', true);
     $('#subMenuLicencia').delay(1000).addClass('in');
     $('#SolicitudItem').delay(1000).addClass('active');
-
 }
 
 

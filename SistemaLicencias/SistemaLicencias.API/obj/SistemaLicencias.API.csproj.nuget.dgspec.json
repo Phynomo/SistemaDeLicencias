@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\danie\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.API\\SistemaLicencias.API.csproj": {}
+    "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.API\\SistemaLicencias.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\danie\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.API\\SistemaLicencias.API.csproj": {
+    "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.API\\SistemaLicencias.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\danie\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.API\\SistemaLicencias.API.csproj",
+        "projectUniqueName": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.API\\SistemaLicencias.API.csproj",
         "projectName": "SistemaLicencias.API",
-        "projectPath": "C:\\Users\\danie\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.API\\SistemaLicencias.API.csproj",
-        "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\danie\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.API\\obj\\",
+        "projectPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.API\\SistemaLicencias.API.csproj",
+        "packagesPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.API\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\LAB01.DESKTOP-36LBO8D\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +32,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\danie\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.BusinessLogic\\SistemaLicencias.BusinessLogic.csproj": {
-                "projectPath": "C:\\Users\\danie\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.BusinessLogic\\SistemaLicencias.BusinessLogic.csproj"
+              "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.BusinessLogic\\SistemaLicencias.BusinessLogic.csproj": {
+                "projectPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.BusinessLogic\\SistemaLicencias.BusinessLogic.csproj"
               }
             }
           }
@@ -93,17 +97,21 @@
         }
       }
     },
-    "C:\\Users\\danie\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.BusinessLogic\\SistemaLicencias.BusinessLogic.csproj": {
+    "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.BusinessLogic\\SistemaLicencias.BusinessLogic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\danie\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.BusinessLogic\\SistemaLicencias.BusinessLogic.csproj",
+        "projectUniqueName": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.BusinessLogic\\SistemaLicencias.BusinessLogic.csproj",
         "projectName": "SistemaLicencias.BusinessLogic",
-        "projectPath": "C:\\Users\\danie\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.BusinessLogic\\SistemaLicencias.BusinessLogic.csproj",
-        "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\danie\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.BusinessLogic\\obj\\",
+        "projectPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.BusinessLogic\\SistemaLicencias.BusinessLogic.csproj",
+        "packagesPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.BusinessLogic\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\LAB01.DESKTOP-36LBO8D\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -117,8 +125,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\danie\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.DataAccess\\SistemaLicencias.DataAccess.csproj": {
-                "projectPath": "C:\\Users\\danie\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.DataAccess\\SistemaLicencias.DataAccess.csproj"
+              "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.DataAccess\\SistemaLicencias.DataAccess.csproj": {
+                "projectPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.DataAccess\\SistemaLicencias.DataAccess.csproj"
               }
             }
           }
@@ -151,17 +159,21 @@
         }
       }
     },
-    "C:\\Users\\danie\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.DataAccess\\SistemaLicencias.DataAccess.csproj": {
+    "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.DataAccess\\SistemaLicencias.DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\danie\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.DataAccess\\SistemaLicencias.DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.DataAccess\\SistemaLicencias.DataAccess.csproj",
         "projectName": "SistemaLicencias.DataAccess",
-        "projectPath": "C:\\Users\\danie\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.DataAccess\\SistemaLicencias.DataAccess.csproj",
-        "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\danie\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.DataAccess\\obj\\",
+        "projectPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.DataAccess\\SistemaLicencias.DataAccess.csproj",
+        "packagesPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.DataAccess\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\LAB01.DESKTOP-36LBO8D\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -175,8 +187,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\danie\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.Entities\\SistemaLicencias.Entities.csproj": {
-                "projectPath": "C:\\Users\\danie\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.Entities\\SistemaLicencias.Entities.csproj"
+              "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.Entities\\SistemaLicencias.Entities.csproj": {
+                "projectPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.Entities\\SistemaLicencias.Entities.csproj"
               }
             }
           }
@@ -223,17 +235,21 @@
         }
       }
     },
-    "C:\\Users\\danie\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.Entities\\SistemaLicencias.Entities.csproj": {
+    "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.Entities\\SistemaLicencias.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\danie\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.Entities\\SistemaLicencias.Entities.csproj",
+        "projectUniqueName": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.Entities\\SistemaLicencias.Entities.csproj",
         "projectName": "SistemaLicencias.Entities",
-        "projectPath": "C:\\Users\\danie\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.Entities\\SistemaLicencias.Entities.csproj",
-        "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\danie\\Documents\\GitHub\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.Entities\\obj\\",
+        "projectPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.Entities\\SistemaLicencias.Entities.csproj",
+        "packagesPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\LAB01.DESKTOP-36LBO8D\\Desktop\\SistemaDeLicencias\\SistemaLicencias\\SistemaLicencias.Entities\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\LAB01.DESKTOP-36LBO8D\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

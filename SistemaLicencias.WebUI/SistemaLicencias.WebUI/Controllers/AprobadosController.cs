@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -26,6 +27,33 @@ namespace SistemaLicencias.WebUI.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
+
+            #region Tiene permiso?
+            var client = new HttpClient();
+            int esAdmin = 0;
+            if (HttpContext.Session.GetString("EsAdmin") == "True")
+            {
+                esAdmin = 1;
+            }
+
+            client.BaseAddress = new Uri(_baseurl + $"api/Usuario/AccesoAPantalla?esAdmin={esAdmin}&role_Id={HttpContext.Session.GetInt32("Rol")}&pant_Id=1");
+
+            var Acceso = await client.GetAsync(_baseurl + $"api/Usuario/AccesoAPantalla?esAdmin={esAdmin}&role_Id={HttpContext.Session.GetInt32("Rol")}&pant_Id=1");
+
+            if (Acceso.IsSuccessStatusCode)
+            {
+                var responseContent = await Acceso.Content.ReadAsStringAsync();
+                JObject jsonObj = JObject.Parse(responseContent);
+                string message = (string)jsonObj["message"];
+                if (message == "0")
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            #endregion
+
+
+
             ViewBag.Resultado = TempData["apro"];
 
             List<VWAprobadosViewModel> listado = new List<VWAprobadosViewModel>();
@@ -54,6 +82,37 @@ namespace SistemaLicencias.WebUI.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int? id)
         {
+
+
+            #region Tiene permiso?
+            var client = new HttpClient();
+            int esAdmin = 0;
+            if (HttpContext.Session.GetString("EsAdmin") == "True")
+            {
+                esAdmin = 1;
+            }
+
+            client.BaseAddress = new Uri(_baseurl + $"api/Usuario/AccesoAPantalla?esAdmin={esAdmin}&role_Id={HttpContext.Session.GetInt32("Rol")}&pant_Id=1");
+
+            var Acceso = await client.GetAsync(_baseurl + $"api/Usuario/AccesoAPantalla?esAdmin={esAdmin}&role_Id={HttpContext.Session.GetInt32("Rol")}&pant_Id=1");
+
+            if (Acceso.IsSuccessStatusCode)
+            {
+                var responseContent = await Acceso.Content.ReadAsStringAsync();
+                JObject jsonObj = JObject.Parse(responseContent);
+                string message = (string)jsonObj["message"];
+                if (message == "0")
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            #endregion
+
+
+
+
+
+
 
             using (var httpClient = new HttpClient())
             {

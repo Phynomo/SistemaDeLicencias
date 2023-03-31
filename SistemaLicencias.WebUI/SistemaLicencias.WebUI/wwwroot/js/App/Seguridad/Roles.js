@@ -98,7 +98,33 @@
             closeOnEsc: false,
         });
     }
+
+
+
+    setTimeout(addClass, 100);
+    setTimeout(addClass, 200);
+    setTimeout(addClass, 300);
+    setTimeout(addClass, 400);
+    setTimeout(addClass, 500);
+    setTimeout(addClass, 600);
+    setTimeout(addClass, 700);
+    setTimeout(addClass, 800);
+    setTimeout(addClass, 900);
+    setTimeout(addClass, 1000);
+
+
 });
+
+
+function addClass() {
+    console.log(1);
+    $('#acce').addClass('active');
+    $('#MenuAcceso').attr('aria-expanded', true);
+    $('#SubMenuAcceso').attr('aria-expanded', true);
+    $('#SubMenuAcceso').addClass('in');
+    $('#RolesItem').addClass('active');
+}
+
 
 
 function OpenModalDelete(id) {
